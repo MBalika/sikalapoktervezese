@@ -176,6 +176,13 @@ main p, main li, main dd, main figcaption, main .note, .eq .w > div, .fb, footer
 .g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
 .g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.g2x2{grid-template-columns:1fr}
+@media (min-width:640px){.g2x2{grid-template-columns:repeat(2,1fr)}}
+/* hat kártya: széles nézetben 4 + 2, az alsó kettő középen (a 2. és 3. alatt) */
+.g6c{grid-template-columns:1fr}
+@media (min-width:560px){.g6c{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:820px){.g6c{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1080px){.g6c{grid-template-columns:repeat(8,1fr)}.g6c>*{grid-column:span 2}.g6c>:nth-child(5){grid-column:3/span 2}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
 .card h4{margin-top:0}
 .card.k{border-top:4px solid var(--k)}

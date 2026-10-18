@@ -139,7 +139,7 @@ onReady(function eljaras() {
     ['Ép gránitra alapozott hídfő: a kőzet típusa, tagoltsága és egyirányú nyomószilárdsága alapján megengedett talpfeszültséget veszel fel.', 2, 'Valószínűsített talajtörési ellenállás kőzetre: szokáson alapuló eljárás (G melléklet).'],
     ['Lemezalap végeselemes modellje, amelyben a teher–süllyedés kapcsolatot egészen a törési állapotig vizsgálod.', 0, 'A numerikus méretezés is a közvetlen tervezési eljárás része (az új EC7-ben: számításon alapuló tervezés).']
   ];
-  const grid = H('div', { cls: 'grid g2' }, el);
+  const grid = H('div', { cls: 'grid g2x2' }, el);
   C.forEach(([t, a, e]) => {
     const c = H('div', { cls: 'card' }, grid);
     H('p', { cls: 'small', text: t, style: 'margin-bottom:10px' }, c);
