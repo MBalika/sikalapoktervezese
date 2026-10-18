@@ -306,7 +306,7 @@ const MODAL = (() => {
     frame.className = 'frame';
     frame.innerHTML = '';
     H('img', { src, alt: t || '' }, frame);
-    cap.textContent = 'Kép: az előadás diáiból (Dr. Móczár Balázs, BME).';
+    cap.textContent = '';
     open();
   }
   return { video, img, close };

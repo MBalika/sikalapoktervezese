@@ -432,8 +432,9 @@ footer li{margin:.2em 0}
 .pill{display:inline-block;padding:2px 8px;border-radius:999px;font:600 .74rem var(--f-mono);background:var(--card-2);border:1px solid var(--line)}
 hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
 
-.imgcard{display:grid;grid-template-columns:1fr;gap:14px;align-items:start}
-.imgcard > button img{max-height:220px;object-fit:cover}
+.imgcard{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;align-content:start}
+.imgcard > button{display:block;line-height:0}
+.imgcard > button img{display:block;max-height:220px;object-fit:cover}
 @media (min-width:640px){.imgcard.wide{grid-template-columns:150px 1fr}.imgcard.wide > button img{max-height:none}}
 /* keskeny kijelzők */
 .seg{flex-wrap:wrap;max-width:100%}
