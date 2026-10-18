@@ -1,0 +1,663 @@
+<a class="sr" href="#mikor">Ugrás a tartalomra</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Síkalapok tervezése – az oldal teteje">
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#86b51c"/><path d="M14 6v13M22 6v13" stroke="#13200a" stroke-width="2.6" stroke-linecap="round"/><path d="M9 19h18v6H9z" fill="#13200a"/><path d="M5 29h26" stroke="#f3f4ee" stroke-width="2.2" stroke-dasharray="3 2.2"/></svg>
+      <span class="t"><small>BME · Építőmérnöki Kar · Geotechnika és Mérnökgeológia Tanszék</small><b>Alapozás BSc · Síkalapok tervezése</b></span>
+    </a>
+    <span class="sp"></span>
+    <a class="tbtn hide-s" href="#tovabb">A sorozat</a>
+    <a class="tbtn lime hide-s" href="https://sikalapok-teherbirasszamitasa.vercel.app/" target="_blank" rel="noopener">Tovább: teherbírás ↗</a>
+    <button class="tbtn" id="themeBtn" type="button">Sötét téma</button>
+  </div>
+</header>
+<nav class="metro" aria-label="Tervezési útvonal – fejezetek">
+  <div class="wrap">
+    <div class="mline">
+      <span class="fill"></span>
+      <a class="st" data-sec="mikor" href="#mikor" style="--k:var(--c1)"><i></i><span>01 Síkalap?</span></a>
+      <a class="st" data-sec="tipusok" href="#tipusok" style="--k:var(--c2)"><i></i><span>02 Alaptípusok</span></a>
+      <a class="st" data-sec="menet" href="#menet" style="--k:var(--c3)"><i></i><span>03 Tervezés menete</span></a>
+      <a class="st" data-sec="alapsik" href="#alapsik" style="--k:var(--c4)"><i></i><span>04 Az alapsík</span></a>
+      <a class="st" data-sec="hatar" href="#hatar" style="--k:var(--c5)"><i></i><span>05 Határállapotok</span></a>
+      <a class="st" data-sec="toro" href="#toro" style="--k:var(--c6)"><i></i><span>06 Talajtörés</span></a>
+      <a class="st" data-sec="onell" href="#onell" style="--k:var(--c7)"><i></i><span>07 Önellenőrzés</span></a>
+      <a class="st term" href="https://sikalapok-teherbirasszamitasa.vercel.app/" target="_blank" rel="noopener"><i></i><span>Teherbírás ↗</span></a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kick">Alapozás · síkalapok, 1. rész</span>
+      <h1>Síkalapok <em>tervezése</em></h1>
+      <p class="lead">Mielőtt bármit kiszámolnánk, el kell dönteni, milyen alap kell, milyen mélyre kerüljön, és milyen határállapotokra kell igazolni. Ez a tananyag ezt az utat járja végig: a síkalap és a mélyalap határától a hét alaptípuson és az alapsík felvételén át a talajtörés három mechanizmusáig. Innen indul majd a teherbírásszámítás.</p>
+      <div class="stats"><span><b>7</b> alaptípus 3D-ben</span><span><b>6</b> szempont az alapsíkhoz</span><span><b>3</b> törési mechanizmus</span><span><b>40</b> igaz/hamis állítás</span></div>
+      <div class="ctas"><a class="btn" href="#mikor">Indulás az első állomásról</a><a class="btn ghost" href="#toro">Ugrás a törési mechanizmusokhoz</a></div>
+    </div>
+    <div>
+      <div class="stage3d" id="hero3d" role="img" aria-label="Forgatható 3D modell: épület a hét síkalaptípus egyikén"></div>
+      <div class="chips" id="heroChips" role="group" aria-label="Alaptípus választása"></div>
+      <div class="cap" id="heroCap">Húzd az egérrel a forgatáshoz – a típusok maguktól is váltakoznak.</div>
+    </div>
+  </div>
+  <div class="datum" aria-hidden="true"></div>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="chap k1" id="mikor">
+  <div class="wrap">
+    <div class="chead"><div class="num">01</div><span class="kick">1. állomás · a kiindulópont</span><h2>Síkalap vagy mélyalap?</h2></div>
+    <div class="prose">
+      <p class="lead">Egy építmény a terheit az alapokon át adja át az altalajnak, így a szerkezet és az alatta lévő talajösszlet kölcsönhatásba kerül. Az alapozási rendszereknek két nagy csoportja van: a síkalapok és a mélyalapok.</p>
+      <p>Ha a <b>teherbíró talajréteg a felszínhez közel</b>, nagyjából 1–2 méteren belül található (pincés épületnél a felszerkezethez közel), akkor <b>síkalapot</b> tervezünk: az alaptest közvetlenül a teherbíró rétegre adja át a terhet. Ha a teherbíró réteg mélyebben van, nagyok a terhek, vagy síkalap esetén túl nagy süllyedések keletkeznének, akkor <b>mélyalapot</b> célszerű tervezni (cölöpalap, résfal, kút- és szekrényalap). Ilyenkor egy ún. <b>teherközvetítő elemet</b> iktatunk be a szerkezet és a teherbíró altalaj közé.</p>
+      <p>Két átmeneti eset is van. A <b>mélyített síkalap</b> 3–5 m mélyen, a teherhordó szerkezet alatt készül, de építéstechnológiai szempontból ugyanúgy, mint a hagyományos síkalap; teherbírását is a síkalapoknál használt feltevésekkel számítjuk (például a köpenymenti ellenállást elhanyagoljuk). A <b>vegyes (hibrid) alapozási rendszerek</b>, például a cölöppel gyámolított lemezalapozás, a sík- és mélyalapozási technológiákat ötvözik.</p>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card k">
+        <h4>Síkalap alkalmazható, ha…</h4>
+        <ul>
+          <li>megfelelő teherbírású és vastagságú talajréteg van a felszín közelében;</li>
+          <li>nem keletkeznek az előírtnál nagyobb alakváltozások, süllyedések;</li>
+          <li>a térszín közeli réteg teherbírása nem nagy ugyan, de mélyebben sincs jobb, és az épület súlyát nagy felületen el lehet osztani (lemezalap);</li>
+          <li>az altalaj teherbírása kicsi, de az építmény süllyedésre nem érzékeny, és a felszínközeli síkalapozással költséges talajvízszint-süllyesztés vagy mélyalapozás küszöbölhető ki.</li>
+        </ul>
+      </div>
+      <div class="card k" style="--k:var(--c7)">
+        <h4>Mélyalap kell, ha…</h4>
+        <ul>
+          <li>megbízható teherbíró réteg csak mélyebben van;</li>
+          <li>síkalap esetén meg nem engedhető süllyedések keletkeznének;</li>
+          <li>a magas építési talajvízszint miatt a síkalap költségesebb;</li>
+          <li>a víz kimoshatja, kiüregelheti a talajt a síkalap alól, például hidak mederpilléreinél;</li>
+          <li>nagy ferdeségű terhelő erőnél a síkalap elcsúszhatna;</li>
+          <li>összességében gazdaságosabb a síkalapnál.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout tip"><b>Következtetés</b><p>Ha a síkalap feltételei nem teljesülnek, mélyalapozás vagy vegyes (kombinált) alapozás következik. A döntés mindig műszaki és gazdaságossági kérdés egyszerre.</p></div>
+
+    <div class="lab" id="lab-dontes">
+      <header><h4>Alapozási döntő – mit javasolna egy tapasztalt tervező?</h4><span class="sp"></span><span class="tag">szemléltető döntéstámogatás</span></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="dontesSvg" viewBox="0 0 720 440" role="img" aria-label="Talajszelvény az épülettel és a javasolt alapozással"></svg></div>
+        <div class="ctrl" id="dontesCtrl">
+          <div class="grp">Építmény</div>
+          <div class="chips" id="dEpulet">
+            <button type="button" data-v="haz" class="on">Családi ház</button>
+            <button type="button" data-v="lakohaz">5 szintes lakóház</button>
+            <button type="button" data-v="csarnok">Ipari csarnok</button>
+            <button type="button" data-v="torony">Toronyház (25+ szint)</button>
+            <button type="button" data-v="hid">Híd mederpillére</button>
+          </div>
+          <div class="grp">Altalaj és víz</div>
+          <div class="rng"><label for="dTb">A teherbíró réteg teteje</label><output id="dTbO"></output><input type="range" id="dTb" min="0.4" max="16" step="0.1" value="1.2"></div>
+          <label class="sw"><input type="checkbox" id="dNincs"> Mélyebben sincs jobb réteg (csak közepes talaj)</label>
+          <div class="rng"><label for="dGw">Talajvíz mélysége</label><output id="dGwO"></output><input type="range" id="dGw" min="0.3" max="10" step="0.1" value="4"></div>
+          <div class="grp">Egyéb körülmények</div>
+          <label class="sw"><input type="checkbox" id="dSens"> Süllyedésre érzékeny felszerkezet</label>
+          <label class="sw"><input type="checkbox" id="dScour"> Kimosás, kiüregelés veszélye</label>
+          <label class="sw"><input type="checkbox" id="dIncl"> Nagy ferde vagy vízszintes teher</label>
+        </div>
+      </div>
+      <div class="out" id="dontesOut"></div>
+    </div>
+
+    <h3>Valós példák</h3>
+    <div class="grid g3">
+      <div class="card"><span class="tag web">web</span><h4 style="margin-top:8px">MOL Campus, Budapest</h4><p class="small">A 143 m-es magasház <b>vegyes alapozású</b>: 2,2 m vastag alaplemez, alatta 135 darab, 1,2 m átmérőjű, 8 m hosszú cölöp, amelyek a stabil agyagmárga rétegben állnak. Csak az alaplemezhez kb. 4400 m³ betont dolgoztak be.</p><p class="src">Forrás: telex.hu, 2021</p></div>
+      <div class="card"><span class="tag web">web</span><h4 style="margin-top:8px">Burj Khalifa, Dubaj</h4><p class="small">A világ legmagasabb épülete is <b>cölöppel gyámolított lemezen</b> áll: a 3,7 m vastag vasbeton lemez 192 darab, 1,5 m átmérőjű, mintegy 50 m hosszú fúrt cölöpre támaszkodik.</p><p class="src">Forrás: geoprac.net</p></div>
+      <div class="card"><span class="tag">jegyzet</span><h4 style="margin-top:8px">Családi ház, jó talajon</h4><p class="small">Szemcsés, teherbíró talajon a falazott családi ház alá a legegyszerűbb és legolcsóbb megoldás a <b>sávalap</b> a fagyhatár alatt (0,8–1,0 m). Itt a mélyalap felesleges költség lenne.</p></div>
+    </div>
+    <div class="quiz" id="quiz1"></div>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="chap k2" id="tipusok">
+  <div class="wrap">
+    <div class="chead"><div class="num">02</div><span class="kick">2. állomás · a választék</span><h2>A síkalapok fajtái és szerkezete</h2></div>
+    <div class="prose">
+      <p class="lead">A sáv- és pilléralap a legegyszerűbb és legolcsóbb. Ha a pillérek vagy falak között nagy süllyedéskülönbségek keletkeznének, vagy a terhek csak nagy felületen adhatók át, egyre merevebb rendszerek következnek: szalag-, gerendarács-, lemez- és dobozalap. A héjalap különleges, ma már nem alkalmazott megoldás.</p>
+    </div>
+
+    <div class="lab" id="lab-types">
+      <header><h4>Alaptípus-labor – forgasd, kapcsold, nézz bele!</h4><span class="sp"></span><div class="chips" id="tChips" role="group" aria-label="Alaptípus"></div></header>
+      <div class="body side">
+        <div class="stage3d" id="types3d" role="img" aria-label="Forgatható 3D modell az alaptípusról"><span class="hint">húzd: forgatás · görgő: nagyítás</span></div>
+        <div class="ctrl">
+          <div>
+            <div class="grp" id="tKind">Sávalap</div>
+            <h4 style="margin:.3em 0 .2em" id="tTitle">Sávalap</h4>
+            <p class="small just" id="tDesc"></p>
+          </div>
+          <div id="tVarWrap"><div class="grp">Változat</div><div class="chips" id="tVar"></div></div>
+          <div class="grp">Nézet</div>
+          <div class="row small"><span>Felszerkezet</span><div class="seg" id="tBuild"><button type="button" data-v="solid">Tömör</button><button type="button" data-v="ghost" class="on">Áttetsző</button><button type="button" data-v="off">Rejtett</button></div></div>
+          <label class="sw"><input type="checkbox" id="tLoad"> Teherút (terhek útja a talajba)</label>
+          <div class="rng"><label for="tSoil">A levágott talajrész láthatósága</label><output id="tSoilO"></output><input type="range" id="tSoil" min="0" max="1" step="0.05" value="0.25"></div>
+          <div class="callout" style="margin:0" id="tWhen"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Sávalapok</h3>
+    <div class="prose">
+      <p>A sávalapok a <b>falak folyamatos alátámasztására</b> készülnek. Talpszélességük kivételesen azonos is lehet a felmenő falé (régi épületeknél sokszor a fal és az alaptest nem válik el egymástól, ugyanabból az anyagból, leggyakrabban téglából készült). Mivel a talaj teherbírása kisebb az építőanyagénál, az alapok általában konzolosan kinyúlnak a falak alól; a földmunka pontatlansága miatt mindkét oldalon <span class="nw">min. 5–5 cm</span> elhelyezési „biztonságra” is szükség van.</p>
+      <p>Készülhetnek téglából, terméskőből, úsztatott betonból, csömöszölt betonból és vasbetonból. Téglából és terméskőből ma már csak kivételesen készül alap, pár évtizede viszont nagyrészt ilyenek épültek – meglévő épületek rá- és melléépítésénél számtalanszor „előkerülnek”. Az alapok szélessége (B) és magassága (m) gyakorlati okokból 50 cm-nél kisebb nem lehet.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card k"><h4>a) Tégla</h4><p class="small">A pincefal és az alapszélesség közötti kiszélesítés lépcsőzetes: magasságban a téglasor, vízszintesen a féltégla egész számú többszöröse. Az első téglasor alá 5–10 cm kiegyenlítő homok vagy mészhabarcs kerül, ha nem homokos, könnyen kiegyenlíthető talajra alapozunk.</p></div>
+      <div class="card k"><h4>b) Terméskő</h4><p class="small">Az elvek a téglaalapéhoz hasonlók. Azonos szélességgel vagy lépcsős kiszélesítéssel készül, legalább H10 jelű javított falazó mészhabarcsba rakott szilárd, fagyálló kövekből. Egy kő legfeljebb 50 kg lehet. Régi épületeknél gyakori a vegyes (tégla és kő) falazat.</p></div>
+      <div class="card k"><h4>c) Úsztatott beton</h4><p class="small">A betonba a helyszínen található vagy olcsón beszerezhető terméskövet építenek be, az alaptest magasságának kb. felét kitevő sávban. Ez az úgynevezett francia beton. A múlt század második felében családi házaknál és nyaralóknál terjedt el; ma az élőmunka-igénye miatt nem éri meg.</p></div>
+      <div class="card k"><h4>d) Csömöszölt beton</h4><p class="small">A leggyakoribb sávalap. Zsaluzattal vagy földpartok között épül; zsaluzatot ma csak akkor használnak, ha kohézió nélküli szemcsés talajban nem lehet közel függőleges földpartokat kiemelni – a zsaluzás drága és lassú.</p></div>
+      <div class="card k"><h4>e) Vasbeton</h4><p class="small">Akkor építik, ha nagy támaszkodó felület kell, de az alap magasságát valami korlátozza, például a talajvíz vagy a pince. Vasalással a magasság csökkenthető, és összességében gazdaságosabb is lehet: minél szélesebb ugyanis a vasalatlan alaptest, annál magasabbnak kellene lennie.</p></div>
+      <div class="card k"><h4>f) Válaszfal alapja</h4><p class="small">A válaszfalakat is le kell alapozni, pedig csak önhordók. Három megoldás van: külön kisebb sávalap, megvastagított és vasalt padozat, vagy (előregyártott gerendás födémnél) vasbeton gerenda, amely a terhet a merőleges főfalak sávalapjaira „áthordja”.</p></div>
+    </div>
+    <div class="callout"><b>Minimális vasalás a sávalapban is</b><p>Az alapot sokszor akkor is célszerű minimálisan vasalni (4 db, legalább 12–16 mm átmérőjű hosszvas, 40×40-es kengyelek), ha a magasságát nem csökkentjük: egy lokális süllyedésnél (pl. csőtörés) részben kiegyenlítheti a süllyedéskülönbségeket.</p></div>
+
+    <div class="lab" id="lab-sav">
+      <header><h4>Sávalap-metszet szerkesztő – megfelel a szerkesztési szabályoknak?</h4><span class="sp"></span><div class="chips" id="sAnyag"><button type="button" data-v="tegla" class="on">Tégla</button><button type="button" data-v="ko">Terméskő</button><button type="button" data-v="uszt">Úsztatott beton</button><button type="button" data-v="csom">Csömöszölt beton</button><button type="button" data-v="vb">Vasbeton</button></div></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="savSvg" viewBox="0 0 720 470" role="img" aria-label="Sávalap keresztmetszete méretekkel"></svg></div>
+        <div class="ctrl">
+          <div class="rng"><label for="sFal">Falvastagság v<sub>f</sub></label><output id="sFalO"></output><input type="range" id="sFal" min="0.25" max="0.6" step="0.01" value="0.38"></div>
+          <div class="rng"><label for="sB">Alapszélesség B</label><output id="sBO"></output><input type="range" id="sB" min="0.3" max="2.2" step="0.01" value="0.8"></div>
+          <div class="rng"><label for="sM">Alapmagasság m</label><output id="sMO"></output><input type="range" id="sM" min="0.2" max="1.4" step="0.01" value="0.5"></div>
+          <div class="rng" id="sTgWrap"><label for="sTg">Megkövetelt tg α (betonminőség szerint)</label><output id="sTgO"></output><input type="range" id="sTg" min="1" max="1.5" step="0.05" value="1.5"></div>
+          <ul class="checks" id="savChecks"></ul>
+          <button class="pbtn solid" type="button" id="sFix">Méretezd át a szabályok szerint</button>
+        </div>
+      </div>
+      <div class="out small" id="savOut"></div>
+    </div>
+
+    <div class="lab" id="lab-valaszfal">
+      <header><h4>Válaszfal alapozása – három megoldás</h4><span class="sp"></span><div class="seg" id="vfSeg"><button type="button" data-v="a" class="on">a) külön sávalap</button><button type="button" data-v="b">b) padozatvastagítás</button><button type="button" data-v="c">c) vb. gerenda</button></div></header>
+      <div class="stage svgwrap"><svg class="fig" id="vfSvg" viewBox="0 0 720 300" role="img" aria-label="Válaszfal alapozásának változatai"></svg></div>
+      <div class="out small" id="vfOut"></div>
+    </div>
+
+    <h4>Sávalapok a valóságban</h4>
+    <div class="gal">
+      <button type="button" data-img="img/ppt/s05_1.jpg" data-title="Kiásott téglaalap"><img src="img/ppt/s05_1.jpg" alt="Kiásott tégla sávalap mérőléccel" loading="lazy"><span>Kiásott téglaalap</span></button>
+      <button type="button" data-img="img/ppt/s09_1.jpg" data-title="Sávalap alapárka"><img src="img/ppt/s09_1.jpg" alt="Sávalap alapárka kiemelés után" loading="lazy"><span>Alapárok földpartok között</span></button>
+      <button type="button" data-img="img/ppt/s10_1.jpg" data-title="Betonozott sávalap"><img src="img/ppt/s10_1.jpg" alt="Bebetonozott sávalap" loading="lazy"><span>Bebetonozott sávalap</span></button>
+      <button type="button" data-img="img/ppt/s10_2.jpg" data-title="Betonozás földpartok között"><img src="img/ppt/s10_2.jpg" alt="Sávalap betonozása" loading="lazy"><span>Betonozás földpartok között</span></button>
+      <button type="button" data-img="img/ppt/s10_3.jpg" data-title="Sávalapok szerelt vasalással"><img src="img/ppt/s10_3.jpg" alt="Sávalap-rendszer vasalással" loading="lazy"><span>Sávalap-rendszer vasalással</span></button>
+      <button type="button" data-img="img/ppt/s10_4.jpg" data-title="Zsaluzott sávalaprendszer"><img src="img/ppt/s10_4.jpg" alt="Zsaluzott sávalapok" loading="lazy"><span>Zsaluzott sávalapok</span></button>
+      <button type="button" data-img="img/ppt/s11_1.jpg" data-title="Zsaluzás"><img src="img/ppt/s11_1.jpg" alt="Sávalap zsaluzata" loading="lazy"><span>Zsaluzat</span></button>
+      <button type="button" data-img="img/ppt/s11_3.jpg" data-title="Sávalapok a telken"><img src="img/ppt/s11_3.jpg" alt="Sávalapok kiemelt árokban" loading="lazy"><span>Kész sávalapok</span></button>
+    </div>
+
+    <h3>Pilléralapok (tömbalapok)</h3>
+    <div class="prose">
+      <p>Pillérek, oszlopok alá pilléralapot helyezünk. Alaprajza általában igazodik a pillér keresztmetszetéhez, leggyakrabban négyzet, ill. <span class="nw">B/L = 1–3,5</span>. Anyaga, építési módja a sávalapokéhoz hasonló, de a nagyobb, koncentrált igénybevétel miatt betonból vagy vasbetonból készül, alul legalább hálós acélbetéttel.</p>
+      <p>A monolit vasbeton pillér és az alaptest között <b>befogott</b> vagy <b>csuklós</b> jellegű kapcsolat létesíthető. Előregyártott oszlopoknál korábban gyakori volt az előregyártott vasbeton <b>kehelyalap</b>: a talp „kelyhébe” állították be az oszlopot, majd bebetonozással rögzítették. Ma az előregyártott oszlopot jellemzően <b>monolit tömbalapra helyezett vasbeton kehelynyakba</b> állítják és fogják be. Acélpillérnél a <b>tőcsavaros</b> lekötés az esetleges húzóerők átadásához kell. Lényegében nagyméretű pilléralapnak tekinthetők a zárt alaprajzú építmények, például a víztornyok és gyárkémények egyetlen tömbként kialakított, rendszerint kör alaprajzú alaptestei is.</p>
+    </div>
+    <div class="lab" id="lab-kapcs">
+      <header><h4>Pillér és alaptest kapcsolata</h4><span class="sp"></span><div class="seg" id="kSeg"><button type="button" data-v="befog" class="on">Befogott</button><button type="button" data-v="csuklo">Csuklós</button><button type="button" data-v="kehely">Kehelyalap</button><button type="button" data-v="nyak">Kehelynyak</button><button type="button" data-v="acel">Acélpillér</button><button type="button" data-v="kor">Torony</button></div></header>
+      <div class="stage svgwrap"><svg class="fig" id="kSvg" viewBox="0 0 720 320" role="img" aria-label="Pillér–alaptest kapcsolat"></svg></div>
+      <div class="out small" id="kOut"></div>
+    </div>
+    <div class="gal">
+      <button type="button" data-img="img/ppt/s15_1.jpg" data-title="Pilléralap vasalása"><img src="img/ppt/s15_1.jpg" alt="Pilléralap vasalása" loading="lazy"><span>Pilléralap vasalása</span></button>
+      <button type="button" data-img="img/ppt/s15_2.jpg" data-title="Kész pilléralapok kiálló oszlopvasakkal"><img src="img/ppt/s15_2.jpg" alt="Pilléralapok" loading="lazy"><span>Pilléralapok oszloppal</span></button>
+      <button type="button" data-img="img/ppt/s15_3.jpg" data-title="Pilléralap zsaluzata és vasalása"><img src="img/ppt/s15_3.jpg" alt="Pilléralap zsaluzata" loading="lazy"><span>Zsaluzat és vasalás</span></button>
+      <button type="button" data-img="img/ppt/s15_4.jpg" data-title="Tömbalapok kiálló vasakkal"><img src="img/ppt/s15_4.jpg" alt="Tömbalapok" loading="lazy"><span>Tömbalapok</span></button>
+      <button type="button" data-img="img/ppt/s21_1.jpg" data-title="Monolit tömbalapok kehelynyakkal"><img src="img/ppt/s21_1.jpg" alt="Kehelynyakas tömbalapok" loading="lazy"><span>Kehelynyakas tömbalapok</span></button>
+      <button type="button" data-img="img/ppt/s21_2.jpg" data-title="Előregyártott oszlop a kehelynyakban"><img src="img/ppt/s21_2.jpg" alt="Előregyártott oszlop kehelynyakban" loading="lazy"><span>Oszlop a kehelynyakban</span></button>
+    </div>
+
+    <h3>Szalag- és gerendarács-alapok</h3>
+    <div class="grid g2">
+      <div class="card k"><h4>Szalagalap (talpgerenda)</h4><p class="small">Gyengébb altalaj vagy erőtani okok miatt a pilléreket egy – rendszerint erősen vasalt – sávszerű gerendára állítjuk, ha a pillérek között egy irányban megengedhetetlenül nagy süllyedéskülönbségek keletkeznének. Anyaga mindig vasbeton (hajlítást kap), és az építménynek hosszirányú merevséget ad.</p></div>
+      <div class="card k"><h4>Gerendarács-alap</h4><p class="small">Ha a süllyedéskülönbséget mindkét irányban csökkenteni akarjuk, egymást metsző vasbeton szalagalapokat, vagyis gerendarács-alapot tervezünk.</p>
+        <div class="gal" style="grid-template-columns:1fr;margin:8px 0 0"><button type="button" data-img="img/ppt/s24_1.jpg" data-title="Gerendarács-alap" style="aspect-ratio:auto"><img src="img/ppt/s24_1.jpg" alt="Gerendarács-alap rajza és fényképe" loading="lazy" style="height:auto"><span>Gerendarács: rajz és kivitelezés</span></button></div>
+      </div>
+    </div>
+
+    <h3>Lemezalapok</h3>
+    <div class="prose">
+      <p>A lemezalap az építmény alatt átmenő, összefüggő vasbeton szerkezet, amely falakat és pilléreket egyaránt alátámaszt. Akkor kerül sorra, ha az építmény terheit csak a teljes alapterületen lehet átadni, mert az előző alapfajták alatti fajlagos terhelés meghaladná az altalaj teherbírását. Viszonylag kis vastagságuk miatt a lemezek általában igen hajlékonyak. Kisebb terheknél azonos vastagságú síklemez készül; a falak és pillérek alatt bordákkal merevíthető (alul- és felülbordás lemez). Pillérvázas épületeknél nagyobb terhek esetén az átszúródás megakadályozására <b>„gombafödém” jellegű</b> kialakítás a szokásos. Ha a bordák helyén csak erősítő vasbetétek maradnak, de a vastagság a bordákéval azonos, a lemez <b>rejtettbordás</b>.</p>
+      <p>Teljesen alápincézett épületnél, magas mértékadó talajvízszint mellett mindenképpen vasbeton lemezt („ellenfödémet”) célszerű alkalmazni.</p>
+    </div>
+    <div class="lab" id="lab-lemez">
+      <header><h4>Lemezalap-változatok metszetben</h4><span class="sp"></span><div class="seg" id="lSeg"><button type="button" data-v="sik" class="on">Síklemez</button><button type="button" data-v="felul">Felülbordás</button><button type="button" data-v="alul">Alulbordás</button><button type="button" data-v="gomba">Gombafödém-jellegű</button><button type="button" data-v="rejtett">Rejtettbordás</button><button type="button" data-v="terszini">Térszíni</button></div></header>
+      <div class="stage svgwrap"><svg class="fig" id="lSvg" viewBox="0 0 720 280" role="img" aria-label="Lemezalap-változat metszete"></svg></div>
+      <div class="out small" id="lOut"></div>
+    </div>
+    <div class="callout web"><b><span class="tag web">web</span> Kitekintés: fagyvédett sekély alap</b><p>Hidegebb éghajlaton a térszíni lemezhez hasonló elven működik a <i>fagyvédett sekély alap</i> (frost-protected shallow foundation): az alaptest mellé függőleges, kifelé pedig vízszintes „szárny” hőszigetelést fektetnek, így a fűtött épület által leadott hő a talajban marad, és az alap körül nem fagy át a talaj. Az amerikai lakóépület-szabályzat (IRC R403.3) ilyenkor 30–40 cm-es alapozási mélységet is megenged – feltétel, hogy az épületet télen is fűtsék.</p><p class="src">Forrás: InterNACHI, Frost-protected shallow foundations; IRC R403.3, ASCE 32-01</p></div>
+    <div class="gal">
+      <button type="button" data-img="img/ppt/s26_1.jpg" data-title="Lemezalap vasszerelése"><img src="img/ppt/s26_1.jpg" alt="Lemezalap vasszerelése" loading="lazy"><span>Lemezalap vasszerelése</span></button>
+      <button type="button" data-img="img/ppt/s26_2.jpg" data-title="Lemezalap munkagödörben"><img src="img/ppt/s26_2.jpg" alt="Lemezalap munkagödörben" loading="lazy"><span>Lemezalap munkagödörben</span></button>
+      <button type="button" data-img="img/ppt/s26_3.jpg" data-title="Lemezalap készül"><img src="img/ppt/s26_3.jpg" alt="Lemezalap készül" loading="lazy"><span>Szerelés a gödörben</span></button>
+      <button type="button" data-img="img/ppt/s26_4.jpg" data-title="Kétsoros vasalású lemez"><img src="img/ppt/s26_4.jpg" alt="Kétsoros vasalás" loading="lazy"><span>Kétsoros vasalás</span></button>
+    </div>
+
+    <h3>Dobozalap és héjalap</h3>
+    <div class="grid g2">
+      <div class="card k"><h4>Dobozalap</h4><p class="small">További merevítést jelent, ha a pince teljes szerkezetét együttdolgozóvá tesszük: az alaplemez a rá épített pincefalakkal és födémmel monolit egészet képez – tulajdonképpen szekrénytartó. A házgyári elemekből készült panelházak csak kis alakváltozást képesek károsodás nélkül elviselni, ezért alattuk alkalmazták a leggyakrabban (monolit vasbeton fogadószint).</p></div>
+      <div class="card k"><h4>Héjalap</h4><p class="small">Speciális lemezek: matematikailag leírható, egyszeres vagy kétszeres görbületű felületek, amelyekben csak normálerők (húzás, nyomás) keletkeznek, hajlítás nem. Anyagtakarékosak, de munka- és időigényesek, szigorú geometriai követelményekkel; készülhetnek helyszínen és előregyártva is. Nem bizonyultak gazdaságosnak, ma már nem alkalmazzák őket.</p></div>
+    </div>
+    <div class="card imgcard wide" style="margin-top:16px;align-items:center">
+      <button type="button" data-img="img/ppt/s29_1.jpg" data-title="A Körszálló Budapesten" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s29_1.jpg" alt="A budapesti Körszálló" style="border-radius:10px;width:100%;display:block" loading="lazy"></button>
+      <div><span class="tag">jegyzet</span> <span class="tag web">web</span><h4 style="margin-top:8px">Héjalapon áll(t): a Körszálló</h4><p class="small">Érdekesség, hogy a budapesti, Szilágyi Erzsébet fasori Körszálló alapozása is héjalappal készült. A Szrogh György tervezte, 1967-ben megnyílt, 18 szintes, kb. 64 m magas, mintegy 30 m átmérőjű hengeres tömb csúszózsalus technológiával épült. 2025-ben bezárt; az épület felső részét elbontják és újjáépítik, a tervek szerint 2028-ra lakóépület lesz.</p><p class="src">Forrás: jegyzet; telex.hu, 2025. augusztus</p></div>
+    </div>
+    <button class="vcard" type="button" data-yt="yCcUkom_K3Q" data-short data-title="Síkalaptípusok és a teherátadás" style="margin-top:16px"><span class="pl"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span><b>Videó: hogyan adja át a síkalap a terhet?</b><small>Rövid angol nyelvű animáció (PEng. Katepa, YouTube Shorts) – a teher szétterjedése az alaptest alatt.</small></span></button>
+
+    <div id="gameTipus"></div>
+    <div class="quiz" id="quiz2"></div>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="chap k3" id="menet">
+  <div class="wrap">
+    <div class="chead"><div class="num">03</div><span class="kick">3. állomás · a módszer</span><h2>A síkalapok tervezésének menete</h2></div>
+    <div class="prose">
+      <p class="lead">Mielőtt nekiállunk egy építmény alapozásának, meg kell vizsgálni, hogy rendelkezésre áll-e megfelelő talajvizsgálati jelentés, amely alapján az alapozás biztonságosan megtervezhető.</p>
+      <p>Először azt próbáljuk megítélni, megoldható-e a feladat síkalapozással – vagy már egyértelmű, hogy mélyalap kell. Ha igen, alkalmazható-e a legegyszerűbb és legolcsóbb sáv- és pilléralapozás, vagy eleve látszik, hogy merevített alapozásra, például gerendarácsra vagy lemezalapra lesz szükség. A tervezés során az előzetes elképzelésen később is változtathatunk. Az alapozás tervezése <b>műszaki és gazdaságossági kérdés</b> is.</p>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card k"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div><h4>Tervek áttekintése</h4><p class="small">A létesítmény szerkezeti és statikai terveit a tervezés előtt át kell tanulmányozni: elrendezés, terhek, érzékenység.</p></div>
+      <div class="card k"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div><h4>Talajvizsgálati jelentés</h4><p class="small">Megfelelő-e a rendelkezésre álló jelentés az alapozás tervezéséhez? Ha nem, előbb kiegészítő feltárás kell.</p></div>
+      <div class="card k"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7h6zM17 7l-3 7h6z"/></svg></div><h4>Műszaki és gazdasági döntés</h4><p class="small">A választott megoldásnak biztonságosnak és gazdaságosnak is kell lennie – sokszor az építési idő is dönt.</p></div>
+    </div>
+
+    <h3>Az alapozási mód kiválasztásának szempontjai</h3>
+    <div class="prose"><p>A szempontokat öt csoportba lehet rendezni: az építmény, a terhelés, a talaj- és talajvízviszonyok, a környezet, valamint az építési idő. Az alábbi telken a tervező szemével kell körülnézni: kattints a jelölt pontokra, és figyeld, melyik szempontcsoportot érintik!</p></div>
+    <div class="lab" id="lab-telek">
+      <header><h4>Telek-szkenner – mit vesz észre a tervező?</h4><span class="sp"></span><span class="pill" id="telekCnt">0 / 10 felfedezve</span></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="telekSvg" viewBox="0 0 760 470" role="img" aria-label="Illusztrált építési telek felfedezhető pontokkal"></svg></div>
+        <div class="ctrl" id="telekSide"></div>
+      </div>
+      <div class="out small" id="telekOut">Kattints egy számozott pontra a rajzon.</div>
+    </div>
+
+    <h3>A tervezés folyamata</h3>
+    <div class="prose">
+      <p>Ha minden adat a birtokunkban van, megindulhat az alapozás tervezése. Az építmény szerkezete, terhei, süllyedésérzékenysége, valamint az altalaj- és talajvízviszonyok ismeretében első lépésként mérlegeljük, alkalmazható-e valamilyen síkalapozási rendszer. Ha nem, rögtön mélyalapozásra térünk át. Ha igen, kiválasztjuk a típust, felvesszük az alapozási síkot, majd teherbírási határállapotban méretezzük az alapfelületet (lemezalapnál ez eleve adott), és előzetesen a magasságot is.</p>
+      <p>A méretekből számíthatók a feszültségek és a süllyedések. Itt jön az első „kontroll”: megengedhetők-e a süllyedések és a süllyedéskülönbségek? Ha nem, valamin változtatni kell, és visszaugrunk; szükség esetén mélyalapozásra térünk át. Ha igen, ellenőrizzük a helyzeti állékonyságot (elcsúszás, kiborulás) és a felúszás elleni biztonságot, végül sor kerül a szilárdsági méretezésre: a betonminőség és a vasalás meghatározására.</p>
+    </div>
+    <div class="lab" id="lab-flow">
+      <header><h4>Interaktív folyamatábra – kövesd végig!</h4><span class="sp"></span><div class="seg" id="flowSeg"><button type="button" data-v="a" class="on">Minden megfelel</button><button type="button" data-v="b">Túl nagy süllyedés</button><button type="button" data-v="c">Nem fér el az alap</button><button type="button" data-v="d">Mélyalap kell</button></div></header>
+      <div class="stage flowwrap"><svg class="fig flow" id="flowSvg" viewBox="0 0 980 600" role="img" aria-label="A síkalapok tervezésének folyamatábrája"></svg></div>
+      <div class="out">
+        <div class="row"><button class="pbtn solid" type="button" id="flowPlay">▶ Lejátszás</button><button class="pbtn" type="button" id="flowStep">Következő lépés</button><button class="pbtn" type="button" id="flowReset">Elölről</button><span class="sp"></span><span class="small muted">A színes címkék a sorozat társoldalaira visznek.</span></div>
+        <p class="small just" id="flowTxt" style="margin:10px 0 0"></p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card k">
+        <h4>A tervezés szokásos lépései</h4>
+        <ol class="small" style="padding-left:1.2em;margin:0">
+          <li><b>Az alaptípus kiválasztása</b> – a felszerkezet elrendezése, terhei, érzékenysége és a várható süllyedések alapján, a szomszédos építmények figyelembevételével.</li>
+          <li><b>Az alapsík felvétele</b> – a teherbíró réteg, a talajvízszint, a fagy- és térfogatváltozási határ, a várható alapmagasság, a szomszédos alapsíkok, valamint az aláüregelődés, a kimosódás és a földkiemelés figyelembevételével.</li>
+          <li><b>Az alapszélesség meghatározása</b> – a talajtörés elleni biztonság és a süllyedési kritériumok ellenőrző számításával.</li>
+          <li><b>Az alapszerkezet méretezése</b> – az anyag, a magasság és a vasalás meghatározása a talpfeszültségből, tartószerkezeti méretezéssel.</li>
+          <li><b>Az állékonyság és a felúszás ellenőrzése</b> – a merev testnek tekinthető alap, illetve építmény egyensúlyának vizsgálatával.</li>
+        </ol>
+      </div>
+      <div class="card k">
+        <h4>Amit a tervező megválaszthat</h4>
+        <div class="grid" style="gap:10px">
+          <div class="callout" style="margin:0"><b>Típus</b><p class="small">pillér, sáv, szalag, gerendarács, lemez, doboz</p></div>
+          <div class="callout" style="margin:0"><b>Anyagfajta és -minőség</b><p class="small">beton, vasbeton, tégla, illetve a szilárdság</p></div>
+          <div class="callout" style="margin:0"><b>Geometriai adatok</b><p class="small">az alapsík mélysége, az alapszélesség, az alapmagasság, illetve a vasalás</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="quiz" id="quiz3"></div>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="chap k4" id="alapsik">
+  <div class="wrap">
+    <div class="chead"><div class="num">04</div><span class="kick">4. állomás · a legfontosabb döntés</span><h2>Az alapozási sík felvétele</h2></div>
+    <div class="prose">
+      <p class="lead"><b>Alapozási síknak</b> (alapsíknak) a síkalap alsó támaszkodó felületét hívjuk, ahol a terheket az altalajnak átadja. Az <b>alapozási mélység</b> az alapsík és a végleges térszín között függőlegesen mért távolság.</p>
+      <p>Az alapozási sík felvételétől döntően függ az egész alapozási rendszer. Tervezéskor mindig a <b>szerkezetileg szükséges minimális alapozási síkból</b> kell kiindulni – a feleslegesen mély alap drága (földkiemelés, víztelenítés, szomszédos épületek védelme). Az alábbi hat követelményt kell legalább teljesíteni.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card k"><span class="pill">1</span><h4 style="margin-top:8px">A fagyhatár alatt</h4><p class="small">Az alapsík a fagyhatár alatt legyen, különben a fagyás–olvadás megemeli, majd meglazítja az alap alatti talajt.</p></div>
+      <div class="card k"><span class="pill">2</span><h4 style="margin-top:8px">Teherbíró talajon</h4><p class="small">Olyan talajon álljon, amely csak a megengedett mértékben nyomódik össze – ne keletkezzenek káros süllyedések. Humuszra, feltöltésre nem alapozunk.</p></div>
+      <div class="card k"><span class="pill">3</span><h4 style="margin-top:8px">Lehetőleg a talajvíz felett</h4><p class="small">A talajvíz alatti munkavégzés víztelenítést igényel, ami költséges és a környezetre is hat.</p></div>
+      <div class="card k"><span class="pill">4</span><h4 style="margin-top:8px">A szerkezet igénye szerint</h4><p class="small">Olyan mélyen legyen, ahogyan az építmény szerkezete megkívánja – gondoljunk a pincére vagy a mélygarázsra.</p></div>
+      <div class="card k"><span class="pill">5</span><h4 style="margin-top:8px">A kiszáradási határ alatt</h4><p class="small">Térfogatváltozó altalajon az alapsík a kiszáradási határ, vagyis kb. 2 m alatt legyen. A részleteket az „Alapozás kedvezőtlen altalajon” anyag tárgyalja.</p></div>
+      <div class="card k"><span class="pill">6</span><h4 style="margin-top:8px">A környezethez igazodva</h4><p class="small">Igazodjon a csatlakozó szomszédos épületek alapsíkjához.</p></div>
+    </div>
+
+    <div class="lab" id="lab-alapsik">
+      <header><h4>Alapsík-tervező 3D – keresd meg a legkisebb megfelelő mélységet!</h4><span class="sp"></span><div class="chips" id="aPreset"><button type="button" data-v="p1" class="on">Családi ház</button><button type="button" data-v="p2">Mátrai nyaraló</button><button type="button" data-v="p3">Foghíjtelek</button><button type="button" data-v="p4">Duzzadó agyag</button><button type="button" data-v="p5">Magas talajvíz</button></div></header>
+      <div class="body side">
+        <div>
+          <div class="stage3d" id="alapsik3d" role="img" aria-label="Forgatható 3D talajmetszet az épülettel, a fagyhatárral és a talajvízzel"><span class="hint">húzd: forgatás · görgő: nagyítás</span></div>
+          <div class="out">
+            <div class="kpi" id="aKpi"></div>
+            <ul class="checks" id="aChecks" style="margin-top:10px"></ul>
+          </div>
+        </div>
+        <div class="ctrl">
+          <div class="rng"><label for="aD">Alapozási mélység (alapsík)</label><output id="aDO"></output><input type="range" id="aD" min="0.3" max="4" step="0.05" value="0.6"></div>
+          <button class="pbtn solid" type="button" id="aSet">Állítsd a legkisebb megfelelőre</button>
+          <div class="grp">Talaj és hely</div>
+          <div class="seg" id="aSoil"><button type="button" data-v="szemcses" class="on">Szemcsés</button><button type="button" data-v="kotott">Kötött</button><button type="button" data-v="kozet">Kőzet</button></div>
+          <div class="rng"><label for="aH">Tengerszint feletti magasság</label><output id="aHO"></output><input type="range" id="aH" min="76" max="1014" step="1" value="105"></div>
+          <div class="rng"><label for="aFt">Humusz + feltöltés vastagsága</label><output id="aFtO"></output><input type="range" id="aFt" min="0.2" max="3" step="0.05" value="0.4"></div>
+          <div class="rng"><label for="aGw">Talajvíz (télen is) mélysége</label><output id="aGwO"></output><input type="range" id="aGw" min="0.5" max="6" step="0.05" value="4"></div>
+          <label class="sw"><input type="checkbox" id="aDuzz"> Térfogatváltozó (duzzadó) agyag</label>
+          <div class="grp">Épület és környezet</div>
+          <div class="seg" id="aPince"><button type="button" data-v="nincs" class="on">Nincs pince</button><button type="button" data-v="teljes">Teljes pince</button></div>
+          <label class="sw"><input type="checkbox" id="aSzom"> Csatlakozó szomszédos épület</label>
+          <div class="rng" id="aSzWrap"><label for="aSz">A szomszéd alapsíkja</label><output id="aSzO"></output><input type="range" id="aSz" min="0.5" max="4" step="0.05" value="1.2"></div>
+          <button class="pbtn" type="button" id="aWinter">❄ Tél: fagy és jéglencsék</button>
+        </div>
+      </div>
+    </div>
+
+    <h3>A fagyhatár</h3>
+    <div class="prose">
+      <p><b>Fagyhatárnak</b> a télen 0 °C alá hűlő talajréteg legnagyobb vastagságát nevezzük. Hazai viszonylatban a fagyhatár:</p>
+      <ul>
+        <li>szemcsés talajban 0,8 m; 500 mBf alatt 0,5 m-re csökkenthető, feltéve, hogy a téli talajvízszint az alapsíkot 2,0 m-nél jobban nem közelíti meg;</li>
+        <li>kötött talajban, a Balti-tenger szintje felett 500 mBf-nél magasabban 1,0 m, 500 mBf alatt 0,8 m;</li>
+        <li>szilárd kőzeten álló alap esetén 0,5 m.</li>
+      </ul>
+      <p>Fagyhatásnak ki nem tett épületrészeknél (pl. pincében) legalább 0,4 m-es földtakarást kell tervezni – ez a minimális 50 cm-es alaptest-magasság miatt eleve teljesül.</p>
+    </div>
+    <div class="lab" id="lab-fagy">
+      <header><h4>Fagyhatár-kalkulátor és a fagy útja a talajban</h4><span class="sp"></span><div class="chips" id="fHely"></div></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="fSvg" viewBox="0 0 720 430" role="img" aria-label="Fagyfront a talajban a tél folyamán"></svg></div>
+        <div class="ctrl">
+          <div class="seg" id="fSoil"><button type="button" data-v="szemcses" class="on">Szemcsés</button><button type="button" data-v="kotott">Kötött</button><button type="button" data-v="kozet">Kőzet</button></div>
+          <div class="rng"><label for="fH">Tengerszint feletti magasság</label><output id="fHO"></output><input type="range" id="fH" min="76" max="1014" step="1" value="105"></div>
+          <div class="rng"><label for="fGw">A téli talajvíz távolsága az alapsík alatt</label><output id="fGwO"></output><input type="range" id="fGw" min="0" max="5" step="0.05" value="3"></div>
+          <div class="rng"><label for="fD">Az alapsík mélysége</label><output id="fDO"></output><input type="range" id="fD" min="0.2" max="1.4" step="0.05" value="0.6"></div>
+          <div class="rng"><label for="fT">A tél menete</label><output id="fTO"></output><input type="range" id="fT" min="0" max="1" step="0.01" value="0.62"></div>
+          <button class="pbtn solid" type="button" id="fPlay">▶ Tél lejátszása</button>
+          <div class="verdict" id="fVerdict"></div>
+        </div>
+      </div>
+      <div class="out small just" id="fOut"></div>
+    </div>
+    <div class="callout web"><b><span class="tag web">web</span> Miért veszélyes a fagy a kötött talajban?</b><p>A fagyemelés oka nem csupán a pórusvíz 9 %-os térfogat-növekedése. Fagyveszélyes (iszapos, agyagos) talajban a kis pórusok miatt a kapilláris vízmozgás a víztartó mélyebb rétegekből folyamatosan vizet szállít a lefelé haladó fagyfronthoz, ahol az <b>jéglencsékké</b> fagy. A lencsék rétegesen egymásra nőnek, és megemelik a talajt – a rajtuk álló alapot is. Olvadáskor a jég helyén vízzel telített, puha talaj marad, amely a teher alatt összenyomódik. A jéglencsék kialakulásához három feltétel kell egyszerre: lefelé haladó fagyfront, utánpótlódó víz és fagyveszélyes talaj.</p><p class="src">Forrás: InterNACHI, Frost heave caused by ice lens</p></div>
+
+    <h3>Részben alápincézett épület</h3>
+    <div class="prose"><p>Részben alápincézett épületnél a magasabban maradó alap talpsíkját úgy kell meghatározni, hogy annak <b>belső élétől húzott természetes rézsű vonala ne messe a pincefal vonalát a pincepadló szintje felett</b>. Ha metszené, a sekélyebb alap terhe oldalnyomásként a pincefalra hárulna, a pince kiemelésekor pedig az alap alól kifuthatna a talaj. Lehetőleg mindig teljesen alápincézett épületet tervezzünk: részleges pincézésnél az eltérő alapsík és terhelés miatt a legtöbbször egyenlőtlen mozgások és repedések keletkeznek.</p></div>
+    <div class="lab" id="lab-resz">
+      <header><h4>Rézsűvonal-próba</h4><span class="sp"></span><span class="tag">jegyzet 16. ábra</span></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="rSvg" viewBox="0 0 720 420" role="img" aria-label="Részben alápincézett épület metszete a természetes rézsű vonalával"></svg></div>
+        <div class="ctrl">
+          <div class="rng"><label for="rHp">A pincepadló mélysége</label><output id="rHpO"></output><input type="range" id="rHp" min="1.8" max="3.6" step="0.05" value="2.6"></div>
+          <div class="rng"><label for="rD">A magasabb alap alapsíkja</label><output id="rDO"></output><input type="range" id="rD" min="0.8" max="3.4" step="0.05" value="1"></div>
+          <div class="rng"><label for="rA">Az alap belső éle és a pincefal távolsága</label><output id="rAO"></output><input type="range" id="rA" min="0.3" max="4" step="0.05" value="1.4"></div>
+          <div class="rng"><label for="rPhi">A természetes rézsű hajlása φ</label><output id="rPhiO"></output><input type="range" id="rPhi" min="20" max="45" step="0.5" value="33.7"></div>
+          <div class="verdict" id="rVerdict"></div>
+          <button class="pbtn solid" type="button" id="rFix">Mélyítsd a szükséges szintig</button>
+        </div>
+      </div>
+    </div>
+
+    <h3>Lépcsőzetes mélyítés és lejtős terep</h3>
+    <div class="prose"><p>A különböző szinten lévő alapsíkokat a merőleges alapoknál <b>lépcsőzetes mélyítéssel</b> kell csatlakoztatni: az alapok megfelelő sarokpontjait összekötő egyenes hajlásszöge ne legyen <span class="nw">30°-nál</span> meredekebb. Lejtős területen (vagy vízszintes terhek esetén) az elcsúszási stabilitásra is tekintettel kell lenni: <b>sosem szabad ferde alapsíkot tervezni</b>, azt mindig lépcsőzni kell, és egy lépcső magassága ne legyen nagyobb 50 cm-nél.</p></div>
+    <div class="lab" id="lab-lepcso">
+      <header><h4>Lépcsőtervező</h4><span class="sp"></span><div class="seg" id="lpSeg"><button type="button" data-v="lepcso" class="on">Két alapsík összekötése</button><button type="button" data-v="lejto">Alap lejtős terepen</button></div></header>
+      <div class="body side">
+        <div class="stage svgwrap"><svg class="fig" id="lpSvg" viewBox="0 0 720 400" role="img" aria-label="Lépcsőzetes alapozás metszete"></svg></div>
+        <div class="ctrl" id="lpCtrl">
+          <div class="rng" data-m="lepcso"><label for="lpDh">Szintkülönbség a két alapsík között</label><output id="lpDhO"></output><input type="range" id="lpDh" min="0.4" max="3" step="0.05" value="1.5"></div>
+          <div class="rng" data-m="lepcso"><label for="lpN">Lépcsők száma</label><output id="lpNO"></output><input type="range" id="lpN" min="1" max="8" step="1" value="3"></div>
+          <div class="rng" data-m="lepcso"><label for="lpL">Egy lépcső hossza</label><output id="lpLO"></output><input type="range" id="lpL" min="0.3" max="2" step="0.05" value="0.9"></div>
+          <div class="rng" data-m="lejto"><label for="lpBeta">A terep lejtése</label><output id="lpBetaO"></output><input type="range" id="lpBeta" min="3" max="25" step="0.5" value="12"></div>
+          <div class="seg" data-m="lejto" id="lpAlap"><button type="button" data-v="ferde">Ferde alapsík</button><button type="button" data-v="lepcsos" class="on">Lépcsőzött alapsík</button></div>
+          <div class="rng" data-m="lejto"><label for="lpH">Lépcsőmagasság</label><output id="lpHO"></output><input type="range" id="lpH" min="0.2" max="0.9" step="0.05" value="0.45"></div>
+          <ul class="checks" id="lpChecks"></ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Szomszédos épület mellett</h3>
+    <div class="prose"><p>Ha közvetlenül egy szomszédos épület mellé kell alapozni, két szabály a döntő: az új épület alapsíkja <b>nem kerülhet a régi fölé</b>, szükség esetén mélyíteni kell; ha pedig az új épület mélyebb padlószintje miatt az alapsíkja a régi épület alá kerül, a régit <b>alá kell falazni, betonozni</b>, vagy jet-grouting technológiával megerősíteni.</p></div>
+    <div class="lab" id="lab-szom">
+      <header><h4>Melléépítés – mi történik a régi házzal?</h4><span class="sp"></span><div class="seg" id="szSeg"><button type="button" data-v="fole">Új alap a régi fölött</button><button type="button" data-v="egyezo" class="on">Egyező alapsík</button><button type="button" data-v="melyebb">Új mélyebb – aláfalazás</button><button type="button" data-v="jet">Új mélyebb – jet-grouting</button></div></header>
+      <div class="stage svgwrap"><svg class="fig" id="szSvg" viewBox="0 0 720 330" role="img" aria-label="Régi és új épület alapjai egymás mellett"></svg></div>
+      <div class="out"><div class="row"><button class="pbtn solid" type="button" id="szPlay">▶ Építés lejátszása</button><span class="sp"></span><span class="verdict" id="szVerdict"></span></div><p class="small just" id="szTxt" style="margin:10px 0 0"></p></div>
+    </div>
+
+    <div id="gameAlapsik"></div>
+    <div class="quiz" id="quiz4"></div>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="chap k5" id="hatar">
+  <div class="wrap">
+    <div class="chead"><div class="num">05</div><span class="kick">5. állomás · amire igazolni kell</span><h2>Határállapotok és tervezési eljárások</h2></div>
+    <div class="prose"><p class="lead">Síkalapok tervezésekor először azt kell áttekinteni, milyen teherbírási és használhatósági határállapotokat kell vizsgálni, és milyen követelményeket kell teljesíteni. A határállapot az a helyzet, amelyen túl az alap már nem felel meg a tervezési követelményeknek.</p></div>
+
+    <h3>Teherbírási határállapotok (ULS)</h3>
+    <div class="prose"><p>Kattints az ábrákra: mindegyik lejátssza, hogyan megy tönkre az alap az adott határállapotban.</p></div>
+    <div class="grid" id="ulsGrid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))"></div>
+    <div class="callout"><b>A négy (öt) betűszó</b>
+      <p><b>GEO</b> – a talaj törése vagy túlzott alakváltozása; az ellenállást a talaj vagy a szilárd kőzet szilárdsága jelentősen befolyásolja. <b>STR</b> – a tartószerkezeti elemek belső törése vagy túlzott alakváltozása; az ellenállást a szerkezeti anyagok szilárdsága határozza meg. <b>EQU</b> – a helyzeti állékonyság elvesztése: merev testként gyors és lényeges helyzetváltozás, amelyben a szilárdságok jelentősen nem játszanak szerepet. <b>UPL</b> – a tartószerkezet vagy a talaj felúszás folytán bekövetkező egyensúlyvesztése. (Az Eurocode ötödikként a <b>HYD</b>-t, a hidraulikus talajtörést is ismeri.) Síkalapoknál leggyakrabban a <b>GEO</b> és az <b>STR</b> határállapotot kell vizsgálni.</p></div>
+    <div class="callout warn"><b>Megjegyzés a besoroláshoz</b><p>A jegyzet a felborulást és az elcsúszást is EQU-ként sorolja be. Az MSZ EN 1997-1 szerint a merev testként való felborulás valóban EQU, az alapsíkon való elcsúszás és az általános állékonyság (mély csúszólap) viszont GEO határállapot, mert ott a talaj nyírószilárdsága dönt. A sorozat „Síkalapok állékonyságvizsgálata” oldala ezt az EC7-es besorolást használja.</p></div>
+
+    <h3>Használhatósági határállapotok (SLS)</h3>
+    <div class="grid g4" id="slsGrid"></div>
+    <div class="prose" style="margin-top:18px">
+      <p>A legfontosabb követelmény, hogy az alap alatti <b>talajtöréssel szemben</b> (GEO) kellően nagy biztonság legyen: a törési mechanizmus során a törés eléréséig jelentős elmozdulások jönnek létre, amelyek hamar károsítják az építményt. A legtöbb esetben azonban <b>nem a teherbírás, hanem a süllyedések és süllyedéskülönbségek korlátozása</b> jelenti a legnagyobb problémát: az alapozást nemcsak teherbírásra, hanem a süllyedések korlátozására kell méretezni. Húzd a csúszkát, és figyeld, mi történik az épülettel egyre nagyobb mozgásnál!</p>
+    </div>
+    <div class="lab" id="lab-letra">
+      <header><h4>Mozgáslétra – a szépséghibától a károsodásig</h4><span class="sp"></span><span class="tag">szemléltető</span></header>
+      <div class="stage svgwrap"><svg class="fig" id="letraSvg" viewBox="0 0 720 300" role="img" aria-label="Épület egyre nagyobb süllyedéskülönbséggel"></svg></div>
+      <div class="out">
+        <div class="rng"><label for="letra">A süllyedéskülönbség nagysága</label><output id="letraO"></output><input type="range" id="letra" min="0" max="100" step="1" value="12"></div>
+        <p class="small just" id="letraTxt" style="margin:8px 0 0"></p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Az alapozási szerkezet <b>szerkezeti megfelelősége</b> (STR) azt jelenti, hogy fel tudja venni a rá háruló hajlító és nyíró igénybevételeket, vagyis megfelelő a mérete és a szilárdsága (vasalása) – hajlításra, nyírásra és átszúródásra. Magas súlypontú építményeknél és nagyobb vízszintes erőknél (pl. támfalaknál) a <b>helyzeti állékonyságot</b> is biztosítani kell a felborulással (billenéssel) és az elcsúszással (eltolódással) szemben. Mélyen a talajvízszint alá nyúló, könnyebb szerkezeteknél (medencék, aluljárók, földalatti garázsok) a <b>felúszás</b> veszélye merül fel – sokszor csak építés közben.</p>
+    </div>
+
+    <h3>Két híres eset</h3>
+    <div class="grid g2">
+      <div class="card imgcard"><button type="button" data-img="img/ppt/s53_1.jpg" data-title="A transconai gabonasiló, 1913" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s53_1.jpg" alt="A megdőlt transconai siló" style="width:100%;border-radius:8px" loading="lazy"></button><div><span class="tag">GEO</span> <span class="tag web">web</span><h4 style="margin-top:6px">Transcona, Kanada, 1913</h4><p class="small">Az első feltöltéskor a gabonasiló lemezalapja alatt mély talajtörés alakult ki az agyagban: a talpfeszültség kb. 297 kPa volt, közel a klasszikus elmélettel számított 307 kPa-os törőfeszültséghez. A silót 1914-ben 14 kőzetig mélyített pillérre támasztva visszaemelték – a teherbírás-elmélet egyik legfontosabb igazoló esete.</p><p class="src">Forrás: Canadian Geotechnical Society</p></div></div>
+      <div class="card imgcard"><button type="button" data-img="img/ppt/s54_1.jpg" data-title="A pisai ferde torony" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s54_1.jpg" alt="A pisai ferde torony" style="width:100%;border-radius:8px" loading="lazy"></button><div><span class="tag">SLS</span> <span class="tag web">web</span><h4 style="margin-top:6px">Pisa, Olaszország</h4><p class="small">A 19,6 m átmérőjű, legfeljebb 5,5 m mély falazott alapon álló tornyot 1173-ban kezdték építeni; a puha agyag egyenlőtlen összenyomódása miatt megdőlt. Az építmény áll, de a használhatósága sérült. 1999–2001 között az északi oldal alól óvatosan talajt termeltek ki, így a dőlés kb. fél fokkal csökkent.</p><p class="src">Forrás: Ingenia, The stabilisation of the Leaning Tower of Pisa</p></div></div>
+    </div>
+    <div id="gameHatar"></div>
+
+    <h3>Tervezési eljárások</h3>
+    <div class="prose">
+      <p>Az Eurocode 7-1 6.4. fejezete szerint síkalapok tervezésekor három tervezési eljárás valamelyike alkalmazható:</p>
+      <ul>
+        <li><b>közvetlen tervezési eljárás</b> – minden határállapotra más-más számítási modell. A teherbírási határállapotoknál a lehető legpontosabban modellezzük az elképzelt törési mechanizmust, törőfeszültség-képlettel vagy végeselemes numerikus méretezéssel; a használhatóságiakat rugalmasságtani alapú süllyedésszámítással ellenőrizzük;</li>
+        <li><b>közvetett tervezési eljárás</b> – összehasonlítható tapasztalatok, terepi vagy laboratóriumi mérések, észlelések alapján, a használhatósági határállapot terheihez viszonyítva, úgy, hogy minden értelmezhető határállapot követelménye teljesüljön (pl. szondázásból tapasztalati képlettel becsült talajtörési ellenállás). Előnye a kisebb számítási terjedelem; az 1. és részben a 2. geotechnikai kategóriában alkalmazzák;</li>
+        <li><b>szokáson alapuló (bevált) tervezési eljárás</b> – valószínűsített talajtörési ellenállással számolunk, elsősorban kőzetre alapozásnál: a kőzet típusa, tagoltsága és egyirányú nyomószilárdsága alapján megengedett talpfeszültség vehető fel, ehhez a G melléklet ad útmutatást.</li>
+      </ul>
+      <p>Az Alapozás tárgy keretében részletesebben csak a közvetlen tervezési eljárással foglalkozunk.</p>
+    </div>
+    <div class="lab" id="lab-eljaras">
+      <header><h4>Melyik eljárás illik a helyzethez?</h4></header>
+      <div class="out" id="eljaras"></div>
+    </div>
+    <div class="duo">
+      <div class="now"><h5>Most · MSZ EN 1997-1:2004</h5><ul class="small"><li>Közvetlen tervezési eljárás – analitikus modell minden határállapotra</li><li>Közvetett tervezési eljárás – összehasonlító tapasztalat és mérési eredmények</li><li>Szokáson alapuló (bevált) eljárás – valószínűsített talajtörési ellenállás, G melléklet</li><li>A teherbírási képlet informatív mellékletben, a D mellékletben</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> EN 1997 2. generáció</h5><ul class="small"><li>Számításon alapuló tervezés – az analitikus és numerikus modellek külön nevesítve</li><li>Előírásokon alapuló tervezés, angolul prescriptive rules: a szokáson alapuló eljárás utódja</li><li>Vizsgálatokkal segített tervezés – terhelési kísérlet vagy modellvizsgálat alapján</li><li>Megfigyeléses módszer, angolul observational method: önálló, szabályozott tervezési mód</li><li>A teherbírási képlet az EN 1997-3 törzsszövegében, normatív rangon</li></ul></div>
+    </div>
+
+    <h3>Az Eurocode 2. generációja – mi változik?</h3>
+    <div class="prose"><p>A teljes szabványrendszer megújul: nem új szabványok jönnek, hanem mindegyik kötet új, egységesített kiadást kap, az EN 1990-től az EN 1999-ig (kb. 58 rész helyett kb. 100). Vezérelv a könnyebb használhatóság: egységes szerkezet, jelölés és fogalmak, kevesebb nemzeti választás. A 2. generáció hazai bevezetése az előadás szerint <b>2027 végétől</b> várható. Az EC7 két része helyett három lesz: szétválik, hogy <i>mit</i> igazolunk (EN 1997-1) és <i>hogyan</i> az adott szerkezetnél (EN 1997-3).</p></div>
+    <div class="duo">
+      <div class="now"><h5>Most · 2 rész</h5><ul class="small"><li>EN 1997-1 – Általános szabályok: ebben van minden szerkezet (síkalap, cölöp, támszerkezet, rézsű)</li><li>EN 1997-2 – Geotechnikai tervezés talajvizsgálatok alapján</li><li>A síkalapok teherbírási képlete informatív mellékletben, a D mellékletben</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> 3 rész</h5><ul class="small"><li>EN 1997-1 – Általános szabályok: alapelvek, biztonsági formátum, igazolási esetek</li><li>EN 1997-2 – Talajjellemzők: feltárás, vizsgálatok, származtatott és karakterisztikus értékek</li><li>EN 1997-3 – Geotechnikai szerkezetek: síkalapok, cölöpök, támszerkezetek, horgonyzás, rézsűk, töltések</li></ul></div>
+    </div>
+    <h4>A tervezés kiindulópontja: osztályba sorolás</h4>
+    <div class="duo">
+      <div class="now"><h5>Most · geotechnikai kategória</h5><ul class="small"><li>Három kategória: egyszerű, szokásos és különleges, jelük GC1, GC2 és GC3</li><li>A besorolás elsősorban tapasztalati, informatív útmutatás alapján</li><li>A megbízhatósági osztály (RC) a szerkezet oldalán, ettől függetlenül jelenik meg</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> geotechnikai tervezési osztály</h5><ul class="small"><li>Következményosztály: CC1–CC4, a tönkremenetel következményei szerint</li><li>Geotechnikai komplexitási osztály (GCC): a talajviszonyok és a terhelés összetettsége szerint</li><li>A kettő együtt adja az osztályt (az angol szövegben: Geotechnical Category, GC1–GC3)</li><li>Ez szabja meg a feltárás mértékét, az igazolás módját, az ellenőrzés és a felügyelet szintjét – síkalapnál azt is, kell-e süllyedésszámítás, és milyen részletességgel</li></ul></div>
+    </div>
+    <div class="lab" id="lab-gc">
+      <header><h4>Osztálymátrix – kattints egy cellára!</h4><span class="sp"></span><span class="tag">nemzetileg módosítható (NDP)</span></header>
+      <div class="body side">
+        <div class="stage" style="padding:18px"><div class="mx" id="gcMx"></div><p class="src" style="margin-top:10px">Forrás: Estaire és mtsai (ECSMGE 2019) – a 2. generációs EN 1997-1 tervezete alapján.</p></div>
+        <div class="ctrl" id="gcOut"></div>
+      </div>
+    </div>
+    <h4>Parciális tényezők</h4>
+    <div class="duo">
+      <div class="now"><h5>Most · MSZ EN 1990 + DA2</h5><ul class="small"><li>Állandó teher: γ<sub>G</sub> = 1,35 · esetleges teher: γ<sub>Q</sub> = 1,50</li><li>A1 / A2 (hatások), M1 / M2 (anyag), R1 / R2 / R3 (ellenállás) tényezőkészletek kombinációja</li><li>A magyar nemzeti választás a DA2: tényező a hatásokon és az ellenálláson van, a talajjellemzőkön nem</li><li>Talajtörés: γ<sub>R;v</sub> = 1,4 · elcsúszás: γ<sub>R;h</sub> = 1,1</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> MFA vagy RFA, igazolási esetek</h5><ul class="small"><li>Az alaptényezők nagyságrendje marad (γ<sub>G</sub> = 1,35, γ<sub>Q</sub> = 1,50), de belép a következményosztály szerinti módosító tényező</li><li>A DA1/DA2/DA3 helyét az igazolási esetek (VC1–VC4) veszik át</li><li>MFA – anyagtényezős: γ<sub>φ′</sub> = 1,25 (tg φ′-re), γ<sub>c′</sub> = 1,25, γ<sub>cu</sub> = 1,4</li><li>RFA – ellenállástényezős: γ<sub>RN</sub> = 1,4 (teherbírás), γ<sub>RT</sub> = 1,1 (elcsúszás)</li></ul></div>
+    </div>
+    <h4>A használhatósági igazolás változásai</h4>
+    <div class="duo">
+      <div class="now"><h5>Most · MSZ EN 1997-1:2004</h5><ul class="small"><li>A süllyedést „ha szükséges” kell számítani, a határértékek jó része informatív (H melléklet)</li><li>Egyszerűsített eljárás: elegendő lehet a teherbírás igazolása kis igénybevételi szinten</li><li>A megengedhető süllyedést a felszerkezet érzékenysége alapján a tervező veszi fel</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> EN 1997-1/-3</h5><ul class="small"><li>A süllyedésszámítás a magasabb osztályokban kötelező</li><li>Nevesített kritériumok: süllyedés, süllyedéskülönbség, elfordulás, elcsavarodás</li><li>Az igazolás jellemzően tényező nélküli (karakterisztikus) értékekkel készül</li><li>Erősödik a felszerkezet és az altalaj kölcsönhatásának figyelembevétele</li></ul></div>
+    </div>
+    <div class="lab" id="lab-sorrend">
+      <header><h4>Sorba rendezés: talajvíz alá kerülő aluljáró alaplemeze</h4><span class="sp"></span><span class="tag">nincs egyetlen jó válasz</span></header>
+      <div class="out" id="sorrend"></div>
+    </div>
+    <div class="quiz" id="quiz5"></div>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="chap k6" id="toro">
+  <div class="wrap">
+    <div class="chead"><div class="num">06</div><span class="kick">6. állomás · a teherbírás kapuja</span><h2>A síkalapok talajtörési mechanizmusa</h2></div>
+    <div class="prose">
+      <p class="lead">Ha egy alapra fokozatosan növekvő teher hat, az alatta lévő talaj egyre jobban összenyomódik. A teher–süllyedés görbén három szakasz különíthető el.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card k"><span class="pill">I.</span><h4 style="margin-top:8px">Rugalmas tartomány</h4><p class="small">Kezdetben a süllyedés a teherrel egyenesen arányos; állandó teher alatt a süllyedés megáll (ds/dt = 0).</p></div>
+      <div class="card k"><span class="pill">II.</span><h4 style="margin-top:8px">Átmeneti tartomány</h4><p class="small">A benyomódás rohamosan nőni kezd. Függőleges és vízszintes szemcsemozgás is bekövetkezik, az alap szélei alatt plasztikus zónák alakulnak ki (ds/dt = állandó).</p></div>
+      <div class="card k"><span class="pill">III.</span><h4 style="margin-top:8px">Képlékeny tartomány</h4><p class="small">Határozott csúszólap mentén talajtörés alakul ki: a terhelt felület elveszti alátámasztását, hirtelen süllyedés jön létre, a talaj az alaptest mellett felpúposodik (ds/dt → ∞).</p></div>
+    </div>
+    <div class="prose" style="margin-top:18px">
+      <p>A „törés” nem mindig következik be ugyanígy. A modellkísérletek (pl. Vesić) szerint a besüllyedési görbe jellege alapján <b>három eset</b> különböztethető meg:</p>
+      <ul><li><b>általános nyírási törés,</b></li><li><b>helyi nyírási törés,</b></li><li><b>benyomódás</b> vagy más néven befúródás.</li></ul>
+      <p>Hogy melyik dominál, az az alap geometriai méreteitől, azok arányától, a talaj fajtájától (szemcsés vagy kötött), valamint a talaj tömörségétől, illetve keménységétől függ. Az alábbi laborban mindhármat körbeforgathatod, és a csúszkákkal azt is kipróbálhatod, mitől vált át az egyik a másikba.</p>
+    </div>
+
+    <div class="lab" id="lab-toro">
+      <header><h4>Törésimechanizmus-labor</h4><span class="sp"></span>
+        <div class="seg" id="tmMode"><button type="button" data-v="auto" class="on">A talajból</button><button type="button" data-v="alt">Általános</button><button type="button" data-v="helyi">Helyi</button><button type="button" data-v="beny">Benyomódás</button></div>
+        <div class="seg" id="tmView"><button type="button" data-v="3d" class="on">3D modell</button><button type="button" data-v="2d">2D metszet</button></div>
+      </header>
+      <div class="body side">
+        <div>
+          <div class="stage3d" id="toro3d" role="img" aria-label="Forgatható 3D talajtömb a törési mechanizmussal"><span class="hint">húzd: forgatás · görgő: nagyítás</span></div>
+          <div class="stage3d" id="toro2dWrap" style="display:none"><canvas id="toro2d" role="img" aria-label="A törési mechanizmus 2D metszete"></canvas></div>
+          <div class="out">
+            <div class="row"><button class="pbtn solid" type="button" id="tmPlay">▶ Terhelés</button><button class="pbtn" type="button" id="tmReset">Tehermentesítés</button><span class="sp"></span><span class="verdict" id="tmPhase"></span></div>
+            <div class="rng" style="margin-top:8px"><label for="tmLoad">Teherszint (a görbe mentén)</label><output id="tmLoadO"></output><input type="range" id="tmLoad" min="0" max="1" step="0.002" value="0"></div>
+          </div>
+        </div>
+        <div class="ctrl">
+          <div class="verdict" id="tmModeOut"></div>
+          <div class="grp">Talaj</div>
+          <div class="seg" id="tmSoil"><button type="button" data-v="sz" class="on">Szemcsés</button><button type="button" data-v="k">Kötött</button></div>
+          <div class="rng" id="tmTreW"><label for="tmTre">Relatív tömörség T<sub>re</sub></label><output id="tmTreO"></output><input type="range" id="tmTre" min="0.1" max="0.95" step="0.01" value="0.8"></div>
+          <div class="rng" id="tmIcW" style="display:none"><label for="tmIc">Konzisztenciaindex I<sub>c</sub></label><output id="tmIcO"></output><input type="range" id="tmIc" min="0.3" max="1.3" step="0.01" value="1.1"></div>
+          <div class="rng"><label for="tmPhi">Belső súrlódási szög φ′</label><output id="tmPhiO"></output><input type="range" id="tmPhi" min="18" max="42" step="0.5" value="36"></div>
+          <label class="sw"><input type="checkbox" id="tmLink" checked> φ′ a tömörségből (szemléltető)</label>
+          <div class="grp">Alaptest</div>
+          <div class="chips" id="tmShape"><button type="button" data-v="sav" class="on">Sávalap</button><button type="button" data-v="pill">Pilléralap</button><button type="button" data-v="lemez">Nagy lemez</button></div>
+          <div class="rng"><label for="tmB">Szélesség B</label><output id="tmBO"></output><input type="range" id="tmB" min="0.8" max="4" step="0.05" value="2"></div>
+          <div class="rng"><label for="tmD">Relatív mélység D/B*</label><output id="tmDO"></output><input type="range" id="tmD" min="0" max="4" step="0.05" value="0.5"></div>
+          <label class="sw"><input type="checkbox" id="tmXray"> Átlátszó talaj: a csúszólap térben</label>
+          <div class="leg" id="tmLeg"></div>
+        </div>
+      </div>
+      <div class="out">
+        <div class="grid g3">
+          <figure style="margin:0"><canvas id="tmCurve" width="420" height="300" style="width:100%;height:auto" role="img" aria-label="Teher–süllyedés görbe"></canvas><figcaption>Teher–süllyedés görbe: a pont a pillanatnyi állapot</figcaption></figure>
+          <figure style="margin:0"><canvas id="tmVesic" width="420" height="300" style="width:100%;height:auto" role="img" aria-label="Vesić-féle tönkremeneteli térkép"></canvas><figcaption>Melyik mechanizmus várható? Vesić (1973) nyomán, sematikusan</figcaption></figure>
+          <figure style="margin:0"><canvas id="tmTime" width="420" height="300" style="width:100%;height:auto" role="img" aria-label="Süllyedés–idő görbék"></canvas><figcaption>Süllyedés az időben a három teherszinten (24. ábra)</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card k"><h4>Általános nyírási törés</h4><p class="small mb0"><span class="pill">T<sub>re</sub> &gt; 0,70</span></p><p class="small">Tömör szemcsés talajban teljes, a felszínig kifutó törési felület alakul ki, a talaj felpúposodik. Szokásos körülmények mellett ez várható, az alaptest mellett <b>egyik irányban</b>. A teher–süllyedés görbén határozott csúcs van, kb. 0,05B süllyedésnél.</p></div>
+      <div class="card k"><h4>Helyi nyírási törés</h4><p class="small mb0"><span class="pill">0,35 &lt; T<sub>re</sub> &lt; 0,70</span></p><p class="small">Közepesen tömör szemcsés talajban a törési felület csak részben fejlődik ki, a felpúposodás nem szükségszerű. Nagyobb vasbeton lemezek és tornyok alatt mély csúszólap nem tud kialakulni, mert a dm-es süllyedések már előbb tönkreteszik az építményt. Ehelyett a szélek alatt, főleg puhább talajban, helyi nyírási törés jöhet létre. Jellemző süllyedés: 0,07–0,15B.</p></div>
+      <div class="card k"><h4>Benyomódás (befúródás)</h4><p class="small mb0"><span class="pill">T<sub>re</sub> &lt; 0,35</span></p><p class="small">Laza szemcsés és puha kötött talajban törési felület nincs, esetleg csak a térszín süppedése jellemzi; a csúszólapok a talajmechanikában tárgyalt módon itt már nem értelmezhetők. Így nyomódnak a talajba a cölöpök is. Jellemző süllyedés: 0,15–0,20B.</p></div>
+    </div>
+    <div class="callout"><b>A relatív tömörség</b><p class="center"><span class="formula">T<sub>re</sub> = (e<sub>max</sub> − e) / (e<sub>max</sub> − e<sub>min</sub>)</span></p><p>ahol e a talaj pillanatnyi hézagtényezője, e<sub>max</sub> és e<sub>min</sub> a laboratóriumban előállítható leglazább, illetve legtömörebb állapothoz tartozó hézagtényező. Az alapozási mélység növelésével a benyomódás felé tolódik a viselkedés: mélyebb alapnál ugyanaz a homok is inkább befúródik.</p></div>
+    <div class="callout web"><b><span class="tag web">web</span> A mechanizmus története röviden</b><p>A merev, érdes alaptest alatti törési mechanizmust Prandtl (1920) írta le először fémek képlékeny benyomódására; Terzaghi 1943-ban alkalmazta a sávalapokra – ebből lett a teherbírási képlet. Vesić az 1960-as években végzett modellkísérletek alapján különítette el a három tönkremeneteli módot, és 1973-ban térképen ábrázolta, mikor melyik várható a relatív tömörség és a relatív mélység (D/B*, ahol B* = 2BL/(B + L)) függvényében. A tankönyvek szerint sekély alapnál általános nyírási törésnél a törőteher kb. 4–10 %-os, helyi nyírási törésnél és benyomódásnál kb. 15–25 %-os relatív süllyedésnél (s/B) alakul ki.</p><p class="src">Forrás: Vesić (1973), JSMFD ASCE 99(SM1); MIT OCW 1.361; Das: Principles of Foundation Engineering</p></div>
+    <button class="vcard" type="button" data-yt="qoJNmaOIf0w" data-title="A talajtörés kialakulása – ASCE GeoVideo"><span class="pl"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span><b>Videó: a csúszólap kialakulása a valóságban</b><small>ASCE GeoVideo (University of Minnesota Duluth) – a törési mechanizmus, az elfordulás és az elmozdulás.</small></span></button>
+    <div class="quiz" id="quiz6"></div>
+
+    <div class="card" style="margin-top:22px;background:var(--graph);color:var(--on-graph);border-color:var(--graph)">
+      <span class="kick">Tovább a következő lépéshez</span>
+      <h3 style="margin-top:.4em">A törési mechanizmusból lesz a teherbírási képlet</h3>
+      <p style="color:var(--on-graph-2)">Az általános nyírási törés mechanizmusára írta fel Terzaghi a sávalap törőfeszültségét: a csúszólap feletti talajtest súlya (szélességi tag), az alapsík feletti takarás (mélységi tag) és a csúszólap mentén működő kohézió (kohéziós tag) együtt tart ellen. Az MSZ EN 1997-1 szerinti alak:</p>
+      <p class="center" style="font-size:1.05rem"><span class="formula" style="color:#fff">R/A′ = c′·N<sub>c</sub>·b<sub>c</sub>·s<sub>c</sub>·i<sub>c</sub> + q′·N<sub>q</sub>·b<sub>q</sub>·s<sub>q</sub>·i<sub>q</sub> + 0,5·γ′·B′·N<sub>γ</sub>·b<sub>γ</sub>·s<sub>γ</sub>·i<sub>γ</sub></span></p>
+      <div class="ctas" style="margin-top:12px"><a class="btn" href="https://sikalapok-teherbirasszamitasa.vercel.app/#keplet" target="_blank" rel="noopener">A képlet tagjai a teherbírás-appban ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 ================= -->
+<section class="chap k7" id="onell">
+  <div class="wrap">
+    <div class="chead"><div class="num">07</div><span class="kick">7. állomás · ellenőrizd magad</span><h2>Önellenőrzés</h2></div>
+    <div class="prose"><p class="lead">Negyven állítás a teljes anyagból, egyenként, azonnali magyarázattal. A végén kevert sorrendben újrakezdheted.</p></div>
+    <div id="tf"></div>
+    <h3>Eredményeid ezen az oldalon</h3>
+    <div class="grid g4" id="scoreBoard"></div>
+    <p class="small muted" style="margin-top:8px">Összesen: <b id="scoreTotal">–</b> · Az eredmények csak ebben a böngészőben tárolódnak.</p>
+    <h3>Fogalomtár</h3>
+    <div class="gloss"><input type="search" id="glossQ" placeholder="Keresés a fogalmak között…" aria-label="Keresés a fogalomtárban"><dl id="glossDl"></dl></div>
+  </div>
+</section>
+
+<section class="chap" id="tovabb" style="--k:var(--lime)">
+  <div class="wrap">
+    <span class="kick" style="color:var(--lime-ink)">A sorozat többi része</span>
+    <h2 style="margin-top:.3em">Az Alapozás tananyagai</h2>
+    <div class="series" style="margin-top:16px">
+      <a class="next" href="https://sikalapok-teherbirasszamitasa.vercel.app/" target="_blank" rel="noopener"><b>Következik: síkalapok teherbírásszámítása ↗</b><small>Az alapfelület méretezése teherbírási határállapotban – képlet, mintapéldák, kalkulátor</small></a>
+      <a href="https://sikalapokallekonysagvizsgalata.vercel.app/" target="_blank" rel="noopener"><b>Síkalapok állékonyságvizsgálata ↗</b><small>Elcsúszás, felborulás, felúszás, általános állékonyság</small></a>
+      <a href="https://sikalapok-sullyedesszamitasa.vercel.app/" target="_blank" rel="noopener"><b>Síkalapok süllyedésszámítása ↗</b><small>Feszültségek az altalajban, süllyedés és süllyedéskülönbség</small></a>
+      <a href="https://vedekezesakarossullyedesekellen.vercel.app/" target="_blank" rel="noopener"><b>Védekezés a káros süllyedések ellen ↗</b><small>Kisebb talpnyomás, mélyebb alapsík, talajjavítás</small></a>
+      <a href="https://kedvezotlen-altalaj.vercel.app/" target="_blank" rel="noopener"><b>Alapozás kedvezőtlen altalajon ↗</b><small>Térfogatváltozó agyag, roskadékony lösz, feltöltés, szerves talaj</small></a>
+      <a href="https://munkaterhatarolasok.vercel.app/" target="_blank" rel="noopener"><b>Munkatérhatárolások ↗</b><small>Dúcolás, falak, horgonyzás – a mélyebb alapsík munkagödre</small></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h5>Síkalapok tervezése</h5>
+      <p>Interaktív tananyag a BME Építőmérnöki Kar Alapozás tárgyához, a „Síkalapok tervezése” jegyzet 1–1.2.4. fejezete és a 3. előadás diái (Dr. Móczár Balázs) alapján, webes forrásokkal kiegészítve. Ahol a webes forrás eltér, a jegyzet az irányadó; a webes kiegészítéseket <span class="tag web" style="background:rgba(255,255,255,.08);color:var(--on-graph-2)">web</span> jelöli.</p>
+      <p class="small">A döntéstámogató, a 3D modellek és a mechanizmus-labor szemléltető modellek; tervezéshez a hatályos szabványokat, a nemzeti mellékletet és igazolt számítást kell használni.</p>
+    </div>
+    <div>
+      <h5>Források</h5>
+      <ol>
+        <li>Síkalapok tervezése – előadásjegyzet (BME Geotechnika és Mérnökgeológia Tanszék); 3. előadás: Síkalapok tervezése</li>
+        <li>MSZ EN 1997-1 (EN 1997-1:2004) Eurocode 7 – Geotechnikai tervezés; EN 1997-1/-3 2. generáció</li>
+        <li>Estaire, J. és mtsai: Design of geotechnical structures to EN 1997:202x, ECSMGE 2019</li>
+        <li>Vesić, A. S. (1973): Analysis of ultimate loads of shallow foundations, JSMFD ASCE 99(SM1); MIT OCW 1.361</li>
+        <li>Canadian Geotechnical Society: The Transcona Grain Elevator</li>
+        <li>Burland, J. és mtsai: The stabilisation of the Leaning Tower of Pisa, Ingenia</li>
+        <li>telex.hu: Száznegyvenhárom méter… (MOL Campus, 2021); Körszálló (2025)</li>
+        <li>geoprac.net: Foundations for the Burj Dubai</li>
+        <li>InterNACHI: Frost-protected shallow foundations; Frost heave caused by ice lens</li>
+      </ol>
+    </div>
+  </div>
+</footer>
+<button class="totop" type="button" aria-label="Vissza a lap tetejére">↑</button>
+<!--SCRIPTS-->
