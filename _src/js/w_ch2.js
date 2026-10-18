@@ -177,15 +177,18 @@ onReady(function valaszfal() {
       S('text', { x: 452, y: slabY + 46, class: 't-s', text: 'padozat-vastagítás vasalással' }, g);
       S('text', { x: 452, y: slabY - 8, class: 't-s', text: 'vasháló a teljes padlóban' }, g);
     } else {
-      // előregyártott vb. gerenda keresztmetszete a válaszfal alatt
-      const bx = 322, bw = 76, bh = 92, RC = '#a3341f';
-      S('rect', { x: 0, y: slabY, width: bx, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
-      S('rect', { x: bx + bw, y: slabY, width: 720 - bx - bw, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
-      S('rect', { x: bx, y: slabY, width: bw, height: bh, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.8' }, g);
-      S('rect', { x: bx + 7, y: slabY + 7, width: bw - 14, height: bh - 14, rx: 4, fill: 'none', stroke: RC, 'stroke-width': 1.8 }, g);
-      [[bx + 13, slabY + 13], [bx + bw - 13, slabY + 13], [bx + 13, slabY + bh - 13], [bx + bw / 2, slabY + bh - 13], [bx + bw - 13, slabY + bh - 13]]
-        .forEach(([x, y]) => S('circle', { cx: x, cy: y, r: 3.6, fill: RC }, g));
-      S('line', { x1: bx + bw + 6, y1: slabY + 50, x2: 430, y2: slabY + 50, style: 'stroke:var(--ink-3)' }, g);
+      // előregyártott vb. gerenda keresztmetszete a válaszfal alatt (fordított T, kiszélesedő fejjel)
+      const cx = 360, y0 = slabY, RC = '#a3341f';
+      const hw = 22, ww = 13, fw = 42; // fej, gerinc, alsó öv félszélessége
+      const prof = [[-hw, 0], [hw, 0], [hw, 14], [ww, 22], [ww, 60], [fw, 72], [fw, 94], [-fw, 94], [-fw, 72], [-ww, 60], [-ww, 22], [-hw, 14]];
+      S('rect', { x: 0, y: slabY, width: cx - hw, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('rect', { x: cx + hw, y: slabY, width: 720 - cx - hw, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('path', { d: 'M' + prof.map(([x, y]) => `${cx + x} ${y0 + y}`).join(' L') + ' Z', fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.8' }, g);
+      // feszített pászmák / fővasak az alsó övben, szerelővas a fejben (elmetszve)
+      [-28, -9, 9, 28].forEach(x => S('circle', { cx: cx + x, cy: y0 + 86, r: 3.4, fill: RC }, g));
+      S('circle', { cx, cy: y0 + 8, r: 3, fill: RC }, g);
+      const bx = cx - fw, bw = 2 * fw;
+      S('line', { x1: cx + ww + 6, y1: slabY + 44, x2: 430, y2: slabY + 50, style: 'stroke:var(--ink-3)' }, g);
       ['előregyártott vb. gerenda (metszet)', 'két vége a merőleges főfalak', 'sávalapjaira ültetve, bekötve', '(a metszetben nem látszanak)']
         .forEach((t, i) => S('text', { x: 436, y: slabY + 54 + i * 18, class: 't-s' + (i ? '' : ' t-b'), text: t }, g));
     }
