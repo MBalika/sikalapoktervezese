@@ -1,12 +1,16 @@
 /* ===== 02 – Alaptípusok: 2D szerkesztők és játék ===== */
 onReady(function savalap() {
   const svg = $('#savSvg'); if (!svg) return;
-  const st = { anyag: 'tegla', vf: 0.38, B: 0.8, m: 0.5, tg: 1.5 };
+  const st = { anyag: 'tegla', vf: 0.38, B: 0.8, m: 0.5, tg: 1.5, kh: 2 };
+  const KH = {
+    2: 'Tömör szemcsés talaj (φ ≥ 36°) vagy kemény kötött talaj (c<sub>u</sub> ≥ 75 kPa)',
+    1.5: 'Szemcsés talaj vagy gyúrható kötött talaj (c<sub>u</sub> ≥ 40 kPa)',
+    1: 'Kis teherbírású talaj'
+  };
   const MAT = {
     tegla: { name: 'Tégla', tg: 1.7, pat: 'tegla', kiegy: true, step: true },
     ko: { name: 'Terméskő', tg: 1.75, pat: 'ko', kiegy: true, step: true },
-    uszt: { name: 'Úsztatott beton', tg: null, range: [1.0, 1.6], pat: 'uszt', kiegy: false, step: false },
-    csom: { name: 'Csömöszölt beton', tg: null, range: [1.0, 1.5], pat: 'beton', kiegy: false, step: false },
+    csom: { name: 'Csömöszölt beton', tg: null, pat: 'beton', kiegy: false, step: false },
     vb: { name: 'Vasbeton', tg: null, pat: 'beton', kiegy: false, step: false, rc: true }
   };
   const chk = $('#savChecks'), out = $('#savOut');
@@ -17,17 +21,22 @@ onReady(function savalap() {
   function checks() {
     const M = MAT[st.anyag], c = (st.B - st.vf) / 2, L = [];
     L.push({ ok: st.B >= 0.5 - 1e-6, t: 'Alapszélesség B ≥ 50 cm', v: `B = ${fmt(st.B * 100, 0)} cm` });
-    L.push({ ok: c >= 0.05 - 1e-6, t: 'Elhelyezési biztonság mindkét oldalon ≥ 5 cm', v: `c = ${fmt(c * 100, 1)} cm` });
+    L.push({ ok: c >= 0.05 - 1e-6, t: 'Elhelyezési biztonság oldalanként ≥ 5 cm', v: `c = ${fmt(c * 100, 1)} cm` });
     if (M.rc) {
       L.push({ ok: st.m >= st.B / 10 - 1e-6, t: 'Vasbeton alap magassága m ≥ B/10', v: `${fmt(st.m * 100, 0)} ≥ ${fmt(st.B * 10, 0)} cm` });
-      L.push({ ok: true, info: true, t: 'Peremvastagság v ≥ 20 cm (a rajzon 20 cm)', v: 'v = 20 cm' });
-      L.push({ ok: true, info: true, t: 'Alul hosszvasalás és kengyelek; az alaptest hajlítást vesz fel', v: '' });
+      L.push({ ok: true, info: true, t: 'Az alaptest teteje vízszintes; alul hosszvasalás és kengyelek, az alaptest hajlítást vesz fel', v: '' });
+      L.push({ ok: true, info: true, t: 'Nem agresszív talajvíz esetén legalább C16/20 betonminőség', v: '' });
     } else {
       L.push({ ok: st.m >= 0.5 - 1e-6, t: 'Alapmagasság m ≥ 50 cm', v: `m = ${fmt(st.m * 100, 0)} cm` });
-      const tg = c > 0.001 ? st.m / c : 99;
-      L.push({ ok: tg >= req() - 1e-6, t: `Teherelosztás: tg α = m/c ≥ ${fmt(req(), 2)}`, v: c > 0.001 ? `tg α = ${fmt(Math.min(tg, 99), 2)}` : 'nincs kinyúlás' });
+      if (M.step) {
+        const tg = c > 0.001 ? st.m / c : 99;
+        L.push({ ok: tg >= req() - 1e-6, t: `Teherelosztás: tg α = m/c ≥ ${fmt(req(), 2)}`, v: c > 0.001 ? `tg α = ${fmt(Math.min(tg, 99), 2)}` : 'nincs kinyúlás' });
+      } else {
+        const need = st.kh * c;
+        L.push({ ok: st.m >= need - 1e-6, t: `Egyszerűsített szabály: k : h = 1 : ${fmt(st.kh, st.kh % 1 ? 1 : 0)}, azaz m ≥ ${fmt(st.kh, st.kh % 1 ? 1 : 0)} · c`, v: `${fmt(st.m * 100, 0)} ≥ ${fmt(need * 100, 0)} cm` });
+        L.push({ ok: true, info: true, t: 'Nem agresszív talajvíz esetén legalább C12/15 betonminőség', v: '' });
+      }
       if (M.kiegy) L.push({ ok: true, info: true, t: 'Az első sor alatt 5–10 cm kiegyenlítő homok vagy mészhabarcs', v: '' });
-      if (st.anyag === 'uszt') L.push({ ok: true, info: true, t: 'Az úsztatott kő a magasság kb. felét kitevő sávban', v: '' });
       if (st.anyag === 'tegla') L.push({ ok: true, info: true, t: 'Lépcsők: a téglasor és a féltégla többszörösei', v: '' });
     }
     return L;
@@ -51,14 +60,11 @@ onReady(function savalap() {
     // alaptest
     const st1 = 'stroke:var(--ink);stroke-width:1.8';
     if (M.rc) {
-      const v = 0.2 * sc;
-      const p = `M${cx - B / 2} ${yB} L${cx - B / 2} ${yB - v} L${cx - vf / 2 - 6} ${yTop} L${cx + vf / 2 + 6} ${yTop} L${cx + B / 2} ${yB - v} L${cx + B / 2} ${yB} Z`;
-      S('path', { d: p, fill: f('beton'), style: st1 }, g);
+      S('rect', { x: cx - B / 2, y: yTop, width: B, height: m, fill: f('beton'), style: st1 }, g);
       // vasalás
       S('line', { x1: cx - B / 2 + 8, y1: yB - 8, x2: cx + B / 2 - 8, y2: yB - 8, stroke: '#a3341f', 'stroke-width': 3 }, g);
       for (let i = 0; i < 7; i++) S('circle', { cx: cx - B / 2 + 14 + i * (B - 28) / 6, cy: yB - 13, r: 3, fill: '#a3341f' }, g);
       S('path', { d: `M${cx - 10} ${yB - 10} V${yTop - 40} M${cx + 10} ${yB - 10} V${yTop - 40}`, stroke: '#a3341f', 'stroke-width': 2.4, fill: 'none' }, g);
-      dimLine(g, cx + B / 2 + 18, yB - v, cx + B / 2 + 18, yB, 'v = 20 cm');
       S('rect', { x: cx - B / 2 - 6, y: yB, width: B + 12, height: 0.08 * sc, fill: f('beton'), opacity: 0.6, style: 'stroke:var(--ink-3)' }, g);
       S('text', { x: cx + B / 2 + 10, y: yB + 0.08 * sc + 14, class: 't-s', text: 'szerelőbeton' }, g);
     } else if (M.step) {
@@ -75,11 +81,14 @@ onReady(function savalap() {
       S('rect', { x: cx - B / 2, y: yB, width: B, height: 0.075 * sc, fill: f('homok'), style: 'stroke:var(--ink-3)' }, g);
       S('text', { x: cx + B / 2 + 10, y: yB + 0.075 * sc, class: 't-s', text: '5–10 cm kiegyenlítő réteg' }, g);
     } else {
-      S('path', { d: `M${cx - vf / 2 - 0.05 * sc} ${yTop} L${cx + vf / 2 + 0.05 * sc} ${yTop} L${cx + B / 2} ${yTop + Math.min(m, 0.15 * sc)} L${cx + B / 2} ${yB} L${cx - B / 2} ${yB} L${cx - B / 2} ${yTop + Math.min(m, 0.15 * sc)} Z`, fill: f(M.pat), style: st1 }, g);
-      if (st.anyag === 'uszt') S('rect', { x: cx - B / 2 + 4, y: yTop + m * 0.45, width: B - 8, height: 1, style: 'stroke:var(--ink-3);stroke-dasharray:4 3' }, g);
+      // beton alaptest: vízszintes tetejű téglalap, k : h vonallal
+      S('rect', { x: cx - B / 2, y: yTop, width: B, height: m, fill: f(M.pat), style: st1 }, g);
+      S('line', { x1: cx + vf / 2, y1: yTop, x2: cx + B / 2, y2: yB, style: 'stroke:var(--k);stroke-width:2;stroke-dasharray:6 4' }, g);
+      S('line', { x1: cx - vf / 2, y1: yTop, x2: cx - B / 2, y2: yB, style: 'stroke:var(--k);stroke-width:2;stroke-dasharray:6 4' }, g);
+      if (c > 4) S('text', { x: cx + B / 2 + 10, y: yTop + m / 2 + 5, class: 't-b', style: 'fill:var(--k)', text: `k : h = 1 : ${fmt(st.m / ((st.B - st.vf) / 2), 2)}` }, g);
     }
-    // teherelosztási vonal
-    if (!M.rc) {
+    // teherelosztási vonal: csak tégla és terméskő alapnál
+    if (M.step) {
       S('line', { x1: cx + vf / 2, y1: yTop, x2: cx + B / 2, y2: yB, style: 'stroke:var(--k);stroke-width:2;stroke-dasharray:6 4' }, g);
       S('path', { d: `M${cx + B / 2 - 26} ${yB} A26 26 0 0 0 ${cx + B / 2 - 26 * Math.cos(Math.atan2(m, c))} ${yB - 26 * Math.sin(Math.atan2(m, c))}`, style: 'stroke:var(--k);fill:none;stroke-width:1.5' }, g);
       S('text', { x: cx + B / 2 - 40, y: yB - 8, class: 't-b', style: 'fill:var(--k)', text: 'α' }, g);
@@ -98,15 +107,15 @@ onReady(function savalap() {
     $('#sFalO').textContent = fmt(st.vf * 100, 0) + ' cm';
     $('#sBO').textContent = fmt(st.B * 100, 0) + ' cm';
     $('#sMO').textContent = fmt(st.m * 100, 0) + ' cm';
-    $('#sTgWrap').style.display = M.range ? '' : 'none';
-    if (M.range) { const t = $('#sTg'); t.min = M.range[0]; t.max = M.range[1]; if (st.tg > M.range[1]) st.tg = M.range[1]; t.value = st.tg; rangeFill(t); }
-    $('#sTgO').textContent = fmt(st.tg, 2);
+    $('#sKhWrap').style.display = st.anyag === 'csom' ? '' : 'none';
+    $$('#sKh button').forEach(b => b.classList.toggle('on', +b.dataset.v === st.kh));
+    $('#sKhD').innerHTML = KH[st.kh] + ` → <span class="nw">k : h = 1 : ${fmt(st.kh, st.kh % 1 ? 1 : 0)}</span>`;
     draw();
     chk.innerHTML = '';
     const L = checks();
     L.forEach(x => { const li = H('li', { cls: x.info ? 'na' : x.ok ? 'ok' : 'bad' }, chk); li.innerHTML = `<i></i><span>${x.t}</span><em>${x.v}</em>`; });
     const all = L.filter(x => !x.info).every(x => x.ok);
-    const area = M.rc ? (st.B * 0.2 + (st.m - 0.2) * (st.B + st.vf) / 2) : st.B * st.m * (M.step ? 0.78 : 0.95);
+    const area = st.B * st.m * (M.step ? 0.78 : 1);
     out.innerHTML = `<div class="verdict ${all ? 'ok' : 'bad'}">${all ? 'A metszet megfelel a szerkesztési szabályoknak.' : 'A metszet nem felel meg – nézd meg a piros sorokat!'} <span class="sp"></span><span class="nw">anyagigény ≈ ${fmt(area, 2)} m³/fm</span> <span class="nw">B/v<sub>f</sub> = ${fmt(st.B / st.vf, 2)}</span></div>`;
   }
   $('#sAnyag').addEventListener('click', e => {
@@ -116,13 +125,18 @@ onReady(function savalap() {
     if (st.anyag === 'vb' && st.B < 1.2) { st.B = 1.4; st.m = 0.35; $('#sB').value = st.B; $('#sM').value = st.m; initRanges($('#lab-sav')); }
     render();
   });
-  [['sFal', 'vf'], ['sB', 'B'], ['sM', 'm'], ['sTg', 'tg']].forEach(([id, k]) => $('#' + id).addEventListener('input', e => { st[k] = +e.target.value; render(); }));
+  $('#sKh').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    st.kh = +b.dataset.v; render();
+  });
+  [['sFal', 'vf'], ['sB', 'B'], ['sM', 'm']].forEach(([id, k]) => $('#' + id).addEventListener('input', e => { st[k] = +e.target.value; render(); }));
   $('#sFix').addEventListener('click', () => {
     const M = MAT[st.anyag];
     st.B = Math.max(st.B, 0.5, st.vf + 0.1);
     const c = (st.B - st.vf) / 2;
     if (M.rc) st.m = Math.max(0.3, Math.ceil(st.B / 10 * 20) / 20);
-    else st.m = Math.max(0.5, Math.ceil(req() * c * 20 - 1e-9) / 20);
+    else if (M.step) st.m = Math.max(0.5, Math.ceil(req() * c * 20 - 1e-9) / 20);
+    else st.m = Math.max(0.5, Math.ceil(st.kh * c * 20 - 1e-9) / 20);
     st.m = Math.min(st.m, 1.4);
     $('#sB').value = st.B; $('#sM').value = st.m; initRanges($('#lab-sav'));
     render();
@@ -137,7 +151,7 @@ onReady(function valaszfal() {
   const TXT = {
     a: 'Külön, kisebb sávalap a válaszfal alatt – ugyanúgy, mint a főfalaknál, csak kisebb méretben. Biztos, de földmunkát és betont igényel.',
     b: 'A padozatot (aljzatbetont) a válaszfal alatt megvastagítjuk és megfelelően vasaljuk. Könnyű válaszfalaknál gazdaságos.',
-    c: 'Ha eleve előregyártott gerendás födém készül, egy vasbeton gerenda „áthordja” a válaszfal terhét a merőleges főfalak sávalapjaira.'
+    c: 'Ha eleve előregyártott gerendás födém készül, a válaszfal alá is előregyártott vasbeton gerenda kerül. Ennek két vége a merőleges főfalak sávalapjaira van ráültetve és bekötve, így a válaszfal terhét azokra „áthordja”. A metszetben a gerenda keresztmetszete látszik, a főfalak alapjai a metszet síkja előtt és mögött vannak.'
   };
   function draw(v) {
     svg.innerHTML = '';
@@ -150,19 +164,32 @@ onReady(function valaszfal() {
       S('rect', { x: 320, y: slabY + 14, width: 80, height: 110, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.6' }, g);
       S('text', { x: 410, y: slabY + 80, class: 't-s', text: 'kisebb sávalap' }, g);
     } else if (v === 'b') {
-      S('path', { d: `M0 ${slabY} H720 V${slabY + 14} H440 L410 ${slabY + 50} H310 L280 ${slabY + 14} H0 Z`, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.6' }, g);
-      S('line', { x1: 300, y1: slabY + 42, x2: 420, y2: slabY + 42, stroke: '#a3341f', 'stroke-width': 3 }, g);
-      S('text', { x: 450, y: slabY + 44, class: 't-s', text: 'padozat-vastagítás vasalással' }, g);
+      const sY = 18; // vasalt padló vastagsága a rajzon
+      S('path', { d: `M0 ${slabY} H720 V${slabY + sY} H440 L410 ${slabY + 56} H310 L280 ${slabY + sY} H0 Z`, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.6' }, g);
+      // vasháló: a rajz síkjában futó vas vonalként, az arra merőleges vasak elmetszve (pöttyök)
+      const RC = '#a3341f';
+      const mesh = (x1, x2, y, step) => {
+        S('line', { x1, y1: y, x2, y2: y, stroke: RC, 'stroke-width': 2 }, g);
+        for (let x = x1 + step / 2; x < x2 - 2; x += step) S('circle', { cx: x, cy: y - 3.2, r: 2.3, fill: RC }, g);
+      };
+      mesh(0, 720, slabY + 11, 20);           // a teljes padlóban
+      mesh(318, 402, slabY + 49, 12);         // a vastagítás alján, betontakarással
+      S('text', { x: 452, y: slabY + 46, class: 't-s', text: 'padozat-vastagítás vasalással' }, g);
+      S('text', { x: 452, y: slabY - 8, class: 't-s', text: 'vasháló a teljes padlóban' }, g);
     } else {
-      S('rect', { x: 0, y: slabY, width: 720, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
-      S('rect', { x: 300, y: slabY - 30, width: 120, height: 30, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.6' }, g);
-      S('line', { x1: 305, y1: slabY - 6, x2: 415, y2: slabY - 6, stroke: '#a3341f', 'stroke-width': 3 }, g);
-      S('text', { x: 430, y: slabY - 12, class: 't-s', text: 'vb. gerenda – a terhet a főfalakra viszi' }, g);
-      [[40, 'főfal'], [640, 'főfal']].forEach(([x, t]) => { S('rect', { x, y: 30, width: 40, height: slabY - 30, fill: f('tegla'), style: 'stroke:var(--ink)' }, g); S('rect', { x: x - 20, y: slabY + 14, width: 80, height: 70, fill: f('beton'), style: 'stroke:var(--ink)' }, g); S('text', { x: x + 20, y: 24, 'text-anchor': 'middle', class: 't-s', text: t }, g); });
-      S('path', { d: 'M300 95 C 200 60, 120 60, 80 90', style: 'stroke:var(--k);stroke-width:2;fill:none', 'marker-end': `url(#${svg.id}-arrk)` }, g);
-      S('path', { d: 'M420 95 C 520 60, 600 60, 640 90', style: 'stroke:var(--k);stroke-width:2;fill:none', 'marker-end': `url(#${svg.id}-arrk)` }, g);
+      // előregyártott vb. gerenda keresztmetszete a válaszfal alatt
+      const bx = 322, bw = 76, bh = 92, RC = '#a3341f';
+      S('rect', { x: 0, y: slabY, width: bx, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('rect', { x: bx + bw, y: slabY, width: 720 - bx - bw, height: 14, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('rect', { x: bx, y: slabY, width: bw, height: bh, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.8' }, g);
+      S('rect', { x: bx + 7, y: slabY + 7, width: bw - 14, height: bh - 14, rx: 4, fill: 'none', stroke: RC, 'stroke-width': 1.8 }, g);
+      [[bx + 13, slabY + 13], [bx + bw - 13, slabY + 13], [bx + 13, slabY + bh - 13], [bx + bw / 2, slabY + bh - 13], [bx + bw - 13, slabY + bh - 13]]
+        .forEach(([x, y]) => S('circle', { cx: x, cy: y, r: 3.6, fill: RC }, g));
+      S('line', { x1: bx + bw + 6, y1: slabY + 50, x2: 430, y2: slabY + 50, style: 'stroke:var(--ink-3)' }, g);
+      ['előregyártott vb. gerenda (metszet)', 'két vége a merőleges főfalak', 'sávalapjaira ültetve, bekötve', '(a metszetben nem látszanak)']
+        .forEach((t, i) => S('text', { x: 436, y: slabY + 54 + i * 18, class: 't-s' + (i ? '' : ' t-b'), text: t }, g));
     }
-    const wy = v === 'c' ? slabY - 30 : slabY;
+    const wy = slabY;
     S('rect', { x: 345, y: 20, width: 30, height: wy - 20, fill: f('tegla'), style: 'stroke:var(--ink);stroke-width:1.4' }, g);
     S('text', { x: 360, y: 14, 'text-anchor': 'middle', class: 't-s t-b', text: 'válaszfal' }, g);
     S('text', { x: 14, y: slabY - 8, class: 't-s', text: 'aljzatbeton' }, g);
@@ -192,11 +219,11 @@ onReady(function kapcsolat() {
     S('line', { x1: 0, y1: 180, x2: 720, y2: 180, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     const red = '#a3341f';
     if (v === 'kor') {
-      S('path', { d: 'M150 300 V250 L230 230 H490 L570 250 V300 Z', fill: f('beton'), style: st }, g);
-      S('rect', { x: 260, y: 20, width: 34, height: 210, fill: f('beton'), style: st }, g);
-      S('rect', { x: 426, y: 20, width: 34, height: 210, fill: f('beton'), style: st }, g);
+      S('rect', { x: 150, y: 214, width: 420, height: 66, fill: f('beton'), style: st }, g);
+      S('rect', { x: 260, y: 20, width: 34, height: 194, fill: f('beton'), style: st }, g);
+      S('rect', { x: 426, y: 20, width: 34, height: 194, fill: f('beton'), style: st }, g);
       S('ellipse', { cx: 360, cy: 20, rx: 100, ry: 12, fill: 'none', style: 'stroke:var(--ink-2);stroke-dasharray:4 3' }, g);
-      dimLine(g, 150, 312, 570, 312, 'D – kör alaprajzú tömb', { dy: -6 });
+      dimLine(g, 150, 294, 570, 294, 'D – kör alaprajzú tömb', { dy: 18 });
     } else if (v === 'acel') {
       S('rect', { x: 250, y: 200, width: 220, height: 90, fill: f('beton'), style: st }, g);
       S('rect', { x: 300, y: 190, width: 120, height: 10, fill: '#d9d4c5', style: 'stroke:var(--ink-3)' }, g);
@@ -216,7 +243,7 @@ onReady(function kapcsolat() {
       S('text', { x: 440, y: top + 38, class: 't-s', text: 'kibetonozás' }, g);
       S('text', { x: 300, y: 14, class: 't-s', text: 'előregyártott oszlop' }, g);
     } else {
-      S('path', { d: 'M220 300 V250 L320 215 H400 L500 250 V300 Z', fill: f('beton'), style: st }, g);
+      S('rect', { x: 220, y: 215, width: 280, height: 85, fill: f('beton'), style: st }, g);
       const narrow = v === 'csuklo';
       S('rect', { x: 320, y: 20, width: 80, height: narrow ? 180 : 195, fill: f('beton'), style: st }, g);
       if (narrow) { S('rect', { x: 340, y: 200, width: 40, height: 15, fill: f('beton'), style: st }, g); S('rect', { x: 320, y: 200, width: 20, height: 15, fill: '#e6c34a', opacity: .8 }, g); S('rect', { x: 380, y: 200, width: 20, height: 15, fill: '#e6c34a', opacity: .8 }, g); S('text', { x: 508, y: 212, class: 't-s', text: 'rugalmasan deformálható anyag' }, g); S('path', { d: 'M352 60 V270 M368 60 V270', stroke: red, 'stroke-width': 3 }, g); }
@@ -251,7 +278,9 @@ onReady(function lemezek() {
     const y = v === 'terszini' ? 100 : 120, t = v === 'rejtett' ? 46 : 26;
     S('rect', { x: 0, y: y, width: 720, height: 280 - y, fill: f(v === 'terszini' ? 'agyag' : 'homok'), opacity: .55 }, g);
     if (v === 'terszini') {
-      S('rect', { x: 60, y: y + 26, width: 600, height: 58, fill: f('kavics'), style: 'stroke:var(--ink-3)' }, g);
+      // az ágyazat mindkét oldalon 50–60 cm-rel túlnyúlik a lemez szélén (a rajzon ~1 px/cm)
+      S('rect', { x: 4, y: y + 26, width: 712, height: 58, fill: f('kavics'), style: 'stroke:var(--ink-3)' }, g);
+      dimLine(g, 660, y + 96, 716, y + 96, '50–60 cm', { dy: 16 });
       S('text', { x: 670, y: y + 60, class: 't-s', 'text-anchor': 'end', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'tömörített szemcsés ágyazat ≥ 50–60 cm' }, g);
       S('line', { x1: 0, y1: y + 130, x2: 720, y2: y + 130, style: 'stroke:var(--frost);stroke-width:2;stroke-dasharray:8 5' }, g);
       S('text', { x: 10, y: y + 124, class: 't-s', style: 'fill:var(--frost)', text: 'fagyhatár – a lemez alsó síkja felette maradhat' }, g);
@@ -259,13 +288,18 @@ onReady(function lemezek() {
       S('line', { x1: 660, y1: y, x2: 720, y2: y, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     }
     const py = v === 'terszini' ? y : y;
-    S('rect', { x: 60, y: py, width: 600, height: t, fill: f('beton'), style: st }, g);
+    if (v === 'alul' || v === 'gomba') {
+      // a bordák / gombafejek a lemezzel együtt, egyben betonozva: egyetlen körvonal
+      let d = `M60 ${py} H660 V${py + t}`;
+      [570, 360, 150].forEach(x => {
+        d += v === 'alul' ? ` H${x + 22} V${py + t + 44} H${x - 22} V${py + t}` : ` H${x + 70} L${x + 40} ${py + t + 30} H${x - 40} L${x - 70} ${py + t}`;
+      });
+      S('path', { d: d + ' H60 Z', fill: f('beton'), style: st }, g);
+    } else S('rect', { x: 60, y: py, width: 600, height: t, fill: f('beton'), style: st }, g);
     [150, 360, 570].forEach(x => {
-      if (v === 'felul') S('rect', { x: x - 22, y: py - 44, width: 44, height: 44, fill: f('beton'), style: st }, g);
-      if (v === 'alul') S('rect', { x: x - 22, y: py + t, width: 44, height: 44, fill: f('beton'), style: st }, g);
-      if (v === 'gomba') S('path', { d: `M${x - 70} ${py + t} L${x - 40} ${py + t + 30} H${x + 40} L${x + 70} ${py + t} Z`, fill: f('beton'), style: st }, g);
+      if (v === 'felul') S('rect', { x: x - 34, y: py - 28, width: 68, height: 28, fill: f('beton'), style: st }, g);
       if (v === 'rejtett') { for (let k = -2; k <= 2; k++) S('circle', { cx: x + k * 9, cy: py + t - 10, r: 3.2, fill: red }, g); S('rect', { x: x - 26, y: py + 4, width: 52, height: t - 8, fill: 'none', style: 'stroke:#a3341f;stroke-dasharray:3 3' }, g); }
-      const top = v === 'felul' ? py - 44 : py;
+      const top = v === 'felul' ? py - 28 : py;
       S('rect', { x: x - 12, y: 10, width: 24, height: top - 10, fill: f('beton'), style: st }, g);
     });
     S('line', { x1: 66, y1: py + t - 6, x2: 654, y2: py + t - 6, stroke: red, 'stroke-width': 2.4 }, g);

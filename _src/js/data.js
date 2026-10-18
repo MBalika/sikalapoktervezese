@@ -4,13 +4,13 @@ const TYPE_INFO = {
     name: 'Sávalap', kind: 'Falak alatt, folyamatosan',
     desc: 'Falak folyamatos alátámasztására készül. Általában konzolosan kinyúlik a fal alól, mert a talaj teherbírása kisebb a falazóanyagénál, és mindkét oldalon min. 5–5 cm elhelyezési biztonság kell. Anyaga tégla, terméskő, úsztatott vagy csömöszölt beton, illetve vasbeton.',
     when: 'Falazott épületek alá, például családi háznál vagy kisebb lakóháznál, teherbíró talajon, a fagyhatár alatt. A legegyszerűbb és legolcsóbb megoldás.',
-    variants: [['csom', 'Csömöszölt beton'], ['tegla', 'Tégla'], ['ko', 'Terméskő'], ['uszt', 'Úsztatott beton'], ['vb', 'Vasbeton']]
+    variants: [['csom', 'Csömöszölt beton'], ['tegla', 'Tégla'], ['ko', 'Terméskő'], ['vb', 'Vasbeton']]
   },
   pill: {
     name: 'Pilléralap', kind: 'Pillérek, oszlopok alatt',
     desc: 'Tömbalap a pillérek alatt; alaprajza általában négyzet, B/L = 1–3,5. Betonból vagy vasbetonból készül, alul legalább hálós acélbetéttel. A pillérrel befogott vagy csuklós kapcsolat létesíthető; előregyártott oszlop ma monolit tömbalapra helyezett kehelynyakba kerül.',
-    when: 'Vázas épületek, ipari csarnokok koncentrált pillérterhei alá, ha a pillérek közötti süllyedéskülönbség nem okoz gondot.',
-    variants: [['lepcsos', 'Vasbeton tömb'], ['csonka', 'Csonkagúla'], ['kehely', 'Kehelynyak']]
+    when: 'Vázas épületek, ipari csarnokok koncentrált pillérterhei alá, ha a pillérek eltérő süllyedése nem okoz gondot.',
+    variants: [['lepcsos', 'Vasbeton tömb'], ['kehely', 'Kehelynyak']]
   },
   szalag: {
     name: 'Szalagalap', kind: 'Talpgerenda a pillérsor alatt',

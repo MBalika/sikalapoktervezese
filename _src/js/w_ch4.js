@@ -307,23 +307,28 @@ onReady(function lepcso() {
         const run = st.h / tb;
         let x = x0 + 30, z = ground(x) / sc;
         const pts = [];
-        let base = ground(x) + dd * sc;
-        let d = `M${x} ${base}`;
+        // a legsekélyebb pont (minden lépcső alsó vége) is dd mélyen legyen
+        let base = ground(x) + (dd + st.h) * sc;
+        const segs = [];
         let nSteps = 0;
         while (x < x0 + 30 + L * sc - 1) {
           const nx = Math.min(x + run * sc, x0 + 30 + L * sc);
-          d += ` H${nx}`;
+          segs.push([x, nx, base]);
           x = nx;
-          if (x < x0 + 30 + L * sc - 1) { base += st.h * sc; d += ` V${base}`; nSteps++; }
+          if (x < x0 + 30 + L * sc - 1) { base += st.h * sc; nSteps++; }
         }
-        const end = x0 + 30 + L * sc;
-        d += ` V${ground(end) + (dd - 0.5) * sc} L${x0 + 30} ${ground(x0 + 30) + (dd - 0.5) * sc} Z`;
+        // lépcsős alaptest: minden szakasz téglalap, vízszintes alj és tető
+        const tk = 0.5 * sc;
+        let d = `M${segs[0][0]} ${segs[0][2] - tk}`;
+        segs.forEach(([a, b, y], i) => { if (i) d += ` V${y - tk}`; d += ` H${b}`; });
+        for (let i = segs.length - 1; i >= 0; i--) { const [a, , y] = segs[i]; d += ` V${y} H${a}`; }
+        d += ' Z';
         S('path', { d, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
-        S('text', { x: x0 + 30, y: ground(x0 + 30) + dd * sc + 22, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: `${nSteps} lépcső, egyenként ${fmt(st.h * 100, 0)} cm × ${fmt(run, 2)} m` }, g);
+        S('text', { x: 712, y: 60, 'text-anchor': 'end', class: 't-s', text: `${nSteps} lépcső, egyenként ${fmt(st.h * 100, 0)} cm × ${fmt(run, 2)} m` }, g);
         C.push({ st: st.h <= 0.5 + 1e-6 ? 'ok' : 'bad', t: 'Egy lépcső magassága ne legyen nagyobb 50 cm-nél', v: `${fmt(st.h * 100, 0)} cm` });
         C.push({ st: st.beta <= 30 ? 'ok' : 'bad', t: 'A lépcsők sarokpontjait összekötő egyenes ≤ 30°', v: `${fmt(st.beta, 1)}°` });
       }
-      S('text', { x: 580, y: 40, class: 't-s', text: `terep lejtése: ${fmt(st.beta, 1)}° (${fmt(tb * 100, 0)} %)` }, g);
+      S('text', { x: 712, y: 40, 'text-anchor': 'end', class: 't-s', text: `terep lejtése: ${fmt(st.beta, 1)}° (${fmt(tb * 100, 0)} %)` }, g);
     }
     const ul = $('#lpChecks'); ul.innerHTML = '';
     C.forEach(c => { const li = H('li', { cls: c.st }, ul); li.innerHTML = `<i></i><span>${c.t}</span><em>${c.v}</em>`; });

@@ -152,21 +152,26 @@
       <div class="card k"><h4>a) Tégla</h4><p class="small">A pincefal és az alapszélesség közötti kiszélesítés lépcsőzetes: magasságban a téglasor, vízszintesen a féltégla egész számú többszöröse. Az első téglasor alá 5–10 cm kiegyenlítő homok vagy mészhabarcs kerül, ha nem homokos, könnyen kiegyenlíthető talajra alapozunk.</p></div>
       <div class="card k"><h4>b) Terméskő</h4><p class="small">Az elvek a téglaalapéhoz hasonlók. Azonos szélességgel vagy lépcsős kiszélesítéssel készül, legalább H10 jelű javított falazó mészhabarcsba rakott szilárd, fagyálló kövekből. Egy kő legfeljebb 50 kg lehet. Régi épületeknél gyakori a vegyes (tégla és kő) falazat.</p></div>
       <div class="card k"><h4>c) Úsztatott beton</h4><p class="small">A betonba a helyszínen található vagy olcsón beszerezhető terméskövet építenek be, az alaptest magasságának kb. felét kitevő sávban. Ez az úgynevezett francia beton. A múlt század második felében családi házaknál és nyaralóknál terjedt el; ma az élőmunka-igénye miatt nem éri meg.</p></div>
-      <div class="card k"><h4>d) Csömöszölt beton</h4><p class="small">A leggyakoribb sávalap. Zsaluzattal vagy földpartok között épül; zsaluzatot ma csak akkor használnak, ha kohézió nélküli szemcsés talajban nem lehet közel függőleges földpartokat kiemelni – a zsaluzás drága és lassú.</p></div>
+      <div class="card k"><h4>d) Csömöszölt beton</h4><p class="small">A leggyakoribb sávalap. Zsaluzattal vagy földpartok között épül; zsaluzatot ma csak akkor használnak, ha kohézió nélküli szemcsés talajban nem lehet közel függőleges földpartokat kiemelni – a zsaluzás drága és lassú. Magasságát egyszerűsítve a kinyúlás és a magasság aránya (k : h) alapján vesszük fel: a talajtól függően <span class="nw">1 : 2</span>, <span class="nw">1 : 1,5</span> vagy <span class="nw">1 : 1</span>.</p></div>
       <div class="card k"><h4>e) Vasbeton</h4><p class="small">Akkor építik, ha nagy támaszkodó felület kell, de az alap magasságát valami korlátozza, például a talajvíz vagy a pince. Vasalással a magasság csökkenthető, és összességében gazdaságosabb is lehet: minél szélesebb ugyanis a vasalatlan alaptest, annál magasabbnak kellene lennie.</p></div>
       <div class="card k"><h4>f) Válaszfal alapja</h4><p class="small">A válaszfalakat is le kell alapozni, pedig csak önhordók. Három megoldás van: külön kisebb sávalap, megvastagított és vasalt padozat, vagy (előregyártott gerendás födémnél) vasbeton gerenda, amely a terhet a merőleges főfalak sávalapjaira „áthordja”.</p></div>
     </div>
     <div class="callout"><b>Minimális vasalás a sávalapban is</b><p>Az alapot sokszor akkor is célszerű minimálisan vasalni (4 db, legalább 12–16 mm átmérőjű hosszvas, 40×40-es kengyelek), ha a magasságát nem csökkentjük: egy lokális süllyedésnél (pl. csőtörés) részben kiegyenlítheti a süllyedéskülönbségeket.</p></div>
 
     <div class="lab" id="lab-sav">
-      <header><h4>Sávalap-metszet szerkesztő – megfelel a szerkesztési szabályoknak?</h4><span class="sp"></span><div class="chips" id="sAnyag"><button type="button" data-v="tegla" class="on">Tégla</button><button type="button" data-v="ko">Terméskő</button><button type="button" data-v="uszt">Úsztatott beton</button><button type="button" data-v="csom">Csömöszölt beton</button><button type="button" data-v="vb">Vasbeton</button></div></header>
+      <header><h4>Sávalap-metszet szerkesztő – megfelel a szerkesztési szabályoknak?</h4><span class="sp"></span><div class="chips" id="sAnyag"><button type="button" data-v="tegla" class="on">Tégla</button><button type="button" data-v="ko">Terméskő</button><button type="button" data-v="csom">Csömöszölt beton</button><button type="button" data-v="vb">Vasbeton</button></div></header>
       <div class="body side">
         <div class="stage svgwrap"><svg class="fig" id="savSvg" viewBox="0 0 720 470" role="img" aria-label="Sávalap keresztmetszete méretekkel"></svg></div>
         <div class="ctrl">
           <div class="rng"><label for="sFal">Falvastagság v<sub>f</sub></label><output id="sFalO"></output><input type="range" id="sFal" min="0.25" max="0.6" step="0.01" value="0.38"></div>
           <div class="rng"><label for="sB">Alapszélesség B</label><output id="sBO"></output><input type="range" id="sB" min="0.3" max="2.2" step="0.01" value="0.8"></div>
           <div class="rng"><label for="sM">Alapmagasság m</label><output id="sMO"></output><input type="range" id="sM" min="0.2" max="1.4" step="0.01" value="0.5"></div>
-          <div class="rng" id="sTgWrap"><label for="sTg">Megkövetelt tg α (betonminőség szerint)</label><output id="sTgO"></output><input type="range" id="sTg" min="1" max="1.5" step="0.05" value="1.5"></div>
+          <div id="sKhWrap" style="display:none">
+            <div class="grp">Altalaj</div>
+            <div class="chips" id="sKh" style="margin-top:8px"><button type="button" data-v="2" class="on">1 : 2</button><button type="button" data-v="1.5">1 : 1,5</button><button type="button" data-v="1">1 : 1</button></div>
+            <div class="small" id="sKhD" style="margin-top:8px;text-align:left;line-height:1.45"></div>
+            <p class="small" style="color:var(--ink-3);margin:8px 0 0">Egyszerűsített szabály: k a kinyúlás (a rajzon c), h az alapmagasság (m). Részletesen lásd majd a síkalapok magasságtervezésénél.</p>
+          </div>
           <ul class="checks" id="savChecks"></ul>
           <button class="pbtn solid" type="button" id="sFix">Méretezd át a szabályok szerint</button>
         </div>
@@ -188,7 +193,6 @@
       <button type="button" data-img="img/ppt/s10_2.jpg" data-title="Betonozás földpartok között"><img src="img/ppt/s10_2.jpg" alt="Sávalap betonozása" loading="lazy"><span>Betonozás földpartok között</span></button>
       <button type="button" data-img="img/ppt/s10_3.jpg" data-title="Sávalapok szerelt vasalással"><img src="img/ppt/s10_3.jpg" alt="Sávalap-rendszer vasalással" loading="lazy"><span>Sávalap-rendszer vasalással</span></button>
       <button type="button" data-img="img/ppt/s10_4.jpg" data-title="Zsaluzott sávalaprendszer"><img src="img/ppt/s10_4.jpg" alt="Zsaluzott sávalapok" loading="lazy"><span>Zsaluzott sávalapok</span></button>
-      <button type="button" data-img="img/ppt/s11_1.jpg" data-title="Zsaluzás"><img src="img/ppt/s11_1.jpg" alt="Sávalap zsaluzata" loading="lazy"><span>Zsaluzat</span></button>
       <button type="button" data-img="img/ppt/s11_3.jpg" data-title="Sávalapok a telken"><img src="img/ppt/s11_3.jpg" alt="Sávalapok kiemelt árokban" loading="lazy"><span>Kész sávalapok</span></button>
     </div>
 

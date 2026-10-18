@@ -81,8 +81,8 @@ function initTypes(container, o = {}) {
     csom: [[-0.38, -1], [0.38, -1], [0.38, -0.5], [-0.38, -0.5]],
     tegla: [[-0.45, -1], [0.45, -1], [0.45, -0.85], [0.33, -0.85], [0.33, -0.7], [0.25, -0.7], [0.25, -0.55], [-0.25, -0.55], [-0.25, -0.7], [-0.33, -0.7], [-0.33, -0.85], [-0.45, -0.85]],
     ko: [[-0.52, -1], [0.52, -1], [0.52, -0.82], [0.36, -0.82], [0.36, -0.64], [0.24, -0.64], [0.24, -0.5], [-0.24, -0.5], [-0.24, -0.64], [-0.36, -0.64], [-0.36, -0.82], [-0.52, -0.82]],
-    uszt: [[-0.45, -1], [0.45, -1], [0.45, -0.68], [0.25, -0.5], [-0.25, -0.5], [-0.45, -0.68]],
-    vb: [[-0.7, -1], [0.7, -1], [0.7, -0.8], [0.25, -0.62], [0.25, -0.5], [-0.25, -0.5], [-0.25, -0.62], [-0.7, -0.8]]
+    uszt: [[-0.45, -1], [0.45, -1], [0.45, -0.5], [-0.45, -0.5]],
+    vb: [[-0.7, -1], [0.7, -1], [0.7, -0.68], [-0.7, -0.68]]
   };
   const SAV_MAT = { csom: 'beton', tegla: 'tegla', ko: 'ko', uszt: 'uszt', vb: 'beton' };
   function buildSav(v) {
@@ -91,7 +91,8 @@ function initTypes(container, o = {}) {
     for (const [x0, z0, x1, z1] of WALLS) {
       fnd.add(along(p, x0, z0, x1, z1, mat, half));
       // lábazati fal
-      fnd.add(along([[-0.2, -0.5], [0.2, -0.5], [0.2, 0.3], [-0.2, 0.3]], x0, z0, x1, z1, v === 'tegla' ? M.tegla : v === 'ko' ? M.ko : M.beton, 0.2));
+      const topY = Math.max(...p.map(q => q[1]));
+      fnd.add(along([[-0.2, topY], [0.2, topY], [0.2, 0.3], [-0.2, 0.3]], x0, z0, x1, z1, v === 'tegla' ? M.tegla : v === 'ko' ? M.ko : M.beton, 0.2));
       if (v === 'vb') {
         const L = Math.hypot(x1 - x0, z1 - z0) + 1.2;
         const r = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, L, 6), M.reb);
@@ -107,14 +108,7 @@ function initTypes(container, o = {}) {
   function buildPill(v) {
     let colBase = -0.55;
     for (const [x, z] of COLS) {
-      if (v === 'csonka') {
-        fnd.add(box(1.8, 0.25, 1.8, x, -1.075, z, M.beton));
-        const g = new THREE.CylinderGeometry(0.32 * Math.SQRT2, 0.9 * Math.SQRT2, 0.45, 4, 1);
-        g.rotateY(Math.PI / 4);
-        const m = new THREE.Mesh(g, M.beton); m.position.set(x, -0.725, z); m.castShadow = m.receiveShadow = true; edges(m, 0x1b221e, 0.2);
-        fnd.add(m);
-        colBase = -0.5;
-      } else if (v === 'kehely') {
+      if (v === 'kehely') {
         fnd.add(box(2.0, 0.45, 2.0, x, -1.0, z, M.beton));
         const t = 0.22, ow = 1.0, hh = 0.75, yc = -0.775 + hh / 2;
         fnd.add(box(ow, hh, t, x, yc, z - (ow - t) / 2, M.beton)); fnd.add(box(ow, hh, t, x, yc, z + (ow - t) / 2, M.beton));
