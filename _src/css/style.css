@@ -85,7 +85,7 @@ sub,sup{font-size:.72em;line-height:0}
 b,strong{font-weight:600}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 @media (min-width:720px){.wrap{padding:0 28px}}
-.prose{max-width:780px}
+.prose{max-width:none}
 .muted{color:var(--ink-3)}
 .small{font-size:.88rem}
 .mono{font-family:var(--f-mono)}

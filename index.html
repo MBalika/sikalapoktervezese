@@ -107,7 +107,7 @@ sub,sup{font-size:.72em;line-height:0}
 b,strong{font-weight:600}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
 @media (min-width:720px){.wrap{padding:0 28px}}
-.prose{max-width:780px}
+.prose{max-width:none}
 .muted{color:var(--ink-3)}
 .small{font-size:.88rem}
 .mono{font-family:var(--f-mono)}
@@ -535,7 +535,7 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
         <h4>Síkalap alkalmazható, ha…</h4>
         <ul>
           <li>megfelelő teherbírású és vastagságú talajréteg van a felszín közelében;</li>
-          <li>nem keletkeznek az előírtnál nagyobb alakváltozások, süllyedések;</li>
+          <li>a süllyedések és más alakváltozások nem nagyobbak az előírtnál;</li>
           <li>a térszín közeli réteg teherbírása nem nagy ugyan, de mélyebben sincs jobb, és az épület súlyát nagy felületen el lehet osztani (lemezalap);</li>
           <li>az altalaj teherbírása kicsi, de az építmény süllyedésre nem érzékeny, és a felszínközeli síkalapozással költséges talajvízszint-süllyesztés vagy mélyalapozás küszöbölhető ki.</li>
         </ul>
@@ -1223,6 +1223,7 @@ const GUARD = (() => {
   const TERMS = ['kedvező esetleges', 'esetleges teher', 'állandó teher', 'kritikus állapotbeli súrlódási szög', 'drénezetlen nyírószilárdság', 'belső súrlódási szög', 'hasznos szélesség', 'passzív földellenállás', 'tervezési érték', 'karakterisztikus érték', 'parciális tényező', 'általános állékonyság', 'általános nyírási törés', 'helyi nyírási törés', 'teherbíró réteg', 'alapozási sík', 'relatív tömörség', 'téli talajvízszint', 'roskadékony talaj', 'szerves talaj', 'aktív ék', 'passzív ék', 'plasztikus zóna', 'térszíni lemezalap', 'mélyített síkalap', 'vegyes alapozás'];
   const termRx = new RegExp('(' + TERMS.sort((a, b) => b.length - a.length).map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '[ \\u00A0]')).join('|') + ')', 'giu');
   const MULT_SYM = /^(tg|ctg|sin|cos|tan|exp|ln|log)\b/;
+  const NUMW = /(^|[\s(\u00A0\u2060„])((?:[Kk]ét|[Hh]árom|[Nn]égy|[Öö]t|[Hh]at|[Hh]ét|[Nn]yolc|[Kk]ilenc|[Tt]íz|[Hh]úsz|[Ss]záz|[Ee]zer|[Ee]lső|[Mm]ásodik|[Hh]armadik|[Nn]egyedik|[Öö]tödik|[Hh]atodik|[Hh]etedik|[Nn]yolcadik|[Kk]ilencedik|[Tt]izedik|[Mm]indkét|[Mm]indhárom|[Nn]éhány|[Ee]gyik|[Kk]ettő|[Hh]armincnyolc|[Nn]egyven|[Hh]etven))(?=\s\S)\s/g;
   function textPass(s) {
     if (!/[ \-–·]/.test(s)) return s;
     // ezres tagolás
@@ -1251,10 +1252,15 @@ const GUARD = (() => {
     s = s.replace(/(^|[\s(\u00A0\u2060~≈≤≥=<>−+])(\d+(?:[,.]\d+)?\.?%?) (?=\S)/g, '$1$2' + NB);
     // névelők, rövid kötőszavak
     for (let i = 0; i < 2; i++) s = s.replace(/(^|[\s(\u00A0\u2060„])(a|az|A|Az|s|e|egy|Egy|és|És) (?=\S)/g, '$1$2' + NB);
+    // betűvel írt számnév + amit számlál
+    s = s.replace(NUMW, '$1$2' + NB);
+    // utótagos kötőjel (30°-nál, RFA-n, 1173-ban)
+    s = s.replace(/([\d°′″%)\]\p{Lu}\u2080-\u2089])-(\p{Ll}{1,6})(?=$|[\s.,;:!?)”\u00A0\u2060])/gu, '$1' + NBH + '$2');
     return s;
   }
-  function bindPositions(full) {
+  function bindPositions(full, cpl = 70) {
     const bind = new Set();
+    const segMax = Math.max(14, Math.min(38, 0.42 * cpl)), parMax = Math.max(10, Math.min(24, 0.30 * cpl));
     const mark = (a, b) => { for (let i = a; i < b; i++) if (full[i] === ' ') bind.add(i); };
     // tagolás · ; – mentén
     const sepRx = / · |; | – /g;
@@ -1267,13 +1273,13 @@ const GUARD = (() => {
         const t = full.slice(a, b).trim();
         // felsorolás-tag (· ;) ~38 karakterig; gondolatjel mellett csak rövid címke vagy verdikt
         const dashOnly = (before === ' – ' || before === '') && (after === ' – ' || after === '') && (before || after);
-        const lim = dashOnly ? 22 : 38;
+        const lim = dashOnly ? Math.min(22, segMax) : segMax;
         if (t.length > 0 && t.length < lim) mark(a, b);
       }
     }
     // rövid zárójeles rész
     const pr = /\(([^()]{1,30})\)/g;
-    while ((m = pr.exec(full))) mark(m.index, m.index + m[0].length);
+    while ((m = pr.exec(full))) { if (m[0].length <= parMax) mark(m.index, m.index + m[0].length); }
     // szakkifejezések
     termRx.lastIndex = 0;
     while ((m = termRx.exec(full))) mark(m.index, m.index + m[0].length);
@@ -1305,7 +1311,10 @@ const GUARD = (() => {
     for (const n of nodes) { const v = textPass(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; }
     // blokk-szintű kötés
     const full = nodes.map(n => n.nodeValue).join('');
-    const bind = bindPositions(full);
+    // sorhossz karakterben: a doboz szélességéhez igazodó „rövid” határ
+    const fs = parseFloat(getComputedStyle(el).fontSize) || 16;
+    const cpl = el.clientWidth > 40 ? el.clientWidth / (fs * 0.52) : 70;
+    const bind = bindPositions(full, cpl);
     if (bind.size) {
       let off = 0;
       for (const n of nodes) {
@@ -1324,9 +1333,18 @@ const GUARD = (() => {
         let ch = false;
         for (let i = 0; i < parts.length; i += 2) {
           const t = parts[i];
-          if (!t || t.includes(WJ) || !/\p{L}{6,}/u.test(t)) continue;
+          if (!t || !/\p{L}{6,}/u.test(t)) continue;
           const clean = t.replace(/\u00AD/g, '');
-          const h = hyph(clean);
+          let h;
+          if (t.includes(WJ)) {
+            // 16 karakternél hosszabb kötött csoport: csak az utolsó szava választható el
+            const vis = clean.replace(/[\u2060]/g, '');
+            if (vis.length <= 16) continue;
+            const k = Math.max(clean.lastIndexOf('\u00A0'), clean.lastIndexOf(WJ));
+            const tail = clean.slice(k + 1);
+            if (!/\p{L}{6,}/u.test(tail)) continue;
+            h = clean.slice(0, k + 1) + hyph(tail);
+          } else h = hyph(clean);
           if (h !== t) { parts[i] = h; ch = true; }
         }
         if (ch) n.nodeValue = parts.join('');
@@ -1373,9 +1391,9 @@ const GUARD = (() => {
     }
   }
   // vászonra szánt szöveg őrzése
-  function text(s) {
+  function text(s, cpl = 60) {
     let v = textPass(s);
-    const bind = bindPositions(v);
+    const bind = bindPositions(v, cpl);
     if (bind.size) v = Array.from(v).map((c, i) => (c === ' ' && bind.has(i)) ? NB + WJ : c).join('');
     return v;
   }
