@@ -2886,10 +2886,11 @@ onReady(function fagy() {
     S('text', { x: gx + gw / 2, y: gy0 + gh + 32, 'text-anchor': 'middle', class: 't-s', text: 'hőmérséklet [°C]' }, g);
     for (let z = 0; z <= 1.01; z += 0.5) S('text', { x: gx - 6, y: Y(z) + 4, 'text-anchor': 'end', class: 't-s t-m', text: z ? '−' + fmt(z, 1) : '0' }, g);
     let pd = '';
-    for (let i = 0; i <= 40; i++) { const z = i / 40 * 1.58; const T = F.Tm + (F.Ts - F.Tm) * Math.exp(-z / F.lam); pd += (i ? 'L' : 'M') + Tx(clamp(T, -10, 15)) + ' ' + Y(z); }
+    const zMax = (gy0 + gh - Y(0)) / (Y(1) - Y(0)); // a görbe a diagram aljáig tart
+    for (let i = 0; i <= 40; i++) { const z = i / 40 * zMax; const T = F.Tm + (F.Ts - F.Tm) * Math.exp(-z / F.lam); pd += (i ? 'L' : 'M') + Tx(clamp(T, -10, 15)) + ' ' + Y(z); }
     S('path', { d: pd, style: 'stroke:var(--k);stroke-width:2.5;fill:none' }, g);
-    S('text', { x: gx + gw - 8, y: gy0 + gh - 28, 'text-anchor': 'end', class: 't-s t-b', text: MONTH[Math.min(5, Math.floor(st.t * 6))] }, g);
-    S('text', { x: gx + gw - 8, y: gy0 + gh - 12, 'text-anchor': 'end', class: 't-s', text: `felszín: ${fmt(F.Ts, 1)} °C` }, g);
+    S('text', { x: gx + gw - 8, y: gy0 + gh - 28, 'text-anchor': 'end', class: 't-s t-b', style: 'paint-order:stroke;stroke:var(--card-2);stroke-width:4px', text: MONTH[Math.min(5, Math.floor(st.t * 6))] }, g);
+    S('text', { x: gx + gw - 8, y: gy0 + gh - 12, 'text-anchor': 'end', class: 't-s', style: 'paint-order:stroke;stroke:var(--card-2);stroke-width:4px', text: `felszín: ${fmt(F.Ts, 1)} °C` }, g);
     return { fr, F, heave };
   }
   function render() {
