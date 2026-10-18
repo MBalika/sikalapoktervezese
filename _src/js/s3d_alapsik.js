@@ -23,7 +23,7 @@ function initAlapsik3D(container) {
   scene.add(shadowPlane);
   const L = {
     frost: st3.label('', 'frost'), gw: st3.label('', 'water'), base: st3.label('', 'lime'), fill: st3.label('feltöltés, humusz'), bear: st3.label(''),
-    dry: st3.label('kiszáradási határ ≈ 2 m', 'bad'), nb: st3.label(''), under: st3.label('aláfalazás kell!', 'k'), dew: st3.label('víztelenítés kell!', 'water')
+    dry: st3.label('kiszáradási határ ≈ 2 m', 'bad'), nb: st3.label(''), under: st3.label('alábetonozás kell!', 'k'), dew: st3.label('víztelenítés kell!', 'water')
   };
   function box(w, h, d, x, y, z, m, e = true) { const b = boxAt(w, h, d, x, y, z, m); if (e) edges(b, 0x1b221e, 0.2); return b; }
   function soilPieces(layers, boxes) {

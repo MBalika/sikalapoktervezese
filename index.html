@@ -939,10 +939,10 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
     </div>
 
     <h3>Szomszédos épület mellett</h3>
-    <div class="prose"><p>Ha közvetlenül egy szomszédos épület mellé kell alapozni, két szabály a döntő: az új épület alapsíkja <b>nem kerülhet a régi fölé</b>, szükség esetén mélyíteni kell; ha pedig az új épület mélyebb padlószintje miatt az alapsíkja a régi épület alá kerül, a régit <b>alá kell falazni, betonozni</b>, vagy jet-grouting technológiával megerősíteni.</p></div>
+    <div class="prose"><p>Ha közvetlenül egy szomszédos épület mellé kell alapozni, két szabály a döntő: az új épület alapsíkja <b>nem kerülhet a régi fölé</b>, szükség esetén mélyíteni kell; ha pedig az új épület mélyebb padlószintje miatt az alapsíkja a régi épület alá kerül, a régi alapot <b>alá kell betonozni</b>, vagy jet-grouting technológiával megerősíteni.</p></div>
     <div class="lab" id="lab-szom">
-      <header><h4>Melléépítés – mi történik a régi házzal?</h4><span class="sp"></span><div class="seg" id="szSeg"><button type="button" data-v="fole">Új alap a régi fölött</button><button type="button" data-v="egyezo" class="on">Egyező alapsík</button><button type="button" data-v="melyebb">Új mélyebb – aláfalazás</button><button type="button" data-v="jet">Új mélyebb – jet-grouting</button></div></header>
-      <div class="stage svgwrap"><svg class="fig" id="szSvg" viewBox="0 0 720 330" role="img" aria-label="Régi és új épület alapjai egymás mellett"></svg></div>
+      <header><h4>Melléépítés – mi történik a régi házzal?</h4><span class="sp"></span><div class="seg" id="szSeg"><button type="button" data-v="fole">Új alap a régi fölött</button><button type="button" data-v="egyezo" class="on">Egyező alapsík</button><button type="button" data-v="melyebb">Új mélyebb – alábetonozás</button><button type="button" data-v="jet">Új mélyebb – jet-grouting</button></div></header>
+      <div class="stage svgwrap"><svg class="fig" id="szSvg" viewBox="0 0 720 380" role="img" aria-label="Régi és új épület alapjai egymás mellett"></svg></div>
       <div class="out"><div class="row"><button class="pbtn solid" type="button" id="szPlay">▶ Építés lejátszása</button><span class="sp"></span><span class="verdict" id="szVerdict"></span></div><p class="small just" id="szTxt" style="margin:10px 0 0"></p></div>
     </div>
 
@@ -1823,7 +1823,7 @@ const QUIZ = {
     { q: 'Mekkora földtakarás kell a fagyhatásnak ki nem tett épületrészekben (pl. pincében)?', o: ['Legalább 0,4 m – ez az 50 cm-es alapmagasság miatt eleve teljesül', 'Legalább 0,8 m', 'Nem kell takarás', 'Legalább 1,5 m'], a: 0, e: 'A pincében nincs fagyveszély, de minimális takarás itt is kell.' },
     { q: 'Részben alápincézett épületnél mi a szabály a magasabban maradó alapra?', o: ['A belső élétől húzott természetes rézsű vonala ne messe a pincefalat a pincepadló szintje felett', 'Legyen pontosan a fagyhatáron', 'Az alapsík legyen azonos a pincepadlóval', 'Legalább 2 m-re legyen a pincefaltól'], a: 0, e: 'Különben a sekély alap terhe a pincefalra hárulna, kiemeléskor pedig alóla kifuthatna a talaj.' },
     { q: 'Lépcsőzetes mélyítésnél mekkora lehet legfeljebb a sarokpontokat összekötő egyenes hajlása?', o: ['30°', '45°', '60°', 'Bármekkora, ha a lépcső 50 cm alatti'], a: 0, e: 'Az alapok megfelelő sarokpontjait összekötő egyenes ne legyen 30°-nál meredekebb.' },
-    { q: 'Az új épület mélyebb padlószintje miatt az alapsík a szomszéd régi háza alá kerül. Mi a teendő?', o: ['A régit alá kell falazni, betonozni vagy jet-groutinggal megerősíteni', 'Semmi, mert az új alap mélyebb', 'Az új alapot a régi fölé kell emelni', 'A régi épületet le kell bontani'], a: 0, e: 'Különben a munkagödör kiemelésekor a régi alap alól kifuthat a talaj.' }
+    { q: 'Az új épület mélyebb padlószintje miatt az alapsík a szomszéd régi háza alá kerül. Mi a teendő?', o: ['A régit alá kell betonozni vagy jet-groutinggal megerősíteni', 'Semmi, mert az új alap mélyebb', 'Az új alapot a régi fölé kell emelni', 'A régi épületet le kell bontani'], a: 0, e: 'Különben a munkagödör kiemelésekor a régi alap alól kifuthat a talaj.' }
   ]},
   q5: { key: 'q5', title: 'Kvíz – határállapotok és eljárások', items: [
     { q: 'Mit jelent a GEO határállapot?', o: ['A talaj törését vagy túlzott alakváltozását; az ellenállást a talaj szilárdsága határozza meg', 'A szerkezeti elemek belső törését', 'A merev testként való helyzetváltozást', 'A felúszás miatti egyensúlyvesztést'], a: 0, e: 'Ez az alap alatti talajtörés, átfúródás, kipréselődés határállapota.' },
@@ -1931,7 +1931,7 @@ const GLOSSARY = [
   ['Jéglencse', 'A fagyfronthoz kapillárisan szivárgó vízből növő jégréteg. A fagyemelés fő oka.'],
   ['Kiszáradási határ', 'Az a mélység (kb. 2 m), ameddig a térfogatváltozó agyag évszakosan kiszárad és duzzad.'],
   ['Természetes rézsű', 'Az a hajlás, amellyel a talaj még magától megáll. Részleges pincénél a próbavonal.'],
-  ['Aláfalazás', 'A szomszédos régi alap szakaszos alábetonozása, ha az új alapsík mélyebb.'],
+  ['Alábetonozás', 'A szomszédos régi alap szakaszos alábetonozása, ha az új alapsík mélyebb.'],
   ['Jet-grouting', 'Nagynyomású talajinjektálás, amely talajbeton oszlopot hoz létre. Régi alapok megerősítésére is.'],
   ['Teherbírási határállapot (ULS)', 'Tönkremenetel vagy súlyos károsodás; GEO, STR, EQU, UPL, HYD.'],
   ['Használhatósági határállapot (SLS)', 'Túlzott süllyedés, süllyedéskülönbség, rezgés vagy megemelkedés.'],
@@ -2528,7 +2528,7 @@ onReady(function telek() {
   ];
   const HS = [
     { x: 150, y: 150, g: 'korny', t: 'Csatlakozó szomszéd: 4 szintes, pincés épület', e: 'Foghíjtelek: az új alap nem kerülhet a szomszéd alapsíkja fölé, és a munkagödör nem veszélyeztetheti a meglévő épületet – akár munkatérhatárolás is kell.' },
-    { x: 610, y: 150, g: 'korny', t: 'Régi, pince nélküli szomszéd ismeretlen alapozással', e: 'Ha az új pince mélyebb, a régi házat alá kell falazni vagy jet-groutinggal megerősíteni. Az alapozását feltárással kell megismerni.' },
+    { x: 610, y: 150, g: 'korny', t: 'Régi, pince nélküli szomszéd ismeretlen alapozással', e: 'Ha az új pince mélyebb, a régi ház alapját alá kell betonozni vagy jet-groutinggal megerősíteni. Az alapozását feltárással kell megismerni.' },
     { x: 440, y: 66, g: 'korny', t: 'Védett fa a telek hátsó részén', e: 'Korlátozás: a fa gyökérzónájában nem lehet mélyen kiemelni, a kiemelés és a gépek helyét ehhez kell igazítani.' },
     { x: 380, y: 430, g: 'korny', t: 'Keskeny, forgalmas utca, nincs hely anyagtárolásra', e: 'A telek megközelítése és beépítettsége a technológiát is befolyásolja: hová áll a betonpumpa, hol tárolják a vasat, zsaluzatot?' },
     { x: 296, y: 262, g: 'talaj', t: 'Fúrás: 2,4 m vastag feltöltés', e: 'Kedvezőtlen réteg: feltöltésre nem alapozunk. A teherbíró réteg alá kell menni, vagy talajjavítás, illetve más alaptípus kell.' },
@@ -2763,7 +2763,7 @@ const ALAPSIK = {
     // 6 szomszéd
     if (q.szom) {
       if (d < q.dsz - 0.05) C.push({ k: 6, st: 'bad', t: 'Az új alapsík nem kerülhet a szomszédé fölé', v: `≥ ${fmt(q.dsz, 2)} m` });
-      else if (d > q.dsz + 0.1) C.push({ k: 6, st: 'warn', t: 'Mélyebb a szomszédnál: a régit alá kell falazni vagy jet-groutinggal megerősíteni', v: `szomszéd ${fmt(q.dsz, 2)} m` });
+      else if (d > q.dsz + 0.1) C.push({ k: 6, st: 'warn', t: 'Mélyebb a szomszédnál: a régi alapot alá kell betonozni vagy jet-groutinggal megerősíteni', v: `szomszéd ${fmt(q.dsz, 2)} m` });
       else C.push({ k: 6, st: 'ok', t: 'Igazodik a szomszéd alapsíkjához', v: `szomszéd ${fmt(q.dsz, 2)} m` });
     } else C.push({ k: 6, st: 'na', t: 'Nincs csatlakozó szomszédos épület', v: '' });
     return { C, fr, ok: C.every(c => c.st !== 'bad') };
@@ -3081,62 +3081,65 @@ onReady(function szomszed() {
   const TXT = {
     fole: 'Hibás: az új alap a régi épület alapsíkja fölé kerül. Terhe a régi alap felé szétterjed, a régi falat oldalról és felülről is terheli, a régi épület megsüllyedhet, megrepedhet. Az új alapot legalább a régi alapsíkjáig mélyíteni kell.',
     egyezo: 'Helyes: az új épület alapsíkja megegyezik a régi alapsíkkal. Ez a legegyszerűbb, ha a szintek engedik.',
-    melyebb: 'Ha az új épület mélyebb padlószintje miatt az alapsíkja a régi alá kerül, a régit alá kell falazni, betonozni. Ez kényes művelet: rövid, egymást nem érintő szakaszokban (1–3–5, majd 2–4–6) dolgoznak, hogy a régi fal mindig alátámasztva maradjon.',
+    melyebb: 'Ha az új épület mélyebb padlószintje miatt az alapsíkja a régi alá kerül, a régi alapot alá kell betonozni. Ez kényes művelet: rövid, egymást nem érintő szakaszokban (1–3–5, majd 2–4–6) dolgoznak, hogy a régi fal mindig alátámasztva maradjon.',
     jet: 'Alternatíva: a régi alap alá jet-grouting technológiával talajbeton oszlopokat készítenek, amelyek a régi alap terhét az új alapsík alá viszik le – utána a munkagödör biztonságosan kiemelhető.'
   };
   function draw() {
     svg.innerHTML = '';
     const { f } = soilDefs(svg);
     const g = S('g', {}, svg);
-    const y0 = 90, sc = 70;
+    const y0 = 90, sc = 62;
     const Y = z => y0 + z * sc;
     const dOld = 1.2;
     const dNew = mode === 'fole' ? 0.6 : mode === 'egyezo' ? 1.2 : 3.0;
     const exc = phase >= 2 && (mode === 'melyebb' || mode === 'jet');
-    S('rect', { x: 0, y: y0, width: 720, height: 400 - y0, fill: f('homok'), opacity: .7 }, g);
+    S('rect', { x: 0, y: y0, width: 720, height: 380 - y0, fill: f('homok'), opacity: .7 }, g);
     if (exc || mode !== 'melyebb' && mode !== 'jet') {
       // új épület munkagödre / pince
       const pz = mode === 'melyebb' || mode === 'jet' ? 2.5 : 0;
-      if (pz) S('rect', { x: 372, y: y0, width: 340, height: pz * sc, style: 'fill:var(--card)' }, g);
+      if (pz) S('rect', { x: 340, y: y0, width: 372, height: pz * sc, style: 'fill:var(--card)' }, g);
     }
     // régi épület
     S('rect', { x: 40, y: 0, width: 300, height: y0, style: 'fill:var(--card-2);stroke:var(--ink-2)' }, g);
     S('text', { x: 190, y: 36, 'text-anchor': 'middle', class: 't-b', text: '(régi)' }, g);
-    S('rect', { x: 316, y: 0, width: 24, height: Y(dOld) - 0.5 * sc, fill: f('tegla'), style: 'stroke:var(--ink)' }, g);
-    S('rect', { x: 290, y: Y(dOld) - 0.5 * sc, width: 60, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
-    // aláfalazás / jet
+    // a két ház fala közvetlenül egymás mellett; az alapok főfalszélességűek
+    const ww = 36, xo = 340 - ww, xn = 340;
+    S('rect', { x: xo, y: 0, width: ww, height: Y(dOld) - 0.5 * sc, fill: f('tegla'), style: 'stroke:var(--ink)' }, g);
+    S('rect', { x: xo, y: Y(dOld) - 0.5 * sc, width: ww, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
+    // alábetonozás / jet
     if ((mode === 'melyebb' || mode === 'jet') && phase >= 1) {
       if (mode === 'melyebb') {
-        S('rect', { x: 290, y: Y(dOld), width: 60, height: (dNew - dOld) * sc, fill: f('beton'), style: 'stroke:var(--c2);stroke-width:2.4', opacity: phase >= 1 ? 1 : 0 }, g);
-        S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c2);font-weight:600', text: 'aláfalazás' }, g);
+        S('rect', { x: xo, y: Y(dOld), width: ww, height: (dNew - dOld) * sc, fill: f('beton'), style: 'stroke:var(--c2);stroke-width:2.4', opacity: phase >= 1 ? 1 : 0 }, g);
+        S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c2);font-weight:600', text: 'alábetonozás' }, g);
         // szakaszolás felülnézet
-        const sx = 470, sy = 300;
+        const sx = 470, sy = 196; // a munkagödör üres részében, hogy ne takarja a feliratokat
         S('text', { x: sx, y: sy - 16, class: 't-s', text: 'szakaszok felülnézetben:' }, g);
         for (let i = 0; i < 6; i++) { const done = (phase >= 1 && i % 2 === 0) || phase >= 2; S('rect', { x: sx + i * 36, y: sy, width: 32, height: 22, style: `fill:${done ? 'var(--c2)' : 'var(--card)'};stroke:var(--ink-2)` }, g); S('text', { x: sx + i * 36 + 16, y: sy + 15, 'text-anchor': 'middle', class: 't-s', style: `fill:${done ? '#fff' : 'var(--ink-2)'}`, text: String(i % 2 === 0 ? (i / 2 + 1) * 2 - 1 : ((i + 1) / 2) * 2) }, g); }
       } else {
-        for (let i = 0; i < 3; i++) S('path', { d: `M${300 + i * 20} ${Y(dOld)} L${296 + i * 20 - 6} ${Y(dNew)}`, style: 'stroke:#7c7f86;stroke-width:16;stroke-linecap:round;opacity:.85' }, g);
+        // a jet-grouting oszlopok legalább 1 m-rel az új alapsík alá érnek
+        for (let i = 0; i < 2; i++) S('path', { d: `M${xo + 10 + i * 16} ${Y(dOld)} L${xo + 10 + i * 16} ${Y(dNew + 1.2)}`, style: 'stroke:#7c7f86;stroke-width:14;stroke-linecap:round;opacity:.85' }, g);
         S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c7);font-weight:600', text: 'jet-grouting oszlopok' }, g);
       }
     }
     // új épület
     if (phase >= 2 || mode === 'fole' || mode === 'egyezo') {
-      S('rect', { x: 372, y: 0, width: 330, height: y0 - (mode === 'fole' ? 0 : 0), style: 'fill:var(--card);stroke:var(--k);stroke-width:1.5' }, g);
+      S('rect', { x: xn, y: 0, width: 702 - xn, height: y0, style: 'fill:var(--card);stroke:var(--k);stroke-width:1.5' }, g);
       S('text', { x: 540, y: 36, 'text-anchor': 'middle', class: 't-b', style: 'fill:var(--k)', text: '(új)' }, g);
-      S('rect', { x: 372, y: 0, width: 24, height: Y(dNew) - 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink)' }, g);
-      S('rect', { x: 360, y: Y(dNew) - 0.5 * sc, width: 70, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
-      if (mode === 'melyebb' || mode === 'jet') S('rect', { x: 396, y: Y(2.5), width: 306, height: 12, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('rect', { x: xn, y: 0, width: ww, height: Y(dNew) - 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink)' }, g);
+      S('rect', { x: xn, y: Y(dNew) - 0.5 * sc, width: ww, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
+      if (mode === 'melyebb' || mode === 'jet') S('rect', { x: xn + ww, y: Y(2.5), width: 702 - xn - ww, height: 12, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
     }
     if (mode === 'fole') {
       // feszültségszétterjedés a régi alap felé
-      S('path', { d: `M360 ${Y(dNew)} L300 ${Y(dNew + 1.6)} M430 ${Y(dNew)} L500 ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;stroke-dasharray:6 4' }, g);
-      S('path', { d: `M300 ${Y(dNew + 1.6)} Q395 ${Y(dNew + 2.1)} 500 ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;fill:rgba(210,63,42,.12)' }, g);
+      S('path', { d: `M${xn} ${Y(dNew)} L${xn - 62} ${Y(dNew + 1.6)} M${xn + ww} ${Y(dNew)} L${xn + ww + 62} ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;stroke-dasharray:6 4' }, g);
+      S('path', { d: `M${xn - 62} ${Y(dNew + 1.6)} Q${xn + ww / 2} ${Y(dNew + 2.1)} ${xn + ww + 62} ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;fill:rgba(210,63,42,.12)' }, g);
       S('path', { d: 'M322 30 l8 12 l-8 10 l10 14', style: 'stroke:var(--bad);stroke-width:2.4;fill:none' }, g);
       S('text', { x: 450, y: Y(dNew + 2.4), class: 't-s', style: 'fill:var(--bad);font-weight:600', text: 'a régi alapot is terheli' }, g);
     }
     S('line', { x1: 0, y1: y0, x2: 720, y2: y0, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     S('line', { x1: 280, y1: Y(dOld), x2: 440, y2: Y(dOld), style: 'stroke:var(--ink-3);stroke-dasharray:4 3' }, g);
     S('text', { x: 140, y: Y(dOld) + 4, class: 't-s', text: `régi alapsík −${fmt(dOld, 1)} m` }, g);
-    if (phase >= 2 || mode === 'fole' || mode === 'egyezo') S('text', { x: 440, y: Y(dNew) + 16, class: 't-s', style: 'fill:var(--k);font-weight:600', text: `új alapsík −${fmt(dNew, 1)} m` }, g);
+    if (phase >= 2 || mode === 'fole' || mode === 'egyezo') S('text', { x: 392, y: Y(dNew) + 16, class: 't-s', style: 'fill:var(--k);font-weight:600', text: `új alapsík −${fmt(dNew, 1)} m` }, g);
     const v = $('#szVerdict');
     const cls = mode === 'fole' ? 'bad' : mode === 'egyezo' ? 'ok' : 'warn';
     v.className = 'verdict ' + cls;
@@ -4525,7 +4528,7 @@ function initAlapsik3D(container) {
   scene.add(shadowPlane);
   const L = {
     frost: st3.label('', 'frost'), gw: st3.label('', 'water'), base: st3.label('', 'lime'), fill: st3.label('feltöltés, humusz'), bear: st3.label(''),
-    dry: st3.label('kiszáradási határ ≈ 2 m', 'bad'), nb: st3.label(''), under: st3.label('aláfalazás kell!', 'k'), dew: st3.label('víztelenítés kell!', 'water')
+    dry: st3.label('kiszáradási határ ≈ 2 m', 'bad'), nb: st3.label(''), under: st3.label('alábetonozás kell!', 'k'), dew: st3.label('víztelenítés kell!', 'water')
   };
   function box(w, h, d, x, y, z, m, e = true) { const b = boxAt(w, h, d, x, y, z, m); if (e) edges(b, 0x1b221e, 0.2); return b; }
   function soilPieces(layers, boxes) {

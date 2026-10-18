@@ -35,7 +35,7 @@ const ALAPSIK = {
     // 6 szomszéd
     if (q.szom) {
       if (d < q.dsz - 0.05) C.push({ k: 6, st: 'bad', t: 'Az új alapsík nem kerülhet a szomszédé fölé', v: `≥ ${fmt(q.dsz, 2)} m` });
-      else if (d > q.dsz + 0.1) C.push({ k: 6, st: 'warn', t: 'Mélyebb a szomszédnál: a régit alá kell falazni vagy jet-groutinggal megerősíteni', v: `szomszéd ${fmt(q.dsz, 2)} m` });
+      else if (d > q.dsz + 0.1) C.push({ k: 6, st: 'warn', t: 'Mélyebb a szomszédnál: a régi alapot alá kell betonozni vagy jet-groutinggal megerősíteni', v: `szomszéd ${fmt(q.dsz, 2)} m` });
       else C.push({ k: 6, st: 'ok', t: 'Igazodik a szomszéd alapsíkjához', v: `szomszéd ${fmt(q.dsz, 2)} m` });
     } else C.push({ k: 6, st: 'na', t: 'Nincs csatlakozó szomszédos épület', v: '' });
     return { C, fr, ok: C.every(c => c.st !== 'bad') };
@@ -353,62 +353,65 @@ onReady(function szomszed() {
   const TXT = {
     fole: 'Hibás: az új alap a régi épület alapsíkja fölé kerül. Terhe a régi alap felé szétterjed, a régi falat oldalról és felülről is terheli, a régi épület megsüllyedhet, megrepedhet. Az új alapot legalább a régi alapsíkjáig mélyíteni kell.',
     egyezo: 'Helyes: az új épület alapsíkja megegyezik a régi alapsíkkal. Ez a legegyszerűbb, ha a szintek engedik.',
-    melyebb: 'Ha az új épület mélyebb padlószintje miatt az alapsíkja a régi alá kerül, a régit alá kell falazni, betonozni. Ez kényes művelet: rövid, egymást nem érintő szakaszokban (1–3–5, majd 2–4–6) dolgoznak, hogy a régi fal mindig alátámasztva maradjon.',
+    melyebb: 'Ha az új épület mélyebb padlószintje miatt az alapsíkja a régi alá kerül, a régi alapot alá kell betonozni. Ez kényes művelet: rövid, egymást nem érintő szakaszokban (1–3–5, majd 2–4–6) dolgoznak, hogy a régi fal mindig alátámasztva maradjon.',
     jet: 'Alternatíva: a régi alap alá jet-grouting technológiával talajbeton oszlopokat készítenek, amelyek a régi alap terhét az új alapsík alá viszik le – utána a munkagödör biztonságosan kiemelhető.'
   };
   function draw() {
     svg.innerHTML = '';
     const { f } = soilDefs(svg);
     const g = S('g', {}, svg);
-    const y0 = 90, sc = 70;
+    const y0 = 90, sc = 62;
     const Y = z => y0 + z * sc;
     const dOld = 1.2;
     const dNew = mode === 'fole' ? 0.6 : mode === 'egyezo' ? 1.2 : 3.0;
     const exc = phase >= 2 && (mode === 'melyebb' || mode === 'jet');
-    S('rect', { x: 0, y: y0, width: 720, height: 400 - y0, fill: f('homok'), opacity: .7 }, g);
+    S('rect', { x: 0, y: y0, width: 720, height: 380 - y0, fill: f('homok'), opacity: .7 }, g);
     if (exc || mode !== 'melyebb' && mode !== 'jet') {
       // új épület munkagödre / pince
       const pz = mode === 'melyebb' || mode === 'jet' ? 2.5 : 0;
-      if (pz) S('rect', { x: 372, y: y0, width: 340, height: pz * sc, style: 'fill:var(--card)' }, g);
+      if (pz) S('rect', { x: 340, y: y0, width: 372, height: pz * sc, style: 'fill:var(--card)' }, g);
     }
     // régi épület
     S('rect', { x: 40, y: 0, width: 300, height: y0, style: 'fill:var(--card-2);stroke:var(--ink-2)' }, g);
     S('text', { x: 190, y: 36, 'text-anchor': 'middle', class: 't-b', text: '(régi)' }, g);
-    S('rect', { x: 316, y: 0, width: 24, height: Y(dOld) - 0.5 * sc, fill: f('tegla'), style: 'stroke:var(--ink)' }, g);
-    S('rect', { x: 290, y: Y(dOld) - 0.5 * sc, width: 60, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
-    // aláfalazás / jet
+    // a két ház fala közvetlenül egymás mellett; az alapok főfalszélességűek
+    const ww = 36, xo = 340 - ww, xn = 340;
+    S('rect', { x: xo, y: 0, width: ww, height: Y(dOld) - 0.5 * sc, fill: f('tegla'), style: 'stroke:var(--ink)' }, g);
+    S('rect', { x: xo, y: Y(dOld) - 0.5 * sc, width: ww, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
+    // alábetonozás / jet
     if ((mode === 'melyebb' || mode === 'jet') && phase >= 1) {
       if (mode === 'melyebb') {
-        S('rect', { x: 290, y: Y(dOld), width: 60, height: (dNew - dOld) * sc, fill: f('beton'), style: 'stroke:var(--c2);stroke-width:2.4', opacity: phase >= 1 ? 1 : 0 }, g);
-        S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c2);font-weight:600', text: 'aláfalazás' }, g);
+        S('rect', { x: xo, y: Y(dOld), width: ww, height: (dNew - dOld) * sc, fill: f('beton'), style: 'stroke:var(--c2);stroke-width:2.4', opacity: phase >= 1 ? 1 : 0 }, g);
+        S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c2);font-weight:600', text: 'alábetonozás' }, g);
         // szakaszolás felülnézet
-        const sx = 470, sy = 300;
+        const sx = 470, sy = 196; // a munkagödör üres részében, hogy ne takarja a feliratokat
         S('text', { x: sx, y: sy - 16, class: 't-s', text: 'szakaszok felülnézetben:' }, g);
         for (let i = 0; i < 6; i++) { const done = (phase >= 1 && i % 2 === 0) || phase >= 2; S('rect', { x: sx + i * 36, y: sy, width: 32, height: 22, style: `fill:${done ? 'var(--c2)' : 'var(--card)'};stroke:var(--ink-2)` }, g); S('text', { x: sx + i * 36 + 16, y: sy + 15, 'text-anchor': 'middle', class: 't-s', style: `fill:${done ? '#fff' : 'var(--ink-2)'}`, text: String(i % 2 === 0 ? (i / 2 + 1) * 2 - 1 : ((i + 1) / 2) * 2) }, g); }
       } else {
-        for (let i = 0; i < 3; i++) S('path', { d: `M${300 + i * 20} ${Y(dOld)} L${296 + i * 20 - 6} ${Y(dNew)}`, style: 'stroke:#7c7f86;stroke-width:16;stroke-linecap:round;opacity:.85' }, g);
+        // a jet-grouting oszlopok legalább 1 m-rel az új alapsík alá érnek
+        for (let i = 0; i < 2; i++) S('path', { d: `M${xo + 10 + i * 16} ${Y(dOld)} L${xo + 10 + i * 16} ${Y(dNew + 1.2)}`, style: 'stroke:#7c7f86;stroke-width:14;stroke-linecap:round;opacity:.85' }, g);
         S('text', { x: 276, y: Y((dOld + dNew) / 2), 'text-anchor': 'end', class: 't-s', style: 'fill:var(--c7);font-weight:600', text: 'jet-grouting oszlopok' }, g);
       }
     }
     // új épület
     if (phase >= 2 || mode === 'fole' || mode === 'egyezo') {
-      S('rect', { x: 372, y: 0, width: 330, height: y0 - (mode === 'fole' ? 0 : 0), style: 'fill:var(--card);stroke:var(--k);stroke-width:1.5' }, g);
+      S('rect', { x: xn, y: 0, width: 702 - xn, height: y0, style: 'fill:var(--card);stroke:var(--k);stroke-width:1.5' }, g);
       S('text', { x: 540, y: 36, 'text-anchor': 'middle', class: 't-b', style: 'fill:var(--k)', text: '(új)' }, g);
-      S('rect', { x: 372, y: 0, width: 24, height: Y(dNew) - 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink)' }, g);
-      S('rect', { x: 360, y: Y(dNew) - 0.5 * sc, width: 70, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
-      if (mode === 'melyebb' || mode === 'jet') S('rect', { x: 396, y: Y(2.5), width: 306, height: 12, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
+      S('rect', { x: xn, y: 0, width: ww, height: Y(dNew) - 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink)' }, g);
+      S('rect', { x: xn, y: Y(dNew) - 0.5 * sc, width: ww, height: 0.5 * sc, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.5' }, g);
+      if (mode === 'melyebb' || mode === 'jet') S('rect', { x: xn + ww, y: Y(2.5), width: 702 - xn - ww, height: 12, fill: f('beton'), style: 'stroke:var(--ink-3)' }, g);
     }
     if (mode === 'fole') {
       // feszültségszétterjedés a régi alap felé
-      S('path', { d: `M360 ${Y(dNew)} L300 ${Y(dNew + 1.6)} M430 ${Y(dNew)} L500 ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;stroke-dasharray:6 4' }, g);
-      S('path', { d: `M300 ${Y(dNew + 1.6)} Q395 ${Y(dNew + 2.1)} 500 ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;fill:rgba(210,63,42,.12)' }, g);
+      S('path', { d: `M${xn} ${Y(dNew)} L${xn - 62} ${Y(dNew + 1.6)} M${xn + ww} ${Y(dNew)} L${xn + ww + 62} ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;stroke-dasharray:6 4' }, g);
+      S('path', { d: `M${xn - 62} ${Y(dNew + 1.6)} Q${xn + ww / 2} ${Y(dNew + 2.1)} ${xn + ww + 62} ${Y(dNew + 1.6)}`, style: 'stroke:var(--bad);stroke-width:2;fill:rgba(210,63,42,.12)' }, g);
       S('path', { d: 'M322 30 l8 12 l-8 10 l10 14', style: 'stroke:var(--bad);stroke-width:2.4;fill:none' }, g);
       S('text', { x: 450, y: Y(dNew + 2.4), class: 't-s', style: 'fill:var(--bad);font-weight:600', text: 'a régi alapot is terheli' }, g);
     }
     S('line', { x1: 0, y1: y0, x2: 720, y2: y0, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     S('line', { x1: 280, y1: Y(dOld), x2: 440, y2: Y(dOld), style: 'stroke:var(--ink-3);stroke-dasharray:4 3' }, g);
     S('text', { x: 140, y: Y(dOld) + 4, class: 't-s', text: `régi alapsík −${fmt(dOld, 1)} m` }, g);
-    if (phase >= 2 || mode === 'fole' || mode === 'egyezo') S('text', { x: 440, y: Y(dNew) + 16, class: 't-s', style: 'fill:var(--k);font-weight:600', text: `új alapsík −${fmt(dNew, 1)} m` }, g);
+    if (phase >= 2 || mode === 'fole' || mode === 'egyezo') S('text', { x: 392, y: Y(dNew) + 16, class: 't-s', style: 'fill:var(--k);font-weight:600', text: `új alapsík −${fmt(dNew, 1)} m` }, g);
     const v = $('#szVerdict');
     const cls = mode === 'fole' ? 'bad' : mode === 'egyezo' ? 'ok' : 'warn';
     v.className = 'verdict ' + cls;

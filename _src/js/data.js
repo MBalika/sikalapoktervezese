@@ -77,7 +77,7 @@ const QUIZ = {
     { q: 'Mekkora földtakarás kell a fagyhatásnak ki nem tett épületrészekben (pl. pincében)?', o: ['Legalább 0,4 m – ez az 50 cm-es alapmagasság miatt eleve teljesül', 'Legalább 0,8 m', 'Nem kell takarás', 'Legalább 1,5 m'], a: 0, e: 'A pincében nincs fagyveszély, de minimális takarás itt is kell.' },
     { q: 'Részben alápincézett épületnél mi a szabály a magasabban maradó alapra?', o: ['A belső élétől húzott természetes rézsű vonala ne messe a pincefalat a pincepadló szintje felett', 'Legyen pontosan a fagyhatáron', 'Az alapsík legyen azonos a pincepadlóval', 'Legalább 2 m-re legyen a pincefaltól'], a: 0, e: 'Különben a sekély alap terhe a pincefalra hárulna, kiemeléskor pedig alóla kifuthatna a talaj.' },
     { q: 'Lépcsőzetes mélyítésnél mekkora lehet legfeljebb a sarokpontokat összekötő egyenes hajlása?', o: ['30°', '45°', '60°', 'Bármekkora, ha a lépcső 50 cm alatti'], a: 0, e: 'Az alapok megfelelő sarokpontjait összekötő egyenes ne legyen 30°-nál meredekebb.' },
-    { q: 'Az új épület mélyebb padlószintje miatt az alapsík a szomszéd régi háza alá kerül. Mi a teendő?', o: ['A régit alá kell falazni, betonozni vagy jet-groutinggal megerősíteni', 'Semmi, mert az új alap mélyebb', 'Az új alapot a régi fölé kell emelni', 'A régi épületet le kell bontani'], a: 0, e: 'Különben a munkagödör kiemelésekor a régi alap alól kifuthat a talaj.' }
+    { q: 'Az új épület mélyebb padlószintje miatt az alapsík a szomszéd régi háza alá kerül. Mi a teendő?', o: ['A régit alá kell betonozni vagy jet-groutinggal megerősíteni', 'Semmi, mert az új alap mélyebb', 'Az új alapot a régi fölé kell emelni', 'A régi épületet le kell bontani'], a: 0, e: 'Különben a munkagödör kiemelésekor a régi alap alól kifuthat a talaj.' }
   ]},
   q5: { key: 'q5', title: 'Kvíz – határállapotok és eljárások', items: [
     { q: 'Mit jelent a GEO határállapot?', o: ['A talaj törését vagy túlzott alakváltozását; az ellenállást a talaj szilárdsága határozza meg', 'A szerkezeti elemek belső törését', 'A merev testként való helyzetváltozást', 'A felúszás miatti egyensúlyvesztést'], a: 0, e: 'Ez az alap alatti talajtörés, átfúródás, kipréselődés határállapota.' },
@@ -185,7 +185,7 @@ const GLOSSARY = [
   ['Jéglencse', 'A fagyfronthoz kapillárisan szivárgó vízből növő jégréteg. A fagyemelés fő oka.'],
   ['Kiszáradási határ', 'Az a mélység (kb. 2 m), ameddig a térfogatváltozó agyag évszakosan kiszárad és duzzad.'],
   ['Természetes rézsű', 'Az a hajlás, amellyel a talaj még magától megáll. Részleges pincénél a próbavonal.'],
-  ['Aláfalazás', 'A szomszédos régi alap szakaszos alábetonozása, ha az új alapsík mélyebb.'],
+  ['Alábetonozás', 'A szomszédos régi alap szakaszos alábetonozása, ha az új alapsík mélyebb.'],
   ['Jet-grouting', 'Nagynyomású talajinjektálás, amely talajbeton oszlopot hoz létre. Régi alapok megerősítésére is.'],
   ['Teherbírási határállapot (ULS)', 'Tönkremenetel vagy súlyos károsodás; GEO, STR, EQU, UPL, HYD.'],
   ['Használhatósági határállapot (SLS)', 'Túlzott süllyedés, süllyedéskülönbség, rezgés vagy megemelkedés.'],

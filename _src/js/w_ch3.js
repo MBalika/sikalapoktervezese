@@ -10,7 +10,7 @@ onReady(function telek() {
   ];
   const HS = [
     { x: 150, y: 150, g: 'korny', t: 'Csatlakozó szomszéd: 4 szintes, pincés épület', e: 'Foghíjtelek: az új alap nem kerülhet a szomszéd alapsíkja fölé, és a munkagödör nem veszélyeztetheti a meglévő épületet – akár munkatérhatárolás is kell.' },
-    { x: 610, y: 150, g: 'korny', t: 'Régi, pince nélküli szomszéd ismeretlen alapozással', e: 'Ha az új pince mélyebb, a régi házat alá kell falazni vagy jet-groutinggal megerősíteni. Az alapozását feltárással kell megismerni.' },
+    { x: 610, y: 150, g: 'korny', t: 'Régi, pince nélküli szomszéd ismeretlen alapozással', e: 'Ha az új pince mélyebb, a régi ház alapját alá kell betonozni vagy jet-groutinggal megerősíteni. Az alapozását feltárással kell megismerni.' },
     { x: 440, y: 66, g: 'korny', t: 'Védett fa a telek hátsó részén', e: 'Korlátozás: a fa gyökérzónájában nem lehet mélyen kiemelni, a kiemelés és a gépek helyét ehhez kell igazítani.' },
     { x: 380, y: 430, g: 'korny', t: 'Keskeny, forgalmas utca, nincs hely anyagtárolásra', e: 'A telek megközelítése és beépítettsége a technológiát is befolyásolja: hová áll a betonpumpa, hol tárolják a vasat, zsaluzatot?' },
     { x: 296, y: 262, g: 'talaj', t: 'Fúrás: 2,4 m vastag feltöltés', e: 'Kedvezőtlen réteg: feltöltésre nem alapozunk. A teherbíró réteg alá kell menni, vagy talajjavítás, illetve más alaptípus kell.' },
