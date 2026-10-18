@@ -25,7 +25,7 @@ onReady(function dontes() {
       R(`A teherbíró réteg ${fmt(st.tb, 1)} m mélyen kezdődik – a felszín közelében van.`, 'S1');
       if (st.ep === 'haz') { type = st.sens ? 'racs' : 'sav'; title = st.sens ? 'Merevített síkalap: vasbeton sávalap koszorúval vagy gerendarács' : 'Sávalap a falak alatt'; }
       else if (st.ep === 'lakohaz') { type = (st.gw < 3.5 || st.sens) ? 'lemez' : 'sav'; title = type === 'lemez' ? 'Lemezalap (alápincézve: ellenfödém)' : 'Sávalap a falak alatt'; if (type === 'lemez') R(st.gw < 3.5 ? 'Magas talajvíz mellett a pincés lakóház alá vasbeton lemez („ellenfödém”) célszerű.' : 'Érzékeny felszerkezetnél a merev lemez kiegyenlíti a mozgásokat.', 'S2'); }
-      else if (st.ep === 'csarnok') { type = st.sens ? 'racs' : 'pill'; title = st.sens ? 'Gerendarács-alap a pillérháló alatt' : 'Pilléralapok (kehelynyakas tömbalapok)'; if (st.sens) R('Süllyedésérzékeny csarnoknál a pillérek közötti süllyedéskülönbséget mindkét irányban csökkenteni kell.', 'S2'); }
+      else if (st.ep === 'csarnok') { type = st.sens ? 'racs' : 'pill'; title = st.sens ? 'Gerendarács-alap a pillérraszter alatt' : 'Pilléralapok (kehelynyakas tömbalapok)'; if (st.sens) R('Süllyedésérzékeny csarnoknál a pillérek közötti süllyedéskülönbséget mindkét irányban csökkenteni kell.', 'S2'); }
       else if (st.ep === 'torony') { type = st.sens ? 'cprf' : 'lemez'; title = st.sens ? 'Vegyes alapozás: cölöppel gyámolított lemez' : 'Vastag lemezalap'; cls = 'warn'; R('A toronyház terhe nagy és koncentrált: a terhet a teljes alapterületen kell átadni.', 'S3'); }
       else { type = 'colop'; title = 'Mélyalap'; }
       return { type, title, cls, r };

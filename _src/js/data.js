@@ -20,7 +20,7 @@ const TYPE_INFO = {
   },
   racs: {
     name: 'Gerendarács-alap', kind: 'Egymást metsző szalagalapok',
-    desc: 'Egymást metsző vasbeton szalagalapok együttese: a pillérháló mindkét irányában összeköti az alapokat.',
+    desc: 'Egymást metsző vasbeton szalagalapok együttese: a pillérraszter mindkét irányában összeköti az alapokat.',
     when: 'Ha a süllyedéskülönbséget mindkét irányban csökkenteni kell.',
     variants: []
   },

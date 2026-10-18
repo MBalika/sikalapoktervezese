@@ -316,15 +316,24 @@ onReady(function tipusJatek() {
     const svg = S('svg', { viewBox: '0 0 280 180', class: 'fig', style: 'max-width:280px' }, el);
     const { f } = soilDefs(svg);
     const g = S('g', {}, svg);
-    S('rect', { x: 0, y: 120, width: 280, height: 60, fill: f(kind.soil || 'homok'), opacity: .6 }, g);
-    S('line', { x1: 0, y1: 120, x2: 280, y2: 120, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
+    if (!kind.plan) {
+      S('rect', { x: 0, y: 120, width: 280, height: 60, fill: f(kind.soil || 'homok'), opacity: .6 }, g);
+      S('line', { x1: 0, y1: 120, x2: 280, y2: 120, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
+    }
     if (kind.gw) { S('line', { x1: 0, y1: 120 + kind.gw, x2: 280, y2: 120 + kind.gw, style: 'stroke:var(--water);stroke-width:2' }, g); S('path', { d: `M240 ${112 + kind.gw} h12 l-6 8z`, style: 'fill:var(--water)' }, g); }
     const st = 'fill:var(--card);stroke:var(--ink-2);stroke-width:1.5';
     const b = kind.b;
     if (b === 'haz') { S('rect', { x: 80, y: 70, width: 120, height: 50, style: st }, g); S('path', { d: 'M70 70 L140 30 L210 70Z', style: 'fill:var(--c2);opacity:.8' }, g); }
     if (b === 'csarnok') { S('path', { d: 'M30 120 V70 L140 50 L250 70 V120', style: st }, g); for (let i = 0; i < 5; i++) S('line', { x1: 40 + i * 50, y1: 120, x2: 40 + i * 50, y2: 66, style: 'stroke:var(--ink-2);stroke-width:4' }, g); }
     if (b === 'pillersor') { S('rect', { x: 30, y: 60, width: 220, height: 8, style: st }, g); for (let i = 0; i < 5; i++) S('line', { x1: 40 + i * 50, y1: 120, x2: 40 + i * 50, y2: 68, style: 'stroke:var(--ink-2);stroke-width:5' }, g); }
-    if (b === 'halo') { for (let r = 0; r < 3; r++) for (let i = 0; i < 4; i++) S('circle', { cx: 60 + i * 55 + r * 12, cy: 70 + r * 16, r: 5, style: 'fill:var(--ink-2)' }, g); S('text', { x: 140, y: 40, 'text-anchor': 'middle', class: 't-s', text: 'pillérháló felülnézetben' }, g); }
+    if (b === 'raszter') {
+      // négyzetrácsos pillérraszter felülnézetben: tengelyek és pillérek a csomópontokban
+      const xs = [65, 115, 165, 215], ys = [45, 95, 145];
+      xs.forEach(x => S('line', { x1: x, y1: 30, x2: x, y2: 160, style: 'stroke:var(--ink-3);stroke-dasharray:6 3 1 3' }, g));
+      ys.forEach(y => S('line', { x1: 50, y1: y, x2: 230, y2: y, style: 'stroke:var(--ink-3);stroke-dasharray:6 3 1 3' }, g));
+      xs.forEach(x => ys.forEach(y => S('rect', { x: x - 6, y: y - 6, width: 12, height: 12, style: 'fill:var(--ink-2)' }, g)));
+      S('text', { x: 140, y: 18, 'text-anchor': 'middle', class: 't-s', text: 'pillérraszter felülnézetben' }, g);
+    }
     if (b === 'lakohaz') { S('rect', { x: 70, y: 20, width: 140, height: 100, style: st }, g); for (let i = 1; i < 10; i++) S('line', { x1: 70, y1: 20 + i * 10, x2: 210, y2: 20 + i * 10, style: 'stroke:var(--line)' }, g); }
     if (b === 'panel') { S('rect', { x: 60, y: 14, width: 160, height: 106, style: st }, g); for (let i = 0; i < 4; i++) for (let j = 0; j < 7; j++) S('rect', { x: 60 + i * 40, y: 14 + j * 15, width: 40, height: 15, style: 'fill:none;stroke:var(--ink-3)' }, g); }
     if (b === 'torony') { S('rect', { x: 115, y: 10, width: 50, height: 110, style: st }, g); S('path', { d: 'M105 10 h70', style: 'stroke:var(--ink-2);stroke-width:3' }, g); }
@@ -338,7 +347,7 @@ onReady(function tipusJatek() {
       { sit: 'Kétszintes, falazott családi ház. A teherbíró homokos kavics 1,1 m mélyen kezdődik, a talajvíz mélyen van.', pic: icon({ b: 'haz', soil: 'kavics', t: 'homokos kavics 1,1 m-től' }), a: 0, e: 'Falazott épület, jó talaj a felszín közelében: a falak alatti sávalap a legegyszerűbb és legolcsóbb.' },
       { sit: 'Acélvázas ipari csarnok 6 m-es pillérkiosztással, jó szemcsés talajon. A pillérek közötti süllyedéskülönbség nem okoz gondot.', pic: icon({ b: 'csarnok', soil: 'kavics', t: 'jó szemcsés talaj' }), a: 1, e: 'Koncentrált pillérterhek, külön-külön kezelhető süllyedések: pilléralapok (acélpillérnél tőcsavarral, előregyártott oszlopnál kehelynyakkal).' },
       { sit: 'Egy pillérsor gyengébb altalajon: a pillérek között egy irányban megengedhetetlenül nagy süllyedéskülönbség keletkezne.', pic: icon({ b: 'pillersor', soil: 'agyag', t: 'gyengébb altalaj' }), a: 2, e: 'A szalagalap (talpgerenda) a pillérsort egy irányban köti össze, és hosszirányú merevséget ad.' },
-      { sit: 'Pillérháló, ahol mindkét irányban csökkenteni kell a süllyedéskülönbségeket, de a teljes alapterületre még nincs szükség.', pic: icon({ b: 'halo', soil: 'agyag', t: 'mindkét irányban' }), a: 3, e: 'Egymást metsző szalagalapok: gerendarács-alap.' },
+      { sit: 'Négyzetrácsos pillérraszter, ahol mindkét irányban csökkenteni kell a süllyedéskülönbségeket, de a teljes alapterületre még nincs szükség.', pic: icon({ b: 'raszter', plan: true }), a: 3, e: 'Egymást metsző szalagalapok: gerendarács-alap.' },
       { sit: '10 szintes, teljesen alápincézett lakóház; a mértékadó talajvízszint a pincepadló felett van, a különálló alapok majdnem összeérnének.', pic: icon({ b: 'lakohaz', soil: 'homok', gw: 18, t: 'magas talajvíz' }), a: 4, e: 'A terhet a teljes alapterületen kell átadni, a magas talajvíz miatt pedig vízzáró vasbeton lemez („ellenfödém”) kell: lemezalap.' },
       { sit: 'Házgyári elemekből épülő panelház, amely csak nagyon kis alakváltozást tud károsodás nélkül elviselni.', pic: icon({ b: 'panel', soil: 'homok', t: 'kis alakváltozást tűr' }), a: 5, e: 'Az alaplemez, a pincefalak és a födém együttdolgozó szekrénytartója, a dobozalap adja a szükséges merevséget.' },
       { sit: 'Víztorony zárt, kör alaprajzzal; a teljes teher egyetlen koncentrált tömbön jut az altalajra.', pic: icon({ b: 'torony', soil: 'kavics', t: 'kör alaprajz' }), a: 6, e: 'A zárt alaprajzú építmények egyetlen tömbként kialakított, rendszerint kör alaprajzú alaptestei lényegében nagyméretű pilléralapok.' },
