@@ -512,6 +512,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMetro();
   SCORE.render();
   GUARD.start();
+  // horgonyra érkezéskor a késleltetett tartalmak után még egyszer odaugrunk
+  if (location.hash && location.hash.length > 1) {
+    const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (t) [400, 1200].forEach(ms => setTimeout(() => t.scrollIntoView({ block: 'start' }), ms));
+  }
 });
 
 /* ---------- SVG mintázatok (talajok, anyagok) ---------- */

@@ -171,7 +171,7 @@ function initToro3D(container) {
     if (g.R) {
       lAct.pos.set(0, baseY + g.R.apex[1] * 0.45, 0.05);
       const sp = g.R.sp[30]; lSlip.pos.set(sp[0], baseY + sp[1], 0.05);
-      lHeave.pos.set((g.R.F[0] + g.R.G[0]) / 2, st.heave + 0.2, -Lz * 0.05);
+      lHeave.pos.set(g.b + 0.5 * (g.R.G[0] - g.b), st.heave + 0.25, -Lz * 0.05);
       lPl.pos.set(0, baseY - 0.9 * g.B, 0.05);
     } else if (g.local) { const sp = g.local[0].sp[22]; lSlip.pos.set(sp[0], baseY + sp[1], 0.05); lPl.pos.set(g.b - 0.5, baseY - 1.2, 0.05); }
     st3.kick();
