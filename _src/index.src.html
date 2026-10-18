@@ -3,7 +3,7 @@
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Síkalapok tervezése – az oldal teteje">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#86b51c"/><path d="M14 6v13M22 6v13" stroke="#13200a" stroke-width="2.6" stroke-linecap="round"/><path d="M9 19h18v6H9z" fill="#13200a"/><path d="M5 29h26" stroke="#f3f4ee" stroke-width="2.2" stroke-dasharray="3 2.2"/></svg>
-      <span class="t"><small>BME · Építőmérnöki Kar · Geotechnika és Mérnökgeológia Tanszék</small><b>Alapozás BSc · Síkalapok tervezése</b></span>
+      <span class="t"><small>BME · Építőmérnöki Kar · Geotechnika és Mérnökgeológia Tanszék</small><b><span class="hide-s">Alapozás BSc · </span>Síkalapok tervezése</b></span>
     </a>
     <span class="sp"></span>
     <a class="tbtn hide-s" href="#tovabb">A sorozat</a>
@@ -82,7 +82,7 @@
     <div class="lab" id="lab-dontes">
       <header><h4>Alapozási döntő – mit javasolna egy tapasztalt tervező?</h4><span class="sp"></span><span class="tag">szemléltető döntéstámogatás</span></header>
       <div class="body side">
-        <div class="stage svgwrap"><svg class="fig" id="dontesSvg" viewBox="0 0 720 440" role="img" aria-label="Talajszelvény az épülettel és a javasolt alapozással"></svg></div>
+        <div class="stage svgwrap nofit"><svg class="fig" id="dontesSvg" viewBox="0 0 720 440" role="img" aria-label="Talajszelvény az épülettel és a javasolt alapozással"></svg></div>
         <div class="ctrl" id="dontesCtrl">
           <div class="grp">Építmény</div>
           <div class="chips" id="dEpulet">
@@ -513,8 +513,8 @@
     </div>
     <h4>Parciális tényezők</h4>
     <div class="duo">
-      <div class="now"><h5>Most · MSZ EN 1990 + DA2</h5><ul class="small"><li>Állandó teher: γ<sub>G</sub> = 1,35 · esetleges teher: γ<sub>Q</sub> = 1,50</li><li>A1 / A2 (hatások), M1 / M2 (anyag), R1 / R2 / R3 (ellenállás) tényezőkészletek kombinációja</li><li>A magyar nemzeti választás a DA2: tényező a hatásokon és az ellenálláson van, a talajjellemzőkön nem</li><li>Talajtörés: γ<sub>R;v</sub> = 1,4 · elcsúszás: γ<sub>R;h</sub> = 1,1</li></ul></div>
-      <div class="new"><h5><span class="tag new">új</span> MFA vagy RFA, igazolási esetek</h5><ul class="small"><li>Az alaptényezők nagyságrendje marad (γ<sub>G</sub> = 1,35, γ<sub>Q</sub> = 1,50), de belép a következményosztály szerinti módosító tényező</li><li>A DA1/DA2/DA3 helyét az igazolási esetek (VC1–VC4) veszik át</li><li>MFA – anyagtényezős: γ<sub>φ′</sub> = 1,25 (tg φ′-re), γ<sub>c′</sub> = 1,25, γ<sub>cu</sub> = 1,4</li><li>RFA – ellenállástényezős: γ<sub>RN</sub> = 1,4 (teherbírás), γ<sub>RT</sub> = 1,1 (elcsúszás)</li></ul></div>
+      <div class="now"><h5>Most · MSZ EN 1990 + DA2</h5><ul class="small"><li>Állandó teher: γ<sub>G</sub> = 1,35</li><li>Esetleges teher: γ<sub>Q</sub> = 1,50</li><li>A1 / A2 (hatások), M1 / M2 (anyag), R1 / R2 / R3 (ellenállás) tényezőkészletek kombinációja</li><li>A magyar nemzeti választás a DA2: tényező a hatásokon és az ellenálláson van, a talajjellemzőkön nem</li><li>Talajtörés: γ<sub>R;v</sub> = 1,4</li><li>Elcsúszás: γ<sub>R;h</sub> = 1,1</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> MFA vagy RFA, igazolási esetek</h5><ul class="small"><li>Az alaptényezők nagyságrendje marad (γ<sub>G</sub> = 1,35, γ<sub>Q</sub> = 1,50), de belép a következményosztály szerinti módosító tényező</li><li>A DA1/DA2/DA3 helyét az igazolási esetek (VC1–VC4) veszik át</li><li>MFA – anyagtényezős, a tg φ′-re: γ<sub>φ′</sub> = 1,25</li><li>MFA, a kohézióra: γ<sub>c′</sub> = 1,25</li><li>MFA, a drénezetlen nyírószilárdságra: γ<sub>cu</sub> = 1,4</li><li>RFA – ellenállástényezős, teherbírás: γ<sub>RN</sub> = 1,4</li><li>RFA – ellenállástényezős, elcsúszás: γ<sub>RT</sub> = 1,1</li></ul></div>
     </div>
     <h4>A használhatósági igazolás változásai</h4>
     <div class="duo">

@@ -65,12 +65,13 @@ function initToro3D(container) {
     buildSlip(slipMat);
     // kamera illesztés
     if (Math.abs(W - lastW) / Math.max(1, lastW) > 0.12) {
-      const tgt = new THREE.Vector3(0.12 * W, -0.36 * Hd, -0.22 * Lz);
+      const asp = Math.max(0.6, camera.aspect);
+      const tgt = new THREE.Vector3((asp < 1.3 ? 0.04 : 0.12) * W, -0.36 * Hd, -0.22 * Lz);
       const dir = camera.position.clone().sub(controls.target).normalize();
       controls.target.copy(tgt);
-      const R = Math.sqrt(W * W + (Hd * 0.6) ** 2 + (Lz * 0.5) ** 2);
-      const fov = camera.fov * Math.PI / 180, asp = Math.max(0.6, camera.aspect);
-      const dist = R / Math.sin(Math.min(fov, fov * asp) / 2) * 0.6;
+      // vízszintes és függőleges látószögre is illesztve (mobilon is kifér)
+      const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * asp);
+      const dist = Math.max((W + 0.32 * Lz) * 1.04 / Math.tan(hf / 2), (Hd + Ht) * 0.62 / Math.tan(vf / 2));
       camera.position.copy(tgt).add(dir.multiplyScalar(Math.max(4, dist)));
       st3.sun.shadow.camera.left = -W * 1.3; st3.sun.shadow.camera.right = W * 1.3; st3.sun.shadow.camera.top = W * 1.3; st3.sun.shadow.camera.bottom = -W * 1.3; st3.sun.shadow.camera.far = W * 6; st3.sun.position.set(W * 0.6, W * 1.4, W * 0.9); st3.sun.shadow.camera.updateProjectionMatrix();
       lastW = W;

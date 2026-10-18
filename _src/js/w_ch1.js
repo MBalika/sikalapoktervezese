@@ -68,7 +68,10 @@ onReady(function dontes() {
     svg.innerHTML = '';
     defs = soilDefs(svg);
     const f = defs.f;
-    const W = 720, y0 = 150, yb = 430;
+    // keskeny kijelzőn keskenyebb rajzlap, hogy görgetés nélkül is olvasható legyen
+    const narrow = (svg.parentElement.clientWidth || 720) < 560;
+    const W = narrow ? 480 : 720, y0 = 150, yb = 430;
+    svg.setAttribute('viewBox', `0 0 ${W} 440`);
     const maxD = clamp(Math.max(8, st.tb + 5), 8, 21);
     const sc = (yb - y0) / maxD;
     const Y = d => y0 + d * sc;
@@ -90,7 +93,7 @@ onReady(function dontes() {
     if (st.gw < maxD) {
       S('rect', { x: 0, y: Y(st.gw), width: W, height: yb - Y(st.gw), fill: 'rgba(47,111,208,.14)' }, g);
       S('line', { x1: 0, y1: Y(st.gw), x2: W, y2: Y(st.gw), style: 'stroke:var(--water)', 'stroke-width': 1.8 }, g);
-      const tx = 470;
+      const tx = narrow ? 300 : 470;
       S('path', { d: `M${tx - 7} ${Y(st.gw) - 11} h14 l-7 10 z`, style: 'fill:var(--water)' }, g);
       S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s', style: 'fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(20,50,110,.85);stroke-width:3px', text: `talajvíz −${fmt(st.gw, 1)} m` }, g);
     }
@@ -108,7 +111,7 @@ onReady(function dontes() {
     }
     S('text', { x: W - 26, y: y0 - 8, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:var(--ink-3)', text: 'mélység [m]' }, ax);
     // épület
-    const cx = 330;
+    const cx = narrow ? 262 : 330;
     drawBuilding(g, cx, y0, st.ep, sc);
     drawFoundation(g, cx, y0, sc, d, f);
   }
@@ -131,7 +134,7 @@ onReady(function dontes() {
       for (let y = y0 - 14; y > 10; y -= 14) S('line', { x1: cx - 70, y1: y, x2: cx + 70, y2: y, style: 'stroke:var(--line)' }, g);
       S('text', { x: cx, y: 22, 'text-anchor': 'middle', class: 't-s', style: 'fill:var(--ink-3)', text: '… 25+ szint' }, g);
     } else if (ep === 'hid') {
-      S('rect', { x: cx - 250, y: 20, width: 500, height: 18, style: st1 }, g);
+      S('rect', { x: Math.max(0, cx - 250), y: 20, width: Math.min(500, W - Math.max(0, cx - 250)), height: 18, style: st1 }, g);
       S('rect', { x: cx - 26, y: 38, width: 52, height: y0 - 38, style: st1 }, g);
     }
   }
@@ -185,6 +188,8 @@ onReady(function dontes() {
   const bind = (id, k, fn = v => +v) => { const el = $('#' + id); el.addEventListener('input', () => { st[k] = el.type === 'checkbox' ? el.checked : fn(el.value); render(); }); };
   bind('dTb', 'tb'); bind('dGw', 'gw'); bind('dNincs', 'nincs'); bind('dSens', 'sens'); bind('dScour', 'scour'); bind('dIncl', 'incl');
   window.addEventListener('themechange', render);
+  let lastNarrow = null;
+  window.addEventListener('resize', () => { const n = (svg.parentElement.clientWidth || 720) < 560; if (n !== lastNarrow) { lastNarrow = n; render(); } });
   render();
 });
 onReady(() => renderQuiz($('#quiz1'), QUIZ.q1));

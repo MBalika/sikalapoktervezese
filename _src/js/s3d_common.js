@@ -89,10 +89,18 @@ function makeStage(container, o = {}) {
   const io = new IntersectionObserver(es => { visible = es.some(e => e.isIntersecting); kick(); }, { rootMargin: '80px' });
   io.observe(container);
   document.addEventListener('visibilitychange', kick);
+  const baseDist = camera.position.distanceTo(controls.target);
   const ro = new ResizeObserver(() => {
     renderer.setSize(W(), Hh());
     camera.aspect = W() / Hh();
     camera.updateProjectionMatrix();
+    if (o.fitAspect) {
+      // keskeny (mobil) vásznon távolabb áll a kamera, hogy a jelenet kiférjen
+      const k = Math.max(1, Math.pow(o.fitAspect / camera.aspect, o.fitPow || 0.9));
+      const dir = camera.position.clone().sub(controls.target).normalize();
+      camera.position.copy(controls.target).addScaledVector(dir, baseDist * k);
+      controls.update();
+    }
     renderer.render(scene, camera);
     updateLabels();
   });

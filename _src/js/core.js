@@ -55,7 +55,7 @@ function store(k, v) { try { if (v === undefined) return localStorage.getItem(k)
   const saved = store('sikt-theme');
   if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
   const btn = $('#themeBtn');
-  const label = () => { if (btn) btn.textContent = isDark() ? 'Világos téma' : 'Sötét téma'; };
+  const label = () => { if (btn) { const narrow = matchMedia('(max-width:700px)').matches; btn.textContent = isDark() ? (narrow ? 'Világos' : 'Világos téma') : (narrow ? 'Sötét' : 'Sötét téma'); btn.setAttribute('aria-label', isDark() ? 'Világos téma' : 'Sötét téma'); } };
   label();
   if (btn) btn.addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';
@@ -530,6 +530,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initMetro();
   SCORE.render();
   GUARD.start();
+  // keskeny kijelzőn a görgethető ábrák középre igazítva indulnak (a folyamatábra balról)
+  const centerFigs = () => $$('.svgwrap').forEach(w => { if (w.scrollWidth > w.clientWidth + 4 && !w.dataset.sc) { w.scrollLeft = (w.scrollWidth - w.clientWidth) / 2; w.dataset.sc = '1'; } });
+  requestAnimationFrame(centerFigs); setTimeout(centerFigs, 800);
   // horgonyra érkezéskor a késleltetett tartalmak után még egyszer odaugrunk
   if (location.hash && location.hash.length > 1) {
     const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));

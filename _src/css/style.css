@@ -447,3 +447,30 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
   .chead{grid-template-columns:1fr;gap:4px}
   .chead .num{grid-row:auto;font-size:3.6rem}
 }
+
+/* ===== Mobil finomhangolás ===== */
+.quiz > header .sc, .game > header .pill{white-space:nowrap}
+.lab .stage{min-height:0}
+@media (min-width:981px){.lab .stage{min-height:300px}}
+@media (max-width:700px){
+  .top .wrap{gap:8px}
+  .brand{min-width:0;flex:1}
+  .top .sp{display:none}
+  .brand .t b{overflow:hidden;text-overflow:ellipsis}
+  #themeBtn{padding:5px 10px;font-size:.8rem}
+  .checks li{grid-template-columns:24px 1fr}
+  .checks li em{grid-column:2;margin-top:-2px;color:var(--ink-2);white-space:normal}
+  /* a vonalas ábrák keskeny kijelzőn olvasható méretben, oldalra görgethetően */
+  .svgwrap, .flowwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .svgwrap > svg.fig{min-width:620px}
+  #telekSvg{min-width:680px}
+  .svgwrap.nofit{overflow:visible}
+  .svgwrap.nofit > svg.fig{min-width:0}
+  .svgwrap.nofit::before{display:none}
+  .svgwrap.nofit .fig text{font-size:17px}
+  .svgwrap.nofit .fig .t-s{font-size:15px}
+  #flowSvg{min-width:820px}
+  .svgwrap::before, .flowwrap::before{content:"← húzd oldalra a teljes ábráért →";position:sticky;left:0;display:block;width:100%;font-size:.74rem;color:var(--ink-3);text-align:center;padding:4px 0 6px}
+  .fig text{font-size:14px}
+  .fig .t-s{font-size:12px}
+}

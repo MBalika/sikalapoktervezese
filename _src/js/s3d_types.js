@@ -1,6 +1,6 @@
 /* ===== 3D: alaptípusok (hős és labor) ===== */
 function initTypes(container, o = {}) {
-  const st3 = makeStage(container, { pos: o.hero ? [16, 5.2, 18] : [17.5, 6.2, 20.5], target: o.hero ? [0, 0.2, 0] : [0, -0.9, 0], shadows: true, autoRotate: !!o.hero, autoRotateSpeed: 0.55, minDist: 8, maxDist: 46, shadowSize: 13 });
+  const st3 = makeStage(container, { pos: o.hero ? [16, 5.2, 18] : [17.5, 6.2, 20.5], target: o.hero ? [0, 0.2, 0] : [0, -0.9, 0], shadows: true, autoRotate: !!o.hero, autoRotateSpeed: 0.55, fitAspect: o.hero ? 1.25 : 1.5, minDist: 8, maxDist: 46, shadowSize: 13 });
   const { scene } = st3;
   const X0 = -8.5, X1 = 8.5, Z0 = -6.5, Z1 = 6.5, DEP = -5.2;
   const layers = [{ kind: 'humusz', top: 0, bot: -0.35, topColor: '#5d7f33' }, { kind: 'homok', top: -0.35, bot: -2.6 }, { kind: 'kavics', top: -2.6, bot: DEP }];

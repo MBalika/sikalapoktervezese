@@ -1,6 +1,6 @@
 /* ===== 3D: alapsík-tervező ===== */
 function initAlapsik3D(container) {
-  const st3 = makeStage(container, { pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
+  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
   const { scene } = st3;
   const X0 = -9, X1 = 9, Z0 = -5, DEP = -5.4;
   const soilG = new THREE.Group(), bldG = new THREE.Group(), nbG = new THREE.Group(), fxG = new THREE.Group();
@@ -132,7 +132,7 @@ function initAlapsik3D(container) {
     L.fill.pos.set(5.6, -Math.max(0.31, q.ft) / 2 - 0.1, 0.1);
     L.fill.show = !q.szom;
     L.bear.set(q.soil === 'kozet' ? 'szilárd kőzet' : q.soil === 'kotott' ? (q.duzz ? 'térfogatváltozó agyag' : 'kötött talaj') : 'teherbíró homokos kavics');
-    L.bear.pos.set(lx + 0.6, -Math.max(0.31, q.ft) - 0.55, 0.1);
+    L.bear.pos.set(lx + 1.2, -Math.max(0.31, q.ft) - 1.25, 0.1);
     L.dry.show = q.duzz; L.dry.pos.set(3.8, -2, 0.1);
     L.nb.show = q.szom; L.nb.set(`szomszéd alapsíkja −${fmt(q.dsz, 2)} m`); L.nb.pos.set(6.4, -q.dsz - 0.25, 0.1);
     L.under.show = q.szom && q.d > q.dsz + 0.1; L.under.pos.set(5.8, -(q.dsz + q.d) / 2, 0.15);

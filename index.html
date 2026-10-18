@@ -470,6 +470,33 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
   .chead .num{grid-row:auto;font-size:3.6rem}
 }
 
+/* ===== Mobil finomhangolás ===== */
+.quiz > header .sc, .game > header .pill{white-space:nowrap}
+.lab .stage{min-height:0}
+@media (min-width:981px){.lab .stage{min-height:300px}}
+@media (max-width:700px){
+  .top .wrap{gap:8px}
+  .brand{min-width:0;flex:1}
+  .top .sp{display:none}
+  .brand .t b{overflow:hidden;text-overflow:ellipsis}
+  #themeBtn{padding:5px 10px;font-size:.8rem}
+  .checks li{grid-template-columns:24px 1fr}
+  .checks li em{grid-column:2;margin-top:-2px;color:var(--ink-2);white-space:normal}
+  /* a vonalas ábrák keskeny kijelzőn olvasható méretben, oldalra görgethetően */
+  .svgwrap, .flowwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .svgwrap > svg.fig{min-width:620px}
+  #telekSvg{min-width:680px}
+  .svgwrap.nofit{overflow:visible}
+  .svgwrap.nofit > svg.fig{min-width:0}
+  .svgwrap.nofit::before{display:none}
+  .svgwrap.nofit .fig text{font-size:17px}
+  .svgwrap.nofit .fig .t-s{font-size:15px}
+  #flowSvg{min-width:820px}
+  .svgwrap::before, .flowwrap::before{content:"← húzd oldalra a teljes ábráért →";position:sticky;left:0;display:block;width:100%;font-size:.74rem;color:var(--ink-3);text-align:center;padding:4px 0 6px}
+  .fig text{font-size:14px}
+  .fig .t-s{font-size:12px}
+}
+
 </style>
 </head>
 <body>
@@ -478,7 +505,7 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Síkalapok tervezése – az oldal teteje">
       <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#86b51c"/><path d="M14 6v13M22 6v13" stroke="#13200a" stroke-width="2.6" stroke-linecap="round"/><path d="M9 19h18v6H9z" fill="#13200a"/><path d="M5 29h26" stroke="#f3f4ee" stroke-width="2.2" stroke-dasharray="3 2.2"/></svg>
-      <span class="t"><small>BME · Építőmérnöki Kar · Geotechnika és Mérnökgeológia Tanszék</small><b>Alapozás BSc · Síkalapok tervezése</b></span>
+      <span class="t"><small>BME · Építőmérnöki Kar · Geotechnika és Mérnökgeológia Tanszék</small><b><span class="hide-s">Alapozás BSc · </span>Síkalapok tervezése</b></span>
     </a>
     <span class="sp"></span>
     <a class="tbtn hide-s" href="#tovabb">A sorozat</a>
@@ -557,7 +584,7 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
     <div class="lab" id="lab-dontes">
       <header><h4>Alapozási döntő – mit javasolna egy tapasztalt tervező?</h4><span class="sp"></span><span class="tag">szemléltető döntéstámogatás</span></header>
       <div class="body side">
-        <div class="stage svgwrap"><svg class="fig" id="dontesSvg" viewBox="0 0 720 440" role="img" aria-label="Talajszelvény az épülettel és a javasolt alapozással"></svg></div>
+        <div class="stage svgwrap nofit"><svg class="fig" id="dontesSvg" viewBox="0 0 720 440" role="img" aria-label="Talajszelvény az épülettel és a javasolt alapozással"></svg></div>
         <div class="ctrl" id="dontesCtrl">
           <div class="grp">Építmény</div>
           <div class="chips" id="dEpulet">
@@ -988,8 +1015,8 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
     </div>
     <h4>Parciális tényezők</h4>
     <div class="duo">
-      <div class="now"><h5>Most · MSZ EN 1990 + DA2</h5><ul class="small"><li>Állandó teher: γ<sub>G</sub> = 1,35 · esetleges teher: γ<sub>Q</sub> = 1,50</li><li>A1 / A2 (hatások), M1 / M2 (anyag), R1 / R2 / R3 (ellenállás) tényezőkészletek kombinációja</li><li>A magyar nemzeti választás a DA2: tényező a hatásokon és az ellenálláson van, a talajjellemzőkön nem</li><li>Talajtörés: γ<sub>R;v</sub> = 1,4 · elcsúszás: γ<sub>R;h</sub> = 1,1</li></ul></div>
-      <div class="new"><h5><span class="tag new">új</span> MFA vagy RFA, igazolási esetek</h5><ul class="small"><li>Az alaptényezők nagyságrendje marad (γ<sub>G</sub> = 1,35, γ<sub>Q</sub> = 1,50), de belép a következményosztály szerinti módosító tényező</li><li>A DA1/DA2/DA3 helyét az igazolási esetek (VC1–VC4) veszik át</li><li>MFA – anyagtényezős: γ<sub>φ′</sub> = 1,25 (tg φ′-re), γ<sub>c′</sub> = 1,25, γ<sub>cu</sub> = 1,4</li><li>RFA – ellenállástényezős: γ<sub>RN</sub> = 1,4 (teherbírás), γ<sub>RT</sub> = 1,1 (elcsúszás)</li></ul></div>
+      <div class="now"><h5>Most · MSZ EN 1990 + DA2</h5><ul class="small"><li>Állandó teher: γ<sub>G</sub> = 1,35</li><li>Esetleges teher: γ<sub>Q</sub> = 1,50</li><li>A1 / A2 (hatások), M1 / M2 (anyag), R1 / R2 / R3 (ellenállás) tényezőkészletek kombinációja</li><li>A magyar nemzeti választás a DA2: tényező a hatásokon és az ellenálláson van, a talajjellemzőkön nem</li><li>Talajtörés: γ<sub>R;v</sub> = 1,4</li><li>Elcsúszás: γ<sub>R;h</sub> = 1,1</li></ul></div>
+      <div class="new"><h5><span class="tag new">új</span> MFA vagy RFA, igazolási esetek</h5><ul class="small"><li>Az alaptényezők nagyságrendje marad (γ<sub>G</sub> = 1,35, γ<sub>Q</sub> = 1,50), de belép a következményosztály szerinti módosító tényező</li><li>A DA1/DA2/DA3 helyét az igazolási esetek (VC1–VC4) veszik át</li><li>MFA – anyagtényezős, a tg φ′-re: γ<sub>φ′</sub> = 1,25</li><li>MFA, a kohézióra: γ<sub>c′</sub> = 1,25</li><li>MFA, a drénezetlen nyírószilárdságra: γ<sub>cu</sub> = 1,4</li><li>RFA – ellenállástényezős, teherbírás: γ<sub>RN</sub> = 1,4</li><li>RFA – ellenállástényezős, elcsúszás: γ<sub>RT</sub> = 1,1</li></ul></div>
     </div>
     <h4>A használhatósági igazolás változásai</h4>
     <div class="duo">
@@ -1193,7 +1220,7 @@ function store(k, v) { try { if (v === undefined) return localStorage.getItem(k)
   const saved = store('sikt-theme');
   if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
   const btn = $('#themeBtn');
-  const label = () => { if (btn) btn.textContent = isDark() ? 'Világos téma' : 'Sötét téma'; };
+  const label = () => { if (btn) { const narrow = matchMedia('(max-width:700px)').matches; btn.textContent = isDark() ? (narrow ? 'Világos' : 'Világos téma') : (narrow ? 'Sötét' : 'Sötét téma'); btn.setAttribute('aria-label', isDark() ? 'Világos téma' : 'Sötét téma'); } };
   label();
   if (btn) btn.addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';
@@ -1668,6 +1695,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initMetro();
   SCORE.render();
   GUARD.start();
+  // keskeny kijelzőn a görgethető ábrák középre igazítva indulnak (a folyamatábra balról)
+  const centerFigs = () => $$('.svgwrap').forEach(w => { if (w.scrollWidth > w.clientWidth + 4 && !w.dataset.sc) { w.scrollLeft = (w.scrollWidth - w.clientWidth) / 2; w.dataset.sc = '1'; } });
+  requestAnimationFrame(centerFigs); setTimeout(centerFigs, 800);
   // horgonyra érkezéskor a késleltetett tartalmak után még egyszer odaugrunk
   if (location.hash && location.hash.length > 1) {
     const t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
@@ -1976,7 +2006,10 @@ onReady(function dontes() {
     svg.innerHTML = '';
     defs = soilDefs(svg);
     const f = defs.f;
-    const W = 720, y0 = 150, yb = 430;
+    // keskeny kijelzőn keskenyebb rajzlap, hogy görgetés nélkül is olvasható legyen
+    const narrow = (svg.parentElement.clientWidth || 720) < 560;
+    const W = narrow ? 480 : 720, y0 = 150, yb = 430;
+    svg.setAttribute('viewBox', `0 0 ${W} 440`);
     const maxD = clamp(Math.max(8, st.tb + 5), 8, 21);
     const sc = (yb - y0) / maxD;
     const Y = d => y0 + d * sc;
@@ -1998,7 +2031,7 @@ onReady(function dontes() {
     if (st.gw < maxD) {
       S('rect', { x: 0, y: Y(st.gw), width: W, height: yb - Y(st.gw), fill: 'rgba(47,111,208,.14)' }, g);
       S('line', { x1: 0, y1: Y(st.gw), x2: W, y2: Y(st.gw), style: 'stroke:var(--water)', 'stroke-width': 1.8 }, g);
-      const tx = 470;
+      const tx = narrow ? 300 : 470;
       S('path', { d: `M${tx - 7} ${Y(st.gw) - 11} h14 l-7 10 z`, style: 'fill:var(--water)' }, g);
       S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s', style: 'fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(20,50,110,.85);stroke-width:3px', text: `talajvíz −${fmt(st.gw, 1)} m` }, g);
     }
@@ -2016,7 +2049,7 @@ onReady(function dontes() {
     }
     S('text', { x: W - 26, y: y0 - 8, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:var(--ink-3)', text: 'mélység [m]' }, ax);
     // épület
-    const cx = 330;
+    const cx = narrow ? 262 : 330;
     drawBuilding(g, cx, y0, st.ep, sc);
     drawFoundation(g, cx, y0, sc, d, f);
   }
@@ -2039,7 +2072,7 @@ onReady(function dontes() {
       for (let y = y0 - 14; y > 10; y -= 14) S('line', { x1: cx - 70, y1: y, x2: cx + 70, y2: y, style: 'stroke:var(--line)' }, g);
       S('text', { x: cx, y: 22, 'text-anchor': 'middle', class: 't-s', style: 'fill:var(--ink-3)', text: '… 25+ szint' }, g);
     } else if (ep === 'hid') {
-      S('rect', { x: cx - 250, y: 20, width: 500, height: 18, style: st1 }, g);
+      S('rect', { x: Math.max(0, cx - 250), y: 20, width: Math.min(500, W - Math.max(0, cx - 250)), height: 18, style: st1 }, g);
       S('rect', { x: cx - 26, y: 38, width: 52, height: y0 - 38, style: st1 }, g);
     }
   }
@@ -2093,6 +2126,8 @@ onReady(function dontes() {
   const bind = (id, k, fn = v => +v) => { const el = $('#' + id); el.addEventListener('input', () => { st[k] = el.type === 'checkbox' ? el.checked : fn(el.value); render(); }); };
   bind('dTb', 'tb'); bind('dGw', 'gw'); bind('dNincs', 'nincs'); bind('dSens', 'sens'); bind('dScour', 'scour'); bind('dIncl', 'incl');
   window.addEventListener('themechange', render);
+  let lastNarrow = null;
+  window.addEventListener('resize', () => { const n = (svg.parentElement.clientWidth || 720) < 560; if (n !== lastNarrow) { lastNarrow = n; render(); } });
   render();
 });
 onReady(() => renderQuiz($('#quiz1'), QUIZ.q1));
@@ -3885,10 +3920,18 @@ function makeStage(container, o = {}) {
   const io = new IntersectionObserver(es => { visible = es.some(e => e.isIntersecting); kick(); }, { rootMargin: '80px' });
   io.observe(container);
   document.addEventListener('visibilitychange', kick);
+  const baseDist = camera.position.distanceTo(controls.target);
   const ro = new ResizeObserver(() => {
     renderer.setSize(W(), Hh());
     camera.aspect = W() / Hh();
     camera.updateProjectionMatrix();
+    if (o.fitAspect) {
+      // keskeny (mobil) vásznon távolabb áll a kamera, hogy a jelenet kiférjen
+      const k = Math.max(1, Math.pow(o.fitAspect / camera.aspect, o.fitPow || 0.9));
+      const dir = camera.position.clone().sub(controls.target).normalize();
+      camera.position.copy(controls.target).addScaledVector(dir, baseDist * k);
+      controls.update();
+    }
     renderer.render(scene, camera);
     updateLabels();
   });
@@ -4031,7 +4074,7 @@ function soilBlock(layers, x0, x1, z0, z1, o = {}) {
 
 /* ===== 3D: alaptípusok (hős és labor) ===== */
 function initTypes(container, o = {}) {
-  const st3 = makeStage(container, { pos: o.hero ? [16, 5.2, 18] : [17.5, 6.2, 20.5], target: o.hero ? [0, 0.2, 0] : [0, -0.9, 0], shadows: true, autoRotate: !!o.hero, autoRotateSpeed: 0.55, minDist: 8, maxDist: 46, shadowSize: 13 });
+  const st3 = makeStage(container, { pos: o.hero ? [16, 5.2, 18] : [17.5, 6.2, 20.5], target: o.hero ? [0, 0.2, 0] : [0, -0.9, 0], shadows: true, autoRotate: !!o.hero, autoRotateSpeed: 0.55, fitAspect: o.hero ? 1.25 : 1.5, minDist: 8, maxDist: 46, shadowSize: 13 });
   const { scene } = st3;
   const X0 = -8.5, X1 = 8.5, Z0 = -6.5, Z1 = 6.5, DEP = -5.2;
   const layers = [{ kind: 'humusz', top: 0, bot: -0.35, topColor: '#5d7f33' }, { kind: 'homok', top: -0.35, bot: -2.6 }, { kind: 'kavics', top: -2.6, bot: DEP }];
@@ -4395,7 +4438,7 @@ function initTypes(container, o = {}) {
 
 /* ===== 3D: alapsík-tervező ===== */
 function initAlapsik3D(container) {
-  const st3 = makeStage(container, { pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
+  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
   const { scene } = st3;
   const X0 = -9, X1 = 9, Z0 = -5, DEP = -5.4;
   const soilG = new THREE.Group(), bldG = new THREE.Group(), nbG = new THREE.Group(), fxG = new THREE.Group();
@@ -4527,7 +4570,7 @@ function initAlapsik3D(container) {
     L.fill.pos.set(5.6, -Math.max(0.31, q.ft) / 2 - 0.1, 0.1);
     L.fill.show = !q.szom;
     L.bear.set(q.soil === 'kozet' ? 'szilárd kőzet' : q.soil === 'kotott' ? (q.duzz ? 'térfogatváltozó agyag' : 'kötött talaj') : 'teherbíró homokos kavics');
-    L.bear.pos.set(lx + 0.6, -Math.max(0.31, q.ft) - 0.55, 0.1);
+    L.bear.pos.set(lx + 1.2, -Math.max(0.31, q.ft) - 1.25, 0.1);
     L.dry.show = q.duzz; L.dry.pos.set(3.8, -2, 0.1);
     L.nb.show = q.szom; L.nb.set(`szomszéd alapsíkja −${fmt(q.dsz, 2)} m`); L.nb.pos.set(6.4, -q.dsz - 0.25, 0.1);
     L.under.show = q.szom && q.d > q.dsz + 0.1; L.under.pos.set(5.8, -(q.dsz + q.d) / 2, 0.15);
@@ -4634,12 +4677,13 @@ function initToro3D(container) {
     buildSlip(slipMat);
     // kamera illesztés
     if (Math.abs(W - lastW) / Math.max(1, lastW) > 0.12) {
-      const tgt = new THREE.Vector3(0.12 * W, -0.36 * Hd, -0.22 * Lz);
+      const asp = Math.max(0.6, camera.aspect);
+      const tgt = new THREE.Vector3((asp < 1.3 ? 0.04 : 0.12) * W, -0.36 * Hd, -0.22 * Lz);
       const dir = camera.position.clone().sub(controls.target).normalize();
       controls.target.copy(tgt);
-      const R = Math.sqrt(W * W + (Hd * 0.6) ** 2 + (Lz * 0.5) ** 2);
-      const fov = camera.fov * Math.PI / 180, asp = Math.max(0.6, camera.aspect);
-      const dist = R / Math.sin(Math.min(fov, fov * asp) / 2) * 0.6;
+      // vízszintes és függőleges látószögre is illesztve (mobilon is kifér)
+      const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * asp);
+      const dist = Math.max((W + 0.32 * Lz) * 1.04 / Math.tan(hf / 2), (Hd + Ht) * 0.62 / Math.tan(vf / 2));
       camera.position.copy(tgt).add(dir.multiplyScalar(Math.max(4, dist)));
       st3.sun.shadow.camera.left = -W * 1.3; st3.sun.shadow.camera.right = W * 1.3; st3.sun.shadow.camera.top = W * 1.3; st3.sun.shadow.camera.bottom = -W * 1.3; st3.sun.shadow.camera.far = W * 6; st3.sun.position.set(W * 0.6, W * 1.4, W * 0.9); st3.sun.shadow.camera.updateProjectionMatrix();
       lastW = W;
