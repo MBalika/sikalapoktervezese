@@ -91,8 +91,9 @@ const GUARD = (() => {
     // ezres tagolás
     s = s.replace(/(^|[^\d,.])(\d{1,3}) (\d{3})(?!\d)/g, '$1$2' + NNB + '$3');
     // operátorok
+    s = s.replace(/^([=≤≥≈→←×±<>⇒+−]) (?=\S)/, '$1' + NB);
     s = s.replace(/ ([=≤≥≈→←×±<>⇒]) /g, NB + '$1' + NB);
-    s = s.replace(/([\p{N}\p{L})\]′″]) ([+−]) (?=[\p{N}\p{L}(])/gu, '$1' + NB + '$2' + NB);
+    s = s.replace(/([\p{N}\p{L})\]′″]) ([+−]) (?=[\p{N}\p{L}(\[√∑])/gu, '$1' + NB + '$2' + NB);
     s = s.replace(/ \/ /g, NB + '/' + NB);
     // a · kettős szerepe
     s = s.replace(/ · (?=(\S+))/g, (m, nxt) => {
@@ -120,6 +121,12 @@ const GUARD = (() => {
     s = s.replace(/([\d°′″%)\]\p{Lu}\u2080-\u2089])-(\p{Ll}{1,6})(?=$|[\s.,;:!?)”\u00A0\u2060])/gu, '$1' + NBH + '$2');
     return s;
   }
+  const SHORTEND = new RegExp('(^|[\\s( ⁠„])(a|az|A|Az|s|e|egy|Egy|és|És|pl\\.|kb\\.|ill\\.|ún\\.|\\d+(?:[,.]\\d+)?\\.?%?) $');
+  // csomóponthatáron átnyúló kötés (pl. „Az <b>…”, „b<sub>q</sub> − (…”)
+  function crossPass(nodes) { for (let i = 0; i < nodes.length - 1; i++) { const a = nodes[i], b = nodes[i + 1]; const av = a.nodeValue, bv = b.nodeValue; if (!av || !bv) continue;
+    if (av.endsWith(' ') && /^\S/.test(bv) && SHORTEND.test(av)) a.nodeValue = av.slice(0, -1) + NB;
+    const ms = /^ ([=≤≥≈→←×±<>⇒+−/]) /.exec(b.nodeValue); if (ms && /\S$/.test(a.nodeValue)) b.nodeValue = NB + ms[1] + NB + b.nodeValue.slice(3);
+    const me = / ([=≤≥≈→←×±<>⇒+−/]) $/.exec(a.nodeValue); if (me && /^\S/.test(b.nodeValue)) a.nodeValue = a.nodeValue.slice(0, -3) + NB + me[1] + NB; } }
   function bindPositions(full, cpl = 70) {
     const bind = new Set();
     const segMax = Math.max(14, Math.min(38, 0.42 * cpl)), parMax = Math.max(10, Math.min(24, 0.30 * cpl));
@@ -170,7 +177,8 @@ const GUARD = (() => {
     const cur = el.textContent;
     if (done.get(el) === cur) return;
     const nodes = textNodes(el);
-    for (const n of nodes) { const v = textPass(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; }
+    for (const n of nodes) { const v = textPass(n.nodeValue.replace(/\u200B/g, '')); if (v !== n.nodeValue) n.nodeValue = v; }
+    crossPass(nodes);
     // blokk-szintű kötés
     const full = nodes.map(n => n.nodeValue).join('');
     // sorhossz karakterben: a doboz szélességéhez igazodó „rövid” határ
@@ -207,6 +215,7 @@ const GUARD = (() => {
             if (!/\p{L}{6,}/u.test(tail)) continue;
             h = clean.slice(0, k + 1) + hyph(tail);
           } else h = hyph(clean);
+          h = h.replace(/\u200B/g, '');
           if (h !== t) { parts[i] = h; ch = true; }
         }
         if (ch) n.nodeValue = parts.join('');
@@ -249,7 +258,7 @@ const GUARD = (() => {
     // Hyphenopoly
     const H = window.Hyphenopoly;
     if (H && H.hyphenators && H.hyphenators.hu) {
-      H.hyphenators.hu.then(fn => { hyph = s => fn(s); const all = $$(HYPH); all.forEach(e => done.delete(e)); run(); }).catch(() => {});
+      H.hyphenators.hu.then(fn => { hyph = s => fn(s); const all = $$(HYPH); all.forEach(e => done.delete(e)); run(); window.__fmtHyphReady = true; if (typeof RAG !== "undefined") RAG.later(80); }).catch(() => {});
     }
   }
   // vászonra szánt szöveg őrzése
@@ -521,6 +530,29 @@ function initMetro() {
   const tt = $('.totop'); if (tt) tt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
+/* ---------- Sorkizárási tartalék (formázás skill): ha egy sorkizárt blokkban a szóközök túl szélesek
+   (≥ 1 db > 1,15 em, vagy ≥ 2 db > 0,9 em), a blokk balra zárt lesz (.rag). Csak osztályt vált, szöveget nem. ---------- */
+const RAG = (() => {
+  const SEL = 'main p, main li, main dd, main figcaption, main .note, main .lead, main .small, footer p';
+  function holes(el, fs) {
+    const all = document.createRange(); all.selectNodeContents(el); const rs = Array.from(all.getClientRects()); if (rs.length < 2) return false;
+    const lastTop = Math.max(...rs.map(r => r.top)); let big = 0, mid = 0;
+    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n;
+    while ((n = w.nextNode())) { const t = n.nodeValue; for (let i = 0; i < t.length; i++) { if (t[i] !== ' ' && t[i] !== '\u00A0') continue; const r = document.createRange(); r.setStart(n, i); r.setEnd(n, i + 1); const b = r.getBoundingClientRect(); if (!b.width || b.top >= lastTop - 2) continue; if (b.width > fs * 1.15) big++; else if (b.width > fs * 0.9) mid++; } }
+    return big > 0 || mid >= 2;
+  }
+  function check(el) {
+    const had = el.classList.contains('rag'); if (had) el.classList.remove('rag');
+    const cs = getComputedStyle(el); let need = false;
+    if (cs.textAlign === 'justify' && cs.display !== 'none' && el.offsetParent) need = holes(el, parseFloat(cs.fontSize) || 16);
+    if (need) el.classList.add('rag');
+  }
+  const run = () => { document.querySelectorAll(SEL).forEach(e => { if (e.offsetParent) check(e); }); window.__ragDone = true; };
+  let tm = 0; const later = (ms) => { clearTimeout(tm); tm = setTimeout(run, ms); };
+  addEventListener('resize', () => later(250)); document.addEventListener('click', () => later(150));
+  return { run, later };
+})();
+
 /* ---------- Indítás ---------- */
 const INIT = [];
 function onReady(fn) { INIT.push(fn); }
@@ -530,6 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMetro();
   SCORE.render();
   GUARD.start();
+  RAG.later(600); setTimeout(() => RAG.run(), 2500);
   // keskeny kijelzőn a görgethető ábrák középre igazítva indulnak (a folyamatábra balról)
   const centerFigs = () => $$('.svgwrap').forEach(w => { if (w.scrollWidth > w.clientWidth + 4 && !w.dataset.sc) { w.scrollLeft = (w.scrollWidth - w.clientWidth) / 2; w.dataset.sc = '1'; } });
   requestAnimationFrame(centerFigs); setTimeout(centerFigs, 800);

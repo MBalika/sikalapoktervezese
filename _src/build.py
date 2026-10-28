@@ -34,7 +34,7 @@ head = """<title>Síkalapok tervezése</title>
 <script>
 Hyphenopoly.config({
   require: { "hu": "FORCEHYPHENOPOLY" },
-  setup: { hide: "none", selectors: { ".hyphenate": {} } }
+  setup: { hide: "none", selectors: { ".hyphenate": { minWordLength: 6, compound: "auto" } } }
 });
 </script>
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>

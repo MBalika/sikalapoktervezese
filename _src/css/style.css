@@ -178,11 +178,11 @@ main p, main li, main dd, main figcaption, main .note, .eq .w > div, .fb, footer
 .g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
 .g2x2{grid-template-columns:1fr}
 @media (min-width:640px){.g2x2{grid-template-columns:repeat(2,1fr)}}
-/* hat kártya: széles nézetben 4 + 2, az alsó kettő középen (a 2. és 3. alatt) */
+/* hat kártya: széles nézetben 3 + 3, teli sorokkal */
 .g6c{grid-template-columns:1fr}
 @media (min-width:560px){.g6c{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:820px){.g6c{grid-template-columns:repeat(3,1fr)}}
-@media (min-width:1080px){.g6c{grid-template-columns:repeat(8,1fr)}.g6c>*{grid-column:span 2}.g6c>:nth-child(5){grid-column:3/span 2}}
+
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
 .card h4{margin-top:0}
 .card.k{border-top:4px solid var(--k)}
@@ -482,3 +482,32 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
   .fig text{font-size:14px}
   .fig .t-s{font-size:12px}
 }
+
+/* ===== Elrendezés (formázás skill 5.) – 2026-10-28 ===== */
+main .rag, footer .rag{text-align:left!important}
+/* szalag- és gerendarács-alap: két kártya + kép, egy teli sorban */
+.g2i{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:720px){.g2i{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.g2i{grid-template-columns:1fr 1fr 1fr}}
+.g2i .gal{margin:0;height:100%}
+.g2i .gal button{height:100%}
+.g2i .gal img{height:100%!important;width:100%;object-fit:cover;max-height:none}
+@media (min-width:720px) and (max-width:999px){.g2i .gal{grid-column:1/-1}.g2i .gal img{max-height:320px}}
+/* kártya, amelynek belső rácsa kitölti a magasságot */
+.card.fillcol{display:flex;flex-direction:column}
+.card.fillcol > .grid{flex:1;grid-auto-rows:1fr}
+.card.fillcol .callout{display:flex;flex-direction:column;justify-content:center}
+/* alapsík-tervező: a kijelzők a teljes szélességben, az ábra és a kezelők egyforma magasak */
+@media (min-width:980px){
+  #lab-alapsik .body.side > div:first-child{display:contents}
+  #lab-alapsik .body.side > .ctrl{grid-column:2;grid-row:1}
+  #lab-alapsik .body.side .stage3d{grid-column:1;grid-row:1;height:auto;min-height:clamp(340px,40vw,560px)}
+  #lab-alapsik .body.side .out{grid-column:1/-1;grid-row:2}
+}
+/* osztálymátrix: a magyarázat függőlegesen középen */
+#gcOut{justify-content:center}
+/* eredménytábla (9 elem) és a sorozat (6 elem): teli sorok */
+@media (min-width:820px){.series{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:980px){#scoreBoard{grid-template-columns:repeat(5,1fr)}}
+/* kétoszlopos laborok: ha a kezelőoszlop magasabb, az ábra függőlegesen középre kerül (nem marad alatta üres sáv) */
+@media (min-width:980px){.lab .body.side > .stage{display:flex;flex-direction:column;justify-content:center}}
