@@ -115,6 +115,14 @@ main p, main li, main dd, main figcaption, main .note, .eq .w > div, .fb, footer
 .tbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.18);background:transparent;color:var(--on-graph);border-radius:999px;padding:6px 13px;font-size:.86rem;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
 .tbtn:hover{background:rgba(255,255,255,.08)}
 .tbtn.lime{background:var(--lime);border-color:var(--lime);color:#14200a}
+/* nyelvváltó: HU | EN (mobilon csak a másik nyelv kódja) */
+.tbtn.lang{padding:3px;gap:2px;font-family:var(--f-mono, "IBM Plex Mono", monospace);font-size:.74rem;font-weight:600;letter-spacing:.06em}
+.tbtn.lang b,.tbtn.lang span{display:inline-grid;place-items:center;min-width:30px;padding:3px 8px;border-radius:999px}
+.tbtn.lang b{background:var(--lime);color:#14200a}
+.tbtn.lang span{color:var(--on-graph-2)}
+.tbtn.lang:hover{background:transparent}
+.tbtn.lang:hover span{color:var(--on-graph);background:rgba(255,255,255,.1)}
+@media (max-width:760px){.tbtn.lang{padding:0;width:36px;height:34px;justify-content:center}.tbtn.lang b{display:none}.tbtn.lang span{padding:0;min-width:0;color:var(--on-graph)}}
 :root[data-theme="dark"] .tbtn.lime{color:#14200a}
 @media (max-width:760px){.hide-s{display:none!important}.brand .t small{display:none}}
 
@@ -479,6 +487,7 @@ hr.soft{border:0;border-top:1px dashed var(--line);margin:28px 0}
   .svgwrap.nofit .fig .t-s{font-size:15px}
   #flowSvg{min-width:820px}
   .svgwrap::before, .flowwrap::before{content:"← húzd oldalra a teljes ábráért →";position:sticky;left:0;display:block;width:100%;font-size:.74rem;color:var(--ink-3);text-align:center;padding:4px 0 6px}
+  html[lang^=en] .svgwrap::before, html[lang^=en] .flowwrap::before{content:"← swipe sideways for the full figure →"}
   .fig text{font-size:14px}
   .fig .t-s{font-size:12px}
 }

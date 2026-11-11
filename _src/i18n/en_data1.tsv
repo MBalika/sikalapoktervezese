@@ -1,0 +1,130 @@
+# js/data.js – 1. rész (alaptípusok, kvízek)
+5d3efdc	Built to support walls continuously. It usually projects beyond the wall as a cantilever, because the bearing resistance of the ground is lower than that of the masonry, and a placing allowance of at least 5 cm is needed on each side. It is made of brick, rubble stone, rubble or mass concrete, or reinforced concrete.
+9531e59	Under masonry buildings, for example a family house or a smaller block of flats, on bearing ground, below the frost depth. The simplest and cheapest solution.
+3784a6a	Under columns and posts
+71d6e59	A block footing under the columns; its plan is usually square, B/L = 1–3.5. It is made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom. The connection to the column can be fixed or pinned; a precast column today goes into a pocket neck placed on a cast-in-place block footing.
+cf10bec	Under the concentrated column loads of framed buildings and industrial halls, if differing settlement of the columns causes no problem.
+8e17353	Reinforced concrete block
+7aebcfb	Ground beam under a row of columns
+5d35141	The columns are set on a strip-like reinforced concrete beam, usually heavily reinforced. It is in bending, so it is always reinforced concrete; it gives the structure longitudinal stiffness.
+7f70004	On weaker ground or for structural reasons, if unacceptably large differential settlement would develop between the columns in one direction.
+ca33f33	Intersecting ground beams
+f7f13d8	A set of intersecting reinforced concrete beams: it connects the footings in both directions of the column grid.
+5c598eb	If the differential settlement has to be reduced in both directions.
+78228a3	A slab running under the whole building
+d666aff	A continuous reinforced concrete structure running under the whole building, supporting walls and columns alike. It is relatively thin, so usually flexible. It can be a flat slab, with downstand or upstand ribs, with hidden ribs, or of the mushroom (flat-slab) type against punching.
+24dd23d	If the loads can only be transferred over the full plan area. Under a building with a full basement and high groundwater as an inverted floor, and under buildings of a few storeys also as a ground-bearing slab.
+b74da26	A basement structure acting as a whole
+835db69	The base slab forms a monolithic whole with the basement walls and floor built on it – structurally a box girder. Very stiff.
+76b54f4	Under structures that tolerate only small deformations, most often as the cast-in-place reinforced concrete receiving level of prefabricated panel buildings.
+8e1db56	A slab with a curved surface
+f10736f	A mathematically defined surface of single or double curvature in which only normal forces, i.e. tension and compression, develop, no bending. It saves material but needs a lot of labour and time, and strict geometry. The model shows a conical shell under a cylindrical tower.
+ac60e21	It is no longer used, because it did not prove economical. A curiosity: the Körszálló hotel in Budapest was also built on a shell foundation.
+e03e84c	Quiz – shallow or deep foundation?
+92b7338	When do we call a foundation a shallow foundation?
+db7ec9c	If the bearing stratum is close to the surface (with a basement, close to the superstructure), within about 1–2 m
+128bb3b	If the footing is made of reinforced concrete
+c9ac51c	If the groundwater level is deep
+173c794	If the building has at most three storeys
+a1dac01	A shallow foundation transfers the load directly to the near-surface bearing stratum. The material, the groundwater or the number of storeys does not decide it on its own.
+449ea07	What is the essence of a deep foundation?
+7c2b086	A load-transferring element is inserted between the structure and the deeper bearing ground
+305ac53	The shallow foundation is placed one metre deeper
+5598a41	Piles are always used
+259e970	The weak soil is replaced over its full thickness
+a5306f5	The load-transferring element can be a pile, a diaphragm wall, or a well or caisson foundation. Soil replacement is ground improvement, not a deep foundation.
+e3da6e6	Which situation does NOT justify a deep foundation?
+b798886	Risk of scour at a bridge pier in a river
+b1ab49d	A high groundwater level during construction would make a shallow foundation expensive
+f49e9da	The sandy gravel bearing stratum starts at 1.2 m depth, and the settlements are small
+a4ff430	A strongly inclined load would create a risk of sliding
+b2aa592	A near-surface bearing stratum and small settlement: this is the typical case for a shallow foundation. The other situations listed favour a deep foundation.
+f118f3f	Which statement is true for a deepened shallow foundation?
+d074e87	It is built 3–5 m deep with shallow-foundation technology, and designed as a shallow foundation (the shaft resistance is neglected)
+275c5a7	The upper, enlarged part of a pile
+81b4865	A basement level surrounded by diaphragm walls
+d5e7331	In construction terms it is built in the same way as an ordinary shallow foundation, and its bearing resistance is also calculated with the assumptions used for shallow foundations.
+3eb33d2	The near-surface layer is weak, but there is nothing better deeper down either, and the loads are moderate. What could be considered?
+07d1e3a	A raft foundation: the weight of the building is spread over a large area
+1c0166e	Only a pile foundation
+6b64561	Smaller pad foundations at closer spacing
+71de8cd	It is not possible to build
+ae494c8	Exactly this situation: if there is no better layer deeper down either, the load must be spread over a large area.
+df65a69	What is a piled raft?
+f001da4	A mixed (hybrid) system in which the raft and the piles transfer the load together
+1acd1ea	A raft with temporary piles underneath for the construction period
+c9f7e92	A pile foundation whose pile cap is slab-shaped
+b714df2	Two separate foundations side by side
+409eb19	For example, the MOL Campus (2.2 m thick raft, 135 piles) and the Burj Khalifa (3.7 m thick raft, 192 piles) stand on one.
+57d5796	Quiz – types of shallow foundation
+4d253a5	Why does a strip footing usually project beyond the wall as a cantilever?
+a7b1bc2	Because the bearing resistance of the ground is lower than that of the masonry, and a placing allowance of at least 5 cm is also needed on each side
+cbaf953	So that the wall does not settle at all
+0367d80	Because it needs less material
+ed59e60	Only for aesthetic reasons
+31074f0	The widening reduces the contact pressure, and the 5 cm on each side covers the inaccuracy of the earthworks.
+4fa23e3	How should the steps of a brick strip footing be formed?
+1822781	In height by one course of bricks, horizontally by whole multiples of half a brick
+1922cd4	Freely, with a sloping 45° surface
+f696351	Horizontally by multiples of the brick length
+ed90d14	Without steps, always as wide as the wall
+d6a22d1	This way the bricks can be laid in bond without cutting, and the steps also serve load distribution.
+ce229d3	When is a reinforced concrete strip footing advantageous?
+dcc9384	If a large bearing area is needed but the depth of the footing is limited (groundwater, basement, etc.)
+7eabcaf	If the ground is very good
+9da72d2	If the wall is thin
+a177168	If the frost depth is large
+32f3148	The wider an unreinforced footing, the deeper it has to be; a reinforced concrete footing spans the projection with a smaller depth.
+67f5c0b	What is typical of the plan of a pad foundation?
+4717b38	Usually square, or B/L = 1–3.5
+5d93c3e	Always circular
+61c4a79	Always elongated, B/L > 5
+35b889a	The same as the cross-section of the column
+cdd0e8b	The plan follows the cross-section of the column, most often square.
+bfb3061	What is the difference between a continuous beam and a beam-grid foundation?
+04efb69	The continuous beam reduces differential settlement in one direction, the beam grid in both directions
+ada402a	The continuous beam is reinforced concrete, the beam grid is plain concrete
+033480f	A beam grid is built only under walls
+4ecf627	There is no difference
+676cad8	A beam grid consists of intersecting ground beams.
+ad5daf1	What is a raft with hidden ribs?
+a70e558	One where only additional reinforcement remains where the ribs would be, and the thickness equals that of the ribs
+792b055	One whose ribs are sunk into the ground
+f999b30	One covered from above by a floor finish
+259c61f	One with a drainage layer underneath
+1916a3c	The rib is “hidden”: it is present in the reinforcement of the slab.
+e7e7ec9	Why were box foundations used under prefabricated panel buildings?
+e80bdda	Because a building made of prefabricated elements can tolerate only small deformations without damage
+6652016	Because it is cheaper than a strip foundation
+4b13891	Because the groundwater is always high under panel buildings
+5dd867d	Because the panels cannot be fixed to anything else
+7df65b0	The cast-in-place receiving level acts as a box girder and makes the foundation stiff.
+0c306c7	Quiz – the design process
+cfd4e6d	What must be checked first, before starting to design the foundations?
+6a6184d	Whether an adequate ground investigation report is available
+f3fcd33	How much concrete to order
+e37904d	What colour the plinth should be
+0d80f36	Who the contractor will be
+2087ca5	Without an adequate ground investigation report, the foundations cannot be designed safely.
+04a4fae	What comes directly after setting the foundation level in the flowchart?
+b453425	Sizing the foundation area in the ultimate limit state
+5f64852	Determining the reinforcement
+3647416	Checking sliding
+b0a2064	Designing a deep foundation
+c7517bd	Knowing the foundation level, we determine the required width of the footings (for a raft it is given anyway).
+98d8651	What should be done if the calculated settlements are not acceptable?
+55d5d49	Something has to change, and we go back to the start of the design; if necessary, we move to a deep foundation
+10db5ad	Increase the concrete grade
+9e4364b	Leave out the settlement check
+3dc63c5	Leave the settlement to the contractor
+10651f0	The type, the foundation level, the footing size – or the whole type of foundation – can be changed.
+e4896f4	Which is the last step of the process?
+b46ea82	Structural design: choosing the concrete grade and the reinforcement
+b83f1dc	Setting the foundation level
+78dc337	The settlement calculation
+f6e23e6	Choosing the foundation type
+e8b512c	Before that, the stability of position and the safety against uplift also have to be checked (where relevant).
+a263216	Which one does NOT belong to the “surroundings” group of factors?
+2255183	The depth of the groundwater
+af5cf7f	An adjoining neighbouring building (infill plot)
+2f47988	Trees on the site that must be protected

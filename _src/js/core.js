@@ -1,5 +1,7 @@
 /* ===== Síkalapok tervezése – közös motor ===== */
 'use strict';
+// angol változat (en.html, <html lang="en-GB">): tizedespont, angol tördelési szabályok, en-gb elválasztás
+const EN = (document.documentElement.lang || '').toLowerCase().startsWith('en');
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -7,7 +9,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const smooth = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
 function fmt(v, d = 2) {
   if (!isFinite(v)) return '–';
-  const s = Math.abs(v).toFixed(d).replace('.', ',');
+  const s = Math.abs(v).toFixed(d).replace('.', EN ? '.' : ',');
   return (v < -1e-9 ? '−' : '') + s;
 }
 function cssv(name, el = document.documentElement) {
@@ -67,6 +69,21 @@ function store(k, v) { try { if (v === undefined) return localStorage.getItem(k)
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { label(); window.dispatchEvent(new Event('themechange')); });
 })();
 
+/* ---------- Nyelvváltó (HU | EN): a választás megmarad, a másik nyelvű oldal ugyanott nyílik meg ---------- */
+(function langSwitch() {
+  const sw = document.getElementById('langSw'), KEY = 'alap-pos'; const hh = () => { const m = document.querySelector('.metro'); return m ? m.offsetHeight : 0; };   // a ragadós metróvonal alatti első sor
+  if (sw) sw.addEventListener('click', () => {
+    try { localStorage.setItem('alap-lang', EN ? 'hu' : 'en'); } catch (e) {}
+    const H0 = hh(); let best = null; document.querySelectorAll('main [id]').forEach(n => { if (n.closest('svg')) return; const r = n.getBoundingClientRect(); if (r.height && r.top <= H0 + 1 && r.bottom > H0) best = n; });
+    try { sessionStorage.setItem(KEY, JSON.stringify({ id: best ? best.id : '', off: best ? H0 - best.getBoundingClientRect().top : 0, y: scrollY, t: Date.now() })); } catch (e) {}
+    sw.setAttribute('href', (EN ? './' : 'en') + (best ? '#' + best.id : ''));
+  });
+  let p = null; try { p = JSON.parse(sessionStorage.getItem(KEY) || 'null'); sessionStorage.removeItem(KEY); } catch (e) {}
+  if (p && Date.now() - p.t < 20000) { if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const go = () => { const n = p.id && document.getElementById(p.id); const y = n ? n.getBoundingClientRect().top + scrollY - hh() + p.off : p.y; scrollTo({ top: Math.max(0, y), behavior: 'instant' }); };
+    requestAnimationFrame(go); addEventListener('load', () => { go(); setTimeout(go, 600); }, { once: true }); }
+})();
+
 /* ---------- Csúszkák kitöltése ---------- */
 function rangeFill(el) {
   const p = (el.value - el.min) / ((el.max - el.min) || 1) * 100;
@@ -86,6 +103,7 @@ const GUARD = (() => {
   const termRx = new RegExp('(' + TERMS.sort((a, b) => b.length - a.length).map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '[ \\u00A0]')).join('|') + ')', 'giu');
   const MULT_SYM = /^(tg|ctg|sin|cos|tan|exp|ln|log)\b/;
   const NUMW = /(^|[\s(\u00A0\u2060„])((?:[Kk]ét|[Hh]árom|[Nn]égy|[Öö]t|[Hh]at|[Hh]ét|[Nn]yolc|[Kk]ilenc|[Tt]íz|[Hh]úsz|[Ss]záz|[Ee]zer|[Ee]lső|[Mm]ásodik|[Hh]armadik|[Nn]egyedik|[Öö]tödik|[Hh]atodik|[Hh]etedik|[Nn]yolcadik|[Kk]ilencedik|[Tt]izedik|[Mm]indkét|[Mm]indhárom|[Nn]éhány|[Ee]gyik|[Kk]ettő|[Hh]armincnyolc|[Nn]egyven|[Hh]etven))(?=\s\S)\s/g;
+  const NUMW_EN = /(^|[\s(\u00A0\u2060“])((?:[Tt]wo|[Tt]hree|[Ff]our|[Ff]ive|[Ss]ix|[Ss]even|[Ee]ight|[Nn]ine|[Tt]en|[Ff]irst|[Ss]econd|[Tt]hird|[Ff]ourth|[Ff]ifth|[Ss]ixth|[Ss]eventh|[Bb]oth|[Ee]ach|[Ff]orty))(?=\s\S)\s/g;
   function textPass(s) {
     if (!/[ \-–·]/.test(s)) return s;
     // ezres tagolás
@@ -109,19 +127,19 @@ const GUARD = (() => {
     // függvénynév + argumentum
     s = s.replace(/\b(tg|ctg|sin|cos|tan|ln|log|exp) /g, '$1' + NB);
     // rövidítések
-    s = s.replace(/(^|[\s(\u00A0])(pl\.|kb\.|ill\.|ún\.|max\.|min\.|ld\.|vö\.|cca\.|átl\.|ill|ún|kb) (?=\S)/g, '$1$2' + NB);
+    s = s.replace(EN ? /(^|[\s(\u00A0])(e\.g\.|i\.e\.|approx\.|cf\.|max\.|min\.|No\.|Fig\.|c\.) (?=\S)/g : /(^|[\s(\u00A0])(pl\.|kb\.|ill\.|ún\.|max\.|min\.|ld\.|vö\.|cca\.|átl\.|ill|ún|kb) (?=\S)/g, '$1$2' + NB);
     // szám + mértékegység / szó; magában álló szám
     s = s.replace(/(^|[\s(\u00A0\u2060~≈≤≥=<>−+])(\d+(?:[,.]\d+)?\.?%?) (?=\S)/g, '$1$2' + NB);
     s = s.replace(/(^|[\s(\u00A0\u2060~≈≤≥=<>−+])(\d+(?:[,.]\d+)?\.?%?) (?=\S)/g, '$1$2' + NB);
     // névelők, rövid kötőszavak
-    for (let i = 0; i < 2; i++) s = s.replace(/(^|[\s(\u00A0\u2060„])(a|az|A|Az|s|e|egy|Egy|és|És) (?=\S)/g, '$1$2' + NB);
+    for (let i = 0; i < 2; i++) s = s.replace(EN ? /(^|[\s(\u00A0\u2060“‘])(a|an|A|An|the|The|&) (?=\S)/g : /(^|[\s(\u00A0\u2060„])(a|az|A|Az|s|e|egy|Egy|és|És) (?=\S)/g, '$1$2' + NB);
     // betűvel írt számnév + amit számlál
-    s = s.replace(NUMW, '$1$2' + NB);
+    s = s.replace(EN ? NUMW_EN : NUMW, '$1$2' + NB);
     // utótagos kötőjel (30°-nál, RFA-n, 1173-ban)
     s = s.replace(/([\d°′″%)\]\p{Lu}\u2080-\u2089])-(\p{Ll}{1,6})(?=$|[\s.,;:!?)”\u00A0\u2060])/gu, '$1' + NBH + '$2');
     return s;
   }
-  const SHORTEND = new RegExp('(^|[\\s( ⁠„])(a|az|A|Az|s|e|egy|Egy|és|És|pl\\.|kb\\.|ill\\.|ún\\.|\\d+(?:[,.]\\d+)?\\.?%?) $');
+  const SHORTEND = EN ? new RegExp('(^|[\\s(\u00A0\u2060“‘])(a|an|A|An|the|The|e\\.g\\.|i\\.e\\.|approx\\.|\\d+(?:[.,]\\d+)?%?) $') : new RegExp('(^|[\\s( ⁠„])(a|az|A|Az|s|e|egy|Egy|és|És|pl\\.|kb\\.|ill\\.|ún\\.|\\d+(?:[,.]\\d+)?\\.?%?) $');
   // csomóponthatáron átnyúló kötés (pl. „Az <b>…”, „b<sub>q</sub> − (…”)
   function crossPass(nodes) { for (let i = 0; i < nodes.length - 1; i++) { const a = nodes[i], b = nodes[i + 1]; const av = a.nodeValue, bv = b.nodeValue; if (!av || !bv) continue;
     if (av.endsWith(' ') && /^\S/.test(bv) && SHORTEND.test(av)) a.nodeValue = av.slice(0, -1) + NB;
@@ -151,7 +169,8 @@ const GUARD = (() => {
     while ((m = pr.exec(full))) { if (m[0].length <= parMax) mark(m.index, m.index + m[0].length); }
     // szakkifejezések
     termRx.lastIndex = 0;
-    while ((m = termRx.exec(full))) mark(m.index, m.index + m[0].length);
+    // csak akkor köt, ha a kifejezés elfér fél sorban (nagy betűs címben, keskeny hasábban nem lóghat ki)
+    while ((m = termRx.exec(full))) if (m[0].length <= (EN ? 0.3 : 0.5) * cpl) mark(m.index, m.index + m[0].length);
     // címke: érték
     const lv = /(\p{L}[\p{L}\p{N}′_]{1,22}): ([\d−+±≤≥=<>~≈α-ωΑ-Ω]\S{0,9}(?:[ \u00A0][^\s;·]{1,7})?)(?=$|[;,.·)\s])/gu;
     while ((m = lv.exec(full))) { if (m[0].length <= 34) mark(m.index, m.index + m[0].length); }
@@ -257,8 +276,9 @@ const GUARD = (() => {
     observe();
     // Hyphenopoly
     const H = window.Hyphenopoly;
-    if (H && H.hyphenators && H.hyphenators.hu) {
-      H.hyphenators.hu.then(fn => { hyph = s => fn(s); const all = $$(HYPH); all.forEach(e => done.delete(e)); run(); window.__fmtHyphReady = true; if (typeof RAG !== "undefined") RAG.later(80); }).catch(() => {});
+    const HK = EN ? 'en-gb' : 'hu';
+    if (H && H.hyphenators && H.hyphenators[HK]) {
+      H.hyphenators[HK].then(fn => { hyph = s => fn(s); const all = $$(HYPH); all.forEach(e => done.delete(e)); run(); window.__fmtHyphReady = true; if (typeof RAG !== "undefined") RAG.later(80); }).catch(() => {});
     }
   }
   // vászonra szánt szöveg őrzése

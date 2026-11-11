@@ -1,0 +1,126 @@
+# js/data.js – 2. rész (kvízek, igaz/hamis eleje)
+549d577	Access to the site, storage of materials
+3b87cd6	The groundwater belongs to the “ground and groundwater conditions” group.
+08f564b	Quiz – setting the foundation level
+05dd9b7	In Hungarian practice, which factor sets a lower limit on the depth of the foundation level that applies to every site?
+eb81750	The bottom of the topsoil layer
+bf3dd15	The groundwater level
+deddcc5	A uniform 1.0 m
+f3416fd	The frost depth is always a lower limit. The groundwater level is rather an upper limit (we found above it if possible), and the bottom of the topsoil varies from site to site and is usually shallower.
+5035d8f	What is the frost depth in cohesive soil at 300 m above sea level?
+2773f6e	In cohesive soil it is 0.8 m below 500 m above sea level, and 1.0 m above that.
+1884125	Granular soil, 110 m above sea level, winter groundwater 3 m below the foundation level. What can the frost depth be?
+d2b15dd	It can be reduced to 0.5 m
+fb036fb	0.8 m, it cannot be reduced
+bf2f60a	Below 500 m above sea level, if the winter groundwater comes no closer than 2.0 m to the foundation level, the frost depth of granular soil can be reduced to 0.5 m.
+1265287	What soil cover is needed for parts of a building not exposed to frost (e.g. in a basement)?
+4a366bd	At least 0.4 m – this is met anyway because of the 50 cm footing depth
+850a4d3	At least 0.8 m
+000f1c8	No cover is needed
+1e54aaa	At least 1.5 m
+aeba427	There is no frost risk in the basement, but a minimum cover is needed here too.
+e39f0b4	In a building with a partial basement, what is the rule for the footing that stays higher?
+6639b20	The natural slope line drawn from its inner edge must not cut the basement wall above the basement floor level
+466c973	It must be exactly at the frost depth
+f3ff0c4	Its foundation level must be the same as the basement floor
+45b55bd	It must be at least 2 m from the basement wall
+c216910	Otherwise the load of the shallow footing would act on the basement wall, and during excavation the ground could run out from under it.
+0a04c77	In stepped deepening, how steep can the line joining the corners be at most?
+7acd832	Any steepness, if the step is under 50 cm
+fed96f2	The line joining the corresponding corners of the footings should not be steeper than 30°.
+aab5816	Because of the deeper floor of the new building, its foundation level goes below the neighbour’s old house. What has to be done?
+2a189ef	The old one has to be underpinned with concrete or strengthened with jet grouting
+3e1caa7	Nothing, because the new footing is deeper
+acef169	The new footing has to be raised above the old one
+03c8333	The old building has to be demolished
+eead811	Otherwise the ground could run out from under the old footing when the excavation is dug.
+f1bb838	Quiz – limit states and design methods
+188a43d	What does the GEO limit state mean?
+3c71f68	Failure or excessive deformation of the ground; the resistance is governed by the strength of the ground
+f80beca	Internal failure of structural elements
+a3f787a	A change of position as a rigid body
+cffc4d6	Loss of equilibrium due to uplift
+f2df347	This is the limit state of bearing failure, punching and squeezing of the ground beneath the foundation.
+60c3939	Which two limit states are checked most often for shallow foundations?
+6bb469c	GEO and STR
+2de7fd4	EQU and UPL
+f95c469	UPL and HYD
+d29a450	Bearing failure of the ground (GEO) and the structural adequacy of the footing (STR).
+73888c4	Which one is a serviceability limit state?
+c052303	Unacceptable vibration
+1abeed5	Bearing failure beneath the foundation
+42b13fd	Punching through the footing
+3280f72	Uplift
+b793418	The SLSs: excessive settlement and differential settlement, unacceptable vibration, excessive heave.
+6f09322	When is there a risk of uplift (UPL)?
+dd064eb	For lighter structures reaching well below the groundwater level (pool, underpass, underground car park)
+636080d	For heavy structures above the groundwater
+d0548c7	On sloping ground
+99a7943	For foundations on rock
+6b8965b	It is often critical only during construction, when the structure is still light.
+973a1ba	When is the prescriptive method typically used?
+d4b6e0d	For foundations on rock, with a presumed bearing resistance
+75a9a2e	For a tower block on soft clay
+0a4d161	Always, if there is no ground investigation
+d33b0e5	For checking uplift
+7c2583a	An allowable contact pressure taken from the type, discontinuities and uniaxial compressive strength of the rock (Annex G).
+508a8c3	What replaces the design approaches DA1/DA2/DA3 in the 2nd-generation EC7?
+7eecdbf	The verification cases (VC1–VC4), with the material factor (MFA) or resistance factor (RFA) approach
+e019658	A single global factor of safety
+2b9eba4	The allowable stress method
+c851028	The types of limit state (GEO, STR, EQU, UPL, HYD) remain; it is the verification procedure that changes.
+92fa05f	According to the matrix, which category does a CC3 structure with normal geotechnical complexity (GCC2) fall into?
+acebabb	It cannot be classified
+22ede21	High consequence and normal complexity: GC3. The table is a nationally determined parameter.
+5bd836b	Quiz – the mechanism of bearing failure
+359b239	In which stage is the settlement proportional to the load?
+7c3db2b	I – elastic range
+801ac9f	II – transitional range
+44fbf25	III – plastic range
+8de90ae	In this stage, under constant load the settlement even stops (ds/dt = 0).
+e5193e4	What characterises general shear failure?
+9410029	A slip surface running out to the surface, heave and a distinct peak on the load–settlement curve
+a49cbc1	A depression of the ground surface without a slip surface
+f58b16d	Only plastic zones under the edges of the footing
+4485449	Creep at constant rate
+849d863	This is typical in dense granular soil with a shallow foundation, on one side of the footing.
+ae253a5	A shallow strip footing on sand with a density index I<sub>D</sub> = 0.5. Which failure is to be expected?
+08d4f70	General shear
+9793585	Local shear
+6d5b178	If 0.35 < I<sub>D</sub> < 0.70, local shear failure is to be expected.
+1d08e56	What failure typically develops under large reinforced concrete rafts?
+e20dcc2	Local shear failure under the edges
+87f8f30	Deep general shear failure running out to the surface
+005e514	Squeezing out in the middle of the raft
+091d51c	A deep slip surface cannot form, because the structure is destroyed first by settlements of decimetres.
+f41efa0	What characterises punching shear failure?
+66a1ad2	At most a depression of the ground surface; there is no slip surface in the usual sense
+e33f10a	Strong heave on both sides of the foundation
+0295436	A sudden peak of the curve at small settlement
+281852d	Rotation of the foundation
+30c696e	It occurs in loose granular and soft cohesive soils; this is also how piles are pushed into the ground.
+c018de8	In the same sand we place the foundation deeper (D/B* increases). Which way does the behaviour shift?
+ab839d9	Towards punching
+b2b81b2	Towards general shear failure
+ec6ad6f	It does not change
+9c59722	Towards uplift
+8962056	On Vesić’s chart, a larger relative depth needs ever higher density for general shear failure.
+0b19fef	At what relative settlement is the peak in general shear failure?
+0f46d8f	In local shear failure it is 0.07–0.15B, in punching 0.15–0.20B.
+1689ba7	The bearing stratum of a shallow foundation is typically within 1–2 m of the surface.
+df6ac99	For a building with a basement, close to the superstructure.
+ece10cc	For the bearing resistance of a deepened shallow foundation, the shaft resistance is also taken into account.
+1afdf23	We use the assumptions made for shallow foundations, i.e. the shaft resistance is neglected.
+2e9edea	A piled raft is a mixed (hybrid) foundation system.
+ba7ede3	It combines the techniques of shallow and deep foundations.
+6a51d41	If the near-surface layer is weak but there is nothing better deeper down either, a raft foundation may also be considered.
+f4f0c37	The weight of the building has to be spread over a large area.
+24ff05e	At bridge piers in a river, the risk of scour argues for a deep foundation.
+38c572c	Water can scour and undermine the ground beneath a shallow foundation.
+4ad1b2b	The steps of a brick strip footing are formed horizontally by whole multiples of the brick length.
+674a750	By whole multiples of half a brick.
+2288466	For practical reasons, the width and depth of a strip footing are at least 50 cm.
+2b3c919	A rule of thumb, for reasons of construction.
+eae5d1a	In a rubble-concrete strip footing, the stones are distributed evenly over the full depth of the footing.
+447089f	The rubble stone can be used in a band of about half the depth of the footing.
+a2fd766	Mass-concrete strip footings are typically built with formwork today.

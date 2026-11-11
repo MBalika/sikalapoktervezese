@@ -1,0 +1,72 @@
+# js/core.js
+89270c7	Light
+d638893	Light theme
+b4d65b8	Dark
+14c4de7	favourable variable
+88dc92e	permanent action
+04a3c4a	critical state angle of shearing resistance
+baaff0e	undrained shear strength
+0422a19	angle of shearing resistance
+6bb5a7f	effective width
+89993b5	passive earth resistance
+3c95f6c	design value
+104f197	characteristic value
+42bda25	partial factor
+cebb3a4	overall stability
+c236828	general shear failure
+e0e8018	local shear failure
+b38cd9d	bearing stratum
+d0a27e5	foundation level
+9b37315	density index
+423a9da	winter groundwater level
+7b32e20	collapsible soil
+9c59a39	active wedge
+6c004c8	passive wedge
+df41d27	plastic zone
+88256f8	ground-bearing raft
+9a690d6	deepened shallow foundation
+c8fe5d3	mixed foundation
+ede7beb	variable action
+4f1ac03	organic soil
+20d0cd4	=
+1716a7e	Close (Esc)
+b571c6c	Video
+f21e392	External YouTube video (privacy-enhanced embed).
+cb8fba8	01 Shallow or deep foundation?
+9e5f64c	02 Foundation types
+0d0bab9	02 Which foundation type? (game)
+2294b5d	03 The design process
+ce44f08	04 The foundation level
+a93cb04	04 Foundation-level detective
+0629114	05 Limit states
+eeac26e	05 Which limit state? (game)
+0e3426c	06 Bearing failure
+9aef1b9	07 True or false?
+d38b4fe	not yet
+e0e3d60	Quiz
+6ac278e	Not quite.
+28e5231	Correct!
+9698ebe	Result: ${ok} / ${cfg.items.length}.
+015daff	Start again
+520828c	Good decision!
+8ac4f2a	Not the best choice.
+269731d	Result
+6c36844	Next case →
+e599a35	Flawless! You decided correctly in every case.
+6ada5d2	Nice result! Look again at the cases you got wrong.
+c8ada00	It is worth going through the cases again.
+d65a779	Again
+a2e2385	Statement ${i + 1} / ${items.length} · ${ok} correct so far
+22a5581	<b>${r ? 'Helyes' : 'Tévedés'} – the statement is ${it.a ? 'igaz' : 'hamis'}.</b> ${it.e}
+551597f	Correct
+f152fb9	Wrong
+9ef2cee	true
+4670909	false
+3951bcb	Next →
+bc4bd30	${ok} / ${items.length} correct answers (${Math.round(ok / items.length * 100)} %)
+d5901ec	Excellent – you have the basics of designing shallow foundations at your fingertips.
+77473e3	Good result; it is worth rereading the explanations of the statements you got wrong.
+86b2fe3	Go through the chapters again, then try once more!
+dec1fec	Start again in shuffled order
+2306d01	True
+e7676db	False

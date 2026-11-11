@@ -1,0 +1,178 @@
+# js/w_ch3.js
+29d8642	dimensions, structure, stiffness, sensitivity to settlement, use
+8056913	Loading
+a5f5f39	the magnitude and position of the loads
+ab19a5d	Ground and groundwater
+6d7bda0	unfavourable layers, construction and design water levels
+09c4bbd	Surroundings
+839c608	neighbours, infill plot, access, storage of materials, restrictions
+84c9393	Construction time
+6b286bb	season, weather, time available
+f53cc23	Adjoining neighbour: 4-storey building with a basement
+220969f	Infill plot: the new foundation must not be above the neighbour’s foundation level, and the excavation must not endanger the existing building – excavation support may even be needed.
+b3e3c31	Old neighbour without a basement, with unknown foundations
+2a369f1	If the new basement is deeper, the old house’s foundation has to be underpinned with concrete or strengthened with jet grouting. Its foundations have to be explored by investigation.
+0d9ef3a	Protected tree at the back of the site
+51dd1cc	Restriction: no deep excavation in the root zone of the tree; the excavation and the position of the machines have to be adapted to this.
+bf2b716	Narrow, busy street, no space for storing materials
+8c7dd1b	Access to the site and how densely it is built up also affect the method: where does the concrete pump stand, where are the reinforcement and formwork stored?
+091bb7f	Borehole: 2.4 m of made ground
+b2a55db	Unfavourable layer: we do not found on made ground. We have to go below it to the bearing stratum, or ground improvement or another foundation type is needed.
+96b1506	Groundwater well: water at −2.1 m, the design level is higher
+adb6b4c	The groundwater is at basement level: dewatering, a watertight slab (inverted floor) and an uplift check all come into play.
+0293bda	Planned building: 6 storeys + underground car park, column frame
+1bb83c1	The size, structure and stiffness of the building decide what differential settlement it can take – a column frame can be more sensitive than a stiff wall structure.
+9e51482	A medical practice with sensitive equipment on the ground floor
+3534727	The use also matters: equipment sensitive to vibration or settlement means stricter serviceability requirements.
+9c2f8c7	Larger column loads on the street side (tower part)
+3fc0aee	Uneven load distribution causes differential settlement: larger loads need larger or stiffer foundations.
+fcc4889	Programme: the foundations fall in January, with a tight deadline
+2cbf8a3	Concreting in frost is possible only with protection; often the more expensive but faster solution wins.
+e0496c4	old house, 1910
+2e72c54	planned building
+c2418a4	Structure,
+f40541b	ground and groundwater,
+45868f8	surroundings, site
+0dd4d72	The structure’s
+a186bbf	sensitivity to settlement
+939b0f2	Calculating stresses
+a8bf600	in the ground
+71ef932	Shallow foundation possible?
+1d18437	(see later)
+5ea7415	Setting the foundation level
+b82fbe5	→ station 4
+2cb93fc	Sizing the foundation area
+67ae753	(bearing resistance)
+36a958d	→ bearing ↗
+5adb013	Settlement, differential settlement,
+65c082b	tilt calculation
+8df5e8f	→ settlement ↗
+5d800c3	Are the displacements
+26d84fb	acceptable?
+d617146	→ remedies ↗
+a685a96	Depth design
+447791a	Does the footing fit?
+c10e94a	Sliding, overturning,
+07b68cd	undermining checks
+26cbfd7	→ stability ↗
+3866801	Structural design
+aed723e	(concrete, reinforcement)
+221ed84	We have all the data: drawings, loads, ground investigation report.
+e673340	The structure, the ground and groundwater conditions, the surroundings and the site – from these we judge whether a shallow foundation can be considered.
+a86265f	The magnitude and position of the loads: the input for sizing the foundation area and for the stress calculation.
+62e55f3	The structure’s sensitivity to settlement gives the acceptable displacements – the calculated settlements are compared with these.
+8b70e49	First step: can some shallow foundation system be used? If it is clear at the very start that it cannot, we move straight on to deep foundations.
+58752b0	Deep foundations: a load-transferring element down to the deeper bearing stratum – later in the course.
+c5f58c6	We choose the type, then set the foundation level according to the frost depth, the bearing stratum, the groundwater, the structure and the surroundings (station 4).
+15d35a0	We size the foundation area in the ultimate limit state: we determine the required width (for a raft it is given anyway), and make a first estimate of the depth too.
+b936e0e	From the chosen dimensions, we calculate the stresses that develop beneath the foundation.
+d28a1dd	From the stresses we calculate the settlements, the differential settlements and the tilt.
+f377f52	The first “check”: are the calculated settlements and differential settlements acceptable for the planned structure?
+a2af133	Depth design: the depth (thickness) of the footing for load spread and strength.
+dcb0cdd	Does the footing fit? If the required size does not fit (site boundary, overlapping footings, neighbour), a new foundation level or another type is needed.
+9dc55c2	Where relevant: checking the stability of position (sliding, overturning) and the safety against uplift and undermining.
+c6d4edf	Finally, the structural design of the foundation system: choosing the concrete grade and the required reinforcement.
+d49b518	Every check is met: the process runs straight through.
+9c39c77	The settlement is too large: we go back – another type (e.g. stiffer, a raft), a deeper foundation level or a larger foundation area. In the second round it is met.
+3339b57	The required footing does not fit (e.g. because of the site boundary or overlapping footings): we set a new foundation level, or switch to a continuous raft.
+d0cee08	It is clear at the very start of the design that a shallow foundation is out of the question: we move straight on to deep foundations.
+89a048f	 <br><b>Summary:</b> ${s.note}
+1670812	❚❚ Pause
+# js/w_ch4.js
+ab39466	foundation on solid rock
+845899f	cohesive soil, above 500 m above sea level
+4a13312	cohesive soil, below 500 m above sea level
+353c1c5	granular soil, below 500 m above sea level, winter groundwater at least 2.0 m below the foundation level
+2dbedc8	granular soil, above 500 m above sea level
+9e60ce8	granular soil; the winter groundwater comes within 2.0 m of the foundation level
+573d0c0	Frost depth – there is no frost risk under the basement; the ≥ 0.4 m cover is met because of the 50 cm footing
+456fa03	frost depth ${fmt(fr.d, 1)} m
+efdf927	Frost depth: ${fr.why}
+9fc9bcd	On bearing ground: below the topsoil and the made ground
+8a68b00	Above the groundwater – no dewatering
+7cbbc21	Below the groundwater: dewatering is needed (expensive)
+d128792	groundwater ${fmt(q.gw, 2)} m
+f2fdb63	Required by the structure: one footing depth below the basement floor
+72c0257	Required by the structure: a footing at least 50 cm deep
+596b0e4	Clay that changes volume: below the desiccation depth
+db62e27	No ground that changes volume
+e99f7a8	The new foundation level must not be above the neighbour’s
+b851d8b	Deeper than the neighbour: the old footing has to be underpinned with concrete or strengthened with jet grouting
+ce0de6b	neighbour ${fmt(q.dsz, 2)} m
+511aa57	Matches the neighbour’s foundation level
+5cbe3fe	No adjoining neighbouring building
+bd5a18a	Status
+68413db	Smallest adequate foundation level
+d03de21	Design frost depth
+831887e	Cost index
+76162dd	=
+7b3b0eb	=
+2bc2cdd	=
+538d58f	=
+95777d4	January
+5fe11f4	February
+5674018	March
+605df3d	April
+4c40b14	frost depth ${fmt(fr, 1)} m
+92538d3	winter groundwater
+12f79d3	ice lenses – frost heave
+56a8dc2	temperature [°C]
+d96fe4b	surface: ${fmt(F.Ts, 1)} °C
+e28144c	<b>Design frost depth: ${fmt(fr.d, 2)} m</b> – ${fr.why}.
+516ed5f	The frost front has gone below the foundation level; ice lenses grow in the cohesive soil and lift the footing. On thawing, soft, water-saturated soil is left where the ice was.
+f7f3b99	In cohesive (frost-susceptible) soil the frost front must stay above the foundation level.
+9f644bd	Clean granular soil is not frost-susceptible: its large pores give no capillary supply of water to the frost front. That is why the frost depth can be reduced if the winter groundwater is deep enough.
+456afcb	In solid rock, frost causes no significant volume change.
+a4c2b0f	❚❚ Stop
+586ceef	basement floor
+8d57636	frost depth
+85d6308	cuts the wall above the basement floor!
+0cef387	OK – the slope line reaches the wall below the basement floor.
+dee5c7e	Not OK – at least −${fmt(need(), 2)} m is needed.
+030224d	The line joining the corners is at most 30°
+e0bf8b9	A single step preferably ≤ 50 cm high
+be45e71	Total length of the stepping
+be18e24	risk of sliding on the inclined plane
+2bcbe63	Never design an inclined foundation level – step it
+3929dcc	wrong
+bc64287	${nSteps} steps, each ${fmt(st.h * 100, 0)} cm × ${fmt(run, 2)} m
+1b128fd	A single step should be no higher than 50 cm
+481e26a	The line joining the corners of the steps ≤ 30°
+0ef9323	ground slope: ${fmt(st.beta, 1)}° (${fmt(tb * 100, 0)} %)
+fe7969a	Wrong: the new footing is above the foundation level of the old building. Its load spreads towards the old footing and loads the old wall from the side and from above; the old building may settle and crack. The new footing has to be taken down at least to the old foundation level.
+4997bb3	Correct: the foundation level of the new building is the same as the old one. This is the simplest if the levels allow it.
+33e1787	If the deeper floor of the new building puts its foundation level below the old one, the old footing has to be underpinned with concrete. This is a delicate operation: it is done in short sections that do not touch each other (1–3–5, then 2–4–6), so that the old wall is always supported.
+937730b	Alternative: soil-concrete columns are formed under the old footing with jet grouting, taking its load down below the new foundation level – after that the excavation can be dug safely.
+37770df	(old)
+ca68df3	underpinning
+7fc877c	sections in plan:
+d37db90	(new)
+d88a71a	it also loads the old footing
+32c6a36	old foundation level −${fmt(dOld, 1)} m
+1ee5889	new foundation level −${fmt(dNew, 1)} m
+14299d5	Wrong
+432bad1	Correct, but a delicate operation
+e948e85	On a sloping site, the underside of the strip footing was formed inclined, parallel to the slope of the ground.
+6f08947	Never design an inclined foundation level: on sloping ground the foundation level must always be stepped because of the risk of sliding.
+115a090	inclined foundation level
+fbb363c	A stepped foundation level on sloping ground, with steps 65 cm high.
+6bf89b7	On sloping ground, a single step should be no higher than 50 cm.
+3c43336	step: 65 cm
+60b231f	There is a 1.0 m difference in level between two adjacent perpendicular footings; the line joining the corners is at 25°.
+07143fc	It stays within the 30° limit, so the stepped deepening is acceptable.
+664ddeb	A new house without a basement is built next to an old building with a basement; the new foundation level is −0.8 m, the old one −2.9 m. The new footing is right next to the old basement wall.
+99e8d41	The foundation level of the new building must not be above the old one – the load of the new footing would act on the old basement wall. It has to be deepened (or the load kept away from the wall).
+b6cc4ac	new
+78b0ef8	old, with basement
+02545de	Building with a partial basement: the natural slope line drawn from the inner edge of the higher footing reaches the basement wall below the basement floor.
+e2a1d85	The rule is met: the load of the shallower footing does not act on the basement wall.
+277c79a	Budapest (about 105 m above sea level), cohesive clay, house without a basement; the foundation level is at −0.60 m.
+63e390f	In cohesive soil below 500 m above sea level the frost depth is 0.8 m, so it has to be deepened to at least −0.80 m.
+0095df6	frost depth 0.8 m
+ff4a5c9	A footing founded on solid, intact limestone, foundation level −0.50 m.
+8e370a9	For a footing on solid rock the frost depth is 0.5 m – OK.
+bd3a745	solid rock
+19f4cee	Granular sandy gravel at 120 m above sea level; the winter groundwater is 3 m below the foundation level. The foundation level is −0.55 m.
+29789df	In granular soil below 500 m above sea level, the frost depth can be reduced to 0.5 m if the winter groundwater stays at least 2.0 m below the foundation level – OK.
+846dc1a	winter groundwater ≥ 2 m lower
+0fda744	Foundation-level detective – OK or not?

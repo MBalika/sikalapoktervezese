@@ -1,0 +1,146 @@
+# js/w_ch5.js
+63f9a26	a) Overturning (stability of position)
+0be9965	toppling about the edge of the footing
+39d7da7	b) Bearing failure, punching, squeezing
+83d2b6b	slip surface in the ground
+9ef685e	c) Sliding along the foundation level
+5257169	displacement along the base
+d1156bc	d) Failure of the footing
+a191e3f	the footing breaks
+66a4284	e) Combined failure of structure and ground
+4761f32	fracture and squeezing of soil
+7f9cec8	f) Uplift
+e6e869b	empty pool, high groundwater
+66b00ea	Excessive settlement
+15f6522	Differential settlement
+1a809c7	distorting frame
+ddc7b29	Unacceptable vibration
+f739a19	pile driving next door
+f6650ce	Excessive heave
+3416cd1	swelling clay lifts the floor
+8f5d0b4	No visible effect
+5130dd2	The movement is so small that it causes no damage at all.
+116af6c	Cosmetic “nuisance”
+27fb594	Even at smaller movements: tilt of the structure, sagging of the floor slab, distorted finishes. It reduces the value of the building and alarms lay people.
+c5ae74d	Serviceability is restricted
+2fb76bb	Small cracks in the walls, jammed doors and windows, sloping floors, problems with connections to pavements and neighbouring buildings.
+4b03dda	The superstructure is damaged
+98ecb22	At even larger movements the superstructure can be seriously damaged or fail: fracture can develop. This is already the ultimate (STR) limit state of the superstructure.
+876e4e7	fracture!
+fa4a785	angular distortion β ≈ ${v ? '1/' + Math.round(1 / Math.max(1e-6, e / 70)) : '0'}
+60fd909	GEO – bearing failure
+61cea73	EQU – stability of position
+b92554b	UPL – uplift
+bc1871a	SLS – serviceability
+7690520	Which limit state? – nine cases
+760cf3c	After a spring flood, the empty swimming pool rises out of the ground.
+7f3893b	The buoyancy became larger than the weight of the light, empty structure: uplift.
+e6ed2ca	In a storm, the pad foundation of an advertising board tips over about its edge.
+50cb028	A change of position as a rigid body, in which the strengths play no part: EQU.
+3163dfa	On first filling of the silo, a deep slip surface develops beneath the base slab; the silo tilts, and the ground heaves beside it.
+916939e	Bearing failure beneath the foundation: GEO – as at Transcona in 1913.
+d3abe75	The column punches through a pad foundation that is too thin.
+9ef84bf	The footing failed as a structural element (punching): STR.
+260291e	One corner of the house settles 3 cm more: doors and windows jam, the plaster cracks.
+e159ed8	Differential settlement impairs serviceability: a serviceability limit state.
+e929a7d	Piles are being driven on the neighbouring site, and the vibration disturbs the use of the house.
+d1f838f	Unacceptable vibration is a serviceability limit state.
+72eef49	In a wet autumn, swelling clay lifts the basement floor.
+87446d7	Excessive heave due to swelling, frost or other causes is a serviceability limit state.
+286c05e	Under earth pressure, the base of the retaining wall moves along the foundation level.
+ce73c67	Sliding along the foundation level is GEO: the resistance comes from the shear strength of the ground (the friction on the base).
+f8186f7	The cantilever of the footing breaks off, and the piece rotates out together with the soil.
+d64ea55	Combined failure of the structure and the ground is of STR type.
+877a65e	Direct
+9cc6212	Indirect
+b439f9c	Prescriptive
+c43268a	Strip footing on sand: you verify bearing failure with an ultimate-pressure formula and serviceability with a settlement calculation.
+3f43d60	A separate calculation model for each limit state: the direct method.
+f3eac1e	A small family house: you estimate the bearing resistance from the cone resistance of a CPT with an empirical formula.
+188ca8f	Comparable experience and field measurement: the indirect method – in Geotechnical Category 1 and partly 2.
+6d33068	Bridge abutment founded on intact granite: you take an allowable contact pressure from the type, discontinuities and uniaxial compressive strength of the rock.
+f1e9d13	Presumed bearing resistance on rock: the prescriptive method (Annex G).
+43195fa	A finite element model of a raft, in which you study the load–settlement relationship right up to failure.
+5c03bd1	Numerical design is also part of the direct method (in the new EC7: design by calculation).
+baf85e0	High consequence: failure endangering many lives or causing great economic or social loss (e.g. stadium, hospital, tall public building).
+85d8fca	Normal consequence: ordinary residential and office buildings.
+43b2c57	Low consequence: e.g. agricultural building, warehouse, where people are rarely present.
+f037ec4	Lower complexity: negligible uncertainty, uniform ground conditions, proven technique, isolated shallow foundations, simple soil–structure interaction.
+9c58f8a	Normal complexity: everything that does not belong to the lower or higher class.
+c632397	Higher complexity: significant uncertainty, difficult ground conditions or geology, significant sensitivity to groundwater, complex soil–structure interaction.
+c53558d	Simple verification, also based on experience, is possible; minimal investigation, ordinary checking.
+261cb35	Ordinary investigation and verification by calculation, regular checking during construction.
+2697804	Extensive investigation, detailed analysis, stricter (even independent) design checking, increased supervision and monitoring.
+97cde1c	GCC2 normal
+56a58c5	<div class="verdict">${cc} + ${gcc} → <b>${gc}</b></div><p class="small just"><b>${cc}:</b> ${CC[cc]}</p><p class="small just"><b>${gcc}:</b> ${GCC[gcc]}</p><p class="small just"><b>${gc} typically:</b> ${GC[gc]}</p>
+de532d6	<p class="small just">The consequence class (row) and the geotechnical complexity class (column) together give the category. Click a cell for an explanation!</p>
+4ae84e1	settlement, differential settlement
+3d524e6	bearing failure
+be7c677	uplift
+5a97c8d	structural adequacy
+f9a1089	For a light structure below the water, uplift is often the governing case – especially during construction, when the weight of the backfill and the superstructure is still missing.
+32322b2	The water pressure loads the slab from below: it has to be designed for bending and shear, and it also has to be watertight.
+7c407fe	Bearing failure is rarely critical for a light structure, but it has to be checked for construction stages with large point loads.
+715adb6	The settlement may be small, but the heave due to unloading and the displacement relative to the connecting structures matter.
+473e343	Use the arrows to put the limit states in the order you would check them! Then look at the comments.
+ca83dd9	Done – show the comments
+5e65086	<b>Your order: ${items.map(x => x[0]).join(' → ')}.</b> One possible line of thought: <b>UPL → STR → GEO → SLS</b>.
+bdb9bd3	<br>The order depends on the design situation – what matters is that no limit state is left out.
+# js/w_ch6.js
+2abe196	punching (penetration)
+341af4e	I. elastic range
+0df7547	II. transitional range
+43883e7	III. plastic range – failure
+d3c43dd	<span>Expected: <b style="font-family:var(--f-body)">${NAME[M.m]}</b></span>
+ea11cf9	 From the ground alone, ${NAME[M.auto.m]} would follow.
+c10f096	load / ultimate load →
+38664c4	↓ settlement s/B
+982355b	general
+f8210f0	punching
+ad9ef16	density index →
+7ad16c8	large raft: local failure under the edges
+e146dd9	cohesive soil: the consistency decides
+f0151ef	time →
+e24ec89	↓ settlement
+068306d	II. σ₂: ds/dt = const.
+4756706	<span><i style="background:rgba(134,181,28,.6)"></i>active wedge</span><span><i style="background:rgba(230,140,40,.6)"></i>radial zone</span><span><i style="background:rgba(214,72,140,.5)"></i>passive wedge</span><span><i style="background:rgba(200,110,20,.5)"></i>plastic zone</span><span><i style="background:#d23f2a"></i>slip surface</span>
+# js/w_ch7.js
+00d8652	No results.
+# js/toro_geo.js
+7649810	Large raft on loose or soft ground: depression of the ground surface, punching.
+eb68190	Under a large reinforced concrete raft a deep slip surface cannot form – settlements of decimetres destroy the structure first – so local shear failure is to be expected under the edges.
+41faf95	hard, stiff cohesive soil
+d8e77da	medium-stiff cohesive soil
+a961d47	soft cohesive soil
+96d8f55	I<sub>c</sub> = ${fmt(p.ic, 2)}: ${nm} (illustrative classification).
+4c88fc9	I<sub>D</sub> = ${fmt(p.tre, 2)} and D/B* = ${fmt(dBs, 2)}: dense granular soil, shallow foundation.
+098114e	I<sub>D</sub> = ${fmt(p.tre, 2)} and D/B* = ${fmt(dBs, 2)}: medium-dense soil, or the slip surface does not develop fully because of the depth.
+523d99d	I<sub>D</sub> = ${fmt(p.tre, 2)} and D/B* = ${fmt(dBs, 2)}: loose soil or large relative depth – punching.
+c070220	Mechanism chosen by hand.
+65be648	local shear failure under the edges
+b8e8580	radial shear zone
+6e15ca4	slip surface
+4a43994	heave
+0b681f8	partial failure surface
+20cf9ab	plastic zones
+cb481bc	plastic zones develop
+96b959f	compacting soil core
+31a3c90	shear along the edges of the footing
+f01c6a5	the ground surface sinks
+# js/s3d_common.js
+89147bf	loess
+# js/s3d_types.js
+dce7968	foundation level ${fmt(baseY, 2)} m
+# js/s3d_alapsik.js
+f210e97	made ground, topsoil
+53ca609	desiccation depth ≈ 2 m
+ac6f426	underpinning needed!
+40e7d5e	dewatering needed!
+171eeec	frost depth −${fmt(fr, 2)} m
+9da1822	groundwater −${fmt(q.gw, 2)} m
+3828bc6	foundation level −${fmt(q.d, 2)} m
+e905a40	clay that changes volume
+79c3fd6	cohesive soil
+0be16bb	sandy gravel bearing stratum
+2534da3	neighbour’s foundation level −${fmt(q.dsz, 2)} m
+c9728d7	❄ winter in progress…

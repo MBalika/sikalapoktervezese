@@ -1,0 +1,121 @@
+# index.src.html – 3. rész (4. és 5. állomás)
+83c2d90	Infill plot
+5d6f3ba	Swelling clay
+2e69bef	High groundwater
+a71f107	Rotatable 3D soil section with the building, the frost depth and the groundwater
+5915125	Depth of foundation (foundation level)
+a6933ad	Set it to the smallest adequate value
+fa93f72	Ground and location
+659df7f	Granular
+6244ce6	Cohesive
+6d03862	Rock
+a1c57d7	Altitude above sea level
+cac94c9	Thickness of topsoil + made ground
+7342f5d	Groundwater depth (in winter too)
+23aa8ea	Clay that changes volume (swelling)
+d478583	Building and surroundings
+35ecf34	No basement
+b929eb2	Full basement
+f1c6020	Adjoining neighbouring building
+836e0b1	The neighbour’s foundation level
+04a49c2	❄ Winter: frost and ice lenses
+c28d484	The frost depth
+153d2af	The <b>frost depth</b> is the greatest thickness of the soil layer that cools below 0 °C in winter. In Hungary the frost depth is:
+ffa9806	0.8 m in granular soil; below 500 m above sea level it can be reduced to 0.5 m, provided the winter groundwater level comes no closer than 2.0 m to the foundation level;
+0e30cdd	1.0 m in cohesive soil above 500 m above Baltic Sea level, and 0.8 m below 500 m;
+ccccdfe	0.5 m for a foundation on solid rock.
+82591bf	For parts of a building not exposed to frost (e.g. in a basement), a soil cover of at least 0.4 m has to be designed – this is met anyway because of the minimum footing depth of 50 cm.
+278805d	Frost-depth calculator and the path of frost in the ground
+1a12af7	Frost front in the ground during the winter
+11b3b0a	Distance of the winter groundwater below the foundation level
+eb8dc21	Depth of the foundation level
+cc64341	Course of the winter
+117418a	▶ Play the winter
+feaa428	Why is frost dangerous in cohesive soil?
+7c097c8	Frost heave is not caused only by the 9 % volume increase of the pore water. In frost-susceptible (silty, clayey) soil, the small pores let capillary flow carry water continuously from deeper water-bearing layers to the descending frost front, where it freezes into <b>ice lenses</b>. The lenses grow on top of each other in layers and lift the ground – and the foundation standing on it. On thawing, soft, water-saturated soil is left where the ice was, and it compresses under the load. Ice lenses need three conditions at once: a descending frost front, a supply of water and frost-susceptible soil.
+5224297	Building with a partial basement
+f469e3a	In a building with a partial basement, the base of the higher foundation must be set so that <b>the natural slope line drawn from its inner edge does not cut the line of the basement wall above the basement floor level</b>. If it did, the load of the shallower foundation would act on the basement wall as lateral pressure, and when the basement is excavated the ground could run out from under the foundation. Whenever possible, design a building with a full basement: with a partial basement, the different foundation levels and loads usually cause uneven movements and cracks.
+f796dfd	Slope-line check
+e5e5510	Section of a building with a partial basement and the natural slope line
+3a0232a	Depth of the basement floor
+681c8d1	Foundation level of the higher footing
+4e81163	Distance between the inner edge of the footing and the basement wall
+5d580be	Inclination of the natural slope φ
+9a2b91f	Deepen it to the required level
+47146ac	Stepped deepening and sloping ground
+785b12d	Foundation levels at different heights must be connected by <b>stepped deepening</b> at the perpendicular footings: the line joining the corresponding corners of the footings should not be steeper than <span class="nw">30°</span>. On sloping ground (or with horizontal loads) the stability against sliding must also be considered: <b>never design an inclined foundation level</b>, always step it, and a single step should be no higher than 50 cm.
+1a7bd13	Step planner
+cc1d6ef	Connecting two foundation levels
+626198a	Foundation on sloping ground
+99d3974	Section of a stepped foundation
+056b235	Height difference between the two foundation levels
+465c648	Number of steps
+bafa247	Length of one step
+21c8b87	Slope of the ground
+5ca40d6	Inclined foundation level
+e7db4cc	Stepped foundation level
+0e526c0	Step height
+7eca83c	Next to a neighbouring building
+cc874f5	If we have to build right next to a neighbouring building, two rules decide: the foundation level of the new building <b>must not be above the old one</b>, and has to be deepened if necessary; and if the deeper floor of the new building puts its foundation level below that of the old building, the old foundation <b>has to be underpinned</b> with concrete, or strengthened with jet grouting.
+cfa5033	Building alongside – what happens to the old house?
+7862f46	New footing above the old one
+1602a06	Same foundation level
+2cf3403	New one deeper – underpinning
+5d1e3d2	New one deeper – jet grouting
+27fbcc9	Foundations of the old and the new building side by side
+c4b4537	▶ Play the construction
+1d6f263	Station 5 · what has to be verified
+be7c368	Limit states and design methods
+34aedfe	When designing shallow foundations, we first have to review which ultimate and serviceability limit states must be checked and which requirements must be met. A limit state is the state beyond which the foundation no longer fulfils the design requirements.
+1089b17	Ultimate limit states (ULS)
+da5c9ab	Click the pictures: each one plays how the foundation fails in that limit state.
+677d7be	The four (five) acronyms
+4c8950a	<b>GEO</b> – failure or excessive deformation of the ground, where the strength of the soil or rock is significant in providing resistance. <b>STR</b> – internal failure or excessive deformation of structural elements, where the strength of the structural materials governs the resistance. <b>EQU</b> – loss of static equilibrium: a rapid and significant change of position as a rigid body, in which the strengths play no significant part. <b>UPL</b> – loss of equilibrium of the structure or the ground due to uplift. (The Eurocode knows a fifth one too: <b>HYD</b>, hydraulic heave.) For shallow foundations, the <b>GEO</b> and <b>STR</b> limit states are the ones most often checked.
+66104dc	Serviceability limit states (SLS)
+25cd8f2	The most important requirement is adequate safety <b>against bearing failure</b> of the ground beneath the foundation (GEO): in the failure mechanism, large displacements develop before failure is reached, and they soon damage the structure. In most cases, however, <b>it is not the bearing resistance but limiting the settlements and differential settlements</b> that is the biggest problem: foundations must be designed not only for bearing resistance but also to limit settlement. Move the slider and watch what happens to the building as the movements grow!
+58bf7ac	Movement ladder – from cosmetic damage to structural damage
+8c66327	illustrative
+05235c7	Building with increasing differential settlement
+3f6ddf2	Magnitude of the differential settlement
+601dc0b	The <b>structural adequacy</b> of the foundation (STR) means that it can take the bending and shear actions on it, i.e. its size and strength (reinforcement) are adequate – for bending, shear and punching. For structures with a high centre of gravity and for larger horizontal forces (e.g. retaining walls), the <b>stability of position</b> must also be ensured against overturning (toppling) and sliding (displacement). For lighter structures reaching well below the groundwater level (pools, underpasses, underground car parks), there is a risk of <b>uplift</b> – often only during construction.
+e828b3c	Two famous cases
+ab16437	The Transcona grain elevator, 1913
+608eefa	The tilted Transcona elevator
+e9602b6	GEO
+680812b	Transcona, Canada, 1913
+9059f69	On first filling, a deep bearing failure developed in the clay beneath the raft of the grain elevator: the contact pressure was about 297 kPa, close to the ultimate pressure of 307 kPa calculated with the classical theory. In 1914 the elevator was jacked back upright on 14 piers taken down to rock – one of the most important case histories confirming bearing resistance theory.
+3e6f27e	The Leaning Tower of Pisa
+de45cb5	SLS
+ca714d1	Pisa, Italy
+10a34c4	Construction of the tower, which stands on a masonry foundation 19.6 m in diameter and at most 5.5 m deep, began in 1173; it tilted because of the uneven compression of the soft clay. The structure stands, but its serviceability is impaired. Between 1999 and 2001, soil was carefully extracted from beneath the north side, reducing the tilt by about half a degree.
+6d94e78	Design methods
+8b5d11c	According to Section 6.4 of Eurocode 7-1, one of three design methods can be used for shallow foundations:
+977ea0b	<b>direct method</b> – a separate calculation model for each limit state. For ultimate limit states, the assumed failure mechanism is modelled as accurately as possible, with an ultimate-pressure formula or numerical (finite element) design; serviceability is checked with a settlement calculation based on elasticity theory;
+48d3e56	<b>indirect method</b> – based on comparable experience and field or laboratory measurements or observations, related to the loads of the serviceability limit state, so that the requirements of all relevant limit states are met (e.g. bearing resistance estimated from a penetration test with an empirical formula). Its advantage is less calculation; it is used in Geotechnical Category 1 and partly in Category 2;
+6aa336b	<b>prescriptive method</b> – a presumed bearing resistance is used, mainly for foundations on rock: an allowable contact pressure can be taken from the type, discontinuities and uniaxial compressive strength of the rock, with guidance in Annex G.
+71d7ee5	In the Foundation Engineering course we deal in more detail only with the direct method.
+14cc6ce	Which method suits the situation?
+c8f0561	Now · MSZ EN 1997-1:2004
+7e2deba	Direct method – an analytical model for each limit state
+9059995	Indirect method – comparable experience and measurement results
+5a46f6d	Prescriptive method – presumed bearing resistance, Annex G
+84e0031	The bearing resistance formula is in an informative annex, Annex D
+d92cb41	<span class="tag new">new</span> EN 1997, 2nd generation
+57bb7a2	Design by calculation – analytical and numerical models named separately
+bc55b2b	Design by prescriptive rules: the successor of the prescriptive method
+8db2fc1	Design by testing – based on a load test or model test
+ac16bd9	The observational method: a separate, regulated way of design
+6094f60	The bearing resistance formula is in the main text of EN 1997-3, as a normative rule
+4f98c1f	The 2nd generation of the Eurocodes – what changes?
+32dcbd1	The whole system of standards is being renewed: rather than new standards, every part gets a new, harmonised edition, from EN 1990 to EN 1999 (about 100 parts instead of about 58). The guiding principle is ease of use: a common structure, notation and terminology, and fewer national choices. The 2nd generation is expected to be introduced in Hungary <b>from the end of 2027</b>. EC7 will have three parts instead of two: <i>what</i> we verify (EN 1997-1) is separated from <i>how</i> it is done for a given structure (EN 1997-3).
+a0986ff	Now · 2 parts
+68c4889	EN 1997-1 – General rules: it contains every structure (shallow foundation, pile, retaining structure, slope)
+70b0621	EN 1997-2 – Ground investigation and testing
+06bfcb3	The bearing resistance formula of shallow foundations is in an informative annex, Annex D
+e462144	<span class="tag new">new</span> 3 parts
+d2168bb	EN 1997-1 – General rules: basic principles, safety format, verification cases
+37c471b	EN 1997-2 – Ground properties: investigation, testing, derived and characteristic values
+5df6cba	EN 1997-3 – Geotechnical structures: shallow foundations, piles, retaining structures, anchors, slopes, embankments
+ad72004	The starting point of design: classification
+8c6aeb1	Now · Geotechnical Category
+5bbdd29	Three categories: simple, ordinary and special, labelled GC1, GC2 and GC3

@@ -1,0 +1,126 @@
+# js/data.js – 3. rész (igaz/hamis vége, fogalomtár)
+cfbe7db	Against the trench sides; formwork is needed only if near-vertical trench sides do not stand in the granular soil.
+4794860	For the same footing width, a reinforced concrete strip footing can be shallower than an unreinforced one.
+4ab402f	That is why it is advantageous when the footing depth is limited.
+c6e1f6b	Partition walls do not need separate foundations, because they carry only themselves.
+a2cf568	They do need foundations: a separate strip footing, a thickened floor slab or a reinforced concrete beam.
+4a7cb8d	For a pad foundation, the B/L ratio is usually between 1 and 3.5.
+c4dfa90	Most often it is square in plan.
+ad3639b	The holding-down bolts of a steel column serve to transfer any tensile forces.
+b260767	They can also provide a moment-resisting connection in one or two directions.
+6294bb9	A continuous beam foundation reduces differential settlements in both directions.
+f493a90	Only in one direction; in both directions it is the beam-grid foundation.
+173de3a	Because they are relatively thin, raft foundations are usually very flexible.
+bcc7ec4	They can be stiffened with ribs.
+9083aae	A mushroom (flat-slab) type raft serves to prevent punching.
+faa024c	In framed buildings, with larger loads.
+7e90377	For a ground-bearing raft, the underside of the slab may stay above the frost depth.
+a285ba5	It is placed on a well-compacted granular bedding layer at least 50–60 cm thick.
+9a430ee	Shell foundations are still often used today because they save material.
+a9652fd	They need a lot of labour and time and did not prove economical – they are no longer used.
+f99595c	Structurally, a box foundation can be regarded as a box girder.
+a0c7e9e	The base slab, the basement walls and the floor form a monolithic whole.
+edecf2b	Before designing the foundations, it has to be checked whether the ground investigation report is adequate.
+9bf41af	This is the first step.
+1d003d9	In the design process, the settlement check comes before sizing the foundation area.
+4136cb2	It comes after: the stresses and settlements are calculated from the chosen dimensions.
+fc1dd69	Structural design (concrete grade, reinforcement) is the last step of the design process.
+1e37c66	Before it, stability and uplift are also checked.
+c3f90b3	The depth of foundation is the vertical distance between the foundation level and the original ground surface.
+a6ec4bb	It is the distance between the final ground surface and the foundation level.
+48f4fcd	In cohesive soil above 500 m above sea level, the frost depth is 1.0 m.
+6ece315	For a foundation on solid rock, the frost depth is 0.8 m.
+0d9be6a	In granular soil the frost depth is always 0.8 m; it cannot be varied.
+3474b2d	Below 500 m above sea level it can be reduced to 0.5 m if the winter groundwater comes no closer than 2.0 m to the foundation level.
+68de92a	Ice lenses need frost-susceptible soil, a supply of water and a descending frost front.
+8e05539	If any of them is missing, no significant frost heave develops.
+8f11739	The foundation level should preferably be designed below the groundwater level, because the soil is denser there.
+31af7a3	Preferably above the groundwater – dewatering is expensive.
+3d7dbf4	On clay that changes volume, the foundation level must be designed below the desiccation depth (about 2 m).
+c9298ff	Seasonal shrinkage and swelling act above this depth.
+e3c5aae	In stepped deepening, the line joining the corners may be at most 45°.
+5f3aecb	On sloping ground an inclined foundation level may be designed if the slope is small.
+8b3829d	Never design an inclined foundation level; it must always be stepped.
+c20e5ff	On sloping ground, a single step should be no higher than 50 cm.
+76b33ae	True: a higher step is not allowed on sloping ground.
+816fe23	The foundation level of the new building may be above that of the neighbour’s old building if the new building is lighter.
+328bb93	It must not be above the old one; it has to be deepened if necessary.
+ab81299	Bearing failure beneath the foundation is a GEO ultimate limit state.
+cb27306	The resistance is governed by the strength of the ground.
+d783e8a	Unacceptable vibration is an ultimate limit state.
+b78c8a0	It is a serviceability limit state.
+81f2e42	For shallow foundations, the GEO and STR limit states are the ones most often checked.
+66174d8	Bearing failure and the structural adequacy of the footing.
+5e3c271	The risk of uplift (UPL) arises mainly for heavy structures above the groundwater.
+af80627	For light structures reaching well below the groundwater.
+a447e8c	The indirect method estimates the bearing resistance, for example, from penetration test results with an empirical formula.
+195ec03	Its advantage is less calculation.
+6ce0b99	In general shear failure the slip surface runs out to the surface and the ground heaves.
+49a04dc	Typically on one side of the footing.
+c0471fe	In punching shear failure there is a distinct peak on the load–settlement curve.
+3393f77	There is no peak there; the curve continues ever more steeply.
+69788b2	Shallow foundation
+43887f5	A foundation that transfers the load directly to the near-surface bearing stratum (within 1–2 m).
+bd496cb	Deep foundation
+64f0fbb	A system founded on a deeper bearing stratum through a load-transferring element (pile, diaphragm wall, well or caisson foundation).
+9be6d53	Deepened shallow foundation
+003cca7	A foundation built 3–5 m deep with shallow-foundation technology. It is designed as a shallow foundation, without shaft resistance.
+0a01542	Mixed (hybrid) foundation
+cff9988	A combination of shallow and deep foundations, e.g. a piled raft.
+ee0aabc	A footing, usually widened, providing continuous support for walls.
+450fd90	Rubble concrete
+466c010	Concrete mixed with rubble stone (“cyclopean concrete”). The stone is in about half of the depth.
+0c7af21	Pad foundation (block foundation)
+97157a2	A footing under columns and posts, usually square (B/L = 1–3.5).
+6738119	A pocket for fixing a precast column. Today a pocket neck placed on a cast-in-place block footing.
+2bc1421	A heavily reinforced ground beam connecting a row of columns in one direction.
+daea230	Intersecting ground beams. It reduces differential settlement in both directions.
+dd19956	A continuous reinforced concrete slab running under the whole building. It supports both walls and columns.
+4cc6811	Raft with hidden ribs
+e9a03dc	Only additional reinforcement is placed where the ribs would be; the thickness is constant.
+c36592c	Inverted floor
+d8653c2	The reinforced concrete base slab of a building with a basement when the groundwater is high.
+62f1f91	Ground-bearing raft
+9c340c0	A reinforced concrete slab placed on compacted granular bedding; its underside may stay above the frost depth.
+a726c7f	A monolithic box girder of the base slab, the basement walls and the floor acting together.
+42819a8	A slab with a curved surface in which only normal forces develop. It is no longer used.
+f57d389	Foundation level
+e917d76	The lower bearing surface of a shallow foundation, where it transfers the load to the ground.
+ab696ae	Depth of foundation
+d96f013	The vertical distance between the foundation level and the final ground surface.
+60bccb2	Frost depth
+b2bbbaf	The greatest thickness of the soil layer that cools below 0 °C in winter (0.5–1.0 m in Hungary).
+791fec8	Ice lens
+01aef6c	A layer of ice growing from water that seeps by capillary action to the frost front. The main cause of frost heave.
+ccc6bff	Desiccation depth
+2e71c2a	The depth (about 2 m) down to which clay that changes volume dries out and swells seasonally.
+ccc4acc	Natural slope
+dec8c3a	The inclination at which the soil still stands by itself. The check line for a partial basement.
+de22a0a	Underpinning
+ffb555d	Underpinning the neighbouring old footing in sections with concrete when the new foundation level is deeper.
+dd8bb32	High-pressure grouting that forms columns of soil-concrete. Also used to strengthen old foundations.
+90fe3bd	Ultimate limit state (ULS)
+7dfc20c	Failure or severe damage; GEO, STR, EQU, UPL, HYD.
+acee969	Serviceability limit state (SLS)
+c45c0a1	Excessive settlement, differential settlement, vibration or heave.
+1e9f02e	Failure or excessive deformation of the ground.
+766cab3	Internal failure or excessive deformation of structural elements.
+411e81e	Loss of static equilibrium as a rigid body.
+a4c8818	Loss of equilibrium due to uplift.
+6ed0de1	Direct method
+4d57f19	A separate calculation model for each limit state (failure mechanism, settlement calculation).
+f4a2318	Indirect method
+f6525e0	Based on experience and measurements (e.g. penetration tests), with empirical formulae.
+e10c0af	Prescriptive method
+f71b410	With a presumed bearing resistance, mainly for foundations on rock.
+e3d0013	Consequence class (CC)
+c542a98	Classification according to the consequences of failure (CC1–CC4).
+2373095	Geotechnical Category
+15df71d	The geotechnical classification of the structure (GC1–GC3). In the new EC7 it follows from the CC and the geotechnical complexity together.
+2716707	Material factor and resistance factor approaches to verification in the new EC7.
+630fc51	A slip surface running out to the surface, heave, a peak on the load–settlement curve.
+e2d18e4	A partly developed failure surface, larger settlement, no peak.
+8db6bd3	Failure without a failure surface, with large settlement, in loose or soft soil.
+aa58fa4	Density index (ID)
+d3616c5	ID = (emax − e)/(emax − emin). The state of density of a granular soil.
+6c562f7	Active wedge, radial shear zone and passive wedge – the basis of the bearing resistance formula.

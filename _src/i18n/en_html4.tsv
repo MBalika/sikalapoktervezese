@@ -1,0 +1,115 @@
+# index.src.html – 4. rész (5. állomás vége, 6. és 7. állomás, sorozat, lábléc)
+4cb36b3	Classification is based mainly on experience, with informative guidance
+c6caaea	The reliability class (RC) appears independently, on the structural side
+94598f7	<span class="tag new">new</span> Geotechnical Category
+3e8ff1d	Consequence class: CC1–CC4, according to the consequences of failure
+dd2be33	Geotechnical Complexity Class (GCC): according to the complexity of the ground conditions and the loading
+c4485ad	The two together give the category (Geotechnical Category, GC1–GC3)
+e3a008c	It sets the extent of the investigation, the method of verification, and the level of checking and supervision – for shallow foundations also whether a settlement calculation is needed, and in how much detail
+e8b09a2	Category matrix – click a cell!
+e919b65	nationally determined (NDP)
+11241c1	Partial factors
+eeca098	Now · MSZ EN 1990 + DA2
+19421dc	Permanent action: γ<sub>G</sub> = 1.35
+fdc8413	Variable action: γ<sub>Q</sub> = 1.50
+1fe0e3c	Combinations of the A1 / A2 (actions), M1 / M2 (materials) and R1 / R2 / R3 (resistances) sets of factors
+28f8989	The Hungarian national choice is DA2: the factors are on the actions and on the resistance, not on the ground properties
+10feddf	Bearing failure: γ<sub>R;v</sub> = 1.4
+720b25b	Sliding: γ<sub>R;h</sub> = 1.1
+3985320	<span class="tag new">new</span> MFA or RFA, verification cases
+a6fe7e1	The basic factors stay of the same order (γ<sub>G</sub> = 1.35, γ<sub>Q</sub> = 1.50), but a modifying factor according to the consequence class is added
+0f8ea32	The verification cases (VC1–VC4) replace DA1/DA2/DA3
+d838ef3	MFA – material factor approach, on tan φ′: γ<sub>φ′</sub> = 1.25
+bbdb58a	MFA, on cohesion: γ<sub>c′</sub> = 1.25
+34bd70e	MFA, on undrained shear strength: γ<sub>cu</sub> = 1.4
+3c94274	RFA – resistance factor approach, bearing resistance: γ<sub>RN</sub> = 1.4
+d891b2c	RFA – resistance factor approach, sliding: γ<sub>RT</sub> = 1.1
+7670949	Changes in the serviceability verification
+d06a37d	Settlement has to be calculated “where necessary”; many of the limiting values are informative (Annex H)
+0700d15	Simplified procedure: verifying bearing resistance at a low level of mobilisation may be enough
+0827244	The designer sets the acceptable settlement according to the sensitivity of the superstructure
+91c33fb	<span class="tag new">new</span> EN 1997-1/-3
+3d0c0c5	A settlement calculation is mandatory in the higher categories
+3a77077	Named criteria: settlement, differential settlement, rotation, twist
+2b4aee6	Verification typically uses unfactored (characteristic) values
+95e83db	More weight on soil–structure interaction
+0ad142e	Ranking: base slab of an underpass below the groundwater
+a50d923	there is no single right answer
+f06bf2d	Station 6 · the gateway to bearing resistance
+f17cba3	The bearing failure mechanism of shallow foundations
+09744c0	When a gradually increasing load acts on a foundation, the ground beneath it compresses more and more. Three stages can be distinguished on the load–settlement curve.
+ab6f4a7	Elastic range
+b29ab99	At first the settlement is proportional to the load; under constant load the settlement stops (ds/dt = 0).
+0a53172	II.
+ee057d0	Transitional range
+4876a6f	The penetration starts to grow rapidly. Both vertical and horizontal grain movements occur, and plastic zones form under the edges of the foundation (ds/dt = constant).
+3f758b9	III.
+ec39644	Plastic range
+f2eef10	Bearing failure develops along a distinct slip surface: the loaded area loses its support, sudden settlement occurs, and the ground heaves beside the footing (ds/dt → ∞).
+0c565fc	“Failure” does not always happen in the same way. According to model tests (e.g. Vesić), <b>three cases</b> can be distinguished from the shape of the settlement curve:
+917a0f0	<b>general shear failure,</b>
+0f44849	<b>local shear failure,</b>
+ea8295e	<b>punching</b> shear failure.
+33b9577	Which one dominates depends on the dimensions of the foundation and their ratio, the type of soil (granular or cohesive), and the density or stiffness of the soil. In the lab below you can rotate all three, and use the sliders to find out what makes one turn into another.
+2fc875d	Failure mechanism lab
+94f3943	From the ground
+8a1d115	General
+493ec70	Local
+0a2a275	Punching
+b4f75a6	3D model
+1732a20	2D section
+5130b71	Rotatable 3D block of ground with the failure mechanism
+c091e0d	2D section of the failure mechanism
+0fa2bde	▶ Load
+4684eb4	Unload
+4274853	Load level (along the curve)
+55125f8	Soil
+33e6f44	Density index I<sub>D</sub>
+3dc04d5	Consistency index I<sub>c</sub>
+5b49231	Angle of shearing resistance φ′
+bff22de	φ′ from the density (illustrative)
+ebb32e4	Footing
+622122c	Pad foundation
+469af4f	Large raft
+1513b54	Width B
+d6cd3d9	Relative depth D/B*
+d4f9d0f	Transparent ground: the slip surface in space
+4286f2c	Load–settlement curve
+fa1302f	Load–settlement curve: the dot is the current state
+99c097a	Vesić’s failure-mode chart
+80b3043	Which mechanism can be expected? After Vesić, schematic
+3a25f3d	Settlement–time curves
+6669d5a	Settlement over time at the three load levels
+9d23b0d	General shear failure
+7fc72bb	<span class="pill">I<sub>D</sub> &gt; 0.70</span>
+a1dc11c	In dense granular soil a complete failure surface develops, running out to the surface, and the ground heaves. Under usual conditions this is what to expect, on <b>one side</b> of the footing. The load–settlement curve has a distinct peak, at a settlement of about 0.05B.
+4956d1d	Local shear failure
+7a2528a	<span class="pill">0.35 &lt; I<sub>D</sub> &lt; 0.70</span>
+775f482	In medium-dense granular soil the failure surface develops only partly, and heave does not necessarily occur. Under larger reinforced concrete rafts and towers, a deep slip surface cannot form, because settlements of decimetres destroy the structure first. Instead, local shear failure may occur under the edges, mainly in softer ground. Typical settlement: 0.07–0.15B.
+ec3b5b7	Punching shear failure
+5a23883	<span class="pill">I<sub>D</sub> &lt; 0.35</span>
+2d3a722	In loose granular and soft cohesive soil there is no failure surface, at most a depression of the ground surface; slip surfaces in the sense of soil mechanics no longer apply here. This is also how piles are pushed into the ground. Typical settlement: 0.15–0.20B.
+ba7f81b	The density index
+63e1d45	<span class="formula">I<sub>D</sub> = (e<sub>max</sub> − e) / (e<sub>max</sub> − e<sub>min</sub>)</span>
+b9c618e	where e is the current void ratio of the soil, and e<sub>max</sub> and e<sub>min</sub> are the void ratios of the loosest and densest states that can be produced in the laboratory. With increasing depth of foundation the behaviour shifts towards punching: with a deeper foundation the same sand is more likely to punch in.
+420cb6b	The history of the mechanism in brief
+6361148	The failure mechanism under a rigid, rough footing was first described by Prandtl (1920) for the plastic indentation of metals; Terzaghi applied it to strip foundations in 1943 – this became the bearing resistance formula. Vesić distinguished the three failure modes from model tests in the 1960s, and in 1973 he showed in a chart which one to expect depending on the relative density and the relative depth (D/B*, where B* = 2BL/(B + L)). According to the textbooks, for a shallow foundation the ultimate load develops at a relative settlement (s/B) of about 4–10 % in general shear failure, and about 15–25 % in local shear and punching.
+76cf3d6	On to the next step
+140fa08	The failure mechanism becomes the bearing resistance formula
+0bae2ba	Terzaghi wrote the ultimate pressure of a strip foundation for the mechanism of general shear failure: the weight of the soil body above the slip surface (the width term), the overburden above the foundation level (the depth term) and the cohesion acting along the slip surface (the cohesion term) resist together. The form according to MSZ EN 1997-1:
+8c6ec32	<a class="btn" href="https://sikalapok-teherbirasszamitasa-en.vercel.app/" target="_blank" rel="noopener">The terms of the formula in the bearing resistance module ↗</a>
+8336dec	Station 7 · test yourself
+1b1da6e	Self-test
+f467b98	Forty statements from the whole module, one by one, with an immediate explanation. At the end you can start again in a shuffled order.
+628c856	Your results on this page
+5d27678	Total: <b id="scoreTotal">–</b> · Results are stored only in this browser.
+18c8a58	Glossary
+e5fd276	Search the terms…
+221e52f	Search the glossary
+afae6cd	The rest of the series
+d1f50c5	The Foundation Engineering modules
+1cdfb74	<a class="next" href="https://sikalapok-teherbirasszamitasa-en.vercel.app/" target="_blank" rel="noopener"><b>Next: bearing resistance of shallow foundations ↗</b><small>Sizing the foundation area in the ultimate limit state – formula, worked examples, calculator</small></a>⏎      <a href="https://sikalapokallekonysagvizsgalata.vercel.app/" target="_blank" rel="noopener"><b>Stability of shallow foundations ↗</b><small>Sliding, overturning, uplift, overall stability · in Hungarian</small></a>⏎      <a href="https://sikalapok-sullyedesszamitasa.vercel.app/" target="_blank" rel="noopener"><b>Settlement of shallow foundations ↗</b><small>Stresses in the ground, settlement and differential settlement · in Hungarian</small></a>⏎      <a href="https://vedekezesakarossullyedesekellen.vercel.app/" target="_blank" rel="noopener"><b>Protection against harmful settlement ↗</b><small>Lower contact pressure, deeper foundation level, ground improvement · in Hungarian</small></a>⏎      <a href="https://kedvezotlen-altalaj.vercel.app/" target="_blank" rel="noopener"><b>Foundations on unfavourable ground ↗</b><small>Expansive clay, collapsible loess, made ground, organic soil · in Hungarian</small></a>⏎      <a href="https://munkaterhatarolasok.vercel.app/" target="_blank" rel="noopener"><b>Excavation support ↗</b><small>Strutting, walls, anchoring – the excavation for a deeper foundation level · in Hungarian</small></a>
+19d4836	Design of shallow foundations
+08bfc13	Interactive learning module for the Foundation Engineering course at the BME Faculty of Civil Engineering.
+2b55455	The decision support, the 3D models and the mechanism lab are illustrative models; for design, use the standards in force, the National Annex and a verified calculation.
+5a43d6c	Back to the top of the page

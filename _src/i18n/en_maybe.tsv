@@ -1,0 +1,55 @@
+# Ékezet nélküli magyar szövegek (az osztályozó „maybe”-nek látja) – csak ezek fordulnak le; a kulcsként is használt szavak sor szerint
+40f3391	Continuous beam foundation
+d1fa6f2	Raft foundation
+fc8fc7b	DATA
+08f7e75	Loads
+cf06325	OK
+a58e235	Not OK
+a60beaf	move up
+be85db8	move down
+d979f73@js/w_ch4.js:217	basement
+0b238cc@js/w_ch6.js:96#1	local
+0b238cc@js/w_ch6.js:118	local
+982aa9d	November
+c35b072	December
+7f54348	OK
+2018a83	not OK
+c63fa97	OK, but…
+8553dc6@js/w_ch3.js:121	no
+4435398@js/w_ch3.js:121	yes
+5bc0d40	12 m (raft)
+1fa4996	4 storeys + basement
+518e457	0.8 m below 500 m a.s.l.
+0ee70ec	At most 30°.
+e41cbfc	Only the SLS
+2e9e70e	In neither
+4c0afb4	Under walls, continuously
+387020f	GCC1 lower
+07650ce	GCC3 higher
+2cc3a00	Approx. 0.005B
+7b5ee5b	Approx. 0.05B
+5101b2d	Approx. 0.15B
+061eb41	Approx. 0.5B
+9cdac65	Pocket foundation, pocket neck
+ce4c08b	Always a raft foundation
+5587fe5	STR – structural
+09557be	Nothing, everything stays
+7ac618b	Thick raft foundation
+01ac543	industrial hall
+2195b13	cast-in-place pocket neck
+6a300ff	… 25+ storeys
+80e510c	Suggestion (${EPN[st.ep]}): <span>${d.title}</span>
+8628419	<b>When?</b><p class="small">${I.when}</p>
+fe8e525	OK: −${fmt(st.d, 2)} m ≥ ${fmt(fr.d, 2)} m
+0bc6eb1	Not OK: −${fmt(st.d, 2)} m < ${fmt(fr.d, 2)} m
+9fbf015	frost front ${fmt(F.z, 2)} m
+df9c7ab	wall: ${fmt(st.vf * 100, 0)} cm
+d4a076d	floor slab
+41da716	tan α = ${fmt(Math.min(tg, 99), 2)}
+26e2718!	${i + 1} / ${cfg.cases.length} · score: ${ok}
+ad0a60d!	${found.size} / ${HS.length} found
+343043f!	jet-grouting columns
+66a875f!	https://sikalapok-teherbirasszamitasa-en.vercel.app/
+a9d541a	 m a.s.l.
+4aaf181!	
+0f3c464!	Prandtl mechanism

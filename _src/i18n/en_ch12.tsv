@@ -1,0 +1,138 @@
+# js/w_ch1.js
+6506ed9	family house
+7c0eda3	tower block
+d09b065	bridge pier in a river
+94e6775	Deep foundation (piles or well foundation)
+af7b4b9	Water can scour and undermine the ground beneath a shallow foundation – one of the classic reasons for a deep foundation (e.g. bridge piers in a river).
+72d2ce9	With a strongly inclined load, a shallow foundation could slide; piles also take the horizontal force.
+0838274	Mixed foundation: piled raft
+40576c9	There is no better layer deeper down, but the load of the tower block is large: the raft alone would settle too much, and the piles reduce it.
+546cd39	Raft foundation – the load spread over a large area
+f26bd07	The near-surface layer is not very strong, but there is nothing better deeper down: the weight of the building has to be spread over a large area.
+43cc887	For a superstructure sensitive to settlement, a stiff raft also reduces the differential settlements.
+ff7f78b	The bearing stratum starts at a depth of ${fmt(st.tb, 1)} m – it is close to the surface.
+1571863	Stiffened shallow foundation: reinforced concrete strip footing with a ring beam, or a beam grid
+f5b1df7	Strip footings under the walls
+f30d088	Raft foundation (with a basement: inverted floor)
+a0a12f1	With high groundwater, a reinforced concrete raft (“inverted floor”) is the right choice under a block of flats with a basement.
+4848b1c	For a sensitive superstructure, a stiff raft evens out the movements.
+81e7ec3	Beam-grid foundation under the column grid
+c92f360	Pad foundations (block footings with pocket necks)
+92f5abe	For a hall sensitive to settlement, the differential settlement between the columns has to be reduced in both directions.
+e90c25a	The load of the tower block is large and concentrated: it has to be transferred over the full plan area.
+f2d4f6d	Raft foundation on the weaker layer (without groundwater lowering)
+5e91418	The bearing stratum (${fmt(st.tb, 1)} m) is below the groundwater: a deepened foundation would need dewatering.
+1011f44	The structure is not sensitive to settlement, so a near-surface raft avoids costly dewatering or deep foundations.
+5c1313e	Deep foundation (piles) – because of the high groundwater
+ff8269d	The bearing stratum is below the groundwater: the high groundwater level during construction makes a shallow foundation more expensive.
+69a2a41	Because of the large loads, it is worth using the bearing resistance of the deeper layer with piles.
+5fd468b	Mixed foundation or piles
+e49ad5b	The large load of the tower block can be carried by the deeper bearing stratum; the raft and piles acting together are the economical choice.
+cbfaf15	Deepened shallow foundation on the bearing stratum
+6cd7cfe	The bearing stratum is ${fmt(st.tb, 1)} m deep, but the groundwater stays below it: down to 3–5 m the shallow-foundation technique still works.
+dbb6bdd	Its bearing resistance is calculated as for a shallow foundation, neglecting the shaft resistance.
+3e81fd3	Raft foundation on the weaker layer – if the settlement is tolerable
+55abc6a	The reliable bearing stratum is only at ${fmt(st.tb, 1)} m depth.
+5ecf11a	If the structure is not sensitive, a near-surface raft avoids a deep foundation – but this has to be verified with a settlement calculation.
+1cb91b1	Deep foundation (piles)
+a5e03b7	A shallow foundation would settle unacceptably.
+183d85e	shallow, condition 1
+478de58	shallow, condition 2
+4facfdc	shallow, condition 3
+4b0d77d	shallow, condition 4
+60f8d08	reason for a deep foundation
+9024f55	river – the bed may be scoured
+2ecb293	groundwater −${fmt(st.gw, 1)} m
+34806f0	medium, compressible soil
+2e1d76c	weak layer (made ground, soft clay)
+3e1318e	nothing better deeper down
+c15dd4d	bearing stratum (sandy gravel)
+132e29a	depth [m]
+6ed5958	footings tied in both directions
+3de0e7b	basement – inverted floor
+09be779	deepened shallow foundation on the bearing stratum
+664e29c	raft + piles acting together
+de91579	piles down to the bearing stratum
+# js/w_ch2.js
+3bc4b2c	Dense granular soil (φ ≥ 36°) or stiff cohesive soil (c<sub>u</sub> ≥ 75 kPa)
+47800d0	Granular soil or firm cohesive soil (c<sub>u</sub> ≥ 40 kPa)
+03a6f09	Ground of low bearing resistance
+2c498fb	Footing width B ≥ 50 cm
+4d1e1e7	Placing allowance on each side ≥ 5 cm
+44d7b2a	Depth of an RC footing m ≥ B/10
+625ff76	The top of the footing is horizontal; longitudinal bars and links at the bottom, the footing takes bending
+7985111	At least concrete grade C16/20 with non-aggressive groundwater
+0ae5ec5	Footing depth m ≥ 50 cm
+7788a0f	Load spread: tan α = m/c ≥ ${fmt(req(), 2)}
+33625f7	no projection
+5abce53	Simplified rule: k : h = 1 : ${fmt(st.kh, st.kh % 1 ? 1 : 0)}, i.e. m ≥ ${fmt(st.kh, st.kh % 1 ? 1 : 0)} · c
+5056bae	At least concrete grade C12/15 with non-aggressive groundwater
+e21aef6	5–10 cm of levelling sand or lime mortar under the first course
+772e6d2	Steps: multiples of a brick course and half a brick
+e6a9e33	floor
+6820d56	blinding
+448a9f6	5–10 cm levelling layer
+3e49960	 strip footing
+7e83f2d	<div class="verdict ${all ? 'ok' : 'bad'}">${all ? 'A metszet megfelel a szerkesztési szabályoknak.' : 'A metszet nem felel meg – nézd meg a piros sorokat!'} <span class="sp"></span><span class="nw">material ≈ ${fmt(area, 2)} m³/m</span> <span class="nw">B/v<sub>f</sub> = ${fmt(st.B / st.vf, 2)}</span></div>
+4e1f376	The section meets the detailing rules.
+8467e05	The section does not comply – look at the red lines!
+470c19c	A separate, smaller strip footing under the partition wall – just as for the main walls, only smaller. Reliable, but it needs earthworks and concrete.
+baddd51	The floor slab (blinding) is thickened under the partition wall and suitably reinforced. Economical for light partitions.
+f83dbd9	If a precast beam floor is built anyway, a precast reinforced concrete beam goes under the partition too. Its two ends are seated on and tied into the strip footings of the main walls running at right angles, so it “carries” the load of the partition across to them. The section shows the cross-section of the beam; the footings of the main walls are in front of and behind the plane of the section.
+9f7b70e	smaller strip footing
+9b3b624	thickened floor slab with reinforcement
+80d4801	mesh in the whole floor
+955c90c	precast RC beam (section)
+3c4d766	its two ends seated on the strip footings
+e12ccbd	of the perpendicular main walls, tied in
+9f80bba	(not visible in this section)
+cdd2372	partition wall
+436803c	Fixed connection: the main bars (starter bars) of the column are anchored down into the footing, so the joint also transfers moment. The footing has at least a mesh of reinforcement at the bottom.
+1116fe7	Pinned connection: the column narrows at the joint, the gap is filled with a flexible material, and the bars transfer the shear and the vertical force – practically no moment.
+0887459	Earlier solution: precast reinforced concrete pocket foundation. The column was set into the “pocket” of the footing and then fixed in its final position by concreting it in.
+96dd6c1	Today’s solution: the precast column is set and fixed in a pocket neck placed on a cast-in-place reinforced concrete block (or slab).
+18108bb	Steel column on a concrete footing: base plate, grout and holding-down bolts. The bolted connection is needed to transfer any tensile forces (a moment-resisting connection in one or two directions).
+fc8d865	Structure with a closed plan (water tower, factory chimney): a footing built as a single block, usually circular in plan – essentially a large pad foundation.
+3f9b540	D – circular block
+6f3329f	grout
+b8e1563	holding-down bolts (tension)
+15f57ab	precast pocket foundation
+8a2b42a	concrete infill
+1b73275	precast column
+fc62dcc	flexible material
+28ce64e	anchored starter bars
+5004cc6	bottom mesh
+979dcfe	Flat slab of constant thickness: for relatively small loads. Simple to form and reinforce, but flexible.
+03ece2a	Raft with upstand ribs: ribs standing up along the walls and columns stiffen it. The underside stays flat, and the spaces between the ribs are filled.
+971f80c	Raft with downstand ribs: the ribs reach into the ground. The top gives a flat floor, but trenches have to be dug for the ribs.
+bd88499	“Flat-slab” (mushroom) type raft: in framed buildings with larger loads, thickening under the columns prevents punching.
+0a90c66	Raft with hidden ribs: only additional reinforcement remains where the ribs would be, and the thickness equals that of the ribs.
+3e2e042	Ground-bearing raft: only the topsoil and (part of) the made ground are removed; the reinforced slab is placed on a well-compacted granular bedding layer at least 50–60 cm thick, and its underside stays (may stay) above the frost depth. It can be used for buildings of a few storeys, on less favourable ground and with high groundwater too.
+1f989f9	compacted granular bedding ≥ 50–60 cm
+800f7eb	frost depth – the underside of the slab may stay above it
+76a0e3e	column grid in plan
+dae8755	Large circular footing (pad foundation)
+0e8c91b	Which foundation type? – eight design situations
+6768614	Two-storey masonry family house. The sandy gravel bearing stratum starts at 1.1 m depth, and the groundwater is deep.
+f63ca2c	sandy gravel from 1.1 m
+367dd88	Masonry building, good ground near the surface: strip footings under the walls are the simplest and cheapest.
+23326cf	Steel-framed industrial hall with a 6 m column spacing, on good granular soil. Differential settlement between the columns causes no problem.
+f7581be	good granular soil
+4e27af8	Concentrated column loads, settlements that can be treated separately: pad foundations (with holding-down bolts for a steel column, with a pocket neck for a precast column).
+5408ca9	A row of columns on weaker ground: unacceptably large differential settlement would develop between the columns in one direction.
+8b2a829	weaker ground
+e50dbfa	The continuous beam foundation (ground beam) ties the row of columns in one direction and gives longitudinal stiffness.
+b3bbc56	A square column grid where the differential settlements have to be reduced in both directions, but the full plan area is not yet needed.
+ed61805	Intersecting ground beams: a beam-grid foundation.
+fd199f7	A 10-storey block of flats with a full basement; the design groundwater level is above the basement floor, and separate footings would almost touch each other.
+c6f7594	high groundwater
+da4f363	The load has to be transferred over the full plan area, and because of the high groundwater a watertight reinforced concrete slab (“inverted floor”) is needed: a raft foundation.
+6b09e9b	A panel building of prefabricated elements, which can tolerate only very small deformations without damage.
+9c7f72a	tolerates small deformation
+b5150c0	The box girder of the base slab, basement walls and floor acting together – the box foundation – gives the necessary stiffness.
+a4e1133	A water tower with a closed, circular plan; the whole load reaches the ground through a single concentrated block.
+035a473	circular plan
+fb11e1d	The footings of structures with a closed plan, built as a single block and usually circular in plan, are essentially large pad foundations.
+6a9a8ec	Two-storey building on weak but not organic near-surface ground with high groundwater; the made ground is partly removed, and compacted granular bedding is built.
+65575a2	high groundwater, weak surface
+053996a	Ground-bearing raft: the reinforced slab is placed on compacted granular bedding at least 50–60 cm thick, and its underside may stay above the frost depth.

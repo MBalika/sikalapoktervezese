@@ -1,0 +1,131 @@
+# index.src.html – 1. rész (fejléc, hős, 1. és 2. állomás eleje)
+58006a1	Skip to content
+274c6c4	Design of shallow foundations – top of the page
+3c19a9e	<small>BME · Faculty of Civil Engineering · Department of Engineering Geology and Geotechnics</small><b><span class="hide-s">Foundation Engineering BSc · </span>Design of shallow foundations</b>
+e3b3908	The series
+2943067	Next: bearing resistance ↗
+b2e0db5	Dark theme
+0dadecb	Design route – chapters
+c2c0f5c	<span class="fill"></span>⏎      <a class="st" data-sec="mikor" href="#mikor" style="--k:var(--c1)"><i></i><span>01 Shallow?</span></a>⏎      <a class="st" data-sec="tipusok" href="#tipusok" style="--k:var(--c2)"><i></i><span>02 Types</span></a>⏎      <a class="st" data-sec="menet" href="#menet" style="--k:var(--c3)"><i></i><span>03 Process</span></a>⏎      <a class="st" data-sec="alapsik" href="#alapsik" style="--k:var(--c4)"><i></i><span>04 Foundation level</span></a>⏎      <a class="st" data-sec="hatar" href="#hatar" style="--k:var(--c5)"><i></i><span>05 Limit states</span></a>⏎      <a class="st" data-sec="toro" href="#toro" style="--k:var(--c6)"><i></i><span>06 Bearing failure</span></a>⏎      <a class="st" data-sec="onell" href="#onell" style="--k:var(--c7)"><i></i><span>07 Self-test</span></a>⏎      <a class="st term" href="https://sikalapok-teherbirasszamitasa-en.vercel.app/" target="_blank" rel="noopener"><i></i><span>Bearing res. ↗</span></a>
+4f21d18	Foundation Engineering · shallow foundations, part 1
+b570432	Design of <em>shallow foundations</em>
+428dc40	Before we calculate anything, we have to decide what kind of foundation is needed, how deep it should go and which limit states it has to be verified for. This module walks that route: from the boundary between shallow and deep foundations, through the seven foundation types and choosing the foundation level, to the three mechanisms of bearing failure. The bearing resistance calculation starts from here.
+ef93a4d	<span><b>7</b> foundation types in 3D</span><span><b>6</b> aspects of the foundation level</span><span><b>3</b> failure mechanisms</span><span><b>40</b> true/false statements</span>
+9fb0771	<a class="btn" href="#mikor">Start at the first station</a><a class="btn ghost" href="#toro">Jump to the failure mechanisms</a>
+fb1036f	Rotatable 3D model: a building on one of the seven types of shallow foundation
+2251255	Choose a foundation type
+82c058f	Drag with the mouse to rotate – the types also change by themselves.
+3f5fc50	Station 1 · the starting point
+e40c705	Shallow or deep foundation?
+61bcb8f	A structure transfers its loads to the ground through its foundations, so the structure and the soil beneath it interact. Foundation systems fall into two large groups: shallow foundations and deep foundations.
+1f04efc	If the <b>bearing stratum is close to the surface</b>, roughly within 1–2 metres (for a building with a basement, close to the superstructure), we design a <b>shallow foundation</b>: the footing transfers the load directly to the bearing stratum. If the bearing stratum lies deeper, the loads are large, or a shallow foundation would settle too much, a <b>deep foundation</b> is the better choice (piles, diaphragm walls, well and caisson foundations). In that case a <b>load-transferring element</b> is inserted between the structure and the bearing ground.
+ff26244	There are two intermediate cases as well. A <b>deepened shallow foundation</b> is built 3–5 m deep, below the load-bearing structure, but in construction terms just like an ordinary shallow foundation; its bearing resistance is also calculated with the assumptions used for shallow foundations (for example, the shaft resistance is neglected). <b>Mixed (hybrid) foundation systems</b>, such as the piled raft, combine shallow and deep foundation techniques.
+d1ee675	A shallow foundation can be used if…
+3320d7a	there is a soil layer of adequate bearing resistance and thickness near the surface;
+11e25bb	the settlements and other deformations do not exceed the specified limits;
+8ef5c8b	the near-surface layer is not very strong, but there is nothing better deeper down either, and the weight of the building can be spread over a large area (raft foundation);
+2bf9741	the bearing resistance of the ground is low, but the structure is not sensitive to settlement, and a shallow foundation near the surface avoids costly groundwater lowering or deep foundations.
+341dadf	A deep foundation is needed if…
+11a204a	a reliable bearing stratum is found only at depth;
+93ec70f	a shallow foundation would settle unacceptably;
+296c270	a high groundwater level during construction makes a shallow foundation more expensive;
+b943493	water could scour or undermine the ground beneath a shallow foundation, for example at bridge piers in a river;
+fe0c4ef	a strongly inclined load could make a shallow foundation slide;
+3c2f007	it is more economical overall than a shallow foundation.
+951bd70	Conclusion
+3f4a248	If the conditions for a shallow foundation are not met, a deep or mixed (combined) foundation follows. The decision is always a technical and an economic question at the same time.
+9d0f917	Foundation decider – what would an experienced designer suggest?
+d889f38	illustrative decision support
+608a655	Soil profile with the building and the suggested foundation
+c8745bf	Structure
+bda254c	Family house
+b931e93	5-storey block of flats
+ff40a10	Industrial hall
+ba21806	Tower block (25+ storeys)
+4d7b1e8	Bridge pier in a river
+cafdf1a	Ground and water
+3a42752	Top of the bearing stratum
+2d0b4a2	No better layer deeper down either (medium ground only)
+9e3e5e2	Groundwater depth
+7906797	Other conditions
+fd1af49	Superstructure sensitive to settlement
+b834aba	Risk of scour or undermining
+cc07ca2	Large inclined or horizontal load
+d41a602	Real examples
+cb7f8f9	MOL Campus, Budapest
+33e52a0	The 143 m high-rise has a <b>mixed foundation</b>: a 2.2 m thick base slab on 135 piles, 1.2 m in diameter and 8 m long, standing in the stiff clay marl. The base slab alone took about 4400 m³ of concrete.
+93c5749	Burj Khalifa, Dubai
+7e98a15	The world’s tallest building also stands on a <b>piled raft</b>: the 3.7 m thick reinforced concrete raft rests on 192 bored piles, 1.5 m in diameter and about 50 m long.
+3f8c6e7	Family house on good ground
+24d813a	On granular ground of good bearing resistance, the simplest and cheapest solution under a masonry family house is a <b>strip foundation</b> below the frost depth (0.8–1.0 m). A deep foundation would be a needless expense here.
+f6ecc14	Station 2 · the choices
+8ebc7b3	Types and construction of shallow foundations
+347c8d5	Strip and pad foundations are the simplest and cheapest. If large differential settlements would develop between columns or walls, or the loads can only be transferred over a large area, ever stiffer systems follow: continuous beam, beam-grid, raft and box foundations. The shell foundation is a special solution that is no longer used.
+97e01e8	Foundation-type lab – rotate it, switch things on, look inside!
+6e75f8c	Foundation type
+dfc9371	Rotatable 3D model of the foundation type
+ba3c85a	<span class="hint">drag: rotate · wheel: zoom</span>
+116b492	Strip foundation
+28ff065	Variant
+9309920	View
+f390354	Superstructure
+f63ecaa	Solid
+4b35d99	Transparent
+db51b6a	Hidden
+a786c69	Load path (how the loads reach the ground)
+737b7cc	Visibility of the cut-away ground
+7ca8fd9	Strip foundations
+304ccce	Strip foundations provide <b>continuous support for walls</b>. Exceptionally, their width may equal that of the wall above (in old buildings the wall and the footing are often not separate, but made of the same material, most often brick). Because the bearing resistance of the ground is lower than that of the building material, footings usually project beyond the walls as cantilevers; because earthworks are inaccurate, a placing “allowance” of <span class="nw">at least 5 cm</span> is also needed on each side.
+fab7b1b	They can be made of brick, rubble stone, rubble concrete, mass concrete or reinforced concrete. Brick and stone footings are built only exceptionally today, but a few decades ago most were like this – they “turn up” again and again when existing buildings are extended upwards or alongside. For practical reasons, the width (B) and depth (m) of the footing cannot be less than 50 cm.
+29c7ed0	a) Brick
+71151ee	The widening between the basement wall and the footing width is stepped: in height by one course of bricks, horizontally by whole multiples of half a brick. Under the first course, 5–10 cm of levelling sand or lime mortar is placed, unless the foundation sits on sandy ground that is easy to level.
+23ad7b1	b) Rubble stone
+7ae5bfd	The principles are similar to those for brick footings. It is built with a constant width or with stepped widening, from solid, frost-resistant stones laid in improved lime masonry mortar of grade H10 or better. A single stone may weigh at most 50 kg. Mixed (brick and stone) masonry is common in old buildings.
+c7327cd	c) Rubble concrete
+1a8f913	Rubble stone found on site or obtained cheaply is built into the concrete, in a band about half the depth of the footing. This is what is called cyclopean concrete. It spread in the second half of the last century for family houses and holiday homes; today it does not pay because of the labour it needs.
+662b029	d) Mass concrete
+e492176	The most common strip foundation. It is built with formwork or cast against the trench sides; formwork is used today only if near-vertical trench sides cannot be dug in cohesionless granular soil – formwork is expensive and slow. Its depth is chosen, in simplified form, from the ratio of projection to depth (k : h): depending on the ground, <span class="nw">1 : 2</span>, <span class="nw">1 : 1.5</span> or <span class="nw">1 : 1</span>.
+5c22b35	e) Reinforced concrete
+6593a39	It is built when a large bearing area is needed but something limits the depth of the footing, for example groundwater or a basement. Reinforcement allows a smaller depth and can be more economical overall: the wider an unreinforced footing, the deeper it would have to be.
+45829f1	f) Footing for a partition wall
+b10d2b2	Partition walls also need foundations, even though they carry only themselves. There are three solutions: a separate smaller strip footing, a thickened and reinforced floor slab, or (with a precast beam floor) a reinforced concrete beam that “carries” the load across to the strip footings of the main walls running at right angles.
+45f8e9c	Minimum reinforcement in strip footings too
+8d80770	It is often worth reinforcing a footing minimally even if its depth is not reduced (4 longitudinal bars of at least 12–16 mm diameter, 40×40 links): in a local settlement (e.g. a burst pipe) it can partly even out the differential settlements.
+12fc4ba	Strip-footing section editor – does it meet the detailing rules?
+564f9c9	Brick
+3548813	Rubble stone
+43bee4d	Mass concrete
+1e1c42e	Reinforced concrete
+6365443	Strip footing cross-section with dimensions
+945e95e	Wall thickness v<sub>f</sub>
+b72f695	Footing width B
+e6a8b40	Footing depth m
+fb1ec62	Ground
+a56b3ae	Simplified rule: k is the projection (c in the drawing), h the footing depth (m). The details come later, in the depth design of shallow foundations.
+eb4b6f3	Resize it to meet the rules
+5285004	Footing for a partition wall – three solutions
+87cf3ad	a) separate strip footing
+9ea17c6	b) thickened floor slab
+d8939c6	c) RC beam
+b94feb0	Variants of the footing for a partition wall
+8fabe72	Strip foundations in practice
+a1e7c97	Excavated brick footing
+0231c75	Excavated brick strip footing with a measuring staff
+6ff3b75	Trench for a strip foundation
+dbcfc1b	Trench for a strip foundation after excavation
+33e14a3	Trench with earth sides
+caec6c3	Concreted strip foundation
+10d43c2	Strip foundation after concreting
+e9ab9b1	Concreting against the trench sides
+7abe7de	Concreting a strip foundation
+011eb06	Strip foundations with fixed reinforcement cages
+2f8efda	Strip foundation system with reinforcement
+b5c42ed	Strip foundation system in formwork
+6761ad5	Strip foundations in formwork
+7ad70ab	Strip foundations on the site
+b2a3710	Strip foundations in an excavated trench
+cd1a455	Finished strip foundations
+80a5097	Pad foundations (block foundations)
+726a56a	Columns and posts sit on pad foundations. The plan shape usually follows the cross-section of the column, most often square, or <span class="nw">B/L = 1–3.5</span>. Material and construction are similar to those of strip foundations, but because of the larger, concentrated action they are made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom.
+f7e4d5c	?<span>HU</span><b>EN</b>
+a23fb86	Magyar változat

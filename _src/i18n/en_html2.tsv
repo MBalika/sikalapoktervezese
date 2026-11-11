@@ -1,0 +1,121 @@
+# index.src.html – 2. rész (2. állomás vége, 3. állomás, 4. állomás eleje)
+2cda5e0	The connection between a cast-in-place reinforced concrete column and its footing can be <b>fixed</b> or <b>pinned</b>. For precast columns, the precast reinforced concrete <b>pocket foundation</b> used to be common: the column was set into the “pocket” of the footing and then fixed by concreting it in. Today the precast column is typically set and fixed in a <b>reinforced concrete pocket neck placed on a cast-in-place pad</b>. For a steel column, <b>holding-down bolts</b> are needed to transfer any tensile forces. The footings of structures with a closed plan, such as water towers and factory chimneys, built as a single block and usually circular in plan, can essentially be regarded as large pad foundations too.
+bcb76e0	Column–footing connection
+8363fa1	Fixed
+7d5ca0b	Pinned
+e1302bd	Pocket foundation
+c8dc1d3	Pocket neck
+d48bf15	Steel column
+896edf7	Tower
+4ab419c	Column–footing connection
+66da2db	Reinforcement of a pad foundation
+818ac58	Finished pad foundations with column starter bars
+b40b08d	Pad foundations
+59cf26c	Pad foundations with columns
+d019b95	Formwork and reinforcement of a pad foundation
+3566752	Formwork of a pad foundation
+f428c9e	Formwork and reinforcement
+056ae16	Block foundations with projecting bars
+93e2288	Block foundations
+eb31176	Cast-in-place block foundations with pocket necks
+cafb586	Block foundations with pocket necks
+cd203b2	Precast column in the pocket neck
+7cfa8f7	Precast column in a pocket neck
+c7a54f8	Column in the pocket neck
+4378f4d	Continuous beam and beam-grid foundations
+169b774	Continuous beam foundation (ground beam)
+c227263	Because of weaker ground or for structural reasons, the columns are placed on a strip-like beam – usually heavily reinforced – if unacceptably large differential settlements would develop between the columns in one direction. It is always made of reinforced concrete (it is in bending), and it gives the structure longitudinal stiffness.
+d537ecd	Beam-grid foundation
+b6d67b0	If we want to reduce the differential settlement in both directions, we design intersecting reinforced concrete beams, i.e. a beam-grid foundation.
+235165b	Drawing and photo of a beam-grid foundation
+45fc60b	Beam grid: drawing and construction
+fa8e24c	Raft foundations
+13436d9	A raft foundation is a continuous reinforced concrete structure running under the whole building, supporting walls and columns alike. It is used when the loads of the structure can only be transferred over the full plan area, because the pressure under the previous types of foundation would exceed the bearing resistance of the ground. Because they are relatively thin, rafts are usually very flexible. For smaller loads, a flat slab of constant thickness is built; under walls and columns it can be stiffened with ribs (downstand or upstand ribs). In framed buildings with larger loads, a <b>“flat-slab” (mushroom)</b> layout is usual to prevent punching. If only additional reinforcement remains where the ribs would be, but the thickness equals that of the ribs, the raft has <b>hidden ribs</b>.
+86389af	For a building with a full basement and a high design groundwater level, a reinforced concrete raft (an “inverted floor”) is the right choice in any case.
+eccecee	Raft foundation variants in section
+012f514	Flat slab
+bc545b5	Upstand ribs
+c9f4225	Downstand ribs
+c8c73ac	Mushroom (flat-slab) type
+7ab7aac	Hidden ribs
+1639f4c	Ground-bearing
+2addf5f	Section of a raft foundation variant
+92e9499	A wider view: frost-protected shallow foundation
+913e301	In colder climates, the <i>frost-protected shallow foundation</i> works on a principle similar to the ground-bearing slab: vertical insulation is placed alongside the footing and horizontal “wing” insulation outwards, so the heat given off by the heated building stays in the ground and the soil around the foundation does not freeze. The US residential code (IRC R403.3) then allows a foundation depth of only 30–40 cm – on condition that the building is heated in winter too.
+3cb6a22	Fixing the reinforcement of a raft foundation
+9105b75	Raft foundation in an excavation
+4c54a85	Raft foundation under construction
+ed12e2c	Fixing in the excavation
+6c92189	Raft with two layers of reinforcement
+1610718	Two layers of reinforcement
+183c0df	Box foundation and shell foundation
+4f67e00	Box foundation
+155e730	Further stiffening is achieved if the whole basement structure is made to act together: the base slab forms a monolithic whole with the basement walls and floor built on it – in effect a box girder. Prefabricated panel buildings can tolerate only small deformations without damage, so this is where it was used most often (a cast-in-place reinforced concrete receiving level).
+9e5347e	Shell foundation
+e6db070	Special slabs: mathematically defined surfaces of single or double curvature in which only normal forces (tension, compression) develop, no bending. They save material but need a lot of labour and time and strict geometric accuracy; they can be cast in place or precast. They did not prove economical and are no longer used.
+5601094	The Körszálló in Budapest
+c067c43	The Körszálló hotel in Budapest
+700dbd2	It stands (stood) on a shell foundation: the Körszálló
+0ee6464	Interestingly, the Körszálló hotel on Szilágyi Erzsébet fasor in Budapest also has a shell foundation. Designed by György Szrogh and opened in 1967, the 18-storey, roughly 64 m tall cylindrical block, about 30 m in diameter, was built with slipforming. It closed in 2025; the upper part of the building is being demolished and rebuilt, and according to the plans it will be a residential building by 2028.
+60508b2	Types of shallow foundation and load transfer
+36e453b	<b>Video: how does a shallow foundation transfer the load?</b><small>A short animation on how the load spreads beneath the footing.</small>
+4142e7b	Station 3 · the method
+723daa8	The design process for shallow foundations
+7eb83dc	Before starting on the foundations of a structure, we have to check whether an adequate ground investigation report is available on which the foundations can be designed safely.
+e0d419a	First we try to judge whether the task can be solved with a shallow foundation – or whether it is already clear that a deep foundation is needed. If shallow, can the simplest and cheapest strip and pad foundations be used, or is it clear from the start that a stiffened foundation, such as a beam grid or a raft, will be needed? The initial idea can still be changed later in the design. Foundation design is also <b>a technical and an economic question</b>.
+63ed694	Reviewing the drawings
+c5824cf	The structural drawings and calculations of the project have to be studied before the design: layout, loads, sensitivity.
+af04fb7	Ground investigation report
+f63486d	Is the available report adequate for designing the foundations? If not, an additional investigation comes first.
+8ca1044	Technical and economic decision
+a5b3169	The chosen solution has to be both safe and economical – often the construction time decides.
+59ebcd5	Factors in choosing the type of foundation
+6393098	The factors fall into five groups: the structure, the loading, the ground and groundwater conditions, the surroundings, and the construction time. Look around the site below with a designer’s eye: click the marked points and see which group of factors each one touches!
+03b31f2	Site scanner – what does the designer notice?
+14b9469	0 / 10 found
+2f8d611	Illustrated building site with points to discover
+18f47a1	Click a numbered point in the drawing.
+c6ee049	The design process
+bfd91ee	Once we have all the data, the design of the foundations can start. Knowing the structure, its loads and its sensitivity to settlement, as well as the ground and groundwater conditions, the first step is to consider whether some shallow foundation system can be used. If not, we move straight on to deep foundations. If so, we choose the type, set the foundation level, size the foundation area in the ultimate limit state (for a raft it is given anyway), and make a first estimate of the depth too.
+074b5e9	From the dimensions, the stresses and settlements can be calculated. This is the first “check”: are the settlements and differential settlements acceptable? If not, something has to change and we go back; if necessary, we move on to deep foundations. If so, we check the stability of position (sliding, overturning) and the safety against uplift, and finally comes the structural design: choosing the concrete grade and the reinforcement.
+24d2896	Interactive flowchart – follow it through!
+35189ab	Everything is OK
+ca60aff	Too much settlement
+abef179	The foundation does not fit
+d25f8ce	A deep foundation is needed
+68b0da6	Flowchart of the design of shallow foundations
+dca1c67	▶ Play
+cd5ebee	Next step
+3fd5898	From the start
+3f26151	The coloured labels lead to the companion modules of the series (in Hungarian, except bearing resistance).
+c44e22a	The usual design steps
+0715948	<b>Choosing the foundation type</b> – based on the layout, loads and sensitivity of the superstructure and the expected settlements, taking the neighbouring structures into account.
+58e4535	<b>Setting the foundation level</b> – taking into account the bearing stratum, the groundwater level, the frost and volume-change limits, the expected footing depth, the neighbouring foundation levels, and undermining, internal erosion and excavation.
+ac72e13	<b>Determining the footing width</b> – with verification calculations for safety against bearing failure and for the settlement criteria.
+93fcb30	<b>Designing the foundation structure</b> – determining the material, the depth and the reinforcement from the contact pressure, by structural design.
+cd99e8d	<b>Checking stability and uplift</b> – by examining the equilibrium of the foundation, or the structure, treated as a rigid body.
+90c1827	What the designer can choose
+5100f90	Type
+326edac	pad, strip, continuous beam, beam grid, raft, box
+4078a59	Material and grade
+77d3b4c	concrete, reinforced concrete, brick, and the strength
+b70999a	Geometry
+3f7b9ed	the depth of the foundation level, the footing width, the footing depth, and the reinforcement
+9aea3b3	Station 4 · the most important decision
+b683cd6	Setting the foundation level
+06000b6	The <b>foundation level</b> is the lower bearing surface of a shallow foundation, where the loads are transferred to the ground. The <b>depth of foundation</b> is the vertical distance between the foundation level and the final ground surface.
+1824420	The whole foundation system depends decisively on the choice of foundation level. Design should always start from the <b>minimum foundation level required by the structure</b> – an unnecessarily deep foundation is expensive (excavation, dewatering, protection of neighbouring buildings). At least the six requirements below have to be met.
+a72e05f	Below the frost depth
+28d8e8e	The foundation level should be below the frost depth, otherwise freezing and thawing lift the ground under the foundation and then loosen it.
+6f98a46	On bearing ground
+0f97dfb	It should stand on ground that compresses only to an acceptable extent – no harmful settlements should develop. We do not found on topsoil or made ground.
+6ec9c04	Above the groundwater if possible
+8f050dd	Working below the groundwater needs dewatering, which is expensive and also affects the surroundings.
+85a980d	As the structure requires
+4a76f74	It should be as deep as the structure demands – think of a basement or an underground car park.
+4542c7a	Below the desiccation depth
+3067857	On ground that changes volume, the foundation level should be below the desiccation depth, i.e. below about 2 m. The details are covered in the module “Foundations on unfavourable ground”.
+82cf7d0	Fitting the surroundings
+6c4812b	It should match the foundation level of the adjoining neighbouring buildings.
+23f89f6	Foundation-level planner 3D – find the smallest adequate depth!
+a310753	Holiday home in the Mátra
