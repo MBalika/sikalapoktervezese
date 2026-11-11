@@ -3,7 +3,7 @@ export const HUCH = /[áéíóöőúüűÁÉÍÓÖŐÚÜŰ]/;
 export function classify(u) {
   const t = u.t.replace(/\$\{[^}]*\}/g, ' ').replace(/<[^>]*>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
   if (u.kind.startsWith('html') || u.kind === 'text' || u.kind.startsWith('attr')) return 'hu';
-  if (HUCH.test(t)) return 'hu';
+  if (HUCH.test(t) || HUCH.test(u.t.replace(/\$\{[^}]*\}/g, ' '))) return 'hu';   // ékezetes betű a szövegben vagy egy beágyazott címke attribútumában (title, aria-label…)
   const s = t.trim();
   if (/^(#|\.|\[|rgba?\(|hsla?\(|var\(|url\(|data:|https?:|\/|\.\/|M[\d\s.-]|[\d.\s,-]+$)/.test(s)) return 'code';
   if (/^[a-z0-9_-]+$/i.test(s)) return /^[A-Za-z]+$/.test(s) && s.length >= 3 ? 'maybe' : 'code';  // egyetlen szó
