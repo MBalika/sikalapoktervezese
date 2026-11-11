@@ -93,6 +93,6 @@ build(EN, R.parent / 'en.html', 'en-GB')
 # az angol oldal a társoldalak angol változatára mutat (…/en, a fejezet-horgonnyal együtt)
 p = R.parent / 'en.html'; t = p.read_text()
 # (a társoldalak közül azok, amelyeknek már van angol változata)
-for site in ['sikalapok-teherbirasszamitasa', 'sikalapok-sullyedesszamitasa', 'sikalapokallekonysagvizsgalata', 'kedvezotlen-altalaj']:
+for site in ['sikalapok-teherbirasszamitasa', 'sikalapok-sullyedesszamitasa', 'vedekezesakarossullyedesekellen', 'sikalapokallekonysagvizsgalata', 'kedvezotlen-altalaj']:
     t, n = re.subn(rf'https://{site}\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m, s=site: f'https://{s}.vercel.app/en' + (m.group(1) or ''), t); print(site, '→ /en:', n)
 p.write_text(t)
