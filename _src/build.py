@@ -90,8 +90,9 @@ import re
 p = EN / 'index.src.html'; t = p.read_text()
 p.write_text(re.sub(r'>([^<]*)<', lambda m: '>' + re.sub(r'(?<=\d),(?=\d)', '.', m.group(1)) + '<', t))
 build(EN, R.parent / 'en.html', 'en-GB')
-# az angol oldal a teherbírás-alkalmazás angol változatára mutat (…/en, a fejezet-horgonnyal együtt)
+# az angol oldal a társoldalak angol változatára mutat (…/en, a fejezet-horgonnyal együtt)
 p = R.parent / 'en.html'; t = p.read_text()
-t, n = re.subn(r'https://sikalapok-teherbirasszamitasa\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m: 'https://sikalapok-teherbirasszamitasa.vercel.app/en' + (m.group(1) or ''), t)
-t, n2 = re.subn(r'https://kedvezotlen-altalaj\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m: 'https://kedvezotlen-altalaj.vercel.app/en' + (m.group(1) or ''), t)   # a kedvezőtlen altalaj oldalnak is van angol változata
-p.write_text(t); print('teherbírás-linkek → /en:', n, '· kedvezőtlen altalaj → /en:', n2)
+# (a társoldalak közül azok, amelyeknek már van angol változata)
+for site in ['sikalapok-teherbirasszamitasa', 'sikalapok-sullyedesszamitasa', 'sikalapokallekonysagvizsgalata', 'kedvezotlen-altalaj']:
+    t, n = re.subn(rf'https://{site}\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m, s=site: f'https://{s}.vercel.app/en' + (m.group(1) or ''), t); print(site, '→ /en:', n)
+p.write_text(t)
