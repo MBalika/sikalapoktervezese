@@ -93,4 +93,5 @@ build(EN, R.parent / 'en.html', 'en-GB')
 # az angol oldal a teherbírás-alkalmazás angol változatára mutat (…/en, a fejezet-horgonnyal együtt)
 p = R.parent / 'en.html'; t = p.read_text()
 t, n = re.subn(r'https://sikalapok-teherbirasszamitasa\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m: 'https://sikalapok-teherbirasszamitasa.vercel.app/en' + (m.group(1) or ''), t)
-p.write_text(t); print('teherbírás-linkek → /en:', n)
+t, n2 = re.subn(r'https://kedvezotlen-altalaj\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m: 'https://kedvezotlen-altalaj.vercel.app/en' + (m.group(1) or ''), t)   # a kedvezőtlen altalaj oldalnak is van angol változata
+p.write_text(t); print('teherbírás-linkek → /en:', n, '· kedvezőtlen altalaj → /en:', n2)
