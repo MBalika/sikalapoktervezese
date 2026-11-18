@@ -7,6 +7,11 @@ JS-karakterláncok) az i18n/en_*.tsv párjai szerint cseréli. Hiányzó fordít
 (Előfeltétel: cd _src && npm install)
 """
 import os, pathlib, shutil, subprocess, sys
+
+def _bxt(h):  # dobozcímek középre (formázás skill) – boxtitle.inc.html a build.py mellett
+    import pathlib as _p
+    s = (_p.Path(__file__).resolve().parent / 'boxtitle.inc.html').read_text(encoding='utf-8')
+    return h if 'id="bxt-js"' in h else h.replace('</head>', s + '</head>', 1)
 R = pathlib.Path(__file__).parent
 
 CLASSIC = ['core.js', 'data.js', 'w_ch1.js', 'w_ch2.js', 'w_ch3.js', 'w_ch4.js', 'w_ch5.js', 'toro_geo.js', 'w_ch6.js', 'w_ch7.js']
@@ -70,7 +75,7 @@ def build(src, out, lang):
 </body>
 </html>
 """
-    out.write_text(html)
+    out.write_text(_bxt(html))
     print(out.name, len(html) // 1024, 'KB')
 
 build(R, R.parent / 'index.html', 'hu')
