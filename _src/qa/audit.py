@@ -1,6 +1,6 @@
 import asyncio, sys, json
 from playwright.async_api import async_playwright
-# usage: audit.py url lang(hu|en) [widths comma] [--json out]
+# usage: audit.py url lang(hu|en) [widths comma] [--json out] [--tabs '<fülgombok szelektora>']
 url, lang = sys.argv[1], sys.argv[2]
 widths = [int(x) for x in (sys.argv[3] if len(sys.argv) > 3 else '390,768,1440,1920').split(',')]
 ARGS = ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']
@@ -50,10 +50,11 @@ JS = r"""
   }
   // dobozcímek
   for (const h of document.querySelectorAll('main .card h3, main .card h4, main .card h5, main .callout > b:first-child, main .box h4, main .gloss dt')) {
+    if (h.tagName === 'B' && !/^(block|flex)$/.test(getComputedStyle(h).display)) continue;   // a szövegbe futó félkövér felvezetés nem cím
     if (!vis(h)) continue; if (h.closest('header, table, summary, [data-bxt-skip]')) continue;
     const cs = getComputedStyle(h); if (cs.textAlign !== 'center' && !h.classList.contains('bxt')) { const r = h.getBoundingClientRect(), pr = h.parentElement.getBoundingClientRect(); const mid = (r.left + r.right) / 2, pm = (pr.left + pr.right) / 2; if (Math.abs(mid - pm) > 12 || r.width > pr.width * 0.9) out.titles.push(h.textContent.trim().slice(0, 50)); }
   }
-  out.zw = (document.body.innerText.match(/​/g) || []).length;
+  { const c = document.body.cloneNode(true); c.querySelectorAll('svg, script, style').forEach(e => e.remove()); out.zw = (c.textContent.match(/\u200b/g) || []).length; }  // SVG-ben az index utáni alapvonal-visszaállító jel megengedett
   const W = document.documentElement.clientWidth;
   for (const el of document.querySelectorAll('main *')) { if (!vis(el)) continue; const r = el.getBoundingClientRect(); if (r.right > W + 2 && r.left < W && !el.closest('.scrollx, table, .tablewrap, [style*="overflow"]')) { let p = el.parentElement, clipped = false; while (p && p !== document.body) { const o = getComputedStyle(p).overflowX; if (o === 'auto' || o === 'scroll' || o === 'hidden' || o === 'clip') { clipped = true; break; } p = p.parentElement; } if (!clipped) out.overflowEls.push(el.tagName + '.' + (el.className.baseVal ?? el.className) + ' ' + Math.round(r.right - W)); } }
   out.overflowEls = out.overflowEls.slice(0, 8);
@@ -83,6 +84,24 @@ async def main():
             sw = await pg.evaluate('document.documentElement.scrollWidth')
             mut = await pg.evaluate("""() => new Promise(r => { let n = 0; const o = new MutationObserver(m => n += m.length); o.observe(document.body, {subtree:true, childList:true, characterData:true, attributes:true}); setTimeout(() => { o.disconnect(); r(n); }, 3000); })""")
             r = await pg.evaluate(JS, lang)
+            # --tabs '<szelektor>': fejezetfüles appnál minden fület végigkattint, és a találatokat összegzi
+            if '--tabs' in sys.argv:
+                sel = sys.argv[sys.argv.index('--tabs') + 1]
+                n = await pg.locator(sel).count()
+                for i in range(n):
+                    try:
+                        await pg.evaluate("(a) => document.querySelectorAll(a[0])[a[1]].click()", [sel, i]); await pg.wait_for_timeout(1200)
+                        H = await pg.evaluate('document.documentElement.scrollHeight'); y = 0
+                        while y < H: await pg.evaluate(f'window.scrollTo(0,{y})'); await pg.wait_for_timeout(80); y += 900
+                        await pg.wait_for_timeout(600)
+                        r2 = await pg.evaluate(JS, lang)
+                        sw = max(sw, await pg.evaluate('document.documentElement.scrollWidth'))
+                        for k in ('holes', 'ends', 'titles', 'overflowEls'): r[k] += [x for x in r2[k] if x not in r[k]]
+                        r['zw'] += r2['zw']
+                        for k in ('hu', 'comma'):
+                            if k in r2: r[k] = list(dict.fromkeys(r.get(k, []) + r2[k]))
+                    except Exception as e: errs.append('TAB ' + str(e)[:150])
+                r['tabs'] = n
             r['scrollW'] = sw; r['errs'] = errs[:10]; r['mut'] = mut
             res[W] = r
             print(f"== {W}px: scrollW {sw} · holes {len(r['holes'])} · bad ends {len(r['ends'])} · titles {len(r['titles'])} · zw {r['zw']} · overflow {len(r['overflowEls'])} · idle mut {mut} · errors {len(errs)}")
