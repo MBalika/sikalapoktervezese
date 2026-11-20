@@ -533,6 +533,8 @@ main .rag, footer .rag{text-align:left!important}
 main .card p, main .callout p, main .verdict, main dd, main dl > div > *{text-align:center;text-align-last:center}
 .card, .callout{text-align:center}
 main .card li, main .callout li, main .card ul, main .callout ul{text-align-last:auto}
+.duo h5{justify-content:center;text-align:center}   /* „most / új” dobozok címe középen, a felsorolás balra zárt */
+.pbtn{justify-content:center;text-align:center}
 .card .ic{margin-inline:auto}
 .verdict{justify-content:center;text-align:center}
 dl > div{text-align:center}
