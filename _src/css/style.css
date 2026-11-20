@@ -525,3 +525,14 @@ main .rag, footer .rag{text-align:left!important}
 @media (min-width:980px){#scoreBoard{grid-template-columns:repeat(5,1fr)}}
 /* kétoszlopos laborok: ha a kezelőoszlop magasabb, az ábra függőlegesen középre kerül (nem marad alatta üres sáv) */
 @media (min-width:980px){.lab .body.side > .stage{display:flex;flex-direction:column;justify-content:center}}
+
+/* Szövegdobozok: a cím és a szöveg középen (a felhasználó kérése, 2026-11-20). Balra zárt marad: pontokkal szedett felsorolás,
+   ellenőrző lista, táblázat, szabványösszevetés. */
+.opts button{justify-content:center;text-align:center}
+.kpi > div{text-align:center}
+main .card p, main .callout p, main .verdict, main dd, main dl > div > *{text-align:center;text-align-last:center}
+.card, .callout{text-align:center}
+main .card li, main .callout li, main .card ul, main .callout ul{text-align-last:auto}
+.card .ic{margin-inline:auto}
+.verdict{justify-content:center;text-align:center}
+dl > div{text-align:center}
