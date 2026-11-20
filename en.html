@@ -226,7 +226,7 @@ main p, main li, main dd, main figcaption, main .note, .eq .w > div, .fb, footer
 .callout.tip{border-left-color:var(--lime)}
 .callout.warn{border-left-color:var(--warn)}
 .callout.web{border-left-color:var(--c7)}
-.callout > b:first-child{display:block;font-family:var(--f-head);font-size:1.02rem;margin-bottom:4px}
+.callout > b:first-child{display:block;text-align:center;font-family:var(--f-head);font-size:1.02rem;margin-bottom:4px}
 .callout p:last-child{margin-bottom:0}
 .duo{display:grid;grid-template-columns:1fr;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);margin:18px 0}
 @media (min-width:760px){.duo{grid-template-columns:1fr 1fr}}
@@ -314,6 +314,8 @@ select{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:8px;border:1p
 .fig .t-s{font-size:11px}
 .fig .t-b{font-weight:600;fill:var(--ink)}
 .fig .t-m{font-family:var(--f-mono)}
+.fig .t-halo{fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round;stroke-opacity:.92}
+.fig .t-hb{font-weight:600}
 .svgwrap{padding:10px;overflow:hidden}
 
 /* 3D feliratok */
@@ -329,6 +331,8 @@ select{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:8px;border:1p
 /* Galéria + lightbox */
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
 .gal button{padding:0;border:0;background:none;cursor:zoom-in;border-radius:10px;overflow:hidden;position:relative;aspect-ratio:4/3;box-shadow:var(--shadow)}
+.gal.gal-fit{display:flex;flex-wrap:wrap;justify-content:center}
+.gal.gal-fit > button{flex:0 0 var(--gal-w);width:var(--gal-w)}
 .gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .gal button:hover img{transform:scale(1.05)}
 .gal button span{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;font-size:.74rem;color:#fff;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.72));line-height:1.25}
@@ -418,10 +422,10 @@ select{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:8px;border:1p
 .tblw{overflow-x:auto;margin:16px 0}
 
 /* Mátrix (GC) */
-.mx{display:grid;grid-template-columns:auto repeat(3,1fr);gap:6px;max-width:560px}
+.mx{display:grid;grid-template-columns:auto repeat(3,1fr);gap:8px;width:100%;max-width:none}
 .mx div{padding:10px 8px;border-radius:9px;text-align:center;font-size:.86rem}
 .mx .h{font-weight:600;color:var(--ink-2);background:transparent}
-.mx button{border:0;border-radius:9px;padding:14px 6px;font:700 1rem var(--f-mono);cursor:pointer;color:#fff;transition:transform .15s}
+.mx button{border:0;border-radius:9px;padding:20px 6px;font:700 1rem var(--f-mono);cursor:pointer;color:#fff;transition:transform .15s}
 .mx button:hover{transform:scale(1.04)}
 .mx .g1{background:#5aa36b}.mx .g2{background:#c99a2e}.mx .g3{background:#cc4f3d}
 .mx button.on{outline:3px solid var(--ink);outline-offset:2px}
@@ -431,13 +435,14 @@ select{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:8px;border:1p
 .gloss dl{display:grid;grid-template-columns:1fr;gap:8px;margin:0}
 @media (min-width:800px){.gloss dl{grid-template-columns:1fr 1fr}}
 .gloss dl > div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.gloss dt{font-weight:600;font-family:var(--f-head)}
+.gloss dt{text-align:center;font-weight:600;font-family:var(--f-head)}
 .gloss dd{margin:2px 0 0;font-size:.9rem;color:var(--ink-2)}
 
 /* Tovább – sorozat */
 .series{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
 .series a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
 .series a:hover{transform:translateY(-2px);border-color:var(--lime)}
+.series a{text-align:center}
 .series a b{display:block;font-family:var(--f-head);font-size:1.02rem;margin-bottom:2px}
 .series a small{color:var(--ink-3)}
 .series a.next{background:var(--graph);color:var(--on-graph);border-color:var(--graph)}
@@ -766,7 +771,7 @@ main .rag, footer .rag{text-align:left!important}
     <h3>Real examples</h3>
     <div class="grid g3">
       <div class="card"><h4 style="margin-top:8px">MOL Campus, Budapest</h4><p class="small">The 143 m high-rise has a <b>mixed foundation</b>: a 2.2 m thick base slab on 135 piles, 1.2 m in diameter and 8 m long, standing in the stiff clay marl. The base slab alone took about 4400 m³ of concrete.</p></div>
-      <div class="card"><h4 style="margin-top:8px">Burj Khalifa, Dubai</h4><p class="small">The world’s tallest building also stands on a <b>piled raft</b>: the 3.7 m thick reinforced concrete raft rests on 192 bored piles, 1.5 m in diameter and about 50 m long.</p></div>
+      <div class="card"><h4 style="margin-top:8px">Burj Khalifa, Dubai</h4><p class="small">The world’s tallest building also stands on a <b>piled raft</b>: the 3.7 m thick reinforced concrete raft rests on 192 bored piles, 1.5 m in diameter and about 43 m long.</p></div>
       <div class="card"><h4 style="margin-top:8px">Family house on good ground</h4><p class="small">On granular ground of good bearing resistance, the simplest and cheapest solution under a masonry family house is a <b>strip foundation</b> below the frost depth (0.8–1.0 m). A deep foundation would be a needless expense here.</p></div>
     </div>
     <div class="quiz" id="quiz1"></div>
@@ -856,7 +861,7 @@ main .rag, footer .rag{text-align:left!important}
 
     <h3>Pad foundations (block foundations)</h3>
     <div class="prose">
-      <p>Columns and posts sit on pad foundations. The plan shape usually follows the cross-section of the column, most often square, or <span class="nw">B/L = 1–3.5</span>. Material and construction are similar to those of strip foundations, but because of the larger, concentrated action they are made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom.</p>
+      <p>Columns and posts sit on pad foundations. The plan shape usually follows the cross-section of the column, most often square or rectangular, with a side ratio of <span class="nw">L/B = 1–3.5</span>. Material and construction are similar to those of strip foundations, but because of the larger, concentrated action they are made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom.</p>
       <p>The connection between a cast-in-place reinforced concrete column and its footing can be <b>fixed</b> or <b>pinned</b>. For precast columns, the precast reinforced concrete <b>pocket foundation</b> used to be common: the column was set into the “pocket” of the footing and then fixed by concreting it in. Today the precast column is typically set and fixed in a <b>reinforced concrete pocket neck placed on a cast-in-place pad</b>. For a steel column, <b>holding-down bolts</b> are needed to transfer any tensile forces. The footings of structures with a closed plan, such as water towers and factory chimneys, built as a single block and usually circular in plan, can essentially be regarded as large pad foundations too.</p>
     </div>
     <div class="lab" id="lab-kapcs">
@@ -906,7 +911,7 @@ main .rag, footer .rag{text-align:left!important}
     </div>
     <div class="card imgcard wide" style="margin-top:16px;align-items:center">
       <button type="button" data-img="img/ppt/s29_1.jpg" data-title="The Körszálló in Budapest" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s29_1.jpg" alt="The Körszálló hotel in Budapest" style="border-radius:10px;width:100%;display:block" loading="lazy"></button>
-      <div><h4 style="margin-top:8px">It stands (stood) on a shell foundation: the Körszálló</h4><p class="small">Interestingly, the Körszálló hotel on Szilágyi Erzsébet fasor in Budapest also has a shell foundation. Designed by György Szrogh and opened in 1967, the 18-storey, roughly 64 m tall cylindrical block, about 30 m in diameter, was built with slipforming. It closed in 2025; the upper part of the building is being demolished and rebuilt, and according to the plans it will be a residential building by 2028.</p></div>
+      <div><h4 style="margin-top:8px;text-align:center">It stood on a shell foundation: the Körszálló</h4><p class="small">Interestingly, the Körszálló hotel on Szilágyi Erzsébet fasor in Budapest was also built on a shell foundation. Designed by György Szrogh and opened in 1967, the 18-storey, roughly 64 m tall cylindrical block, about 30 m in diameter, was built with slipforming. It closed in 2025 and the tower was demolished by spring 2026; according to the plans, a similar cylindrical residential building will stand on the site by 2028.</p></div>
     </div>
     <button class="vcard" type="button" data-yt="yCcUkom_K3Q" data-short data-title="Types of shallow foundation and load transfer" style="margin-top:16px"><span class="pl"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span><b>Video: how does a shallow foundation transfer the load?</b><small>A short animation on how the load spreads beneath the footing.</small></span></button>
 
@@ -1028,7 +1033,7 @@ main .rag, footer .rag{text-align:left!important}
       <p>The <b>frost depth</b> is the greatest thickness of the soil layer that cools below 0 °C in winter. In Hungary the frost depth is:</p>
       <ul>
         <li>0.8 m in granular soil; below 500 m above sea level it can be reduced to 0.5 m, provided the winter groundwater level comes no closer than 2.0 m to the foundation level;</li>
-        <li>1.0 m in cohesive soil above 500 m above Baltic Sea level, and 0.8 m below 500 m;</li>
+        <li>in cohesive soil, 1.0 m above an elevation of 500 m above sea level (Baltic datum) and 0.8 m below it;</li>
         <li>0.5 m for a foundation on solid rock.</li>
       </ul>
       <p>For parts of a building not exposed to frost (e.g. in a basement), a soil cover of at least 0.4 m has to be designed – this is met anyway because of the minimum footing depth of 50 cm.</p>
@@ -1130,7 +1135,7 @@ main .rag, footer .rag{text-align:left!important}
 
     <h3>Two famous cases</h3>
     <div class="grid g2">
-      <div class="card imgcard"><button type="button" data-img="img/ppt/s53_1.jpg" data-title="The Transcona grain elevator, 1913" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s53_1.jpg" alt="The tilted Transcona elevator" style="width:100%;border-radius:8px" loading="lazy"></button><div><span class="tag">GEO</span> <h4 style="margin-top:6px">Transcona, Canada, 1913</h4><p class="small">On first filling, a deep bearing failure developed in the clay beneath the raft of the grain elevator: the contact pressure was about 297 kPa, close to the ultimate pressure of 307 kPa calculated with the classical theory. In 1914 the elevator was jacked back upright on 14 piers taken down to rock – one of the most important case histories confirming bearing resistance theory.</p></div></div>
+      <div class="card imgcard"><button type="button" data-img="img/ppt/s53_1.jpg" data-title="The Transcona grain elevator, 1913" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s53_1.jpg" alt="The tilted Transcona elevator" style="width:100%;border-radius:8px" loading="lazy"></button><div><span class="tag">GEO</span> <h4 style="margin-top:6px">Transcona, Canada, 1913</h4><p class="small">On first filling, a deep bearing failure developed in the clay beneath the raft of the grain elevator: the contact pressure was about 293 kPa, close to the ultimate pressure of about 308 kPa calculated afterwards with the classical theory. The elevator was jacked back upright onto piers taken down to rock – one of the most important case histories confirming bearing resistance theory.</p></div></div>
       <div class="card imgcard"><button type="button" data-img="img/ppt/s54_1.jpg" data-title="The Leaning Tower of Pisa" style="border:0;padding:0;background:none;cursor:zoom-in"><img src="img/ppt/s54_1.jpg" alt="The Leaning Tower of Pisa" style="width:100%;border-radius:8px" loading="lazy"></button><div><span class="tag">SLS</span> <h4 style="margin-top:6px">Pisa, Italy</h4><p class="small">Construction of the tower, which stands on a masonry foundation 19.6 m in diameter and at most 5.5 m deep, began in 1173; it tilted because of the uneven compression of the soft clay. The structure stands, but its serviceability is impaired. Between 1999 and 2001, soil was carefully extracted from beneath the north side, reducing the tilt by about half a degree.</p></div></div>
     </div>
     <div id="gameHatar"></div>
@@ -1163,7 +1168,7 @@ main .rag, footer .rag{text-align:left!important}
     <h4>The starting point of design: classification</h4>
     <div class="duo">
       <div class="now"><h5>Now · Geotechnical Category</h5><ul class="small"><li>Three categories: simple, ordinary and special, labelled GC1, GC2 and GC3</li><li>Classification is based mainly on experience, with informative guidance</li><li>The reliability class (RC) appears independently, on the structural side</li></ul></div>
-      <div class="new"><h5><span class="tag new">new</span> Geotechnical Category</h5><ul class="small"><li>Consequence class: CC1–CC4, according to the consequences of failure</li><li>Geotechnical Complexity Class (GCC): according to the complexity of the ground conditions and the loading</li><li>The two together give the category (Geotechnical Category, GC1–GC3)</li><li>It sets the extent of the investigation, the method of verification, and the level of checking and supervision – for shallow foundations also whether a settlement calculation is needed, and in how much detail</li></ul></div>
+      <div class="new"><h5><span class="tag new">new</span> Geotechnical Category</h5><ul class="small"><li>Consequence class: CC0–CC4, according to the consequences of failure; the classification table uses CC1–CC3</li><li>Geotechnical Complexity Class (GCC): according to the complexity of the ground conditions and the loading</li><li>The two together give the category (Geotechnical Category, GC1–GC3)</li><li>It sets the extent of the investigation, the method of verification, and the level of checking and supervision – for shallow foundations also whether a settlement calculation is needed, and in how much detail</li></ul></div>
     </div>
     <div class="lab" id="lab-gc">
       <header><h4>Category matrix – click a cell!</h4><span class="sp"></span><span class="tag">nationally determined (NDP)</span></header>
@@ -1253,7 +1258,7 @@ main .rag, footer .rag{text-align:left!important}
       <div class="card k"><h4>Punching shear failure</h4><p class="small mb0"><span class="pill">I<sub>D</sub> &lt; 0.35</span></p><p class="small">In loose granular and soft cohesive soil there is no failure surface, at most a depression of the ground surface; slip surfaces in the sense of soil mechanics no longer apply here. This is also how piles are pushed into the ground. Typical settlement: 0.15–0.20B.</p></div>
     </div>
     <div class="callout"><b>The density index</b><p class="center"><span class="formula">I<sub>D</sub> = (e<sub>max</sub> − e) / (e<sub>max</sub> − e<sub>min</sub>)</span></p><p>where e is the current void ratio of the soil, and e<sub>max</sub> and e<sub>min</sub> are the void ratios of the loosest and densest states that can be produced in the laboratory. With increasing depth of foundation the behaviour shifts towards punching: with a deeper foundation the same sand is more likely to punch in.</p></div>
-    <div class="callout"><b>The history of the mechanism in brief</b><p>The failure mechanism under a rigid, rough footing was first described by Prandtl (1920) for the plastic indentation of metals; Terzaghi applied it to strip foundations in 1943 – this became the bearing resistance formula. Vesić distinguished the three failure modes from model tests in the 1960s, and in 1973 he showed in a chart which one to expect depending on the relative density and the relative depth (D/B*, where B* = 2BL/(B + L)). According to the textbooks, for a shallow foundation the ultimate load develops at a relative settlement (s/B) of about 4–10 % in general shear failure, and about 15–25 % in local shear and punching.</p></div>
+    <div class="callout"><b>The history of the mechanism in brief</b><p>The failure mechanism under a rigid, rough footing was first described by Prandtl (1920) for the plastic indentation of metals; Terzaghi applied it to strip foundations in 1943 – this became the bearing resistance formula. Vesić distinguished the three failure modes from model tests in the 1960s, and in 1973 he showed in a chart which one to expect depending on the density index and the relative depth (D/B*, where B* = 2BL/(B + L)).</p></div>
     <div class="quiz" id="quiz6"></div>
 
     <div class="card" style="margin-top:22px;background:var(--graph);color:var(--on-graph);border-color:var(--graph)">
@@ -1286,11 +1291,17 @@ main .rag, footer .rag{text-align:left!important}
     <h2 style="margin-top:.3em">The Foundation Engineering modules</h2>
     <div class="series" style="margin-top:16px">
       <a class="next" href="https://sikalapok-teherbirasszamitasa.vercel.app/en" target="_blank" rel="noopener"><b>Next: bearing resistance of shallow foundations ↗</b><small>Sizing the foundation area in the ultimate limit state – formula, worked examples, calculator</small></a>
+      <a href="https://bme-alapozas.vercel.app/en" target="_blank" rel="noopener"><b>Foundation Engineering – home page ↗</b><small>Introduction, the nine stations of the course and every module in one place</small></a>
+      <a href="https://talajfelderites.vercel.app/en" target="_blank" rel="noopener"><b>Ground investigation ↗</b><small>Boring, probing, geophysics, sampling – what we learn about the ground</small></a>
       <a href="https://sikalapokallekonysagvizsgalata.vercel.app/en" target="_blank" rel="noopener"><b>Stability of shallow foundations ↗</b><small>Sliding, overturning, uplift, overall stability</small></a>
       <a href="https://sikalapok-sullyedesszamitasa.vercel.app/en" target="_blank" rel="noopener"><b>Settlement of shallow foundations ↗</b><small>Stresses in the ground, settlement and differential settlement</small></a>
       <a href="https://vedekezesakarossullyedesekellen.vercel.app/en" target="_blank" rel="noopener"><b>Protection against harmful settlement ↗</b><small>Lower contact pressure, deeper foundation level, ground improvement</small></a>
       <a href="https://kedvezotlen-altalaj.vercel.app/en" target="_blank" rel="noopener"><b>Foundations on unfavourable ground ↗</b><small>Expansive clay, collapsible loess, made ground, organic soil</small></a>
+      <a href="https://sikalapokaterohatasok.vercel.app/en" target="_blank" rel="noopener"><b>External effects on shallow foundations ↗</b><small>Vibration, earthquake, cavities, erosion and frost beneath the footing</small></a>
+      <a href="https://melyalapozasok.vercel.app/en" target="_blank" rel="noopener"><b>Deep foundations ↗</b><small>Piles, diaphragm walls, caissons – when the bearing stratum lies deep</small></a>
       <a href="https://munkaterhatarolasok.vercel.app/en" target="_blank" rel="noopener"><b>Excavation support ↗</b><small>Strutting, walls, anchoring – the excavation for a deeper foundation level</small></a>
+      <a href="https://bme-alapozas.vercel.app/telek/en" target="_blank" rel="noopener"><b>One site, one semester ↗</b><small>Nine tasks on a single site – you are the geotechnical engineer</small></a>
+      <a href="https://bme-alapozas.vercel.app/ar-labor/en" target="_blank" rel="noopener"><b>Foundation Engineering AR lab ↗</b><small>Bearing failure, pressure bulb, CFA pile and excavation on your own desk</small></a>
     </div>
   </div>
 </section>
@@ -1911,6 +1922,22 @@ const RAG = (() => {
 /* ---------- Indítás ---------- */
 const INIT = [];
 function onReady(fn) { INIT.push(fn); }
+/* képgaléria: mindig teli sorok – a képszámhoz és a szélességhez választott oszlopszám, a csonka sor középen */
+onReady(function galRows() {
+  const fit = el => {
+    const n = el.children.length; if (n < 2) return;
+    const w = el.clientWidth; if (!w) return;
+    const gap = 10, max = Math.max(1, Math.floor((w + gap) / (150 + gap)));
+    const rows = Math.ceil(n / max); let cols = Math.ceil(n / rows);
+    // ha így csonka sor maradna, keressünk olyan oszlopszámot, amellyel a sorok teliek
+    if (n % cols) for (let c = Math.min(max, n); c >= 2; c--) if (n % c === 0 && n / c <= rows + 1) { cols = c; break; }
+    el.style.setProperty('--gal-w', `calc((100% - ${(cols - 1) * gap}px) / ${cols})`);
+    el.classList.add('gal-fit');
+  };
+  const all = [...document.querySelectorAll('.gal')].filter(el => !el.closest('.g2i'));
+  const ro = new ResizeObserver(es => es.forEach(e => fit(e.target)));
+  all.forEach(el => { fit(el); ro.observe(el); });
+});
 document.addEventListener('DOMContentLoaded', () => {
   initRanges();
   for (const f of INIT) { try { f(); } catch (e) { console.error(e); } }
@@ -1979,7 +2006,7 @@ const TYPE_INFO = {
   },
   pill: {
     name: 'Pad foundation', kind: 'Under columns and posts',
-    desc: 'A block footing under the columns; its plan is usually square, B/L = 1–3.5. It is made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom. The connection to the column can be fixed or pinned; a precast column today goes into a pocket neck placed on a cast-in-place block footing.',
+    desc: 'A block footing under the columns; its plan is usually square or rectangular, L/B = 1–3.5. It is made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom. The connection to the column can be fixed or pinned; a precast column today goes into a pocket neck placed on a cast-in-place block footing.',
     when: 'Under the concentrated column loads of framed buildings and industrial halls, if differing settlement of the columns causes no problem.',
     variants: [['lepcsos', 'Reinforced concrete block'], ['kehely', 'Pocket neck']]
   },
@@ -2029,7 +2056,7 @@ const QUIZ = {
     { q: 'Why does a strip footing usually project beyond the wall as a cantilever?', o: ['Because the bearing resistance of the ground is lower than that of the masonry, and a placing allowance of at least 5 cm is also needed on each side', 'So that the wall does not settle at all', 'Because it needs less material', 'Only for aesthetic reasons'], a: 0, e: 'The widening reduces the contact pressure, and the 5 cm on each side covers the inaccuracy of the earthworks.' },
     { q: 'How should the steps of a brick strip footing be formed?', o: ['In height by one course of bricks, horizontally by whole multiples of half a brick', 'Freely, with a sloping 45° surface', 'Horizontally by multiples of the brick length', 'Without steps, always as wide as the wall'], a: 0, e: 'This way the bricks can be laid in bond without cutting, and the steps also serve load distribution.' },
     { q: 'When is a reinforced concrete strip footing advantageous?', o: ['If a large bearing area is needed but the depth of the footing is limited (groundwater, basement, etc.)', 'If the ground is very good', 'If the wall is thin', 'If the frost depth is large'], a: 0, e: 'The wider an unreinforced footing, the deeper it has to be; a reinforced concrete footing spans the projection with a smaller depth.' },
-    { q: 'What is typical of the plan of a pad foundation?', o: ['Usually square, or B/L = 1–3.5', 'Always circular', 'Always elongated, B/L > 5', 'The same as the cross-section of the column'], a: 0, e: 'The plan follows the cross-section of the column, most often square.' },
+    { q: 'What is typical of the plan of a pad foundation?', o: ['Usually square or rectangular, L/B = 1–3.5', 'Always circular', 'Always elongated, L/B > 5', 'The same as the cross-section of the column'], a: 0, e: 'The plan follows the cross-section of the column, most often square.' },
     { q: 'What is the difference between a continuous beam and a beam-grid foundation?', o: ['The continuous beam reduces differential settlement in one direction, the beam grid in both directions', 'The continuous beam is reinforced concrete, the beam grid is plain concrete', 'A beam grid is built only under walls', 'There is no difference'], a: 0, e: 'A beam grid consists of intersecting ground beams.' },
     { q: 'What is a raft with hidden ribs?', o: ['One where only additional reinforcement remains where the ribs would be, and the thickness equals that of the ribs', 'One whose ribs are sunk into the ground', 'One covered from above by a floor finish', 'One with a drainage layer underneath'], a: 0, e: 'The rib is “hidden”: it is present in the reinforcement of the slab.' },
     { q: 'Why were box foundations used under prefabricated panel buildings?', o: ['Because a building made of prefabricated elements can tolerate only small deformations without damage', 'Because it is cheaper than a strip foundation', 'Because the groundwater is always high under panel buildings', 'Because the panels cannot be fixed to anything else'], a: 0, e: 'The cast-in-place receiving level acts as a box girder and makes the foundation stiff.' }
@@ -2056,7 +2083,7 @@ const QUIZ = {
     { q: 'Which one is a serviceability limit state?', o: ['Unacceptable vibration', 'Bearing failure beneath the foundation', 'Punching through the footing', 'Uplift'], a: 0, e: 'The SLSs: excessive settlement and differential settlement, unacceptable vibration, excessive heave.' },
     { q: 'When is there a risk of uplift (UPL)?', o: ['For lighter structures reaching well below the groundwater level (pool, underpass, underground car park)', 'For heavy structures above the groundwater', 'On sloping ground', 'For foundations on rock'], a: 0, e: 'It is often critical only during construction, when the structure is still light.' },
     { q: 'When is the prescriptive method typically used?', o: ['For foundations on rock, with a presumed bearing resistance', 'For a tower block on soft clay', 'Always, if there is no ground investigation', 'For checking uplift'], a: 0, e: 'An allowable contact pressure taken from the type, discontinuities and uniaxial compressive strength of the rock (Annex G).' },
-    { q: 'What replaces the design approaches DA1/DA2/DA3 in the 2nd-generation EC7?', o: ['The verification cases (VC1–VC4), with the material factor (MFA) or resistance factor (RFA) approach', 'A single global factor of safety', 'The allowable stress method', 'Nothing, everything stays'], a: 0, e: 'The types of limit state (GEO, STR, EQU, UPL, HYD) remain; it is the verification procedure that changes.' },
+    { q: 'What replaces the design approaches DA1/DA2/DA3 in the 2nd-generation EC7?', o: ['The verification cases (VC1–VC4), with the material factor (MFA) or resistance factor (RFA) approach', 'A single global factor of safety', 'The allowable stress method', 'Nothing, everything stays'], a: 0, e: 'The failure modes to be checked remain; it is the way of verification that changes.' },
     { q: 'According to the matrix, which category does a CC3 structure with normal geotechnical complexity (GCC2) fall into?', o: ['GC1', 'GC2', 'GC3', 'It cannot be classified'], a: 2, e: 'High consequence and normal complexity: GC3. The table is a nationally determined parameter.' }
   ]},
   q6: { key: 'q6', title: 'Quiz – the mechanism of bearing failure', items: [
@@ -2102,7 +2129,7 @@ const TF_ITEMS = [
   { s: 'Mass-concrete strip footings are typically built with formwork today.', a: false, e: 'Against the trench sides; formwork is needed only if near-vertical trench sides do not stand in the granular soil.' },
   { s: 'For the same footing width, a reinforced concrete strip footing can be shallower than an unreinforced one.', a: true, e: 'That is why it is advantageous when the footing depth is limited.' },
   { s: 'Partition walls do not need separate foundations, because they carry only themselves.', a: false, e: 'They do need foundations: a separate strip footing, a thickened floor slab or a reinforced concrete beam.' },
-  { s: 'For a pad foundation, the B/L ratio is usually between 1 and 3.5.', a: true, e: 'Most often it is square in plan.' },
+  { s: 'For a pad foundation, the side ratio L/B is usually between 1 and 3.5.', a: true, e: 'Most often it is square in plan.' },
   { s: 'The holding-down bolts of a steel column serve to transfer any tensile forces.', a: true, e: 'They can also provide a moment-resisting connection in one or two directions.' },
   { s: 'A continuous beam foundation reduces differential settlements in both directions.', a: false, e: 'Only in one direction; in both directions it is the beam-grid foundation.' },
   { s: 'Because they are relatively thin, raft foundations are usually very flexible.', a: true, e: 'They can be stiffened with ribs.' },
@@ -2140,7 +2167,7 @@ const GLOSSARY = [
   ['Mixed (hybrid) foundation', 'A combination of shallow and deep foundations, e.g. a piled raft.'],
   ['Strip foundation', 'A footing, usually widened, providing continuous support for walls.'],
   ['Rubble concrete', 'Concrete mixed with rubble stone (“cyclopean concrete”). The stone is in about half of the depth.'],
-  ['Pad foundation (block foundation)', 'A footing under columns and posts, usually square (B/L = 1–3.5).'],
+  ['Pad foundation (block foundation)', 'A footing under columns and posts, usually square (L/B = 1–3.5).'],
   ['Pocket foundation, pocket neck', 'A pocket for fixing a precast column. Today a pocket neck placed on a cast-in-place block footing.'],
   ['Continuous beam foundation', 'A heavily reinforced ground beam connecting a row of columns in one direction.'],
   ['Beam-grid foundation', 'Intersecting ground beams. It reduces differential settlement in both directions.'],
@@ -2164,16 +2191,17 @@ const GLOSSARY = [
   ['STR', 'Internal failure or excessive deformation of structural elements.'],
   ['EQU', 'Loss of static equilibrium as a rigid body.'],
   ['UPL', 'Loss of equilibrium due to uplift.'],
+  ['HYD', 'Hydraulic heave: upward seepage of water loosens and lifts the soil.'],
   ['Direct method', 'A separate calculation model for each limit state (failure mechanism, settlement calculation).'],
   ['Indirect method', 'Based on experience and measurements (e.g. penetration tests), with empirical formulae.'],
   ['Prescriptive method', 'With a presumed bearing resistance, mainly for foundations on rock.'],
-  ['Consequence class (CC)', 'Classification according to the consequences of failure (CC1–CC4).'],
+  ['Consequence class (CC)', 'Classification according to the consequences of failure (CC0–CC4).'],
   ['Geotechnical Category', 'The geotechnical classification of the structure (GC1–GC3). In the new EC7 it follows from the CC and the geotechnical complexity together.'],
   ['MFA / RFA', 'Material factor and resistance factor approaches to verification in the new EC7.'],
   ['General shear failure', 'A slip surface running out to the surface, heave, a peak on the load–settlement curve.'],
   ['Local shear failure', 'A partly developed failure surface, larger settlement, no peak.'],
   ['Punching shear failure', 'Failure without a failure surface, with large settlement, in loose or soft soil.'],
-  ['Density index (ID)', 'ID = (emax − e)/(emax − emin). The state of density of a granular soil.'],
+  ['Density index (I<sub>D</sub>)', 'I<sub>D</sub> = (e<sub>max</sub> − e)/(e<sub>max</sub> − e<sub>min</sub>). The state of density of a granular soil.'],
   ['Prandtl mechanism', 'Active wedge, radial shear zone and passive wedge – the basis of the bearing resistance formula.']
 ];
 
@@ -2276,19 +2304,19 @@ onReady(function dontes() {
       S('line', { x1: 0, y1: Y(st.gw), x2: W, y2: Y(st.gw), style: 'stroke:var(--water)', 'stroke-width': 1.8 }, g);
       const tx = narrow ? 300 : 470;
       S('path', { d: `M${tx - 7} ${Y(st.gw) - 11} h14 l-7 10 z`, style: 'fill:var(--water)' }, g);
-      S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s', style: 'fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(20,50,110,.85);stroke-width:3px', text: `groundwater −${fmt(st.gw, 1)} m` }, g);
+      S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s t-halo t-hb', text: `groundwater −${fmt(st.gw, 1)} m` }, g);
     }
     // terep
     S('line', { x1: 0, y1: y0, x2: W, y2: y0, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     // rétegfeliratok
-    const lab = (x, y, t, b) => { const tt = S('text', { x, y, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:3px', text: t }, g); if (b) tt.setAttribute('font-weight', '600'); };
+    const lab = (x, y, t, b) => { const tt = S('text', { x, y, class: 't-s t-halo', text: t }, g); if (b) tt.setAttribute('font-weight', '600'); };
     lab(10, y0 + 16, st.nincs ? 'medium, compressible soil' : 'weak layer (made ground, soft clay)');
     lab(10, Y(st.tb) + 16, st.nincs ? 'nothing better deeper down' : 'bearing stratum (sandy gravel)', true);
     // mélységskála
     const ax = S('g', {}, g);
     for (let d = 0; d <= maxD; d += maxD > 12 ? 2 : 1) {
       S('line', { x1: W - 30, y1: Y(d), x2: W - 22, y2: Y(d), style: 'stroke:var(--ink-3)' }, ax);
-      S('text', { x: W - 34, y: Y(d) + 4, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.5);stroke-width:3px', text: d === 0 ? '0' : '−' + d }, ax);
+      S('text', { x: W - 34, y: Y(d) + 4, 'text-anchor': 'end', class: 't-s t-m t-halo', text: d === 0 ? '0' : '−' + d }, ax);
     }
     S('text', { x: W - 26, y: y0 - 8, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:var(--ink-3)', text: 'depth [m]' }, ax);
     // épület
@@ -2330,9 +2358,9 @@ onReady(function dontes() {
     const fd = 1.0;
     if (t === 'sav') { const B = ep === 'haz' ? 0.8 : 1.4; fe(cx - half - B * sc / 2 + 6, B * sc, fd - 0.5, fd); fe(cx + half - B * sc / 2 - 6, B * sc, fd - 0.5, fd); if (ep !== 'haz') fe(cx - B * sc / 2, B * sc, fd - 0.5, fd); }
     else if (t === 'pill') { for (let i = -2; i <= 2; i++) fe(cx + i * 70 - 0.9 * sc, 1.8 * sc, fd - 0.6, fd + 0.2); }
-    else if (t === 'racs') { fe(cx - half - 10, half * 2 + 20, fd - 0.2, fd + 0.3); for (let i = -2; i <= 2; i++) { const x = ep === 'csarnok' ? cx + i * 70 : cx + i * half / 2; fe(x - 0.5 * sc, 1.0 * sc, fd - 0.3, fd + 0.3); } S('text', { x: cx, y: Y(fd + 0.3) + 16, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'footings tied in both directions' }, g); }
-    else if (t === 'lemez') { const th = ep === 'torony' ? 2.0 : 0.6; const top = ep === 'lakohaz' && st.gw < 3.5 ? 2.6 : 0.6; fe(cx - half - 12, half * 2 + 24, top, top + th); if (top > 1) { S('rect', { x: cx - half - 12, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('rect', { x: cx + half + 2, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('text', { x: cx, y: Y(top) - 8, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'basement – inverted floor' }, g); } }
-    else if (t === 'melyitett') { const B = 1.6; [-half + 8, half - 8].forEach(x => { S('rect', { x: cx + x - 0.25 * sc, y: Y(0.4), width: 0.5 * sc, height: (st.tb - 0.4) * sc, fill: conc, style: sty }, g); fe(cx + x - B * sc / 2, B * sc, st.tb, st.tb + 0.6); }); S('text', { x: cx, y: Y(st.tb) - 10, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'deepened shallow foundation on the bearing stratum' }, g); }
+    else if (t === 'racs') { fe(cx - half - 10, half * 2 + 20, fd - 0.2, fd + 0.3); for (let i = -2; i <= 2; i++) { const x = ep === 'csarnok' ? cx + i * 70 : cx + i * half / 2; fe(x - 0.5 * sc, 1.0 * sc, fd - 0.3, fd + 0.3); } S('text', { x: cx, y: Y(fd + 0.3) + 16, 'text-anchor': 'middle', class: 't-s t-halo', text: 'footings tied in both directions' }, g); }
+    else if (t === 'lemez') { const th = ep === 'torony' ? 2.0 : 0.6; const top = ep === 'lakohaz' && st.gw < 3.5 ? 2.6 : 0.6; fe(cx - half - 12, half * 2 + 24, top, top + th); if (top > 1) { S('rect', { x: cx - half - 12, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('rect', { x: cx + half + 2, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('text', { x: cx, y: Y(top) - 8, 'text-anchor': 'middle', class: 't-s t-halo', text: 'basement – inverted floor' }, g); } }
+    else if (t === 'melyitett') { const B = 1.6; [-half + 8, half - 8].forEach(x => { S('rect', { x: cx + x - 0.25 * sc, y: Y(0.4), width: 0.5 * sc, height: (st.tb - 0.4) * sc, fill: conc, style: sty }, g); fe(cx + x - B * sc / 2, B * sc, st.tb, st.tb + 0.6); }); S('text', { x: cx, y: Y(st.tb) - 10, 'text-anchor': 'middle', class: 't-s t-halo', text: 'deepened shallow foundation on the bearing stratum' }, g); }
     else if (t === 'colop' || t === 'cprf') {
       const capTop = t === 'cprf' ? 0.6 : (ep === 'hid' ? 0 : 0.5);
       const capH = t === 'cprf' ? (ep === 'torony' ? 2.0 : 1.0) : 0.8;
@@ -2344,7 +2372,7 @@ onReady(function dontes() {
         const x = cx - span + 16 + i * (span * 2 - 32) / (n - 1);
         S('rect', { x: x - 0.4 * sc, y: Y(capTop + capH), width: 0.8 * sc, height: (Math.min(tip, 20.5) - capTop - capH) * sc, fill: conc, style: 'stroke:var(--ink);stroke-width:1.2' }, g);
       }
-      S('text', { x: cx, y: Y(Math.min(tip, 20)) + 16, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: t === 'cprf' ? 'raft + piles acting together' : 'piles down to the bearing stratum' }, g);
+      S('text', { x: cx, y: Y(Math.min(tip, 20)) + 16, 'text-anchor': 'middle', class: 't-s t-halo', text: t === 'cprf' ? 'raft + piles acting together' : 'piles down to the bearing stratum' }, g);
     }
   }
   function render() {
@@ -2663,7 +2691,7 @@ onReady(function lemezek() {
       // az ágyazat mindkét oldalon 50–60 cm-rel túlnyúlik a lemez szélén (a rajzon ~1 px/cm)
       S('rect', { x: 4, y: y + 26, width: 712, height: 58, fill: f('kavics'), style: 'stroke:var(--ink-3)' }, g);
       dimLine(g, 660, y + 96, 716, y + 96, '50–60 cm', { dy: 16 });
-      S('text', { x: 670, y: y + 60, class: 't-s', 'text-anchor': 'end', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'compacted granular bedding ≥ 50–60 cm' }, g);
+      S('text', { x: 670, y: y + 60, class: 't-s t-halo', 'text-anchor': 'end', text: 'compacted granular bedding ≥ 50–60 cm' }, g);
       S('line', { x1: 0, y1: y + 130, x2: 720, y2: y + 130, style: 'stroke:var(--frost);stroke-width:2;stroke-dasharray:8 5' }, g);
       S('text', { x: 10, y: y + 124, class: 't-s', style: 'fill:var(--frost)', text: 'frost depth – the underside of the slab may stay above it' }, g);
       S('line', { x1: 0, y1: y, x2: 60, y2: y, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
@@ -2720,7 +2748,7 @@ onReady(function tipusJatek() {
     if (b === 'panel') { S('rect', { x: 60, y: 14, width: 160, height: 106, style: st }, g); for (let i = 0; i < 4; i++) for (let j = 0; j < 7; j++) S('rect', { x: 60 + i * 40, y: 14 + j * 15, width: 40, height: 15, style: 'fill:none;stroke:var(--ink-3)' }, g); }
     if (b === 'torony') { S('rect', { x: 115, y: 10, width: 50, height: 110, style: st }, g); S('path', { d: 'M105 10 h70', style: 'stroke:var(--ink-2);stroke-width:3' }, g); }
     if (b === 'kicsi') { S('rect', { x: 70, y: 60, width: 140, height: 60, style: st }, g); S('rect', { x: 70, y: 50, width: 140, height: 10, style: 'fill:var(--c2);opacity:.6' }, g); }
-    if (kind.t) S('text', { x: 10, y: 172, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: kind.t }, g);
+    if (kind.t) S('text', { x: 10, y: 172, class: 't-s t-halo', text: kind.t }, g);
   };
   const O = ['Strip foundation', 'Pad foundation', 'Continuous beam foundation', 'Beam-grid foundation', 'Raft foundation', 'Box foundation', 'Large circular footing (pad foundation)'];
   renderGame($('#gameTipus'), {
@@ -3082,9 +3110,9 @@ onReady(function fagy() {
     if (F.z > 0) S('rect', { x: 0, y: y0, width: 430, height: F.z * sc, fill: f('fagy') }, g);
     // fagyhatár (tervezési)
     S('line', { x1: 0, y1: Y(fr), x2: 430, y2: Y(fr), style: 'stroke:var(--frost);stroke-width:2.2;stroke-dasharray:9 5' }, g);
-    S('text', { x: 300, y: Y(fr) + 16, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(10,60,80,.75);stroke-width:3px;font-weight:600', text: `frost depth ${fmt(fr, 1)} m` }, g);
+    S('text', { x: 300, y: Y(fr) + 16, class: 't-s t-halo t-hb', text: `frost depth ${fmt(fr, 1)} m` }, g);
     // fagyfront
-    if (F.z > 0.005) { S('line', { x1: 0, y1: Y(F.z), x2: 430, y2: Y(F.z), stroke: '#fff', 'stroke-width': 2 }, g); S('text', { x: 8, y: Y(F.z) - 6, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(10,60,80,.75);stroke-width:3px', text: `frost front ${fmt(F.z, 2)} m` }, g); }
+    if (F.z > 0.005) { S('line', { x1: 0, y1: Y(F.z), x2: 430, y2: Y(F.z), stroke: '#fff', 'stroke-width': 2 }, g); S('text', { x: 8, y: Y(F.z) - 6, class: 't-s t-halo', text: `frost front ${fmt(F.z, 2)} m` }, g); }
     // talajvíz
     const gwY = Y(st.d + st.gwb);
     if (gwY < 430) { S('rect', { x: 0, y: gwY, width: 430, height: 430 - gwY, fill: f('viz') }, g); S('line', { x1: 0, y1: gwY, x2: 430, y2: gwY, style: 'stroke:var(--water);stroke-width:2' }, g); S('text', { x: 8, y: gwY - 6, class: 't-s', style: 'fill:var(--water);font-weight:600', text: 'winter groundwater' }, g); }
@@ -3387,7 +3415,7 @@ onReady(function detektiv() {
     const svg = S('svg', { viewBox: '0 0 280 180', class: 'fig', style: 'max-width:280px' }, el);
     const { f } = soilDefs(svg);
     const g = S('g', {}, svg);
-    const T = (x, y, t, c) => S('text', { x, y, class: 't-s', style: `fill:${c || '#fff'};paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px;font-weight:600`, text: t }, g);
+    const T = (x, y, t, c) => S('text', { x, y, class: 't-s t-halo t-hb', style: c ? `fill:${c}` : '', text: t }, g);
     spec(g, f, T);
   };
   const flat = (g, f, kind = 'homok') => { S('rect', { x: 0, y: 50, width: 280, height: 130, fill: f(kind), opacity: .75 }, g); S('line', { x1: 0, y1: 50, x2: 280, y2: 50, stroke: '#3d5a1f', 'stroke-width': 3 }, g); };
@@ -3411,7 +3439,7 @@ onReady(() => renderQuiz($('#quiz4'), QUIZ.q4));
 const LIMIT = (() => {
   // mini jelenetek: draw(g, f, p) – p: 0..1 animációs fázis
   const soil = (g, f, y = 120, kind = 'homok') => { S('rect', { x: 0, y, width: 300, height: 190 - y, fill: f(kind), opacity: .75 }, g); S('line', { x1: 0, y1: y, x2: 300, y2: y, stroke: '#3d5a1f', 'stroke-width': 3 }, g); };
-  const T = (g, x, y, t, col) => S('text', { x, y, class: 't-s', style: `fill:${col || 'var(--ink-2)'};font-weight:600`, text: t }, g);
+  const T = (g, x, y, t, col) => S('text', { x, y, class: 't-s t-halo t-hb', style: col ? `fill:${col}` : '', text: t }, g);
   const footing = (g, f, ox, oy, rot = 0, cx = 150, cy = 140) => {
     const gg = S('g', { transform: `translate(${ox} ${oy}) rotate(${rot} ${cx} ${cy})` }, g);
     S('rect', { x: 110, y: 130, width: 80, height: 22, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, gg);
@@ -3437,10 +3465,10 @@ const LIMIT = (() => {
     csuszas: { code: 'GEO', n: 'c) Sliding along the foundation level', d: (g, f, p, id) => { soil(g, f); const dx = smooth(p) * 36; S('rect', { x: 110, y: 130, width: 80, height: 22, style: 'fill:none;stroke:var(--ink-3);stroke-dasharray:4 3' }, g); footing(g, f, dx, 0); S('line', { x1: 40, y1: 70, x2: 120 + dx, y2: 70, style: 'stroke:var(--bad);stroke-width:3', 'marker-end': `url(#${id}-arrbad)` }, g); T(g, 10, 180, 'displacement along the base'); } },
     str: { code: 'STR', n: 'd) Failure of the footing', d: (g, f, p) => { soil(g, f); const e = smooth(p); S('rect', { x: 110, y: 130, width: 52, height: 22, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); S('rect', { x: 140, y: 40, width: 20, height: 90, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); const gg = S('g', { transform: `translate(${e * 10} ${e * 6}) rotate(${e * 22} 162 152)` }, g); S('path', { d: 'M162 130 H190 V152 H168 Z', fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, gg); S('path', { d: 'M162 130 L168 152', style: 'stroke:var(--bad);stroke-width:2' }, g); T(g, 10, 180, 'the footing breaks'); } },
     egyutt: { code: 'STR', n: 'e) Combined failure of structure and ground', d: (g, f, p, id) => { const e = smooth(p); S('rect', { x: 0, y: 120, width: 300, height: 70, fill: f('homok'), opacity: .75 }, g); S('path', { d: `M0 120 H200 Q235 ${120 - e * 16} 270 ${120 - e * 4} L300 120`, stroke: '#3d5a1f', 'stroke-width': 3, fill: 'none' }, g); S('rect', { x: 110, y: 130, width: 52, height: 22, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); S('rect', { x: 140, y: 40, width: 20, height: 90, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); const gg = S('g', { transform: `translate(${e * 12} ${e * 8}) rotate(${e * 26} 162 152)` }, g); S('path', { d: 'M162 130 H190 V152 H168 Z', fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, gg); S('path', { d: 'M196 160 Q226 150 244 132', style: 'stroke:var(--ink-2);stroke-width:1.6;fill:none', 'marker-end': `url(#${id}-arr)` }, g); T(g, 10, 180, 'fracture and squeezing of soil'); } },
-    upl: { code: 'UPL', n: 'f) Uplift', d: (g, f, p, id) => { const e = smooth(p); S('rect', { x: 0, y: 70, width: 300, height: 120, fill: f('homok'), opacity: .75 }, g); S('rect', { x: 0, y: 92, width: 300, height: 98, fill: f('viz') }, g); S('line', { x1: 0, y1: 92, x2: 300, y2: 92, style: 'stroke:var(--water);stroke-width:2' }, g); S('line', { x1: 0, y1: 70, x2: 300, y2: 70, stroke: '#3d5a1f', 'stroke-width': 3 }, g); S('path', { d: `M100 ${50 - e * 26} V${160 - e * 26} H200 V${50 - e * 26} H188 V${148 - e * 26} H112 V${50 - e * 26} Z`, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); for (let i = 0; i < 5; i++) S('line', { x1: 112 + i * 19, y1: 186, x2: 112 + i * 19, y2: 166 - e * 26, style: 'stroke:var(--water);stroke-width:2.4', 'marker-end': `url(#${id}-arrw)` }, g); T(g, 10, 30, 'empty pool, high groundwater'); } },
+    upl: { code: 'UPL', n: 'f) Uplift', d: (g, f, p, id) => { const e = smooth(p); S('rect', { x: 0, y: 70, width: 300, height: 120, fill: f('homok'), opacity: .75 }, g); S('rect', { x: 0, y: 92, width: 300, height: 98, fill: f('viz') }, g); S('line', { x1: 0, y1: 92, x2: 300, y2: 92, style: 'stroke:var(--water);stroke-width:2' }, g); S('line', { x1: 0, y1: 70, x2: 300, y2: 70, stroke: '#3d5a1f', 'stroke-width': 3 }, g); S('path', { d: `M100 ${50 - e * 26} V${160 - e * 26} H200 V${50 - e * 26} H188 V${148 - e * 26} H112 V${50 - e * 26} Z`, fill: f('beton'), style: 'stroke:var(--ink);stroke-width:1.4' }, g); for (let i = 0; i < 5; i++) S('line', { x1: 112 + i * 19, y1: 186, x2: 112 + i * 19, y2: 166 - e * 26, style: 'stroke:var(--water);stroke-width:2.4', 'marker-end': `url(#${id}-arrw)` }, g); T(g, 8, 16, 'empty pool, high groundwater'); } },
     sully: { code: 'SLS', n: 'Excessive settlement', d: (g, f, p, id) => { soil(g, f); const e = smooth(p) * 18; S('rect', { x: 110, y: 130, width: 80, height: 22, style: 'fill:none;stroke:var(--ink-3);stroke-dasharray:4 3' }, g); footing(g, f, 0, e); S('line', { x1: 150, y1: 4, x2: 150, y2: 34 + e, style: 'stroke:var(--bad);stroke-width:3', 'marker-end': `url(#${id}-arrbad)` }, g); T(g, 200, 160 + e / 2, 'Δh', 'var(--bad)'); } },
     kulonb: { code: 'SLS', n: 'Differential settlement', d: (g, f, p) => { soil(g, f); const e = smooth(p) * 18; S('path', { d: `M60 ${60} L240 ${60 + e}`, style: 'stroke:var(--ink-2);stroke-width:8' }, g); S('rect', { x: 52, y: 60, width: 16, height: 70, fill: f('beton'), style: 'stroke:var(--ink)' }, g); S('rect', { x: 232, y: 60 + e, width: 16, height: 70, fill: f('beton'), style: 'stroke:var(--ink)' }, g); S('rect', { x: 36, y: 130, width: 48, height: 18, fill: f('beton'), style: 'stroke:var(--ink)' }, g); S('rect', { x: 216, y: 130 + e, width: 48, height: 18, fill: f('beton'), style: 'stroke:var(--ink)' }, g); T(g, 120, 40, 'distorting frame'); } },
-    rezges: { code: 'SLS', n: 'Unacceptable vibration', d: (g, f, p) => { soil(g, f); const ph = p * 12; S('path', { d: 'M30 120 V70 L70 44 L110 70 V120 Z', style: 'fill:var(--c2);opacity:.75;stroke:var(--ink-2)' }, g); S('rect', { x: 236, y: 10, width: 18, height: 40, fill: '#e2b43a', style: 'stroke:var(--ink-2)' }, g); S('rect', { x: 240, y: 50, width: 10, height: 120, fill: f('beton'), style: 'stroke:var(--ink)' }, g); let d = 'M120 120'; for (let x = 120; x <= 230; x += 4) d += ` L${x} ${120 + Math.sin((x + ph * 20) / 7) * 6 * Math.max(0, 1 - Math.abs(x - 175) / 70)}`; S('path', { d, style: 'stroke:var(--bad);stroke-width:2;fill:none' }, g); T(g, 120, 30, 'pile driving next door'); } },
+    rezges: { code: 'SLS', n: 'Unacceptable vibration', d: (g, f, p) => { soil(g, f); const ph = p * 12; S('path', { d: 'M30 120 V70 L70 44 L110 70 V120 Z', style: 'fill:var(--c2);opacity:.75;stroke:var(--ink-2)' }, g); S('rect', { x: 236, y: 10, width: 18, height: 40, fill: '#e2b43a', style: 'stroke:var(--ink-2)' }, g); S('rect', { x: 240, y: 50, width: 10, height: 120, fill: f('beton'), style: 'stroke:var(--ink)' }, g); let d = 'M120 120'; for (let x = 120; x <= 230; x += 4) d += ` L${x} ${120 + Math.sin((x + ph * 20) / 7) * 6 * Math.max(0, 1 - Math.abs(x - 175) / 70)}`; S('path', { d, style: 'stroke:var(--bad);stroke-width:2;fill:none' }, g); T(g, 72, 22, 'pile driving next door'); } },
     emel: { code: 'SLS', n: 'Excessive heave', d: (g, f, p, id) => { soil(g, f, 120, 'duzz'); const e = smooth(p) * 14; S('path', { d: `M40 ${120 - e * .4} Q150 ${120 - e * 1.6} 260 ${120 - e * .4}`, style: 'stroke:var(--ink);stroke-width:6;fill:none' }, g); for (let i = 0; i < 4; i++) S('line', { x1: 90 + i * 40, y1: 176, x2: 90 + i * 40, y2: 140 - e, style: 'stroke:var(--c2);stroke-width:2.4', 'marker-end': `url(#${id}-arrk)` }, g); T(g, 10, 30, 'swelling clay lifts the floor'); } }
   };
   function card(key, parent) {
@@ -3996,93 +4024,122 @@ onReady(function toroUI() {
     ctx.drawImage(off, (cv2.width - ow) / 2, (cv2.height - oh) / 2);
   }
   // ---- diagramok ----
-  function axes(ctx, w, h, m, xl, yl) {
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.lineTo(w - m.r, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText(xl, w - m.r - ctx.measureText(xl).width, h - m.b + 26);
-    ctx.save(); ctx.translate(14, m.t + 4); ctx.fillText(yl, 0, 0); ctx.restore();
+  // éles rajz bármilyen képernyőn: a vászon a megjelenített méretéhez és a képpontsűrűséghez igazodik,
+  // a rajz CSS-képpontban készül (a betűméret így nem zsugorodik össze keskeny oszlopban sem)
+  function prep(cv) {
+    const dpr = Math.min(2.5, window.devicePixelRatio || 1);
+    const w = Math.max(240, Math.round(cv.clientWidth || cv.parentNode.clientWidth || 360)), h = Math.round(Math.min(330, Math.max(250, w * 0.74)));
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.height = h + 'px'; }
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    return { ctx, w, h };
+  }
+  const F = (wgt, px, mono) => `${wgt} ${px}px ${mono ? '"IBM Plex Mono", monospace' : '"IBM Plex Sans", sans-serif'}`;
+  // szöveg valódi alsó indexszel: a „σ_t”, „q_{t}” jelölést rajzolja; align: 'l' | 'r' | 'c'
+  function subText(ctx, str, x, y, align) {
+    const parts = []; const re = /_(\{[^}]*\}|[A-Za-z0-9])/g; let last = 0, mm;
+    while ((mm = re.exec(str))) { if (mm.index > last) parts.push([str.slice(last, mm.index), 0]); parts.push([mm[1].replace(/[{}]/g, ''), 1]); last = re.lastIndex; }
+    if (last < str.length) parts.push([str.slice(last), 0]);
+    const base = ctx.font, px = parseFloat((base.match(/([\d.]+)px/) || [0, 12])[1]), small = base.replace(/[\d.]+px/, (px * 0.72).toFixed(1) + 'px');
+    let tw = 0; parts.forEach(q => { ctx.font = q[1] ? small : base; q[2] = ctx.measureText(q[0]).width; tw += q[2]; });
+    let cx = align === 'r' ? x - tw : align === 'c' ? x - tw / 2 : x;
+    parts.forEach(q => { ctx.font = q[1] ? small : base; ctx.fillText(q[0], cx, y + (q[1] ? px * 0.28 : 0)); cx += q[2]; });
+    ctx.font = base; return tw;
+  }
+  // felirat világos udvarral, hogy vonalon vagy színes mezőn is olvasható legyen
+  function halo(ctx, str, x, y, col, align) {
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = cssv('--card');
+    const tw = ctx.measureText(str.replace(/_\{?([^}]*)\}?/g, '$1')).width;
+    const x0 = align === 'r' ? x - tw : align === 'c' ? x - tw / 2 : x;
+    if (!/_/.test(str)) ctx.strokeText(str, x0, y); else { ctx.globalAlpha = 0.9; ctx.fillStyle = cssv('--card'); ctx.fillRect(x0 - 3, y - 11, tw + 6, 15); ctx.globalAlpha = 1; }
+    ctx.fillStyle = col; subText(ctx, str, x, y, align); ctx.restore();
   }
   function drawCurve(g, st) {
-    const cv = $('#tmCurve'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 44, r: 12, t: 24, b: 40 };
+    const { ctx, w, h } = prep($('#tmCurve'));
+    const m = { l: 46, r: 14, t: 30, b: 34 };
     // tengelyek: x = q/q_t (0..1,15), y = s/B lefelé (0..0,25)
     const X = q => m.l + q / 1.15 * (w - m.l - m.r), Y = s => m.t + s / 0.25 * (h - m.t - m.b);
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(w - m.r, m.t); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 11px "IBM Plex Mono", monospace';
-    for (let q = 0; q <= 1.01; q += 0.25) { ctx.fillText(fmt(q, 2), X(q) - 12, m.t - 8); }
-    for (let s = 0.05; s <= 0.251; s += 0.05) { ctx.fillText(fmt(s, 2), 6, Y(s) + 4); ctx.strokeStyle = cssv('--line-2'); ctx.beginPath(); ctx.moveTo(m.l, Y(s)); ctx.lineTo(w - m.r, Y(s)); ctx.stroke(); }
-    ctx.font = '600 12px "IBM Plex Sans", sans-serif'; ctx.fillStyle = cssv('--ink-2');
-    ctx.fillText('load / ultimate load →', w - m.r - 120, h - 12);
-    ctx.save(); ctx.translate(m.l + 6, h - m.b - 6); ctx.fillText('↓ settlement s/B', 0, 0); ctx.restore();
+    ctx.font = F(500, 11, 1);
+    for (let s = 0.05; s <= 0.251; s += 0.05) { ctx.fillStyle = cssv('--ink-2'); ctx.fillText(fmt(s, 2), 8, Y(s) + 4); ctx.strokeStyle = cssv('--line-2'); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(m.l, Y(s)); ctx.lineTo(w - m.r, Y(s)); ctx.stroke(); }
+    ctx.fillStyle = cssv('--ink-2');
+    for (let q = 0; q <= 1.01; q += 0.25) { const t = fmt(q, 2); ctx.fillText(t, X(q) - ctx.measureText(t).width / 2, m.t - 9); }
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(w - m.r, m.t); ctx.lineTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
+    ctx.font = F(600, 12); ctx.fillStyle = cssv('--ink-2');
+    subText(ctx, 'load / ultimate load, q/q_t →', w - m.r, h - 10, 'r');
+    ctx.fillText('↓ settlement, s/B', m.l + 8, h - m.b - 8);
     const COL = { alt: cssv('--ok'), helyi: cssv('--warn'), beny: cssv('--bad') };
     for (const md of ['alt', 'helyi', 'beny']) {
       ctx.beginPath();
       const S = TORO.SMAX[md];
       for (let i = 0; i <= 120; i++) { const s = S * i / 120, q = TORO.qOf(md, s); i ? ctx.lineTo(X(q), Y(s)) : ctx.moveTo(X(q), Y(s)); }
-      ctx.strokeStyle = COL[md]; ctx.lineWidth = md === g.mode ? 3.2 : 1.2; ctx.globalAlpha = md === g.mode ? 1 : 0.45; ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = COL[md]; ctx.lineJoin = 'round'; ctx.lineWidth = md === g.mode ? 3.4 : 1.4; ctx.globalAlpha = md === g.mode ? 1 : 0.5; ctx.stroke(); ctx.globalAlpha = 1;
       const fs = TORO.FAIL[md];
-      if (md === g.mode) { ctx.setLineDash([4, 4]); ctx.strokeStyle = COL[md]; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(m.l, Y(fs)); ctx.lineTo(X(TORO.qOf(md, fs)), Y(fs)); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = COL[md]; ctx.font = '600 11px "IBM Plex Mono", monospace'; ctx.fillText(`${fmt(fs, 2)}B`, m.l + 4, Y(fs) - 4); }
+      if (md === g.mode) { ctx.setLineDash([4, 4]); ctx.strokeStyle = COL[md]; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(m.l, Y(fs)); ctx.lineTo(X(TORO.qOf(md, fs)), Y(fs)); ctx.stroke(); ctx.setLineDash([]); ctx.font = F(600, 11, 1); if (fs < 0.08) halo(ctx, `${fmt(fs, 2)}·B`, m.l + 6, Y(fs) + 14, COL[md]); else halo(ctx, `${fmt(fs, 2)}·B`, X(TORO.qOf(md, fs)) - 12, Y(fs) - 6, COL[md], 'r'); }
     }
-    ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(st.q), Y(st.s), 6, 0, 7); ctx.fill();
-    ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2; ctx.stroke();
-    ctx.font = '600 11px "IBM Plex Sans", sans-serif';
-    [['general', 'alt'], ['local', 'helyi'], ['punching', 'beny']].forEach(([t, k], i) => { ctx.fillStyle = COL[k]; ctx.fillRect(w - m.r - 96, h - m.b - 52 + i * 16, 10, 10); ctx.fillStyle = cssv('--ink-2'); ctx.fillText(t, w - m.r - 82, h - m.b - 43 + i * 16); });
+    // jelmagyarázat a görbék alatti szabad sarokban
+    ctx.font = F(600, 11.5);
+    [['general', 'alt'], ['local', 'helyi'], ['punching', 'beny']].forEach(([t, k], i) => { const y = Y(0.125) + i * 17; ctx.fillStyle = COL[k]; ctx.fillRect(m.l + 10, y - 9, 16, 5); ctx.fillStyle = k === g.mode ? cssv('--ink') : cssv('--ink-2'); ctx.fillText(t, m.l + 32, y - 2); });
+    ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(st.q), Y(st.s), 6.5, 0, 7); ctx.fill();
+    ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2.2; ctx.stroke();
   }
   function drawVesic() {
-    const cv = $('#tmVesic'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 44, r: 14, t: 26, b: 40 };
+    const { ctx, w, h } = prep($('#tmVesic'));
+    const m = { l: 46, r: 14, t: 30, b: 34 };
     const X = t => m.l + t * (w - m.l - m.r), Y = d => m.t + d / 5 * (h - m.t - m.b);
     const fill = (fn0, fn1, col) => { ctx.beginPath(); for (let i = 0; i <= 60; i++) { const d = 5 * i / 60; ctx.lineTo(X(Math.min(1, fn0(d))), Y(d)); } for (let i = 60; i >= 0; i--) { const d = 5 * i / 60; ctx.lineTo(X(Math.min(1, fn1(d))), Y(d)); } ctx.closePath(); ctx.fillStyle = col; ctx.fill(); };
-    ctx.globalAlpha = 0.28;
+    ctx.globalAlpha = 0.3;
     fill(() => 0, TORO.lpB, cssv('--bad'));
     fill(TORO.lpB, TORO.glB, cssv('--warn'));
     fill(TORO.glB, () => 1, cssv('--ok'));
     ctx.globalAlpha = 1;
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1; ctx.strokeRect(m.l, m.t, w - m.l - m.r, h - m.t - m.b);
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 11px "IBM Plex Mono", monospace';
-    for (let t = 0; t <= 1.001; t += 0.2) ctx.fillText(fmt(t, 1), X(t) - 9, m.t - 8);
-    for (let d = 1; d <= 5; d++) ctx.fillText(String(d), m.l - 14, Y(d) + 4);
-    ctx.font = '600 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText('density index →', w - m.r - 120, h - 12);
-    ctx.save(); ctx.translate(12, h - m.b - 8); ctx.rotate(-Math.PI / 2); ctx.fillText('D/B* ↓', 0, 0); ctx.restore();
-    ctx.font = '700 12px "IBM Plex Sans", sans-serif';
-    ctx.fillStyle = cssv('--ok'); ctx.fillText('general', X(0.8), Y(0.35));
-    ctx.fillStyle = cssv('--warn'); ctx.fillText('local', X(0.52), Y(1.0));
-    ctx.fillStyle = cssv('--bad'); ctx.fillText('punching', X(0.12), Y(3.4));
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2; ctx.strokeRect(m.l, m.t, w - m.l - m.r, h - m.t - m.b);
+    ctx.fillStyle = cssv('--ink-2'); ctx.font = F(500, 11, 1);
+    for (let t = 0; t <= 1.001; t += 0.2) { const s = fmt(t, 1); ctx.fillText(s, X(t) - ctx.measureText(s).width / 2, m.t - 9); }
+    for (let d = 1; d <= 5; d++) ctx.fillText(String(d), m.l - 16, Y(d) + 4);
+    ctx.font = F(600, 12);
+    subText(ctx, 'density index, I_D →', w - m.r, h - 10, 'r');
+    ctx.save(); ctx.translate(15, h - m.b - 4); ctx.rotate(-Math.PI / 2); ctx.fillText('← relative depth, D/B*', 0, 0); ctx.restore();
+    // a mezők nevei a mezők belsejében, a ponttól távol
+    ctx.font = F(700, 12);
+    const mid = (f0, f1, d) => (Math.min(1, f0(d)) + Math.min(1, f1(d))) / 2;
+    halo(ctx, 'general', X(Math.max(0.8, mid(TORO.glB, () => 1, 0.9))), Y(0.9) + 4, cssv('--ok'), 'c');
+    halo(ctx, 'local', X(mid(TORO.lpB, TORO.glB, 2.1)), Y(2.1) + 4, cssv('--warn'), 'c');
+    halo(ctx, 'punching', X(mid(() => 0, TORO.lpB, 3.6)), Y(3.6) + 4, cssv('--bad'), 'c');
     const dBs = P.dB * TORO.Bof(P) / TORO.Bstar(P);
     if (P.soil === 'sz' && P.shape !== 'lemez') {
-      ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(P.tre), Y(Math.min(5, dBs)), 7, 0, 7); ctx.fill(); ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2; ctx.stroke();
+      const px = X(P.tre), py = Y(Math.min(5, dBs));
+      ctx.strokeStyle = cssv('--ink'); ctx.globalAlpha = 0.35; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(px, m.t); ctx.lineTo(px, py); ctx.moveTo(m.l, py); ctx.lineTo(px, py); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(px, py, 7, 0, 7); ctx.fill(); ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2.2; ctx.stroke();
     } else {
-      ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 12px "IBM Plex Sans", sans-serif';
-      ctx.fillText(P.shape === 'lemez' ? 'large raft: local failure under the edges' : 'cohesive soil: the consistency decides', m.l + 8, h - m.b - 10);
+      ctx.font = F(600, 12);
+      halo(ctx, P.shape === 'lemez' ? 'large raft: local failure under the edges' : 'cohesive soil: the consistency decides', m.l + 10, h - m.b - 12, cssv('--ink'));
     }
   }
   function drawTime(st) {
-    const cv = $('#tmTime'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 40, r: 14, t: 26, b: 34 };
+    const { ctx, w, h } = prep($('#tmTime'));
+    const m = { l: 30, r: 14, t: 30, b: 34 };
     const X = t => m.l + t * (w - m.l - m.r), Y = s => m.t + s * (h - m.t - m.b);
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(w - m.r, m.t); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '600 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText('time →', w - m.r - 40, m.t - 8);
-    ctx.save(); ctx.translate(m.l + 6, h - m.b + 22); ctx.fillText('↓ settlement', 0, 0); ctx.restore();
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(w - m.r, m.t); ctx.lineTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
+    ctx.fillStyle = cssv('--ink-2'); ctx.font = F(600, 12);
+    ctx.fillText('time →', w - m.r - ctx.measureText('time →').width, m.t - 9);
+    ctx.fillText('↓ settlement', m.l + 8, h - 10);
+    // a felirat helye görbénként: [idő, a görbe fölött (−1) vagy alatt (+1), igazítás]
     const C = [
-      [t => 0.22 * (1 - Math.exp(-t * 9)), 'I. σ₁: ds/dt = 0', cssv('--ok'), 1],
-      [t => 0.08 + 0.36 * t + 0.12 * (1 - Math.exp(-t * 8)), 'II. σ₂: ds/dt = const.', cssv('--warn'), 2],
-      [t => 0.12 + 0.2 * t + 1.2 * Math.pow(t, 3.2), 'III. σ_t: ds/dt → ∞', cssv('--bad'), 3]
+      [t => 0.22 * (1 - Math.exp(-t * 9)), 'I. σ_1: ds/dt = 0', cssv('--ok'), 1, 0.99, -1, 'r'],
+      [t => 0.08 + 0.36 * t + 0.12 * (1 - Math.exp(-t * 8)), 'II. σ_2: ds/dt = const.', cssv('--warn'), 2, 0.99, -1, 'r'],
+      [t => 0.12 + 0.2 * t + 1.2 * Math.pow(t, 3.2), 'III. σ_t: ds/dt → ∞', cssv('--bad'), 3, 0.74, 1, 'r']
     ];
     C.forEach(([fn, lab, col, ph]) => {
       ctx.beginPath();
       for (let i = 0; i <= 100; i++) { const t = i / 100, s = Math.min(1, fn(t)); i ? ctx.lineTo(X(t), Y(s)) : ctx.moveTo(X(t), Y(s)); if (s >= 1) break; }
-      ctx.strokeStyle = col; ctx.lineWidth = st.ph === ph ? 3.4 : 1.3; ctx.globalAlpha = st.ph === ph ? 1 : 0.5; ctx.stroke(); ctx.globalAlpha = 1;
-      const ly = Y(Math.min(0.95, fn(0.62))) - 6;
-      ctx.fillStyle = col; ctx.font = (st.ph === ph ? '700 ' : '500 ') + '11px "IBM Plex Sans", sans-serif';
-      ctx.fillText(lab, X(0.64), ly);
+      ctx.strokeStyle = col; ctx.lineJoin = 'round'; ctx.lineWidth = st.ph === ph ? 3.4 : 1.4; ctx.globalAlpha = st.ph === ph ? 1 : 0.55; ctx.stroke(); ctx.globalAlpha = 1;
+    });
+    C.forEach(([fn, lab, col, ph, tl, side, al]) => {
+      ctx.font = F(st.ph === ph ? 700 : 600, 11.5);
+      const yy = side < 0 ? Y(Math.min(0.95, fn(tl - 0.3))) - 9 : Y(0.93);
+      halo(ctx, lab, X(tl), yy, col, al);
     });
   }
   // ---- vezérlés ----
@@ -4112,7 +4169,7 @@ onReady(function toroUI() {
   });
   $('#tmReset').addEventListener('click', () => { stop(); P.lam = 0; $('#tmLoad').value = 0; rangeFill($('#tmLoad')); outputs(); emit(false); });
   $('#tmLeg').innerHTML = '<span><i style="background:rgba(134,181,28,.6)"></i>active wedge</span><span><i style="background:rgba(230,140,40,.6)"></i>radial zone</span><span><i style="background:rgba(214,72,140,.5)"></i>passive wedge</span><span><i style="background:rgba(200,110,20,.5)"></i>plastic zone</span><span><i style="background:#d23f2a"></i>slip surface</span>';
-  window.addEventListener('resize', () => { if (view === '2d') draw2(); });
+  let rzT; window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(outputs, 120); });
   window.addEventListener('themechange', outputs);
   outputs();
 });
@@ -4124,13 +4181,14 @@ onReady(() => renderQuiz($('#quiz6'), QUIZ.q6));
 onReady(() => renderTF($('#tf'), TF_ITEMS));
 onReady(function glossary() {
   const dl = $('#glossDl'), q = $('#glossQ'); if (!dl) return;
+  const plain = x => x.replace(/<[^>]+>/g, '').toLowerCase();
   function draw() {
     const s = (q.value || '').trim().toLowerCase();
     dl.innerHTML = '';
-    GLOSSARY.filter(([t, d]) => !s || t.toLowerCase().includes(s) || d.toLowerCase().includes(s)).forEach(([t, d]) => {
+    GLOSSARY.filter(([t, d]) => !s || plain(t).includes(s) || plain(d).includes(s)).forEach(([t, d]) => {
       const div = H('div', {}, dl);
-      H('dt', { text: t }, div);
-      H('dd', { text: d }, div);
+      H('dt', { html: t }, div);
+      H('dd', { html: d }, div);
     });
     if (!dl.children.length) H('p', { cls: 'muted', text: 'No results.' }, dl);
   }
@@ -4153,6 +4211,8 @@ function makeStage(container, o = {}) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(W(), Hh());
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NeutralToneMapping; // a világos felületek nem égnek ki
+  renderer.toneMappingExposure = 1.08;
   renderer.shadowMap.enabled = !!o.shadows;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.localClippingEnabled = true;
@@ -4179,7 +4239,8 @@ function makeStage(container, o = {}) {
   sun.position.set(10, 18, 12);
   if (o.shadows) {
     sun.castShadow = true;
-    sun.shadow.mapSize.set(1024, 1024);
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.radius = 3; sun.shadow.normalBias = 0.02;
     const s = o.shadowSize || 16;
     Object.assign(sun.shadow.camera, { left: -s, right: s, top: s, bottom: -s, near: 1, far: 60 });
     sun.shadow.bias = -0.0008;
@@ -4302,6 +4363,14 @@ function soilTex(kind, rep = [1, 1]) {
     }
   }, rep);
 }
+function grassTex(rep = [1, 1]) {
+  return canvasTex('grass', 256, 256, (g, w, h) => {
+    const r = rnd(4711);
+    g.fillStyle = '#5d7f33'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) { const x = r() * w, y = r() * h, l = 3 + r() * 5, a = (r() - 0.5) * 1.2; g.strokeStyle = `hsla(${78 + r() * 26},${38 + r() * 22}%,${22 + r() * 26}%,${0.35 + r() * 0.4})`; g.lineWidth = 1; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(a) * l, y - Math.cos(a) * l); g.stroke(); }
+    for (let i = 0; i < 26; i++) { g.fillStyle = `rgba(${r() < 0.5 ? '40,60,20' : '150,170,90'},${0.08 + r() * 0.08})`; g.beginPath(); g.ellipse(r() * w, r() * h, 14 + r() * 26, 10 + r() * 18, r() * 3, 0, 7); g.fill(); }
+  }, rep);
+}
 function matTex(kind, rep = [1, 1]) {
   return canvasTex('mat-' + kind, 256, 256, (g, w, h) => {
     const r = rnd(kind.length * 31 + 7);
@@ -4327,6 +4396,18 @@ function matTex(kind, rep = [1, 1]) {
       g.fillStyle = '#e4e1d8'; g.fillRect(0, 0, w, h);
       g.strokeStyle = 'rgba(80,80,80,.55)'; g.lineWidth = 3; g.strokeRect(1, 1, w - 2, h - 2);
       g.fillStyle = 'rgba(70,90,110,.55)'; g.fillRect(w * 0.3, h * 0.3, w * 0.4, h * 0.36);
+    } else if (kind === 'cserep') {
+      g.fillStyle = '#a8492f'; g.fillRect(0, 0, w, h);
+      const th = 32, tw = 32;
+      for (let row = 0; row * th < h; row++) for (let col = -1; col * tw < w; col++) {
+        const x = col * tw + (row % 2 ? tw / 2 : 0), y = row * th;
+        g.fillStyle = `hsl(${12 + r() * 8},${50 + r() * 12}%,${36 + r() * 10}%)`;
+        g.beginPath(); g.moveTo(x + 1, y); g.lineTo(x + tw - 1, y); g.lineTo(x + tw - 1, y + th - 9); g.quadraticCurveTo(x + tw / 2, y + th + 3, x + 1, y + th - 9); g.closePath(); g.fill();
+        g.fillStyle = 'rgba(40,15,8,.28)'; g.fillRect(x, y + th - 3, tw, 3);
+      }
+    } else if (kind === 'vakolat') {
+      g.fillStyle = '#ece8dd'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2600; i++) { g.fillStyle = `rgba(${r() < .5 ? '120,110,90' : '255,255,250'},${0.05 + r() * 0.08})`; g.fillRect(r() * w, r() * h, 2, 2); }
     } else if (kind === 'ablak') {
       g.fillStyle = '#ecebe6'; g.fillRect(0, 0, w, h);
       g.fillStyle = 'rgba(60,84,104,.6)'; for (let i = 0; i < 4; i++) g.fillRect(i * 64 + 10, 40, 44, 150);
@@ -4372,7 +4453,8 @@ function soilBlock(layers, x0, x1, z0, z1, o = {}) {
     const mats = [];
     const side = new THREE.MeshStandardMaterial({ map: tz, roughness: 0.95, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
     const face = new THREE.MeshStandardMaterial({ map: t, roughness: 0.95, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
-    const top = new THREE.MeshStandardMaterial({ color: L.topColor || SOILCOL[L.kind], roughness: 1, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
+    const topMap = L.topColor ? grassTex([(x1 - x0) / 4, (z1 - z0) / 4]) : soilTex(L.kind, [(x1 - x0) / 3, (z1 - z0) / 3]);
+    const top = new THREE.MeshStandardMaterial({ map: topMap, roughness: 1, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
     mats.push(side, side, top, top, face, face);
     const m = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, h, z1 - z0), mats);
     m.position.set((x0 + x1) / 2, (L.top + L.bot) / 2, (z0 + z1) / 2);
@@ -4743,16 +4825,21 @@ function initTypes(container, o = {}) {
 
 /* ===== 3D: alapsík-tervező ===== */
 function initAlapsik3D(container) {
-  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
+  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.6, 2.9, 15.6], target: [-0.8, -0.35, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
   const { scene } = st3;
   const X0 = -9, X1 = 9, Z0 = -5, DEP = -5.4;
   const soilG = new THREE.Group(), bldG = new THREE.Group(), nbG = new THREE.Group(), fxG = new THREE.Group();
   scene.add(soilG, bldG, nbG, fxG);
   const M = {
     beton: stdMat(0xffffff, { map: matTex('beton', [2, 2]) }),
-    wall: stdMat(0xeceae3, { roughness: 0.95 }),
+    wall: stdMat(0xffffff, { map: matTex('vakolat', [3, 2]), roughness: 0.95 }),
+    brick: stdMat(0xffffff, { map: matTex('tegla', [1, 5]) }),
+    roof: stdMat(0xffffff, { map: matTex('cserep', [7, 4]), roughness: 0.8 }),
+    frame: stdMat(0xf7f5ee, { roughness: 0.6 }),
+    glass: new THREE.MeshStandardMaterial({ color: 0x9cc4dc, roughness: 0.15, metalness: 0.1, emissive: 0x6fa6c4, emissiveIntensity: 0.25 }),
+    door: stdMat(0x7a5236, { roughness: 0.7 }),
     wall2: stdMat(0xd8d2c4, { roughness: 0.95 }),
-    nb: stdMat(0xc9b79a, { roughness: 0.95 }),
+    nb: stdMat(0xd9c9ad, { map: matTex('vakolat', [2, 2]), roughness: 0.95 }),
     under: stdMat(0xd0602a, { roughness: 0.7 }),
     win: stdMat(0x5b7488, { roughness: 0.3 }),
     frost: new THREE.MeshStandardMaterial({ color: 0xbfe9ff, transparent: true, opacity: 0.34, depthWrite: false, roughness: 0.2, emissive: 0x3aa8d8, emissiveIntensity: 0.12 }),
@@ -4814,13 +4901,27 @@ function initAlapsik3D(container) {
     bldG.add(box(xb - xa + 0.36, 0.3 - wallBot, 0.36, (xa + xb) / 2, (0.3 + wallBot) / 2, zb, wallMat));
     bldG.add(box(0.3, 0.3 - wallBot, zLen, -1, (0.3 + wallBot) / 2, zb / 2 + 0.01, wallMat));
     if (pince) bldG.add(box(xb - xa, 0.15, zLen, (xa + xb) / 2, -q.hp + 0.075, zb / 2 + 0.01, M.beton));
-    // felmenő falak
-    const H1 = 3.1;
-    for (const x of [xa, xb]) bldG.add(box(0.36, H1, zLen, x, 0.3 + H1 / 2, zb / 2 + 0.01, M.wall));
-    bldG.add(box(xb - xa + 0.36, H1, 0.36, (xa + xb) / 2, 0.3 + H1 / 2, zb, M.wall));
-    bldG.add(box(xb - xa + 0.6, 0.25, zLen + 0.3, (xa + xb) / 2, 0.3 + H1, zb / 2 + 0.01, M.wall2));
-    bldG.add(box(xb - xa, 0.2, zLen, (xa + xb) / 2, 0.4, zb / 2 + 0.01, M.wall2));
-    for (const x of [-4.4, -2.6, 0.8, 2.6]) bldG.add(box(1.0, 1.2, 0.06, x, 1.7, zb - 0.2, M.win, false));
+    // felmenő falak: vakolt téglafalak, az elmetszett falvégeken látszik a tégla
+    const H1 = 2.9, y0w = 0.3;
+    const sideWall = x => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.36, H1, zLen), [M.wall, M.wall, M.wall, M.wall, M.brick, M.wall]); m.position.set(x, y0w + H1 / 2, zb / 2 + 0.01); m.castShadow = m.receiveShadow = true; edges(m, 0x1b221e, 0.2); return m; };
+    for (const x of [xa, xb]) bldG.add(sideWall(x));
+    bldG.add(box(xb - xa + 0.36, H1, 0.36, (xa + xb) / 2, y0w + H1 / 2, zb, M.wall));
+    bldG.add(box(xb - xa, 0.2, zLen, (xa + xb) / 2, 0.4, zb / 2 + 0.01, M.wall2));            // földszinti padló
+    bldG.add(box(xb - xa + 0.36, 0.22, zLen, (xa + xb) / 2, y0w + H1 + 0.11, zb / 2 + 0.01, M.wall2)); // zárófödém
+    // ablakok és ajtó a hátsó falon (belülről látszanak)
+    const zi = zb + 0.185;
+    for (const x of [-4.6, -2.7, 2.5]) { bldG.add(box(1.16, 1.36, 0.05, x, 1.75, zi, M.frame, false)); bldG.add(box(1.0, 1.2, 0.06, x, 1.75, zi + 0.01, M.glass, false)); bldG.add(box(0.05, 1.2, 0.07, x, 1.75, zi + 0.012, M.frame, false)); }
+    bldG.add(box(1.06, 2.16, 0.05, 0.6, 0.5 + 1.08, zi, M.frame, false)); bldG.add(box(0.94, 2.05, 0.06, 0.6, 0.5 + 1.03, zi + 0.01, M.door, false));
+    // nyeregtető (a gerinc a metszetre merőleges): cserép, oromfal, kémény
+    const yE = y0w + H1 + 0.22, half = (xb - xa) / 2 + 0.6, rise = 1.75, cx0 = (xa + xb) / 2, ang = Math.atan2(rise, half);
+    for (const sg of [-1, 1]) {
+      const hx = sg > 0 && q.szom ? (xb - xa) / 2 + 0.2 : half, ry = rise * hx / half, sl = Math.hypot(hx, ry); // a szomszéd felőli oldalon nincs eresztúlnyúlás (tűzfal)
+      const r = new THREE.Mesh(new THREE.BoxGeometry(sl + 0.12, 0.16, zLen + 0.5), [M.wall2, M.wall2, M.roof, M.wall2, M.wall2, M.wall2]);
+      r.position.set(cx0 + sg * hx / 2, yE + rise - ry / 2 + 0.05, zb / 2 - 0.2); r.rotation.z = -sg * ang; r.castShadow = r.receiveShadow = true; edges(r, 0x1b221e, 0.2); bldG.add(r);
+    }
+    const gs = new THREE.Shape([new THREE.Vector2(-half + 0.55, 0), new THREE.Vector2(half - 0.55, 0), new THREE.Vector2(0, rise * (half - 0.55) / half)]);
+    const gable = new THREE.Mesh(new THREE.ExtrudeGeometry(gs, { depth: 0.36, bevelEnabled: false }), M.wall); gable.position.set(cx0, yE, zb - 0.18); gable.castShadow = true; bldG.add(gable);
+    bldG.add(box(0.5, 1.5, 0.5, cx0 + 2.4, yE + rise * 0.55 + 0.5, zb / 2 - 0.9, M.brick));
     bldG.userData.baseY = 0;
     // szomszéd
     if (q.szom) {
@@ -4828,7 +4929,9 @@ function initAlapsik3D(container) {
       const dn = q.dsz;
       nbG.add(box(0.8, 0.5, 4.5, nx0 + 0.3, -dn + 0.25, -2.25 + 0.01, M.beton));
       nbG.add(box(0.4, dn - 0.5 + 0.3, 4.5, nx0 + 0.3, (0.3 + (-dn + 0.5)) / 2, -2.25 + 0.01, M.beton));
-      nbG.add(box(nx1 - nx0, 4.4, 4.5, (nx0 + nx1) / 2, 0.3 + 2.2, -2.25 + 0.01, M.nb));
+      nbG.add(box(nx1 - nx0, 5.6, 4.5, (nx0 + nx1) / 2, 0.3 + 2.8, -2.25 + 0.01, M.nb));
+      for (const y of [0.42, 3.1, 5.78]) nbG.add(box(nx1 - nx0 + 0.02, 0.24, 4.52, (nx0 + nx1) / 2, y, -2.25 + 0.01, M.wall2, false)); // födémek a metszeten
+      for (const y of [1.75, 4.45]) for (const x of [5.9, 7.7]) { nbG.add(box(1.0, 1.3, 0.05, x, y, 0.035, M.frame, false)); nbG.add(box(0.86, 1.16, 0.06, x, y, 0.04, M.glass, false)); }
       if (d > dn + 0.1) nbG.add(box(0.8, d - dn, 4.5, nx0 + 0.3, -(dn + d) / 2, -2.25 + 0.02, M.under));
     }
     // fagy
@@ -4867,10 +4970,10 @@ function initAlapsik3D(container) {
   }
   function labels(fr) {
     const r = ALAPSIK.eval(q);
-    const lx = -6.6;
+    const lx = -6.9;
     L.frost.set(`frost depth −${fmt(fr, 2)} m`); L.frost.pos.set(lx, -fr, 0.1);
-    L.gw.set(`groundwater −${fmt(q.gw, 2)} m`); L.gw.pos.set(lx + 1.6, -q.gw, 0.1); L.gw.show = q.gw < -DEP;
-    L.base.set(`foundation level −${fmt(q.d, 2)} m`); L.base.pos.set(-1, -q.d, 0.15);
+    L.gw.set(`groundwater −${fmt(q.gw, 2)} m`); L.gw.pos.set(lx + 2.5, -q.gw, 0.1); L.gw.show = q.gw < -DEP;
+    L.base.set(`foundation level −${fmt(q.d, 2)} m`); L.base.pos.set(-1.2, -q.d, 0.15);
     L.base.cls(r.ok ? 'lime' : 'bad');
     L.fill.pos.set(5.6, -Math.max(0.31, q.ft) / 2 - 0.1, 0.1);
     L.fill.show = !q.szom;
@@ -4879,7 +4982,7 @@ function initAlapsik3D(container) {
     L.dry.show = q.duzz; L.dry.pos.set(3.8, -2, 0.1);
     L.nb.show = q.szom; L.nb.set(`neighbour’s foundation level −${fmt(q.dsz, 2)} m`); L.nb.pos.set(6.4, -q.dsz - 0.25, 0.1);
     L.under.show = q.szom && q.d > q.dsz + 0.1; L.under.pos.set(5.8, -(q.dsz + q.d) / 2, 0.15);
-    L.dew.show = q.d > q.gw; L.dew.pos.set(-3.5, -q.gw - 0.35, 0.15);
+    L.dew.show = q.d > q.gw; L.dew.pos.set(1.7, -q.gw - 0.02, 0.15);
   }
   function applyWinter() {
     const fr = FX.frostD;
@@ -4946,7 +5049,7 @@ function initToro3D(container) {
     cvs.width = 1400; cvs.height = Math.round(clamp(1400 * (Hd + Ht) / (2 * W), 300, 1400));
     tex = new THREE.CanvasTexture(cvs); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4; tex.userData.own = true;
     frontMat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.95, transparent: true, opacity: 1 });
-    bodyMat = soilMat(); topMat = new THREE.MeshStandardMaterial({ color: TORO.P.soil === 'k' ? 0x9a7a58 : 0xcdb27a, roughness: 1 });
+    bodyMat = soilMat(); topMat = new THREE.MeshStandardMaterial({ map: grassTex([Math.max(2, Math.round(2 * W / 4)), Math.max(2, Math.round(Lz / 4))]), roughness: 1 });
     backMat = soilMat();
     [frontMat, bodyMat, topMat, backMat].forEach(m => m.side = THREE.DoubleSide);
     // test (oldalak + alj)
@@ -4969,7 +5072,8 @@ function initToro3D(container) {
     const fb = boxAt(g.B, hf, Lf, 0, baseY + hf / 2, zc, conc); edges(fb, 0x1b221e, 0.35); foot.add(fb);
     if (g.shape !== 'lemez') {
       const sh = Ht * 0.9 - (baseY + hf);
-      const sm = boxAt(stem, sh, shapeIsPill() ? stem / 2 + 0.01 : Lz + 0.02, 0, baseY + hf + sh / 2, shapeIsPill() ? -stem / 4 : zc, conc); edges(sm, 0x1b221e, 0.35); foot.add(sm);
+      const wallM = shapeIsPill() ? conc : stdMat(0xffffff, { map: matTex('tegla', [Math.max(2, Math.round(Lz / 1.2)), Math.max(1, Math.round(sh / 0.5))]) });
+      const sm = boxAt(stem, sh, shapeIsPill() ? stem / 2 + 0.01 : Lz + 0.02, 0, baseY + hf + sh / 2, shapeIsPill() ? -stem / 4 : zc, wallM); edges(sm, 0x1b221e, 0.35); foot.add(sm);
     }
     root.add(foot);
     // teher-nyíl

@@ -11,6 +11,8 @@ function makeStage(container, o = {}) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(W(), Hh());
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.NeutralToneMapping; // a világos felületek nem égnek ki
+  renderer.toneMappingExposure = 1.08;
   renderer.shadowMap.enabled = !!o.shadows;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.localClippingEnabled = true;
@@ -37,7 +39,8 @@ function makeStage(container, o = {}) {
   sun.position.set(10, 18, 12);
   if (o.shadows) {
     sun.castShadow = true;
-    sun.shadow.mapSize.set(1024, 1024);
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.radius = 3; sun.shadow.normalBias = 0.02;
     const s = o.shadowSize || 16;
     Object.assign(sun.shadow.camera, { left: -s, right: s, top: s, bottom: -s, near: 1, far: 60 });
     sun.shadow.bias = -0.0008;
@@ -160,6 +163,14 @@ function soilTex(kind, rep = [1, 1]) {
     }
   }, rep);
 }
+function grassTex(rep = [1, 1]) {
+  return canvasTex('grass', 256, 256, (g, w, h) => {
+    const r = rnd(4711);
+    g.fillStyle = '#5d7f33'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) { const x = r() * w, y = r() * h, l = 3 + r() * 5, a = (r() - 0.5) * 1.2; g.strokeStyle = `hsla(${78 + r() * 26},${38 + r() * 22}%,${22 + r() * 26}%,${0.35 + r() * 0.4})`; g.lineWidth = 1; g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.sin(a) * l, y - Math.cos(a) * l); g.stroke(); }
+    for (let i = 0; i < 26; i++) { g.fillStyle = `rgba(${r() < 0.5 ? '40,60,20' : '150,170,90'},${0.08 + r() * 0.08})`; g.beginPath(); g.ellipse(r() * w, r() * h, 14 + r() * 26, 10 + r() * 18, r() * 3, 0, 7); g.fill(); }
+  }, rep);
+}
 function matTex(kind, rep = [1, 1]) {
   return canvasTex('mat-' + kind, 256, 256, (g, w, h) => {
     const r = rnd(kind.length * 31 + 7);
@@ -185,6 +196,18 @@ function matTex(kind, rep = [1, 1]) {
       g.fillStyle = '#e4e1d8'; g.fillRect(0, 0, w, h);
       g.strokeStyle = 'rgba(80,80,80,.55)'; g.lineWidth = 3; g.strokeRect(1, 1, w - 2, h - 2);
       g.fillStyle = 'rgba(70,90,110,.55)'; g.fillRect(w * 0.3, h * 0.3, w * 0.4, h * 0.36);
+    } else if (kind === 'cserep') {
+      g.fillStyle = '#a8492f'; g.fillRect(0, 0, w, h);
+      const th = 32, tw = 32;
+      for (let row = 0; row * th < h; row++) for (let col = -1; col * tw < w; col++) {
+        const x = col * tw + (row % 2 ? tw / 2 : 0), y = row * th;
+        g.fillStyle = `hsl(${12 + r() * 8},${50 + r() * 12}%,${36 + r() * 10}%)`;
+        g.beginPath(); g.moveTo(x + 1, y); g.lineTo(x + tw - 1, y); g.lineTo(x + tw - 1, y + th - 9); g.quadraticCurveTo(x + tw / 2, y + th + 3, x + 1, y + th - 9); g.closePath(); g.fill();
+        g.fillStyle = 'rgba(40,15,8,.28)'; g.fillRect(x, y + th - 3, tw, 3);
+      }
+    } else if (kind === 'vakolat') {
+      g.fillStyle = '#ece8dd'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2600; i++) { g.fillStyle = `rgba(${r() < .5 ? '120,110,90' : '255,255,250'},${0.05 + r() * 0.08})`; g.fillRect(r() * w, r() * h, 2, 2); }
     } else if (kind === 'ablak') {
       g.fillStyle = '#ecebe6'; g.fillRect(0, 0, w, h);
       g.fillStyle = 'rgba(60,84,104,.6)'; for (let i = 0; i < 4; i++) g.fillRect(i * 64 + 10, 40, 44, 150);
@@ -230,7 +253,8 @@ function soilBlock(layers, x0, x1, z0, z1, o = {}) {
     const mats = [];
     const side = new THREE.MeshStandardMaterial({ map: tz, roughness: 0.95, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
     const face = new THREE.MeshStandardMaterial({ map: t, roughness: 0.95, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
-    const top = new THREE.MeshStandardMaterial({ color: L.topColor || SOILCOL[L.kind], roughness: 1, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
+    const topMap = L.topColor ? grassTex([(x1 - x0) / 4, (z1 - z0) / 4]) : soilTex(L.kind, [(x1 - x0) / 3, (z1 - z0) / 3]);
+    const top = new THREE.MeshStandardMaterial({ map: topMap, roughness: 1, transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
     mats.push(side, side, top, top, face, face);
     const m = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, h, z1 - z0), mats);
     m.position.set((x0 + x1) / 2, (L.top + L.bot) / 2, (z0 + z1) / 2);

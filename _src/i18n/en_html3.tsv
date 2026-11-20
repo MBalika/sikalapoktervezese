@@ -22,7 +22,6 @@ f1c6020	Adjoining neighbouring building
 c28d484	The frost depth
 153d2af	The <b>frost depth</b> is the greatest thickness of the soil layer that cools below 0 °C in winter. In Hungary the frost depth is:
 ffa9806	0.8 m in granular soil; below 500 m above sea level it can be reduced to 0.5 m, provided the winter groundwater level comes no closer than 2.0 m to the foundation level;
-0e30cdd	1.0 m in cohesive soil above 500 m above Baltic Sea level, and 0.8 m below 500 m;
 ccccdfe	0.5 m for a foundation on solid rock.
 82591bf	For parts of a building not exposed to frost (e.g. in a basement), a soil cover of at least 0.4 m has to be designed – this is met anyway because of the minimum footing depth of 50 cm.
 278805d	Frost-depth calculator and the path of frost in the ground
@@ -83,7 +82,6 @@ ab16437	The Transcona grain elevator, 1913
 608eefa	The tilted Transcona elevator
 e9602b6	GEO
 680812b	Transcona, Canada, 1913
-9059f69	On first filling, a deep bearing failure developed in the clay beneath the raft of the grain elevator: the contact pressure was about 297 kPa, close to the ultimate pressure of 307 kPa calculated with the classical theory. In 1914 the elevator was jacked back upright on 14 piers taken down to rock – one of the most important case histories confirming bearing resistance theory.
 3e6f27e	The Leaning Tower of Pisa
 de45cb5	SLS
 ca714d1	Pisa, Italy
@@ -119,3 +117,5 @@ d2168bb	EN 1997-1 – General rules: basic principles, safety format, verificati
 ad72004	The starting point of design: classification
 8c6aeb1	Now · Geotechnical Category
 5bbdd29	Three categories: simple, ordinary and special, labelled GC1, GC2 and GC3
+956aa7e	On first filling, a deep bearing failure developed in the clay beneath the raft of the grain elevator: the contact pressure was about 293 kPa, close to the ultimate pressure of about 308 kPa calculated afterwards with the classical theory. The elevator was jacked back upright onto piers taken down to rock – one of the most important case histories confirming bearing resistance theory.
+c3a4533	in cohesive soil, 1.0 m above an elevation of 500 m above sea level (Baltic datum) and 0.8 m below it;

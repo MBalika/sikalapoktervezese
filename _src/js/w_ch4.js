@@ -129,9 +129,9 @@ onReady(function fagy() {
     if (F.z > 0) S('rect', { x: 0, y: y0, width: 430, height: F.z * sc, fill: f('fagy') }, g);
     // fagyhatár (tervezési)
     S('line', { x1: 0, y1: Y(fr), x2: 430, y2: Y(fr), style: 'stroke:var(--frost);stroke-width:2.2;stroke-dasharray:9 5' }, g);
-    S('text', { x: 300, y: Y(fr) + 16, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(10,60,80,.75);stroke-width:3px;font-weight:600', text: `fagyhatár ${fmt(fr, 1)} m` }, g);
+    S('text', { x: 300, y: Y(fr) + 16, class: 't-s t-halo t-hb', text: `fagyhatár ${fmt(fr, 1)} m` }, g);
     // fagyfront
-    if (F.z > 0.005) { S('line', { x1: 0, y1: Y(F.z), x2: 430, y2: Y(F.z), stroke: '#fff', 'stroke-width': 2 }, g); S('text', { x: 8, y: Y(F.z) - 6, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(10,60,80,.75);stroke-width:3px', text: `fagyfront ${fmt(F.z, 2)} m` }, g); }
+    if (F.z > 0.005) { S('line', { x1: 0, y1: Y(F.z), x2: 430, y2: Y(F.z), stroke: '#fff', 'stroke-width': 2 }, g); S('text', { x: 8, y: Y(F.z) - 6, class: 't-s t-halo', text: `fagyfront ${fmt(F.z, 2)} m` }, g); }
     // talajvíz
     const gwY = Y(st.d + st.gwb);
     if (gwY < 430) { S('rect', { x: 0, y: gwY, width: 430, height: 430 - gwY, fill: f('viz') }, g); S('line', { x1: 0, y1: gwY, x2: 430, y2: gwY, style: 'stroke:var(--water);stroke-width:2' }, g); S('text', { x: 8, y: gwY - 6, class: 't-s', style: 'fill:var(--water);font-weight:600', text: 'téli talajvíz' }, g); }
@@ -434,7 +434,7 @@ onReady(function detektiv() {
     const svg = S('svg', { viewBox: '0 0 280 180', class: 'fig', style: 'max-width:280px' }, el);
     const { f } = soilDefs(svg);
     const g = S('g', {}, svg);
-    const T = (x, y, t, c) => S('text', { x, y, class: 't-s', style: `fill:${c || '#fff'};paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px;font-weight:600`, text: t }, g);
+    const T = (x, y, t, c) => S('text', { x, y, class: 't-s t-halo t-hb', style: c ? `fill:${c}` : '', text: t }, g);
     spec(g, f, T);
   };
   const flat = (g, f, kind = 'homok') => { S('rect', { x: 0, y: 50, width: 280, height: 130, fill: f(kind), opacity: .75 }, g); S('line', { x1: 0, y1: 50, x2: 280, y2: 50, stroke: '#3d5a1f', 'stroke-width': 3 }, g); };

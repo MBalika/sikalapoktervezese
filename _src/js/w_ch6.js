@@ -60,93 +60,122 @@ onReady(function toroUI() {
     ctx.drawImage(off, (cv2.width - ow) / 2, (cv2.height - oh) / 2);
   }
   // ---- diagramok ----
-  function axes(ctx, w, h, m, xl, yl) {
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.lineTo(w - m.r, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText(xl, w - m.r - ctx.measureText(xl).width, h - m.b + 26);
-    ctx.save(); ctx.translate(14, m.t + 4); ctx.fillText(yl, 0, 0); ctx.restore();
+  // éles rajz bármilyen képernyőn: a vászon a megjelenített méretéhez és a képpontsűrűséghez igazodik,
+  // a rajz CSS-képpontban készül (a betűméret így nem zsugorodik össze keskeny oszlopban sem)
+  function prep(cv) {
+    const dpr = Math.min(2.5, window.devicePixelRatio || 1);
+    const w = Math.max(240, Math.round(cv.clientWidth || cv.parentNode.clientWidth || 360)), h = Math.round(Math.min(330, Math.max(250, w * 0.74)));
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); cv.style.height = h + 'px'; }
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+    return { ctx, w, h };
+  }
+  const F = (wgt, px, mono) => `${wgt} ${px}px ${mono ? '"IBM Plex Mono", monospace' : '"IBM Plex Sans", sans-serif'}`;
+  // szöveg valódi alsó indexszel: a „σ_t”, „q_{t}” jelölést rajzolja; align: 'l' | 'r' | 'c'
+  function subText(ctx, str, x, y, align) {
+    const parts = []; const re = /_(\{[^}]*\}|[A-Za-z0-9])/g; let last = 0, mm;
+    while ((mm = re.exec(str))) { if (mm.index > last) parts.push([str.slice(last, mm.index), 0]); parts.push([mm[1].replace(/[{}]/g, ''), 1]); last = re.lastIndex; }
+    if (last < str.length) parts.push([str.slice(last), 0]);
+    const base = ctx.font, px = parseFloat((base.match(/([\d.]+)px/) || [0, 12])[1]), small = base.replace(/[\d.]+px/, (px * 0.72).toFixed(1) + 'px');
+    let tw = 0; parts.forEach(q => { ctx.font = q[1] ? small : base; q[2] = ctx.measureText(q[0]).width; tw += q[2]; });
+    let cx = align === 'r' ? x - tw : align === 'c' ? x - tw / 2 : x;
+    parts.forEach(q => { ctx.font = q[1] ? small : base; ctx.fillText(q[0], cx, y + (q[1] ? px * 0.28 : 0)); cx += q[2]; });
+    ctx.font = base; return tw;
+  }
+  // felirat világos udvarral, hogy vonalon vagy színes mezőn is olvasható legyen
+  function halo(ctx, str, x, y, col, align) {
+    ctx.save(); ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = cssv('--card');
+    const tw = ctx.measureText(str.replace(/_\{?([^}]*)\}?/g, '$1')).width;
+    const x0 = align === 'r' ? x - tw : align === 'c' ? x - tw / 2 : x;
+    if (!/_/.test(str)) ctx.strokeText(str, x0, y); else { ctx.globalAlpha = 0.9; ctx.fillStyle = cssv('--card'); ctx.fillRect(x0 - 3, y - 11, tw + 6, 15); ctx.globalAlpha = 1; }
+    ctx.fillStyle = col; subText(ctx, str, x, y, align); ctx.restore();
   }
   function drawCurve(g, st) {
-    const cv = $('#tmCurve'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 44, r: 12, t: 24, b: 40 };
+    const { ctx, w, h } = prep($('#tmCurve'));
+    const m = { l: 46, r: 14, t: 30, b: 34 };
     // tengelyek: x = q/q_t (0..1,15), y = s/B lefelé (0..0,25)
     const X = q => m.l + q / 1.15 * (w - m.l - m.r), Y = s => m.t + s / 0.25 * (h - m.t - m.b);
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(w - m.r, m.t); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 11px "IBM Plex Mono", monospace';
-    for (let q = 0; q <= 1.01; q += 0.25) { ctx.fillText(fmt(q, 2), X(q) - 12, m.t - 8); }
-    for (let s = 0.05; s <= 0.251; s += 0.05) { ctx.fillText(fmt(s, 2), 6, Y(s) + 4); ctx.strokeStyle = cssv('--line-2'); ctx.beginPath(); ctx.moveTo(m.l, Y(s)); ctx.lineTo(w - m.r, Y(s)); ctx.stroke(); }
-    ctx.font = '600 12px "IBM Plex Sans", sans-serif'; ctx.fillStyle = cssv('--ink-2');
-    ctx.fillText('teher / törőteher →', w - m.r - 120, h - 12);
-    ctx.save(); ctx.translate(m.l + 6, h - m.b - 6); ctx.fillText('↓ süllyedés s/B', 0, 0); ctx.restore();
+    ctx.font = F(500, 11, 1);
+    for (let s = 0.05; s <= 0.251; s += 0.05) { ctx.fillStyle = cssv('--ink-2'); ctx.fillText(fmt(s, 2), 8, Y(s) + 4); ctx.strokeStyle = cssv('--line-2'); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(m.l, Y(s)); ctx.lineTo(w - m.r, Y(s)); ctx.stroke(); }
+    ctx.fillStyle = cssv('--ink-2');
+    for (let q = 0; q <= 1.01; q += 0.25) { const t = fmt(q, 2); ctx.fillText(t, X(q) - ctx.measureText(t).width / 2, m.t - 9); }
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(w - m.r, m.t); ctx.lineTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
+    ctx.font = F(600, 12); ctx.fillStyle = cssv('--ink-2');
+    subText(ctx, 'teher / törőteher, q/q_t →', w - m.r, h - 10, 'r');
+    ctx.fillText('↓ süllyedés, s/B', m.l + 8, h - m.b - 8);
     const COL = { alt: cssv('--ok'), helyi: cssv('--warn'), beny: cssv('--bad') };
     for (const md of ['alt', 'helyi', 'beny']) {
       ctx.beginPath();
       const S = TORO.SMAX[md];
       for (let i = 0; i <= 120; i++) { const s = S * i / 120, q = TORO.qOf(md, s); i ? ctx.lineTo(X(q), Y(s)) : ctx.moveTo(X(q), Y(s)); }
-      ctx.strokeStyle = COL[md]; ctx.lineWidth = md === g.mode ? 3.2 : 1.2; ctx.globalAlpha = md === g.mode ? 1 : 0.45; ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.strokeStyle = COL[md]; ctx.lineJoin = 'round'; ctx.lineWidth = md === g.mode ? 3.4 : 1.4; ctx.globalAlpha = md === g.mode ? 1 : 0.5; ctx.stroke(); ctx.globalAlpha = 1;
       const fs = TORO.FAIL[md];
-      if (md === g.mode) { ctx.setLineDash([4, 4]); ctx.strokeStyle = COL[md]; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(m.l, Y(fs)); ctx.lineTo(X(TORO.qOf(md, fs)), Y(fs)); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = COL[md]; ctx.font = '600 11px "IBM Plex Mono", monospace'; ctx.fillText(`${fmt(fs, 2)}B`, m.l + 4, Y(fs) - 4); }
+      if (md === g.mode) { ctx.setLineDash([4, 4]); ctx.strokeStyle = COL[md]; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(m.l, Y(fs)); ctx.lineTo(X(TORO.qOf(md, fs)), Y(fs)); ctx.stroke(); ctx.setLineDash([]); ctx.font = F(600, 11, 1); if (fs < 0.08) halo(ctx, `${fmt(fs, 2)}·B`, m.l + 6, Y(fs) + 14, COL[md]); else halo(ctx, `${fmt(fs, 2)}·B`, X(TORO.qOf(md, fs)) - 12, Y(fs) - 6, COL[md], 'r'); }
     }
-    ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(st.q), Y(st.s), 6, 0, 7); ctx.fill();
-    ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2; ctx.stroke();
-    ctx.font = '600 11px "IBM Plex Sans", sans-serif';
-    [['általános', 'alt'], ['helyi', 'helyi'], ['benyomódás', 'beny']].forEach(([t, k], i) => { ctx.fillStyle = COL[k]; ctx.fillRect(w - m.r - 96, h - m.b - 52 + i * 16, 10, 10); ctx.fillStyle = cssv('--ink-2'); ctx.fillText(t, w - m.r - 82, h - m.b - 43 + i * 16); });
+    // jelmagyarázat a görbék alatti szabad sarokban
+    ctx.font = F(600, 11.5);
+    [['általános', 'alt'], ['helyi', 'helyi'], ['benyomódás', 'beny']].forEach(([t, k], i) => { const y = Y(0.125) + i * 17; ctx.fillStyle = COL[k]; ctx.fillRect(m.l + 10, y - 9, 16, 5); ctx.fillStyle = k === g.mode ? cssv('--ink') : cssv('--ink-2'); ctx.fillText(t, m.l + 32, y - 2); });
+    ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(st.q), Y(st.s), 6.5, 0, 7); ctx.fill();
+    ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2.2; ctx.stroke();
   }
   function drawVesic() {
-    const cv = $('#tmVesic'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 44, r: 14, t: 26, b: 40 };
+    const { ctx, w, h } = prep($('#tmVesic'));
+    const m = { l: 46, r: 14, t: 30, b: 34 };
     const X = t => m.l + t * (w - m.l - m.r), Y = d => m.t + d / 5 * (h - m.t - m.b);
     const fill = (fn0, fn1, col) => { ctx.beginPath(); for (let i = 0; i <= 60; i++) { const d = 5 * i / 60; ctx.lineTo(X(Math.min(1, fn0(d))), Y(d)); } for (let i = 60; i >= 0; i--) { const d = 5 * i / 60; ctx.lineTo(X(Math.min(1, fn1(d))), Y(d)); } ctx.closePath(); ctx.fillStyle = col; ctx.fill(); };
-    ctx.globalAlpha = 0.28;
+    ctx.globalAlpha = 0.3;
     fill(() => 0, TORO.lpB, cssv('--bad'));
     fill(TORO.lpB, TORO.glB, cssv('--warn'));
     fill(TORO.glB, () => 1, cssv('--ok'));
     ctx.globalAlpha = 1;
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1; ctx.strokeRect(m.l, m.t, w - m.l - m.r, h - m.t - m.b);
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 11px "IBM Plex Mono", monospace';
-    for (let t = 0; t <= 1.001; t += 0.2) ctx.fillText(fmt(t, 1), X(t) - 9, m.t - 8);
-    for (let d = 1; d <= 5; d++) ctx.fillText(String(d), m.l - 14, Y(d) + 4);
-    ctx.font = '600 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText('relatív tömörség →', w - m.r - 120, h - 12);
-    ctx.save(); ctx.translate(12, h - m.b - 8); ctx.rotate(-Math.PI / 2); ctx.fillText('D/B* ↓', 0, 0); ctx.restore();
-    ctx.font = '700 12px "IBM Plex Sans", sans-serif';
-    ctx.fillStyle = cssv('--ok'); ctx.fillText('általános', X(0.8), Y(0.35));
-    ctx.fillStyle = cssv('--warn'); ctx.fillText('helyi', X(0.52), Y(1.0));
-    ctx.fillStyle = cssv('--bad'); ctx.fillText('benyomódás', X(0.12), Y(3.4));
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2; ctx.strokeRect(m.l, m.t, w - m.l - m.r, h - m.t - m.b);
+    ctx.fillStyle = cssv('--ink-2'); ctx.font = F(500, 11, 1);
+    for (let t = 0; t <= 1.001; t += 0.2) { const s = fmt(t, 1); ctx.fillText(s, X(t) - ctx.measureText(s).width / 2, m.t - 9); }
+    for (let d = 1; d <= 5; d++) ctx.fillText(String(d), m.l - 16, Y(d) + 4);
+    ctx.font = F(600, 12);
+    subText(ctx, 'relatív tömörség, T_{re} →', w - m.r, h - 10, 'r');
+    ctx.save(); ctx.translate(15, h - m.b - 4); ctx.rotate(-Math.PI / 2); ctx.fillText('← relatív mélység, D/B*', 0, 0); ctx.restore();
+    // a mezők nevei a mezők belsejében, a ponttól távol
+    ctx.font = F(700, 12);
+    const mid = (f0, f1, d) => (Math.min(1, f0(d)) + Math.min(1, f1(d))) / 2;
+    halo(ctx, 'általános', X(Math.max(0.8, mid(TORO.glB, () => 1, 0.9))), Y(0.9) + 4, cssv('--ok'), 'c');
+    halo(ctx, 'helyi', X(mid(TORO.lpB, TORO.glB, 2.1)), Y(2.1) + 4, cssv('--warn'), 'c');
+    halo(ctx, 'benyomódás', X(mid(() => 0, TORO.lpB, 3.6)), Y(3.6) + 4, cssv('--bad'), 'c');
     const dBs = P.dB * TORO.Bof(P) / TORO.Bstar(P);
     if (P.soil === 'sz' && P.shape !== 'lemez') {
-      ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(X(P.tre), Y(Math.min(5, dBs)), 7, 0, 7); ctx.fill(); ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2; ctx.stroke();
+      const px = X(P.tre), py = Y(Math.min(5, dBs));
+      ctx.strokeStyle = cssv('--ink'); ctx.globalAlpha = 0.35; ctx.setLineDash([3, 3]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(px, m.t); ctx.lineTo(px, py); ctx.moveTo(m.l, py); ctx.lineTo(px, py); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+      ctx.fillStyle = cssv('--ink'); ctx.beginPath(); ctx.arc(px, py, 7, 0, 7); ctx.fill(); ctx.strokeStyle = cssv('--card'); ctx.lineWidth = 2.2; ctx.stroke();
     } else {
-      ctx.fillStyle = cssv('--ink-2'); ctx.font = '500 12px "IBM Plex Sans", sans-serif';
-      ctx.fillText(P.shape === 'lemez' ? 'nagy lemez: a szélek alatt helyi törés' : 'kötött talaj: a konzisztencia dönt', m.l + 8, h - m.b - 10);
+      ctx.font = F(600, 12);
+      halo(ctx, P.shape === 'lemez' ? 'nagy lemez: a szélek alatt helyi törés' : 'kötött talaj: a konzisztencia dönt', m.l + 10, h - m.b - 12, cssv('--ink'));
     }
   }
   function drawTime(st) {
-    const cv = $('#tmTime'), ctx = cv.getContext('2d'), w = cv.width, h = cv.height;
-    ctx.clearRect(0, 0, w, h);
-    const m = { l: 40, r: 14, t: 26, b: 34 };
+    const { ctx, w, h } = prep($('#tmTime'));
+    const m = { l: 30, r: 14, t: 30, b: 34 };
     const X = t => m.l + t * (w - m.l - m.r), Y = s => m.t + s * (h - m.t - m.b);
-    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(m.l, m.t); ctx.lineTo(w - m.r, m.t); ctx.moveTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
-    ctx.fillStyle = cssv('--ink-2'); ctx.font = '600 12px "IBM Plex Sans", sans-serif';
-    ctx.fillText('idő →', w - m.r - 40, m.t - 8);
-    ctx.save(); ctx.translate(m.l + 6, h - m.b + 22); ctx.fillText('↓ süllyedés', 0, 0); ctx.restore();
+    ctx.strokeStyle = cssv('--ink-3'); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(w - m.r, m.t); ctx.lineTo(m.l, m.t); ctx.lineTo(m.l, h - m.b); ctx.stroke();
+    ctx.fillStyle = cssv('--ink-2'); ctx.font = F(600, 12);
+    ctx.fillText('idő →', w - m.r - ctx.measureText('idő →').width, m.t - 9);
+    ctx.fillText('↓ süllyedés', m.l + 8, h - 10);
+    // a felirat helye görbénként: [idő, a görbe fölött (−1) vagy alatt (+1), igazítás]
     const C = [
-      [t => 0.22 * (1 - Math.exp(-t * 9)), 'I. σ₁: ds/dt = 0', cssv('--ok'), 1],
-      [t => 0.08 + 0.36 * t + 0.12 * (1 - Math.exp(-t * 8)), 'II. σ₂: ds/dt = áll.', cssv('--warn'), 2],
-      [t => 0.12 + 0.2 * t + 1.2 * Math.pow(t, 3.2), 'III. σ_t: ds/dt → ∞', cssv('--bad'), 3]
+      [t => 0.22 * (1 - Math.exp(-t * 9)), 'I. σ_1: ds/dt = 0', cssv('--ok'), 1, 0.99, -1, 'r'],
+      [t => 0.08 + 0.36 * t + 0.12 * (1 - Math.exp(-t * 8)), 'II. σ_2: ds/dt = áll.', cssv('--warn'), 2, 0.99, -1, 'r'],
+      [t => 0.12 + 0.2 * t + 1.2 * Math.pow(t, 3.2), 'III. σ_t: ds/dt → ∞', cssv('--bad'), 3, 0.74, 1, 'r']
     ];
     C.forEach(([fn, lab, col, ph]) => {
       ctx.beginPath();
       for (let i = 0; i <= 100; i++) { const t = i / 100, s = Math.min(1, fn(t)); i ? ctx.lineTo(X(t), Y(s)) : ctx.moveTo(X(t), Y(s)); if (s >= 1) break; }
-      ctx.strokeStyle = col; ctx.lineWidth = st.ph === ph ? 3.4 : 1.3; ctx.globalAlpha = st.ph === ph ? 1 : 0.5; ctx.stroke(); ctx.globalAlpha = 1;
-      const ly = Y(Math.min(0.95, fn(0.62))) - 6;
-      ctx.fillStyle = col; ctx.font = (st.ph === ph ? '700 ' : '500 ') + '11px "IBM Plex Sans", sans-serif';
-      ctx.fillText(lab, X(0.64), ly);
+      ctx.strokeStyle = col; ctx.lineJoin = 'round'; ctx.lineWidth = st.ph === ph ? 3.4 : 1.4; ctx.globalAlpha = st.ph === ph ? 1 : 0.55; ctx.stroke(); ctx.globalAlpha = 1;
+    });
+    C.forEach(([fn, lab, col, ph, tl, side, al]) => {
+      ctx.font = F(st.ph === ph ? 700 : 600, 11.5);
+      const yy = side < 0 ? Y(Math.min(0.95, fn(tl - 0.3))) - 9 : Y(0.93);
+      halo(ctx, lab, X(tl), yy, col, al);
     });
   }
   // ---- vezérlés ----
@@ -176,7 +205,7 @@ onReady(function toroUI() {
   });
   $('#tmReset').addEventListener('click', () => { stop(); P.lam = 0; $('#tmLoad').value = 0; rangeFill($('#tmLoad')); outputs(); emit(false); });
   $('#tmLeg').innerHTML = '<span><i style="background:rgba(134,181,28,.6)"></i>aktív ék</span><span><i style="background:rgba(230,140,40,.6)"></i>radiális zóna</span><span><i style="background:rgba(214,72,140,.5)"></i>passzív ék</span><span><i style="background:rgba(200,110,20,.5)"></i>plasztikus zóna</span><span><i style="background:#d23f2a"></i>csúszólap</span>';
-  window.addEventListener('resize', () => { if (view === '2d') draw2(); });
+  let rzT; window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(outputs, 120); });
   window.addEventListener('themechange', outputs);
   outputs();
 });

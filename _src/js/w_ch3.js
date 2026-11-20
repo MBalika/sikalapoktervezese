@@ -93,7 +93,7 @@ onReady(function flow() {
     d2: { x: 580, y: 334, w: 210, h: 48, t: ['Elmozdulások', 'megengedhetők?'], dec: true, app: ['→ védekezés ↗', 'https://vedekezesakarossullyedesekellen.vercel.app/'] },
     n4: { x: 590, y: 414, w: 190, h: 40, t: ['Magassági méretezés'] },
     d3: { x: 590, y: 486, w: 190, h: 44, t: ['Elfér az alap?'], dec: true },
-    n5: { x: 560, y: 562, w: 250, h: 46, t: ['Elcsúszás, kiborulás,', 'aláüregelődés vizsgálata'], app: ['→ állékonyság ↗', 'https://sikalapokallekonysagvizsgalata.vercel.app/'] },
+    n5: { x: 560, y: 562, w: 250, h: 46, t: ['Elcsúszás, felborulás,', 'aláüregelődés vizsgálata'], app: ['→ állékonyság ↗', 'https://sikalapokallekonysagvizsgalata.vercel.app/'] },
     n6: { x: 580, y: 638, w: 210, h: 42, t: ['Szilárdsági méretezés', '(beton, vasalás)'] }
   };
   const c = k => [N[k].x + N[k].w / 2, N[k].y + N[k].h / 2];
@@ -133,7 +133,7 @@ onReady(function flow() {
     d2: 'Az első „kontroll”: megengedhetők-e a számított süllyedések és süllyedéskülönbségek a tervezett építmény szempontjából?',
     n4: 'Magassági méretezés: az alaptest magassága (vastagsága) a teherelosztáshoz és a szilárdsághoz.',
     d3: 'Elfér az alap? Ha a szükséges méret nem fér el (telekhatár, egymásba érő alapok, szomszéd), új alapsík vagy más típus kell.',
-    n5: 'Ha felmerül: a helyzeti állékonyság (elcsúszás, kiborulás) és a felúszás, aláüregelődés elleni biztonság ellenőrzése.',
+    n5: 'Ha felmerül: a helyzeti állékonyság (elcsúszás, felborulás) és a felúszás, aláüregelődés elleni biztonság ellenőrzése.',
     n6: 'Végül az alapozási rendszer szilárdsági méretezése: a betonminőség és a szükséges vasalás meghatározása.'
   };
   const SC = {

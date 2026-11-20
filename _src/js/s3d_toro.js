@@ -29,7 +29,7 @@ function initToro3D(container) {
     cvs.width = 1400; cvs.height = Math.round(clamp(1400 * (Hd + Ht) / (2 * W), 300, 1400));
     tex = new THREE.CanvasTexture(cvs); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4; tex.userData.own = true;
     frontMat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.95, transparent: true, opacity: 1 });
-    bodyMat = soilMat(); topMat = new THREE.MeshStandardMaterial({ color: TORO.P.soil === 'k' ? 0x9a7a58 : 0xcdb27a, roughness: 1 });
+    bodyMat = soilMat(); topMat = new THREE.MeshStandardMaterial({ map: grassTex([Math.max(2, Math.round(2 * W / 4)), Math.max(2, Math.round(Lz / 4))]), roughness: 1 });
     backMat = soilMat();
     [frontMat, bodyMat, topMat, backMat].forEach(m => m.side = THREE.DoubleSide);
     // test (oldalak + alj)
@@ -52,7 +52,8 @@ function initToro3D(container) {
     const fb = boxAt(g.B, hf, Lf, 0, baseY + hf / 2, zc, conc); edges(fb, 0x1b221e, 0.35); foot.add(fb);
     if (g.shape !== 'lemez') {
       const sh = Ht * 0.9 - (baseY + hf);
-      const sm = boxAt(stem, sh, shapeIsPill() ? stem / 2 + 0.01 : Lz + 0.02, 0, baseY + hf + sh / 2, shapeIsPill() ? -stem / 4 : zc, conc); edges(sm, 0x1b221e, 0.35); foot.add(sm);
+      const wallM = shapeIsPill() ? conc : stdMat(0xffffff, { map: matTex('tegla', [Math.max(2, Math.round(Lz / 1.2)), Math.max(1, Math.round(sh / 0.5))]) });
+      const sm = boxAt(stem, sh, shapeIsPill() ? stem / 2 + 0.01 : Lz + 0.02, 0, baseY + hf + sh / 2, shapeIsPill() ? -stem / 4 : zc, wallM); edges(sm, 0x1b221e, 0.35); foot.add(sm);
     }
     root.add(foot);
     // teher-nyíl

@@ -8,7 +8,7 @@ const TYPE_INFO = {
   },
   pill: {
     name: 'Pilléralap', kind: 'Pillérek, oszlopok alatt',
-    desc: 'Tömbalap a pillérek alatt; alaprajza általában négyzet, B/L = 1–3,5. Betonból vagy vasbetonból készül, alul legalább hálós acélbetéttel. A pillérrel befogott vagy csuklós kapcsolat létesíthető; előregyártott oszlop ma monolit tömbalapra helyezett kehelynyakba kerül.',
+    desc: 'Tömbalap a pillérek alatt; alaprajza általában négyzet vagy téglalap, L/B = 1–3,5. Betonból vagy vasbetonból készül, alul legalább hálós acélbetéttel. A pillérrel befogott vagy csuklós kapcsolat létesíthető; előregyártott oszlop ma monolit tömbalapra helyezett kehelynyakba kerül.',
     when: 'Vázas épületek, ipari csarnokok koncentrált pillérterhei alá, ha a pillérek eltérő süllyedése nem okoz gondot.',
     variants: [['lepcsos', 'Vasbeton tömb'], ['kehely', 'Kehelynyak']]
   },
@@ -39,7 +39,7 @@ const TYPE_INFO = {
   hej: {
     name: 'Héjalap', kind: 'Görbült felületű lemez',
     desc: 'Matematikailag leírható, egyszeres vagy kétszeres görbületű felület, amelyben csak normálerők, azaz húzás és nyomás keletkeznek, hajlítás nem. Anyagtakarékos, de munka- és időigényes; szigorú geometriát kíván. A modell kúphéjat mutat egy hengeres torony alatt.',
-    when: 'Ma már nem alkalmazzák, mert nem bizonyult gazdaságosnak. Érdekesség: a budapesti Körszálló is héjalapon épült.',
+    when: 'Ma már nem alkalmazzák, mert nem bizonyult gazdaságosnak. Érdekesség: a budapesti Körszálló is héjalapra épült.',
     variants: []
   }
 };
@@ -58,7 +58,7 @@ const QUIZ = {
     { q: 'Miért nyúlik ki általában konzolosan a sávalap a fal alól?', o: ['Mert a talaj teherbírása kisebb a falazóanyagénál, és min. 5–5 cm elhelyezési biztonság is kell', 'Hogy a fal ne süllyedjen egyáltalán', 'Mert így kevesebb anyag kell', 'Csak esztétikai okból'], a: 0, e: 'A kiszélesítés csökkenti a talpfeszültséget, az 5–5 cm pedig a földmunka pontatlanságát fedezi.' },
     { q: 'Hogyan kell kialakítani a tégla sávalap lépcsőit?', o: ['Magasságban a téglasor, vízszintesen a féltégla egész számú többszöröse szerint', 'Tetszőleges, 45°-os ferde felülettel', 'Vízszintesen a téglahossz többszöröse szerint', 'Lépcső nélkül, mindig a fal szélességével'], a: 0, e: 'Így a téglák vágás nélkül, kötésben rakhatók, és a lépcsők a teherelosztást is szolgálják.' },
     { q: 'Mikor előnyös a vasbeton sávalap?', o: ['Ha nagy támaszkodó felület kell, de az alap magassága (talajvíz, pince stb.) korlátozott', 'Ha a talaj nagyon jó', 'Ha a fal vékony', 'Ha a fagyhatár mély'], a: 0, e: 'Minél szélesebb egy vasalatlan alaptest, annál magasabbnak kell lennie; a vasbeton alap kisebb magassággal is áthidalja a kinyúlást.' },
-    { q: 'Mi jellemző a pilléralap alaprajzára?', o: ['Általában négyzet, illetve B/L = 1–3,5', 'Mindig kör', 'Mindig hosszúkás, B/L > 5', 'A pillér keresztmetszetével azonos'], a: 0, e: 'Az alaprajz a pillér keresztmetszetéhez igazodik, leggyakrabban négyzet.' },
+    { q: 'Mi jellemző a pilléralap alaprajzára?', o: ['Általában négyzet, illetve téglalap, L/B = 1–3,5', 'Mindig kör', 'Mindig hosszúkás, L/B > 5', 'A pillér keresztmetszetével azonos'], a: 0, e: 'Az alaprajz a pillér keresztmetszetéhez igazodik, leggyakrabban négyzet.' },
     { q: 'Mi a különbség a szalagalap és a gerendarács-alap között?', o: ['A szalagalap egy irányban, a gerendarács mindkét irányban csökkenti a süllyedéskülönbséget', 'A szalagalap vasbeton, a gerendarács beton', 'A gerendarács csak falak alá készül', 'Nincs különbség'], a: 0, e: 'A gerendarács egymást metsző szalagalapokból áll.' },
     { q: 'Mit nevezünk rejtettbordás lemeznek?', o: ['Ha a bordák helyén csak erősítő vasbetétek maradnak, a vastagság a bordákéval azonos', 'Ha a bordák a talajba vannak süllyesztve', 'Ha a lemezt felülről burkolat takarja', 'Ha a lemez alatt drénréteg van'], a: 0, e: 'A borda „elrejtve”, a lemez vasalásában van jelen.' },
     { q: 'Miért alkalmaztak dobozalapot a panelházak alatt?', o: ['Mert a házgyári elemekből készült épület csak kis alakváltozást képes károsodás nélkül elviselni', 'Mert olcsóbb a sávalapnál', 'Mert a panelházak alatt mindig magas a talajvíz', 'Mert a panelek nem rögzíthetők máshoz'], a: 0, e: 'A monolit fogadószint szekrénytartóként merevvé teszi az alapozást.' }
@@ -85,7 +85,7 @@ const QUIZ = {
     { q: 'Melyik használhatósági határállapot?', o: ['Elfogadhatatlan mértékű rezgés', 'Talajtörés az alap alatt', 'Az alaptest átszúródása', 'Felúszás'], a: 0, e: 'Az SLS-ek: túlzott süllyedés és süllyedéskülönbség, elfogadhatatlan rezgés, túlzott megemelkedés.' },
     { q: 'Mikor merül fel a felúszás (UPL) veszélye?', o: ['Mélyen a talajvízszint alá nyúló könnyebb szerkezeteknél (medence, aluljáró, mélygarázs)', 'Nehéz, talajvíz feletti szerkezeteknél', 'Lejtős terepen', 'Kőzetre alapozásnál'], a: 0, e: 'Gyakran csak építés közben kritikus, amikor a szerkezet még könnyű.' },
     { q: 'Mikor alkalmazzák jellemzően a szokáson alapuló (bevált) eljárást?', o: ['Kőzetre alapozásnál, valószínűsített talajtörési ellenállással', 'Puha agyagon álló toronyháznál', 'Mindig, ha nincs talajvizsgálat', 'Felúszás vizsgálatánál'], a: 0, e: 'A kőzet típusa, tagoltsága és egyirányú nyomószilárdsága alapján felvehető megengedett talpfeszültség (G melléklet).' },
-    { q: 'Mi veszi át a DA1/DA2/DA3 tervezési módok helyét a 2. generációs EC7-ben?', o: ['Az igazolási esetek (VC1–VC4), anyag- (MFA) vagy ellenállástényezős (RFA) eljárással', 'Egyetlen globális biztonsági tényező', 'A megengedett feszültségek módszere', 'Semmi, minden marad'], a: 0, e: 'A határállapot-típusok (GEO, STR, EQU, UPL, HYD) megmaradnak, az igazolás rendje alakul át.' },
+    { q: 'Mi veszi át a DA1/DA2/DA3 tervezési módok helyét a 2. generációs EC7-ben?', o: ['Az igazolási esetek (VC1–VC4), anyag- (MFA) vagy ellenállástényezős (RFA) eljárással', 'Egyetlen globális biztonsági tényező', 'A megengedett feszültségek módszere', 'Semmi, minden marad'], a: 0, e: 'A vizsgálandó tönkremeneteli módok megmaradnak, az igazolás rendje alakul át.' },
     { q: 'A mátrix szerint melyik osztályba kerül egy CC3-as építmény normál (GCC2) geotechnikai komplexitással?', o: ['GC1', 'GC2', 'GC3', 'Nem sorolható be'], a: 2, e: 'Nagy következmény és normál komplexitás: GC3. A táblázat nemzetileg módosítható paraméter.' }
   ]},
   q6: { key: 'q6', title: 'Kvíz – a talajtörés mechanizmusa', items: [
@@ -131,7 +131,7 @@ const TF_ITEMS = [
   { s: 'Csömöszölt beton sávalapot ma jellemzően zsaluzattal készítenek.', a: false, e: 'Földpartok között; zsaluzat csak akkor kell, ha a szemcsés talajban nem állnak meg a közel függőleges földpartok.' },
   { s: 'Ugyanakkora alapszélességnél a vasbeton sávalap alacsonyabb lehet, mint a vasalatlan.', a: true, e: 'Ezért előnyös, ha az alapmagasság korlátozott.' },
   { s: 'A válaszfalakat nem kell külön lealapozni, mert csak önhordó szerkezetek.', a: false, e: 'Le kell alapozni: külön sávalappal, padozatvastagítással vagy vasbeton gerendával.' },
-  { s: 'Pilléralapnál a B/L arány általában 1 és 3,5 között van.', a: true, e: 'Leggyakrabban négyzet alaprajzú.' },
+  { s: 'Pilléralapnál az L/B oldalarány általában 1 és 3,5 között van.', a: true, e: 'Leggyakrabban négyzet alaprajzú.' },
   { s: 'Az acélpillér tőcsavaros lekötése az esetleges húzóerők átadására szolgál.', a: true, e: 'Egy- vagy kétirányú nyomatékbíró kapcsolatot is adhat.' },
   { s: 'A szalagalap mindkét irányban csökkenti a süllyedéskülönbségeket.', a: false, e: 'Csak egy irányban; mindkét irányban a gerendarács-alap.' },
   { s: 'A lemezalapok viszonylag kis vastagságuk miatt általában igen hajlékonyak.', a: true, e: 'Bordákkal merevíthetők.' },
@@ -169,7 +169,7 @@ const GLOSSARY = [
   ['Vegyes (hibrid) alapozás', 'A sík- és mélyalapozás ötvözete, pl. cölöppel gyámolított lemezalap.'],
   ['Sávalap', 'Falak folyamatos alátámasztására szolgáló, általában kiszélesített alaptest.'],
   ['Úsztatott beton', 'Terméskővel kevert beton („francia beton”). A kő a magasság kb. felében.'],
-  ['Pilléralap (tömbalap)', 'Pillérek, oszlopok alatti, általában négyzetes alaptest (B/L = 1–3,5).'],
+  ['Pilléralap (tömbalap)', 'Pillérek, oszlopok alatti, általában négyzetes alaptest (L/B = 1–3,5).'],
   ['Kehelyalap, kehelynyak', 'Előregyártott oszlop befogására szolgáló kehely. Ma monolit tömbalapra helyezett kehelynyak.'],
   ['Szalagalap', 'Pillérsort egy irányban összekötő, erősen vasalt talpgerenda.'],
   ['Gerendarács-alap', 'Egymást metsző szalagalapok. Mindkét irányban csökkenti a süllyedéskülönbséget.'],
@@ -193,15 +193,16 @@ const GLOSSARY = [
   ['STR', 'A szerkezeti elemek belső törése vagy túlzott alakváltozása.'],
   ['EQU', 'A helyzeti állékonyság elvesztése merev testként.'],
   ['UPL', 'Felúszás miatti egyensúlyvesztés.'],
+  ['HYD', 'Hidraulikus talajtörés: a felfelé áramló víz megbontja a talajt.'],
   ['Közvetlen tervezési eljárás', 'Minden határállapotra külön számítási modell (törési mechanizmus, süllyedésszámítás).'],
   ['Közvetett tervezési eljárás', 'Tapasztalatok és mérések (pl. szondázás) alapján, tapasztalati képletekkel.'],
   ['Szokáson alapuló eljárás', 'Valószínűsített talajtörési ellenállással, elsősorban kőzetre alapozásnál.'],
-  ['Következményosztály (CC)', 'A tönkremenetel következményei szerinti besorolás (CC1–CC4).'],
+  ['Következményosztály (CC)', 'A tönkremenetel következményei szerinti besorolás (CC0–CC4).'],
   ['Geotechnikai kategória', 'Az építmény geotechnikai besorolása (GC1–GC3). Az új EC7-ben a CC és a geotechnikai komplexitás együtt adja.'],
   ['MFA / RFA', 'Anyagtényezős, illetve ellenállástényezős igazolási eljárás az új EC7-ben.'],
   ['Általános nyírási törés', 'A felszínig kifutó csúszólap, felpúposodás, csúcs a teher–süllyedés görbén.'],
   ['Helyi nyírási törés', 'Részlegesen kifejlődő törési felület, nagyobb süllyedés, csúcs nélkül.'],
   ['Benyomódás (befúródás)', 'Törési felület nélküli, nagy süllyedéssel járó tönkremenetel laza vagy puha talajban.'],
-  ['Relatív tömörség (Tre)', 'Tre = (emax − e)/(emax − emin). A szemcsés talaj tömörségi állapota.'],
+  ['Relatív tömörség (T<sub>re</sub>)', 'T<sub>re</sub> = (e<sub>max</sub> − e)/(e<sub>max</sub> − e<sub>min</sub>). A szemcsés talaj tömörségi állapota.'],
   ['Prandtl-mechanizmus', 'Aktív ék, radiális nyírási zóna és passzív ék – a teherbírási képlet alapja.']
 ];

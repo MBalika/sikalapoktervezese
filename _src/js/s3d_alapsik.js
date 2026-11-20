@@ -1,15 +1,20 @@
 /* ===== 3D: alapsík-tervező ===== */
 function initAlapsik3D(container) {
-  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.2, 2.2, 13.2], target: [-0.8, -1.5, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
+  const st3 = makeStage(container, { fitAspect: 1.5, fitPow: 1.8, pos: [4.6, 2.9, 15.6], target: [-0.8, -0.35, -1.4], shadows: true, minDist: 7, maxDist: 40, shadowSize: 14, maxPolar: Math.PI * 0.55 });
   const { scene } = st3;
   const X0 = -9, X1 = 9, Z0 = -5, DEP = -5.4;
   const soilG = new THREE.Group(), bldG = new THREE.Group(), nbG = new THREE.Group(), fxG = new THREE.Group();
   scene.add(soilG, bldG, nbG, fxG);
   const M = {
     beton: stdMat(0xffffff, { map: matTex('beton', [2, 2]) }),
-    wall: stdMat(0xeceae3, { roughness: 0.95 }),
+    wall: stdMat(0xffffff, { map: matTex('vakolat', [3, 2]), roughness: 0.95 }),
+    brick: stdMat(0xffffff, { map: matTex('tegla', [1, 5]) }),
+    roof: stdMat(0xffffff, { map: matTex('cserep', [7, 4]), roughness: 0.8 }),
+    frame: stdMat(0xf7f5ee, { roughness: 0.6 }),
+    glass: new THREE.MeshStandardMaterial({ color: 0x9cc4dc, roughness: 0.15, metalness: 0.1, emissive: 0x6fa6c4, emissiveIntensity: 0.25 }),
+    door: stdMat(0x7a5236, { roughness: 0.7 }),
     wall2: stdMat(0xd8d2c4, { roughness: 0.95 }),
-    nb: stdMat(0xc9b79a, { roughness: 0.95 }),
+    nb: stdMat(0xd9c9ad, { map: matTex('vakolat', [2, 2]), roughness: 0.95 }),
     under: stdMat(0xd0602a, { roughness: 0.7 }),
     win: stdMat(0x5b7488, { roughness: 0.3 }),
     frost: new THREE.MeshStandardMaterial({ color: 0xbfe9ff, transparent: true, opacity: 0.34, depthWrite: false, roughness: 0.2, emissive: 0x3aa8d8, emissiveIntensity: 0.12 }),
@@ -71,13 +76,27 @@ function initAlapsik3D(container) {
     bldG.add(box(xb - xa + 0.36, 0.3 - wallBot, 0.36, (xa + xb) / 2, (0.3 + wallBot) / 2, zb, wallMat));
     bldG.add(box(0.3, 0.3 - wallBot, zLen, -1, (0.3 + wallBot) / 2, zb / 2 + 0.01, wallMat));
     if (pince) bldG.add(box(xb - xa, 0.15, zLen, (xa + xb) / 2, -q.hp + 0.075, zb / 2 + 0.01, M.beton));
-    // felmenő falak
-    const H1 = 3.1;
-    for (const x of [xa, xb]) bldG.add(box(0.36, H1, zLen, x, 0.3 + H1 / 2, zb / 2 + 0.01, M.wall));
-    bldG.add(box(xb - xa + 0.36, H1, 0.36, (xa + xb) / 2, 0.3 + H1 / 2, zb, M.wall));
-    bldG.add(box(xb - xa + 0.6, 0.25, zLen + 0.3, (xa + xb) / 2, 0.3 + H1, zb / 2 + 0.01, M.wall2));
-    bldG.add(box(xb - xa, 0.2, zLen, (xa + xb) / 2, 0.4, zb / 2 + 0.01, M.wall2));
-    for (const x of [-4.4, -2.6, 0.8, 2.6]) bldG.add(box(1.0, 1.2, 0.06, x, 1.7, zb - 0.2, M.win, false));
+    // felmenő falak: vakolt téglafalak, az elmetszett falvégeken látszik a tégla
+    const H1 = 2.9, y0w = 0.3;
+    const sideWall = x => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.36, H1, zLen), [M.wall, M.wall, M.wall, M.wall, M.brick, M.wall]); m.position.set(x, y0w + H1 / 2, zb / 2 + 0.01); m.castShadow = m.receiveShadow = true; edges(m, 0x1b221e, 0.2); return m; };
+    for (const x of [xa, xb]) bldG.add(sideWall(x));
+    bldG.add(box(xb - xa + 0.36, H1, 0.36, (xa + xb) / 2, y0w + H1 / 2, zb, M.wall));
+    bldG.add(box(xb - xa, 0.2, zLen, (xa + xb) / 2, 0.4, zb / 2 + 0.01, M.wall2));            // földszinti padló
+    bldG.add(box(xb - xa + 0.36, 0.22, zLen, (xa + xb) / 2, y0w + H1 + 0.11, zb / 2 + 0.01, M.wall2)); // zárófödém
+    // ablakok és ajtó a hátsó falon (belülről látszanak)
+    const zi = zb + 0.185;
+    for (const x of [-4.6, -2.7, 2.5]) { bldG.add(box(1.16, 1.36, 0.05, x, 1.75, zi, M.frame, false)); bldG.add(box(1.0, 1.2, 0.06, x, 1.75, zi + 0.01, M.glass, false)); bldG.add(box(0.05, 1.2, 0.07, x, 1.75, zi + 0.012, M.frame, false)); }
+    bldG.add(box(1.06, 2.16, 0.05, 0.6, 0.5 + 1.08, zi, M.frame, false)); bldG.add(box(0.94, 2.05, 0.06, 0.6, 0.5 + 1.03, zi + 0.01, M.door, false));
+    // nyeregtető (a gerinc a metszetre merőleges): cserép, oromfal, kémény
+    const yE = y0w + H1 + 0.22, half = (xb - xa) / 2 + 0.6, rise = 1.75, cx0 = (xa + xb) / 2, ang = Math.atan2(rise, half);
+    for (const sg of [-1, 1]) {
+      const hx = sg > 0 && q.szom ? (xb - xa) / 2 + 0.2 : half, ry = rise * hx / half, sl = Math.hypot(hx, ry); // a szomszéd felőli oldalon nincs eresztúlnyúlás (tűzfal)
+      const r = new THREE.Mesh(new THREE.BoxGeometry(sl + 0.12, 0.16, zLen + 0.5), [M.wall2, M.wall2, M.roof, M.wall2, M.wall2, M.wall2]);
+      r.position.set(cx0 + sg * hx / 2, yE + rise - ry / 2 + 0.05, zb / 2 - 0.2); r.rotation.z = -sg * ang; r.castShadow = r.receiveShadow = true; edges(r, 0x1b221e, 0.2); bldG.add(r);
+    }
+    const gs = new THREE.Shape([new THREE.Vector2(-half + 0.55, 0), new THREE.Vector2(half - 0.55, 0), new THREE.Vector2(0, rise * (half - 0.55) / half)]);
+    const gable = new THREE.Mesh(new THREE.ExtrudeGeometry(gs, { depth: 0.36, bevelEnabled: false }), M.wall); gable.position.set(cx0, yE, zb - 0.18); gable.castShadow = true; bldG.add(gable);
+    bldG.add(box(0.5, 1.5, 0.5, cx0 + 2.4, yE + rise * 0.55 + 0.5, zb / 2 - 0.9, M.brick));
     bldG.userData.baseY = 0;
     // szomszéd
     if (q.szom) {
@@ -85,7 +104,9 @@ function initAlapsik3D(container) {
       const dn = q.dsz;
       nbG.add(box(0.8, 0.5, 4.5, nx0 + 0.3, -dn + 0.25, -2.25 + 0.01, M.beton));
       nbG.add(box(0.4, dn - 0.5 + 0.3, 4.5, nx0 + 0.3, (0.3 + (-dn + 0.5)) / 2, -2.25 + 0.01, M.beton));
-      nbG.add(box(nx1 - nx0, 4.4, 4.5, (nx0 + nx1) / 2, 0.3 + 2.2, -2.25 + 0.01, M.nb));
+      nbG.add(box(nx1 - nx0, 5.6, 4.5, (nx0 + nx1) / 2, 0.3 + 2.8, -2.25 + 0.01, M.nb));
+      for (const y of [0.42, 3.1, 5.78]) nbG.add(box(nx1 - nx0 + 0.02, 0.24, 4.52, (nx0 + nx1) / 2, y, -2.25 + 0.01, M.wall2, false)); // födémek a metszeten
+      for (const y of [1.75, 4.45]) for (const x of [5.9, 7.7]) { nbG.add(box(1.0, 1.3, 0.05, x, y, 0.035, M.frame, false)); nbG.add(box(0.86, 1.16, 0.06, x, y, 0.04, M.glass, false)); }
       if (d > dn + 0.1) nbG.add(box(0.8, d - dn, 4.5, nx0 + 0.3, -(dn + d) / 2, -2.25 + 0.02, M.under));
     }
     // fagy
@@ -124,10 +145,10 @@ function initAlapsik3D(container) {
   }
   function labels(fr) {
     const r = ALAPSIK.eval(q);
-    const lx = -6.6;
+    const lx = -6.9;
     L.frost.set(`fagyhatár −${fmt(fr, 2)} m`); L.frost.pos.set(lx, -fr, 0.1);
-    L.gw.set(`talajvíz −${fmt(q.gw, 2)} m`); L.gw.pos.set(lx + 1.6, -q.gw, 0.1); L.gw.show = q.gw < -DEP;
-    L.base.set(`alapsík −${fmt(q.d, 2)} m`); L.base.pos.set(-1, -q.d, 0.15);
+    L.gw.set(`talajvíz −${fmt(q.gw, 2)} m`); L.gw.pos.set(lx + 2.5, -q.gw, 0.1); L.gw.show = q.gw < -DEP;
+    L.base.set(`alapsík −${fmt(q.d, 2)} m`); L.base.pos.set(-1.2, -q.d, 0.15);
     L.base.cls(r.ok ? 'lime' : 'bad');
     L.fill.pos.set(5.6, -Math.max(0.31, q.ft) / 2 - 0.1, 0.1);
     L.fill.show = !q.szom;
@@ -136,7 +157,7 @@ function initAlapsik3D(container) {
     L.dry.show = q.duzz; L.dry.pos.set(3.8, -2, 0.1);
     L.nb.show = q.szom; L.nb.set(`szomszéd alapsíkja −${fmt(q.dsz, 2)} m`); L.nb.pos.set(6.4, -q.dsz - 0.25, 0.1);
     L.under.show = q.szom && q.d > q.dsz + 0.1; L.under.pos.set(5.8, -(q.dsz + q.d) / 2, 0.15);
-    L.dew.show = q.d > q.gw; L.dew.pos.set(-3.5, -q.gw - 0.35, 0.15);
+    L.dew.show = q.d > q.gw; L.dew.pos.set(1.7, -q.gw - 0.02, 0.15);
   }
   function applyWinter() {
     const fr = FX.frostD;

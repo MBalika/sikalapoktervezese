@@ -95,19 +95,19 @@ onReady(function dontes() {
       S('line', { x1: 0, y1: Y(st.gw), x2: W, y2: Y(st.gw), style: 'stroke:var(--water)', 'stroke-width': 1.8 }, g);
       const tx = narrow ? 300 : 470;
       S('path', { d: `M${tx - 7} ${Y(st.gw) - 11} h14 l-7 10 z`, style: 'fill:var(--water)' }, g);
-      S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s', style: 'fill:#fff;font-weight:600;paint-order:stroke;stroke:rgba(20,50,110,.85);stroke-width:3px', text: `talajvíz −${fmt(st.gw, 1)} m` }, g);
+      S('text', { x: tx + 12, y: Y(st.gw) - 3, class: 't-s t-halo t-hb', text: `talajvíz −${fmt(st.gw, 1)} m` }, g);
     }
     // terep
     S('line', { x1: 0, y1: y0, x2: W, y2: y0, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
     // rétegfeliratok
-    const lab = (x, y, t, b) => { const tt = S('text', { x, y, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:3px', text: t }, g); if (b) tt.setAttribute('font-weight', '600'); };
+    const lab = (x, y, t, b) => { const tt = S('text', { x, y, class: 't-s t-halo', text: t }, g); if (b) tt.setAttribute('font-weight', '600'); };
     lab(10, y0 + 16, st.nincs ? 'közepes, összenyomható talaj' : 'gyenge réteg (feltöltés, puha agyag)');
     lab(10, Y(st.tb) + 16, st.nincs ? 'mélyebben sincs jobb' : 'teherbíró réteg (homokos kavics)', true);
     // mélységskála
     const ax = S('g', {}, g);
     for (let d = 0; d <= maxD; d += maxD > 12 ? 2 : 1) {
       S('line', { x1: W - 30, y1: Y(d), x2: W - 22, y2: Y(d), style: 'stroke:var(--ink-3)' }, ax);
-      S('text', { x: W - 34, y: Y(d) + 4, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.5);stroke-width:3px', text: d === 0 ? '0' : '−' + d }, ax);
+      S('text', { x: W - 34, y: Y(d) + 4, 'text-anchor': 'end', class: 't-s t-m t-halo', text: d === 0 ? '0' : '−' + d }, ax);
     }
     S('text', { x: W - 26, y: y0 - 8, 'text-anchor': 'end', class: 't-s t-m', style: 'fill:var(--ink-3)', text: 'mélység [m]' }, ax);
     // épület
@@ -149,9 +149,9 @@ onReady(function dontes() {
     const fd = 1.0;
     if (t === 'sav') { const B = ep === 'haz' ? 0.8 : 1.4; fe(cx - half - B * sc / 2 + 6, B * sc, fd - 0.5, fd); fe(cx + half - B * sc / 2 - 6, B * sc, fd - 0.5, fd); if (ep !== 'haz') fe(cx - B * sc / 2, B * sc, fd - 0.5, fd); }
     else if (t === 'pill') { for (let i = -2; i <= 2; i++) fe(cx + i * 70 - 0.9 * sc, 1.8 * sc, fd - 0.6, fd + 0.2); }
-    else if (t === 'racs') { fe(cx - half - 10, half * 2 + 20, fd - 0.2, fd + 0.3); for (let i = -2; i <= 2; i++) { const x = ep === 'csarnok' ? cx + i * 70 : cx + i * half / 2; fe(x - 0.5 * sc, 1.0 * sc, fd - 0.3, fd + 0.3); } S('text', { x: cx, y: Y(fd + 0.3) + 16, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'mindkét irányban összekötött alapok' }, g); }
-    else if (t === 'lemez') { const th = ep === 'torony' ? 2.0 : 0.6; const top = ep === 'lakohaz' && st.gw < 3.5 ? 2.6 : 0.6; fe(cx - half - 12, half * 2 + 24, top, top + th); if (top > 1) { S('rect', { x: cx - half - 12, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('rect', { x: cx + half + 2, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('text', { x: cx, y: Y(top) - 8, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'pince – ellenfödém' }, g); } }
-    else if (t === 'melyitett') { const B = 1.6; [-half + 8, half - 8].forEach(x => { S('rect', { x: cx + x - 0.25 * sc, y: Y(0.4), width: 0.5 * sc, height: (st.tb - 0.4) * sc, fill: conc, style: sty }, g); fe(cx + x - B * sc / 2, B * sc, st.tb, st.tb + 0.6); }); S('text', { x: cx, y: Y(st.tb) - 10, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'mélyített síkalap a teherbíró rétegen' }, g); }
+    else if (t === 'racs') { fe(cx - half - 10, half * 2 + 20, fd - 0.2, fd + 0.3); for (let i = -2; i <= 2; i++) { const x = ep === 'csarnok' ? cx + i * 70 : cx + i * half / 2; fe(x - 0.5 * sc, 1.0 * sc, fd - 0.3, fd + 0.3); } S('text', { x: cx, y: Y(fd + 0.3) + 16, 'text-anchor': 'middle', class: 't-s t-halo', text: 'mindkét irányban összekötött alapok' }, g); }
+    else if (t === 'lemez') { const th = ep === 'torony' ? 2.0 : 0.6; const top = ep === 'lakohaz' && st.gw < 3.5 ? 2.6 : 0.6; fe(cx - half - 12, half * 2 + 24, top, top + th); if (top > 1) { S('rect', { x: cx - half - 12, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('rect', { x: cx + half + 2, y: y0, width: 10, height: top * sc, fill: conc, style: sty }, g); S('text', { x: cx, y: Y(top) - 8, 'text-anchor': 'middle', class: 't-s t-halo', text: 'pince – ellenfödém' }, g); } }
+    else if (t === 'melyitett') { const B = 1.6; [-half + 8, half - 8].forEach(x => { S('rect', { x: cx + x - 0.25 * sc, y: Y(0.4), width: 0.5 * sc, height: (st.tb - 0.4) * sc, fill: conc, style: sty }, g); fe(cx + x - B * sc / 2, B * sc, st.tb, st.tb + 0.6); }); S('text', { x: cx, y: Y(st.tb) - 10, 'text-anchor': 'middle', class: 't-s t-halo', text: 'mélyített síkalap a teherbíró rétegen' }, g); }
     else if (t === 'colop' || t === 'cprf') {
       const capTop = t === 'cprf' ? 0.6 : (ep === 'hid' ? 0 : 0.5);
       const capH = t === 'cprf' ? (ep === 'torony' ? 2.0 : 1.0) : 0.8;
@@ -163,7 +163,7 @@ onReady(function dontes() {
         const x = cx - span + 16 + i * (span * 2 - 32) / (n - 1);
         S('rect', { x: x - 0.4 * sc, y: Y(capTop + capH), width: 0.8 * sc, height: (Math.min(tip, 20.5) - capTop - capH) * sc, fill: conc, style: 'stroke:var(--ink);stroke-width:1.2' }, g);
       }
-      S('text', { x: cx, y: Y(Math.min(tip, 20)) + 16, 'text-anchor': 'middle', class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: t === 'cprf' ? 'lemez + cölöpök együttdolgozása' : 'cölöpök a teherbíró rétegig' }, g);
+      S('text', { x: cx, y: Y(Math.min(tip, 20)) + 16, 'text-anchor': 'middle', class: 't-s t-halo', text: t === 'cprf' ? 'lemez + cölöpök együttdolgozása' : 'cölöpök a teherbíró rétegig' }, g);
     }
   }
   function render() {

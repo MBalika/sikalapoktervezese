@@ -2,7 +2,6 @@
 5d3efdc	Built to support walls continuously. It usually projects beyond the wall as a cantilever, because the bearing resistance of the ground is lower than that of the masonry, and a placing allowance of at least 5 cm is needed on each side. It is made of brick, rubble stone, rubble or mass concrete, or reinforced concrete.
 9531e59	Under masonry buildings, for example a family house or a smaller block of flats, on bearing ground, below the frost depth. The simplest and cheapest solution.
 3784a6a	Under columns and posts
-71d6e59	A block footing under the columns; its plan is usually square, B/L = 1–3.5. It is made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom. The connection to the column can be fixed or pinned; a precast column today goes into a pocket neck placed on a cast-in-place block footing.
 cf10bec	Under the concentrated column loads of framed buildings and industrial halls, if differing settlement of the columns causes no problem.
 8e17353	Reinforced concrete block
 7aebcfb	Ground beam under a row of columns
@@ -19,7 +18,6 @@ b74da26	A basement structure acting as a whole
 76b54f4	Under structures that tolerate only small deformations, most often as the cast-in-place reinforced concrete receiving level of prefabricated panel buildings.
 8e1db56	A slab with a curved surface
 f10736f	A mathematically defined surface of single or double curvature in which only normal forces, i.e. tension and compression, develop, no bending. It saves material but needs a lot of labour and time, and strict geometry. The model shows a conical shell under a cylindrical tower.
-ac60e21	It is no longer used, because it did not prove economical. A curiosity: the Körszálló hotel in Budapest was also built on a shell foundation.
 e03e84c	Quiz – shallow or deep foundation?
 92b7338	When do we call a foundation a shallow foundation?
 db7ec9c	If the bearing stratum is close to the surface (with a basement, close to the superstructure), within about 1–2 m
@@ -76,9 +74,7 @@ dcc9384	If a large bearing area is needed but the depth of the footing is limite
 a177168	If the frost depth is large
 32f3148	The wider an unreinforced footing, the deeper it has to be; a reinforced concrete footing spans the projection with a smaller depth.
 67f5c0b	What is typical of the plan of a pad foundation?
-4717b38	Usually square, or B/L = 1–3.5
 5d93c3e	Always circular
-61c4a79	Always elongated, B/L > 5
 35b889a	The same as the cross-section of the column
 cdd0e8b	The plan follows the cross-section of the column, most often square.
 bfb3061	What is the difference between a continuous beam and a beam-grid foundation?
@@ -128,3 +124,7 @@ a263216	Which one does NOT belong to the “surroundings” group of factors?
 2255183	The depth of the groundwater
 af5cf7f	An adjoining neighbouring building (infill plot)
 2f47988	Trees on the site that must be protected
+f0bf271	Always elongated, L/B > 5
+81d4c6b	Usually square or rectangular, L/B = 1–3.5
+f4103d6	It is no longer used, because it did not prove economical. A curiosity: the Körszálló hotel in Budapest was also built on a shell foundation.
+643158f	A block footing under the columns; its plan is usually square or rectangular, L/B = 1–3.5. It is made of concrete or reinforced concrete, with at least a mesh of reinforcement at the bottom. The connection to the column can be fixed or pinned; a precast column today goes into a pocket neck placed on a cast-in-place block footing.

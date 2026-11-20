@@ -4,7 +4,6 @@ cfbe7db	Against the trench sides; formwork is needed only if near-vertical trenc
 4ab402f	That is why it is advantageous when the footing depth is limited.
 c6e1f6b	Partition walls do not need separate foundations, because they carry only themselves.
 a2cf568	They do need foundations: a separate strip footing, a thickened floor slab or a reinforced concrete beam.
-4a7cb8d	For a pad foundation, the B/L ratio is usually between 1 and 3.5.
 c4dfa90	Most often it is square in plan.
 ad3639b	The holding-down bolts of a steel column serve to transfer any tensile forces.
 b260767	They can also provide a moment-resisting connection in one or two directions.
@@ -71,7 +70,6 @@ ee0aabc	A footing, usually widened, providing continuous support for walls.
 450fd90	Rubble concrete
 466c010	Concrete mixed with rubble stone (“cyclopean concrete”). The stone is in about half of the depth.
 0c7af21	Pad foundation (block foundation)
-97157a2	A footing under columns and posts, usually square (B/L = 1–3.5).
 6738119	A pocket for fixing a precast column. Today a pocket neck placed on a cast-in-place block footing.
 2bc1421	A heavily reinforced ground beam connecting a row of columns in one direction.
 daea230	Intersecting ground beams. It reduces differential settlement in both directions.
@@ -114,13 +112,16 @@ f6525e0	Based on experience and measurements (e.g. penetration tests), with empi
 e10c0af	Prescriptive method
 f71b410	With a presumed bearing resistance, mainly for foundations on rock.
 e3d0013	Consequence class (CC)
-c542a98	Classification according to the consequences of failure (CC1–CC4).
 2373095	Geotechnical Category
 15df71d	The geotechnical classification of the structure (GC1–GC3). In the new EC7 it follows from the CC and the geotechnical complexity together.
 2716707	Material factor and resistance factor approaches to verification in the new EC7.
 630fc51	A slip surface running out to the surface, heave, a peak on the load–settlement curve.
 e2d18e4	A partly developed failure surface, larger settlement, no peak.
 8db6bd3	Failure without a failure surface, with large settlement, in loose or soft soil.
-aa58fa4	Density index (ID)
-d3616c5	ID = (emax − e)/(emax − emin). The state of density of a granular soil.
 6c562f7	Active wedge, radial shear zone and passive wedge – the basis of the bearing resistance formula.
+7cc2bb1	I<sub>D</sub> = (e<sub>max</sub> − e)/(e<sub>max</sub> − e<sub>min</sub>). The state of density of a granular soil.
+049699c	Density index (I<sub>D</sub>)
+ec6d7cb	Classification according to the consequences of failure (CC0–CC4).
+6047223	Hydraulic heave: upward seepage of water loosens and lifts the soil.
+ccb4eb7	A footing under columns and posts, usually square (L/B = 1–3.5).
+2d806cc	For a pad foundation, the side ratio L/B is usually between 1 and 3.5.

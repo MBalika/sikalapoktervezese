@@ -52,7 +52,6 @@ b82fbe5	→ station 4
 d617146	→ remedies ↗
 a685a96	Depth design
 447791a	Does the footing fit?
-c10e94a	Sliding, overturning,
 07b68cd	undermining checks
 26cbfd7	→ stability ↗
 3866801	Structural design
@@ -70,7 +69,6 @@ d28a1dd	From the stresses we calculate the settlements, the differential settlem
 f377f52	The first “check”: are the calculated settlements and differential settlements acceptable for the planned structure?
 a2af133	Depth design: the depth (thickness) of the footing for load spread and strength.
 dcb0cdd	Does the footing fit? If the required size does not fit (site boundary, overlapping footings, neighbour), a new foundation level or another type is needed.
-9dc55c2	Where relevant: checking the stability of position (sliding, overturning) and the safety against uplift and undermining.
 c6d4edf	Finally, the structural design of the foundation system: choosing the concrete grade and the required reinforcement.
 d49b518	Every check is met: the process runs straight through.
 9c39c77	The settlement is too large: we go back – another type (e.g. stiffer, a raft), a deeper foundation level or a larger foundation area. In the second round it is met.
@@ -176,3 +174,5 @@ bd3a745	solid rock
 29789df	In granular soil below 500 m above sea level, the frost depth can be reduced to 0.5 m if the winter groundwater stays at least 2.0 m below the foundation level – OK.
 846dc1a	winter groundwater ≥ 2 m lower
 0fda744	Foundation-level detective – OK or not?
+406a57e	Where relevant: checking the stability of position (sliding, overturning) and the safety against uplift and undermining.
+1c80681	Sliding, overturning,

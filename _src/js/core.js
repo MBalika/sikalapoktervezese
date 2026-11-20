@@ -602,6 +602,22 @@ const RAG = (() => {
 /* ---------- Indítás ---------- */
 const INIT = [];
 function onReady(fn) { INIT.push(fn); }
+/* képgaléria: mindig teli sorok – a képszámhoz és a szélességhez választott oszlopszám, a csonka sor középen */
+onReady(function galRows() {
+  const fit = el => {
+    const n = el.children.length; if (n < 2) return;
+    const w = el.clientWidth; if (!w) return;
+    const gap = 10, max = Math.max(1, Math.floor((w + gap) / (150 + gap)));
+    const rows = Math.ceil(n / max); let cols = Math.ceil(n / rows);
+    // ha így csonka sor maradna, keressünk olyan oszlopszámot, amellyel a sorok teliek
+    if (n % cols) for (let c = Math.min(max, n); c >= 2; c--) if (n % c === 0 && n / c <= rows + 1) { cols = c; break; }
+    el.style.setProperty('--gal-w', `calc((100% - ${(cols - 1) * gap}px) / ${cols})`);
+    el.classList.add('gal-fit');
+  };
+  const all = [...document.querySelectorAll('.gal')].filter(el => !el.closest('.g2i'));
+  const ro = new ResizeObserver(es => es.forEach(e => fit(e.target)));
+  all.forEach(el => { fit(el); ro.observe(el); });
+});
 document.addEventListener('DOMContentLoaded', () => {
   initRanges();
   for (const f of INIT) { try { f(); } catch (e) { console.error(e); } }

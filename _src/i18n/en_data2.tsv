@@ -68,7 +68,6 @@ d33b0e5	For checking uplift
 7eecdbf	The verification cases (VC1–VC4), with the material factor (MFA) or resistance factor (RFA) approach
 e019658	A single global factor of safety
 2b9eba4	The allowable stress method
-c851028	The types of limit state (GEO, STR, EQU, UPL, HYD) remain; it is the verification procedure that changes.
 92fa05f	According to the matrix, which category does a CC3 structure with normal geotechnical complexity (GCC2) fall into?
 acebabb	It cannot be classified
 22ede21	High consequence and normal complexity: GC3. The table is a nationally determined parameter.
@@ -124,3 +123,4 @@ f4f0c37	The weight of the building has to be spread over a large area.
 eae5d1a	In a rubble-concrete strip footing, the stones are distributed evenly over the full depth of the footing.
 447089f	The rubble stone can be used in a band of about half the depth of the footing.
 a2fd766	Mass-concrete strip footings are typically built with formwork today.
+ba9d408	The failure modes to be checked remain; it is the way of verification that changes.

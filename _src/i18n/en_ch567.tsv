@@ -93,16 +93,12 @@ bdb9bd3	<br>The order depends on the design situation – what matters is that n
 43883e7	III. plastic range – failure
 d3c43dd	<span>Expected: <b style="font-family:var(--f-body)">${NAME[M.m]}</b></span>
 ea11cf9	 From the ground alone, ${NAME[M.auto.m]} would follow.
-c10f096	load / ultimate load →
-38664c4	↓ settlement s/B
 982355b	general
 f8210f0	punching
-ad9ef16	density index →
 7ad16c8	large raft: local failure under the edges
 e146dd9	cohesive soil: the consistency decides
 f0151ef	time →
 e24ec89	↓ settlement
-068306d	II. σ₂: ds/dt = const.
 4756706	<span><i style="background:rgba(134,181,28,.6)"></i>active wedge</span><span><i style="background:rgba(230,140,40,.6)"></i>radial zone</span><span><i style="background:rgba(214,72,140,.5)"></i>passive wedge</span><span><i style="background:rgba(200,110,20,.5)"></i>plastic zone</span><span><i style="background:#d23f2a"></i>slip surface</span>
 # js/w_ch7.js
 00d8652	No results.
@@ -144,3 +140,8 @@ e905a40	clay that changes volume
 0be16bb	sandy gravel bearing stratum
 2534da3	neighbour’s foundation level −${fmt(q.dsz, 2)} m
 c9728d7	❄ winter in progress…
+e39ad38	II. σ_2: ds/dt = const.
+d60a20d	← relative depth, D/B*
+824f2fb	density index, I_D →
+f54bebd	↓ settlement, s/B
+e0a9d4f	load / ultimate load, q/q_t →

@@ -284,7 +284,7 @@ onReady(function lemezek() {
       // az ágyazat mindkét oldalon 50–60 cm-rel túlnyúlik a lemez szélén (a rajzon ~1 px/cm)
       S('rect', { x: 4, y: y + 26, width: 712, height: 58, fill: f('kavics'), style: 'stroke:var(--ink-3)' }, g);
       dimLine(g, 660, y + 96, 716, y + 96, '50–60 cm', { dy: 16 });
-      S('text', { x: 670, y: y + 60, class: 't-s', 'text-anchor': 'end', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: 'tömörített szemcsés ágyazat ≥ 50–60 cm' }, g);
+      S('text', { x: 670, y: y + 60, class: 't-s t-halo', 'text-anchor': 'end', text: 'tömörített szemcsés ágyazat ≥ 50–60 cm' }, g);
       S('line', { x1: 0, y1: y + 130, x2: 720, y2: y + 130, style: 'stroke:var(--frost);stroke-width:2;stroke-dasharray:8 5' }, g);
       S('text', { x: 10, y: y + 124, class: 't-s', style: 'fill:var(--frost)', text: 'fagyhatár – a lemez alsó síkja felette maradhat' }, g);
       S('line', { x1: 0, y1: y, x2: 60, y2: y, stroke: '#3d5a1f', 'stroke-width': 3 }, g);
@@ -341,7 +341,7 @@ onReady(function tipusJatek() {
     if (b === 'panel') { S('rect', { x: 60, y: 14, width: 160, height: 106, style: st }, g); for (let i = 0; i < 4; i++) for (let j = 0; j < 7; j++) S('rect', { x: 60 + i * 40, y: 14 + j * 15, width: 40, height: 15, style: 'fill:none;stroke:var(--ink-3)' }, g); }
     if (b === 'torony') { S('rect', { x: 115, y: 10, width: 50, height: 110, style: st }, g); S('path', { d: 'M105 10 h70', style: 'stroke:var(--ink-2);stroke-width:3' }, g); }
     if (b === 'kicsi') { S('rect', { x: 70, y: 60, width: 140, height: 60, style: st }, g); S('rect', { x: 70, y: 50, width: 140, height: 10, style: 'fill:var(--c2);opacity:.6' }, g); }
-    if (kind.t) S('text', { x: 10, y: 172, class: 't-s', style: 'fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.6);stroke-width:3px', text: kind.t }, g);
+    if (kind.t) S('text', { x: 10, y: 172, class: 't-s t-halo', text: kind.t }, g);
   };
   const O = ['Sávalap', 'Pilléralap', 'Szalagalap', 'Gerendarács-alap', 'Lemezalap', 'Dobozalap', 'Nagyméretű kör alaptest (pilléralap)'];
   renderGame($('#gameTipus'), {

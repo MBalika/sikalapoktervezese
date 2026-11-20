@@ -50,7 +50,7 @@ if (process.argv[1].endsWith('apply.mjs')) {
   const { out, missing, errors, unused } = applyAll(root, files, T);
   const seen = new Set(); const miss = missing.filter(u => !seen.has(u.id) && seen.add(u.id));
   if (miss.length) { fs.writeFileSync(path.join(outDir, '..', 'missing.tsv'), miss.map(u => `${u.id}\t${u.t.replace(/\n/g, '⏎')}\t# ${u.file}:${u.line}`).join('\n') + '\n'); }
-  console.log(`hiányzó: ${miss.length} · hiba: ${errors.length} · fel nem használt: ${unused.length}`); errors.slice(0, 40).forEach(e => console.log('  ' + e)); if (unused.length) console.log('  fel nem használt:', unused.slice(0, 20).join(' '));
+  console.log(`hiányzó: ${miss.length} · hiba: ${errors.length} · fel nem használt: ${unused.length}`); errors.slice(0, 40).forEach(e => console.log('  ' + e)); if (unused.length) console.log('  fel nem használt:', unused.join(' '));
   for (const f in out) { const p = path.join(outDir, f); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, out[f]); }
   if (errors.length || (miss.length && process.env.STRICT)) process.exit(1);
 }
