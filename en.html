@@ -563,6 +563,8 @@ main .card li, main .callout li, main .card ul, main .callout ul{text-align-last
 .card .ic{margin-inline:auto}
 .verdict{justify-content:center;text-align:center}
 dl > div{text-align:center}
+/* fejléc: keskeny kijelzőn is a teljes appnév (két sorba törhet, nem vágjuk le) */
+@media (max-width:760px){.brand .t b{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.15;font-size:.98rem}}
 
 </style>
 <style id="bxt-css">
