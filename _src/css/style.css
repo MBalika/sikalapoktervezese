@@ -540,3 +540,15 @@ main .card li, main .callout li, main .card ul, main .callout ul{text-align-last
 dl > div{text-align:center}
 /* fejléc: keskeny kijelzőn is a teljes appnév (két sorba törhet, nem vágjuk le) */
 @media (max-width:760px){.brand .t b{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.15;font-size:.98rem}}
+
+/* kereszthivatkozások a társ-tananyagokra („máshol is” dobozok) */
+.xref { margin: 22px 0 8px; padding: 12px 14px 14px; border: 1px dashed var(--line2, var(--line)); border-radius: 12px; background: var(--surface2, var(--card2)); }
+.xref-h { display: block; text-align: center; font: 700 11.5px/1.2 var(--f-mono, ui-monospace, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--muted, var(--mute)); margin: 0 0 10px; }
+.xref-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.xref a { flex: 1 1 260px; max-width: 440px; display: grid; grid-template-columns: auto 1fr; column-gap: 11px; align-items: center; padding: 9px 12px; border-radius: 10px; background: var(--surface, var(--card)); border: 1px solid var(--line); border-left: 4px solid var(--xc); text-decoration: none; color: var(--ink); transition: border-color .15s, transform .15s; }
+.xref a:hover { border-color: var(--xc); transform: translateY(-1px); }
+.xref .xa { grid-row: span 2; min-width: 34px; height: 34px; padding: 0 5px; border-radius: 8px; display: grid; place-items: center; font: 800 12px/1 var(--f-mono, ui-monospace, monospace); color: #fff; background: var(--xc); }
+.xref b { font-size: 13.5px; line-height: 1.25; }
+.xref small { color: var(--muted, var(--mute)); font-size: 12.5px; line-height: 1.35; text-align: left; hyphens: manual; }
+.xref { background: transparent; }
+.xref small, .xref-h { color: color-mix(in srgb, var(--ink) 64%, transparent); }

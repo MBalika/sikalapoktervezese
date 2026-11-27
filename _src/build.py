@@ -99,6 +99,6 @@ build(EN, R.parent / 'en.html', 'en-GB')
 p = R.parent / 'en.html'; t = p.read_text()
 # (a társoldalak közül azok, amelyeknek már van angol változata)
 for site in ['sikalapok-teherbirasszamitasa', 'sikalapok-sullyedesszamitasa', 'vedekezesakarossullyedesekellen', 'sikalapokallekonysagvizsgalata', 'kedvezotlen-altalaj', 'munkaterhatarolasok', 'talajfelderites', 'sikalapokaterohatasok', 'melyalapozasok']:
-    t, n = re.subn(rf'https://{site}\.vercel\.app/(#[\w-]+)?(?=["\'])', lambda m, s=site: f'https://{s}.vercel.app/en' + (m.group(1) or ''), t); print(site, '→ /en:', n)
+    t, n = re.subn(rf'https://{site}\.vercel\.app/?(#[\w-]+)?(?=["\'])', lambda m, s=site: f'https://{s}.vercel.app/en' + (m.group(1) or ''), t); print(site, '→ /en:', n)
 t, n = re.subn(r'https://bme-alapozas\.vercel\.app/((?:telek|ar-labor)/)?(?=["\'])', lambda m: 'https://bme-alapozas.vercel.app/' + (m.group(1) or '') + 'en', t); print('bme-alapozas → /en:', n)
 p.write_text(t)
